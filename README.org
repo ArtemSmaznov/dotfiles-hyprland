@@ -1,0 +1,693 @@
+#+title:       Hyprland
+#+author:      Artem Smaznov
+#+description: wlroots-based tiling Wayland compositor written in C++
+#+startup:     overview
+#+property:    header-args :tangle hyprland.conf
+#+auto_tangle: t
+
+* Table of Contents :toc:
+- [[#apps][Apps]]
+- [[#theme][Theme]]
+- [[#core][Core]]
+- [[#general][General]]
+- [[#decoration][Decoration]]
+- [[#input][Input]]
+- [[#misc][Misc]]
+- [[#binds][Binds]]
+- [[#animations][Animations]]
+- [[#layouts][Layouts]]
+  - [[#dwindle][Dwindle]]
+  - [[#master][Master]]
+- [[#gestures][Gestures]]
+- [[#devices][Devices]]
+  - [[#mouse][Mouse]]
+- [[#rules][Rules]]
+  - [[#workspace-1---internet][Workspace 1 - Internet]]
+  - [[#workspace-2---gaming][Workspace 2 - Gaming]]
+  - [[#workspace-3---coding][Workspace 3 - Coding]]
+  - [[#workspace-4---computer][Workspace 4 - Computer]]
+  - [[#workspace-5---music][Workspace 5 - Music]]
+  - [[#workspace-6---graphics][Workspace 6 - Graphics]]
+  - [[#workspace-7---chat][Workspace 7 - Chat]]
+  - [[#workspace-8---sandbox][Workspace 8 - Sandbox]]
+  - [[#workspace-9---monitor][Workspace 9 - Monitor]]
+- [[#keybindings][Keybindings]]
+  - [[#strt-system][STRT System]]
+  - [[#strt-windows][STRT Windows]]
+  - [[#monitors][Monitors]]
+  - [[#layouts-1][Layouts]]
+  - [[#workspaces][Workspaces]]
+  - [[#scratchpads][Scratchpads]]
+  - [[#media-keys][Media Keys]]
+  - [[#dm-scripts][dm-scripts]]
+  - [[#launching-apps][Launching Apps]]
+- [[#mouse-bindings][Mouse Bindings]]
+
+* Apps
+#+begin_src conf
+$myScript        = $HOME/.local/bin
+$myDMScript      = $HOME/.local/bin/dm-scripts
+
+# cli tools
+$myTerm          = alacritty
+$myCliFiles      = vifmrun
+$myCliMusic      = ncmpcpp
+$myCliText       = vim
+$myCliSysAudio   = alsamixer
+$myCliSysMonitor = btop
+$myCliSysTasks   = htop
+
+# core tools
+$myWebBrowser    = qutebrowser
+$myIncBrowser    = qutebrowser --target private-window
+$myTorBrowser    = torbrowser-launcher
+$myIde           = emacsclient -c -a 'emacs'
+$myFiles         = pcmanfm
+$mySteam         = /usr/bin/steam-runtime %U
+
+# extra tools
+$myLauncher      = rofi -show drun
+$myPassManager   = rofi-pass
+$myVirtManager   = virt-manager
+$myTorrent       = transmission-gtk
+$myCalculator    = gnome-calculator
+$myAnki          = anki
+
+# graphics tools
+$myPhotoLibrary  = digikam
+$myImgEditor     = gimp
+$myVctEditor     = inkscape
+$myVidEditor     = kdenlive
+
+# chat apps
+$myWhatsApp      = whatsapp-for-linux
+$myDiscord       = discord
+
+# system tools
+$mySysPower      = xfce4-power-manager-settings
+$mySysNetwork    = nm-connection-editor
+$mySysBluetooth  = blueman-manager
+#+end_src
+
+* Theme
+#+begin_src conf
+$base00 = 282828
+$base01 = 3c3836
+$base02 = 504945
+$base03 = 665c54
+$base04 = bdae93
+$base05 = d5c4a1
+$base06 = ebdbb2
+$base07 = fbf1c7
+$base08 = fb4934
+$base09 = fe8019
+$base0A = fabd2f
+$base0B = b8bb26
+$base0C = 8ec07c
+$base0D = 83a598
+$base0E = d3869b
+$base0F = d65d0e
+#+end_src
+
+* Core
+PLEASE USE THE CONFIG PROVIDED IN THE GIT REPO /examples/hypr.conf AND EDIT IT,
+
+Please note not all available settings / options are set here.
+For a full list, see the wiki
+#+begin_src conf
+# See https://wiki.hyprland.org/Configuring/Monitors/
+monitor=,highrr,auto,auto
+
+# See https://wiki.hyprland.org/Configuring/Keywords/ for more
+
+# Execute your favorite apps at launch
+# exec-once = waybar & hyprpaper & firefox
+
+# Source a file (multi-file configs)
+# source = ~/.config/hypr/myColors.conf
+
+# Toolkit Backend Variables
+env = GDK_BACKEND,wayland,x11     # GTK: Use wayland if available, fall back to x11 if not.
+env = QT_QPA_PLATFORM,wayland;xcb # QT: Use wayland if available, fall back to x11 if not.
+env = QT_QPA_PLATFORMTHEME,qt5ct  # Tells QT based applications to pick your theme from qt5ct, use with Kvantum.
+
+# Theming Related Variables
+# env = GTK_THEME,                  # Set a GTK theme manually, for those who want to avoid appearance tools such as lxappearance or nwg-look
+# env = XCURSOR_THEME,              # Set your cursor theme. The theme needs to be installed and readable by your user.
+env = XCURSOR_SIZE,24             # Set cursor size. See here for why you might want this variable set.
+
+# XDG Specifications
+env = XDG_SESSION_TYPE,wayland
+env = XDG_SESSION_DESKTOP,Hyprland
+#+end_src
+
+NVidia Specific
+#+begin_src conf
+env = GBM_BACKEND,nvidia-drm           # force GBM as a backend
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia # force GBM as a backend
+env = LIBVA_DRIVER_NAME,nvidia         # Hardware acceleration on NVIDIA GPUs
+env = __GL_GSYNC_ALLOWED,1             # Controls if G-Sync capable monitors should use Variable Refresh Rate (VRR)
+env = __GL_VRR_ALLOWED,0               # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid having problems on some games.
+# env = WLR_DRM_NO_ATOMIC,1              # use legacy DRM interface instead of atomic mode setting. Might fix flickering issues.
+env = WLR_NO_HARDWARE_CURSORS,1
+#+end_src
+
+* General
+See https://wiki.hyprland.org/Configuring/Variables/ for more
+#+begin_src conf
+general {
+    gaps_in = 7                 # gaps between windows
+    gaps_out = 14               # gaps between windows and monitor edges
+
+    border_size = 5
+    col.active_border = rgba($base0Eee) rgba($base0Dee) 45deg
+    col.inactive_border = rgba($base03aa)
+
+    no_cursor_warps = true      # will not warp the cursor in many cases (focusing, keybinds, etc)
+    cursor_inactive_timeout = 5 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
+
+    no_focus_fallback = true    # will not fall back to the next available window when moving focus in a direction where no window was found
+
+    resize_on_border = true     # enables resizing windows by clicking and dragging on borders and gaps
+
+    layout = dwindle
+}
+#+end_src
+
+* Decoration
+See https://wiki.hyprland.org/Configuring/Variables/ for more
+#+begin_src conf
+decoration {
+    rounding = 10
+    blur = yes
+    blur_size = 7
+    blur_passes = 3
+    blur_new_optimizations = on
+
+    drop_shadow = yes
+    shadow_range = 12
+    shadow_render_power = 3
+    col.shadow = rgba(1a1a1aee)
+
+    dim_inactive = false
+}
+#+end_src
+
+* Input
+For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+#+begin_src conf
+input {
+    kb_layout = us,ru,jp
+    kb_variant =
+    kb_model =
+    kb_options = grp:alt_shift_toggle
+    kb_rules =
+
+    # Specify if and how cursor movement should affect window focus
+    # 0 - Cursor movement will not change focus.
+    # 1 - Cursor movement will always change focus to the window under the cursor.
+    # 2 - Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
+    # 3 - Cursor focus will be completely separate from keyboard focus. Clicking on a window will not change keyboard focus.
+    #
+    follow_mouse = 0
+
+    repeat_rate = 25   # The repeat rate for held-down keys, in repeats per second.
+    repeat_delay = 300 # Delay before a held-down key is repeated, in milliseconds.
+
+    touchpad {
+        natural_scroll = no
+    }
+
+    sensitivity = 0    # -1.0 - 1.0, 0 means no modification.
+}
+#+end_src
+
+* Misc
+#+begin_src conf
+misc {
+    disable_hyprland_logo = false
+    disable_autoreload = false
+
+    mouse_move_focuses_monitor = false
+
+    mouse_move_enables_dpms = false     # If DPMS is set to off, wake up the monitors if the mouse moves.
+    key_press_enables_dpms = false      # If DPMS is set to off, wake up the monitors if a key is pressed.
+
+    animate_manual_resizes = true       # will animate manual window resizes/moves	bool	false
+    animate_mouse_windowdragging = true # will animate windows being dragged by mouse, note that this can cause weird behavior on some curves
+
+    enable_swallow = false              # Enable window swallowing
+    focus_on_activate = false           # Whether Hyprland should focus an app that requests to be focused
+
+    # allow_session_lock_restore = false  # will allow you to restart a lockscreen app in case it crashes
+}
+#+end_src
+
+* Binds
+#+begin_src conf
+binds {
+    workspace_back_and_forth = true # an attempt to switch to the currently focused workspace will instead switch to the previous workspace
+}
+#+end_src
+
+* Animations
+Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+#+begin_src conf
+animations {
+    enabled = yes
+
+
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+#+end_src
+
+* Layouts
+** Dwindle
+See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+#+begin_src conf
+dwindle {
+    pseudotile = true         # master switch for pseudotiling. Pseudotiled windows retain their floating size when tiled.
+    force_split = 2           # 0 - mouse; 1 - left; 2 - right
+    preserve_split = true     # if enabled, the split (side/top) will not change regardless of what happens to the container.
+    no_gaps_when_only = false # whether to apply gaps when there is only one window on a workspace, aka. smart gaps.
+}
+#+end_src
+
+** Master
+#+begin_src conf
+master {
+    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+    new_is_master = true
+}
+#+end_src
+
+* Gestures
+#+begin_src conf
+gestures {
+    # See https://wiki.hyprland.org/Configuring/Variables/ for more
+    workspace_swipe = off
+}
+#+end_src
+
+* Devices
+** Mouse
+Example per-device config
+See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
+#+begin_src conf
+device:epic-mouse-v1 {
+    sensitivity = -0.5
+}
+#+end_src
+
+* Rules
+See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+#+begin_src conf
+# mark xwayland windows
+windowrulev2 = bordercolor rgb($base0F) rgb($base00),xwayland:1
+
+# mpv
+windowrulev2 = float,class:^(mpv)$
+windowrulev2 = pseudo,class:^(mpv)$,floating:0
+windowrulev2 = center,floating:1
+#+end_src
+
+** Workspace 1 - Internet
+#+begin_src conf
+windowrule = workspace 1 silent,^(firefox)$
+windowrule = workspace 1 silent,^(Tor Browser)$
+windowrule = workspace 1 silent,^(Chromium)$
+windowrule = workspace 1 silent,^(Google-chrome)$
+windowrule = workspace 1 silent,^(Brave-browser)$
+windowrule = workspace 1 silent,^(vivaldi-stable)$
+windowrule = workspace 1 silent,^(org.qutebrowser.qutebrowser$)
+windowrule = workspace 1 silent,^(nyxt)$
+#+end_src
+
+** Workspace 2 - Gaming
+#+begin_src conf
+windowrule = workspace 2 silent,^(Wine)$
+windowrule = workspace 2 silent,^(dolphin-emu)$
+windowrule = workspace 2 silent,^(Lutris)$
+windowrule = workspace 2 silent,^(Citra)$
+windowrule = workspace 2 silent,^(SuperTuxKart)$
+windowrule = workspace 2 silent,^(steam)$
+windowrule = workspace 2 silent,^(battle.net)$
+#+end_src
+
+** Workspace 3 - Coding
+#+begin_src conf
+windowrule = workspace 3 silent,^(Emacs)$
+windowrule = workspace 3 silent,^(Geany)$
+windowrule = workspace 3 silent,^(Atom)$
+windowrule = workspace 3 silent,^(Subl3)$
+windowrule = workspace 3 silent,^(code-oss)$
+windowrule = workspace 3 silent,^(Oomox)$
+windowrule = workspace 3 silent,^(Unity)$
+windowrule = workspace 3 silent,^(UnityHub)$
+windowrule = workspace 3 silent,^(jetbrains-studio)$
+#+end_src
+
+** Workspace 4 - Computer
+#+begin_src conf
+windowrule = workspace 4 silent,^(dolphin)$
+windowrule = workspace 4 silent,^(ark)$
+windowrule = workspace 4 silent,^(Pcmanfm)$
+windowrule = workspace 4 silent,^(File-roller)$
+windowrule = workspace 4 silent,^(googledocs)$
+windowrule = workspace 4 silent,^(keep)$
+windowrule = workspace 4 silent,^(calendar)$
+#+end_src
+
+** Workspace 5 - Music
+#+begin_src conf
+windowrule = workspace 5 silent,^(ncmpcpp)$
+windowrule = workspace 5 silent,^(Spotify)$
+#+end_src
+
+** Workspace 6 - Graphics
+#+begin_src conf
+windowrule = workspace 6 silent,^(Gimp)$
+windowrule = workspace 6 silent,^(Inkscape)$
+windowrule = workspace 6 silent,^(Flowblade)$
+windowrule = workspace 6 silent,^(org.kde.digikam)$
+windowrule = workspace 6 silent,^(obs)$
+windowrule = workspace 6 silent,^(kdenlive)$
+#+end_src
+
+** Workspace 7 - Chat
+#+begin_src conf
+windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
+windowrule   = workspace 7 silent,^(Slack)$
+windowrule   = workspace 7 silent,^(discord)$
+windowrule   = workspace 7 silent,^(signal)$
+windowrulev2 = workspace 7 silent,class:^(Steam)$,title:^(Friends List)$
+#+end_src
+
+** Workspace 8 - Sandbox
+#+begin_src conf
+windowrule = workspace 8 silent,^(Virt-manager)$
+windowrule = workspace 8 silent,^VirtualBox
+windowrule = workspace 8 silent,^(Cypress)$
+#+end_src
+
+** Workspace 9 - Monitor
+#+begin_src conf
+windowrule = workspace 9 silent,^(btop)$
+#+end_src
+
+* Keybindings
+Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+** STRT System
+#+begin_src conf
+bind = SUPER CTRL , q , exit                , # Quit Hyprland
+bind = SUPER CTRL , r , forcerendererreload , # Restart Hyprland
+#+end_src
+
+** STRT Windows
+States
+#+begin_src conf
+bind = SUPER       , q   , killactive     ,    # Close focused Window
+bind = SUPER       , F11 , fullscreen     , 0  # Toggle Fullscreen
+bind = SUPER SHIFT , f   , fullscreen     , 0  # Toggle Fullscreen
+bind = SUPER       , m   , fullscreen     , 1  # Toggle Maximize
+bind = SUPER       , f   , togglefloating ,    # Toggle Floating
+#+end_src
+
+Focus
+#+begin_src conf
+bind = ALT       , tab , cyclenext ,           #  Move focus to next Window
+bind = ALT SHIFT , tab , cyclenext , prev      #  Move focus to prev Window
+bind = SUPER     , h   , movefocus , l         #  Move focus to left Window
+bind = SUPER     , j   , movefocus , d         #  Move focus to below Window
+bind = SUPER     , k   , movefocus , u         #  Move focus to above Window
+bind = SUPER     , l   , movefocus , r         #  Move focus to right Window
+#+end_src
+
+Swapping
+#+begin_src conf
+bind = SUPER SHIFT , h , swapwindow , l        # Swap focused Window with left Window
+bind = SUPER SHIFT , j , swapwindow , d        # Swap focused Window with below Window
+bind = SUPER SHIFT , k , swapwindow , u        # Swap focused Window with above Window
+bind = SUPER SHIFT , l , swapwindow , r        # Swap focused Window with right Window
+#+end_src
+
+Resizing
+#+begin_src conf
+bind = SUPER , equal , splitratio , exact 1    # Reset fucused Window size
+
+binde = SUPER CTRL , h , resizeactive , -20 0  # Grow focused Window left
+binde = SUPER CTRL , j , resizeactive ,  0 20  # Grow focused Window down
+binde = SUPER CTRL , k , resizeactive ,  0 -20 # Grow focused Window up
+binde = SUPER CTRL , l , resizeactive , 20 0   # Grow focused Window right
+#+end_src
+
+Move Floating Windows
+#+begin_src conf
+#+end_src
+
+Masters
+#+begin_src conf
+#+end_src
+
+** TODO Monitors
+Focus
+#+begin_src conf
+#+end_src
+
+Moving Windows
+#+begin_src conf
+#+end_src
+
+Swapping
+#+begin_src conf
+#+end_src
+
+** TODO Layouts
+Dwindle
+#+begin_src conf
+bind = SUPER SHIFT , p , pseudo ,      # Toggle Pseudo
+bind = SUPER SHIFT , m , togglesplit , # Mirror Layout
+#+end_src
+
+** DONE Workspaces
+Focus
+#+begin_src conf
+bind = SUPER , 1 , workspace , 1
+bind = SUPER , 2 , workspace , 2
+bind = SUPER , 3 , workspace , 3
+bind = SUPER , 4 , workspace , 4
+bind = SUPER , 5 , workspace , 5
+bind = SUPER , 6 , workspace , 6
+bind = SUPER , 7 , workspace , 7
+bind = SUPER , 8 , workspace , 8
+bind = SUPER , 9 , workspace , 9
+bind = SUPER , 0 , workspace , 10
+#+end_src
+
+Moving Windows
+#+begin_src conf
+bind = SUPER SHIFT , 1 , movetoworkspacesilent , 1
+bind = SUPER SHIFT , 2 , movetoworkspacesilent , 2
+bind = SUPER SHIFT , 3 , movetoworkspacesilent , 3
+bind = SUPER SHIFT , 4 , movetoworkspacesilent , 4
+bind = SUPER SHIFT , 5 , movetoworkspacesilent , 5
+bind = SUPER SHIFT , 6 , movetoworkspacesilent , 6
+bind = SUPER SHIFT , 7 , movetoworkspacesilent , 7
+bind = SUPER SHIFT , 8 , movetoworkspacesilent , 8
+bind = SUPER SHIFT , 9 , movetoworkspacesilent , 9
+bind = SUPER SHIFT , 0 , movetoworkspacesilent , 10
+#+end_src
+
+** TODO Scratchpads
+#+begin_src conf
+#+end_src
+
+** DONE Media Keys
+#+begin_src conf
+bind =      , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2 # Increase System Volume
+bind =      , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2 # Decrease System Volume
+bind =      , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # Mute
+bind = CTRL , XF86AudioRaiseVolume , exec , mpc volume +2                            # Increase Player Volume
+bind = CTRL , XF86AudioLowerVolume , exec , mpc volume -2                            # Decrease Player Volume
+bind =      , XF86AudioPrev        , exec , mpc prev                                 # Prev Song
+bind =      , XF86AudioNext        , exec , mpc next                                 # Next Song
+bind =      , XF86AudioPlay        , exec , mpc toggle                               # Play/Pause Music
+bind =      , XF86AudioStop        , exec , mpc stop                                 # Stop Music
+#+end_src
+
+** DONE dm-scripts
+Global
+#+begin_src conf
+bind = SUPER , d , submap , dm-global
+submap = dm-global
+
+bind = SUPER , d         , exec , $myDMScript/dm-master     # DM Master
+bind =       , w         , exec , $myDMScript/dm-wallpaper  # DM Wallpaper
+bind =       , r         , exec , $myDMScript/dm-record     # DM Record
+bind =       , p         , exec , $myDMScript/dm-power      # DM Power
+bind =       , t         , exec , $myDMScript/dm-theme      # DM Theme
+bind =       , s         , exec , $myDMScript/dm-screenshot # DM Screenshot
+bind =       , b         , exec , $myDMScript/dm-bookman    # DM Bookman
+bind =       , n         , exec , $myDMScript/dm-notify     # DM Notify
+bind =       , backslash , exec , $myDMScript/dm-notify     # DM Notify
+bind =       , k         , exec , $myDMScript/dm-keys       # DM Keys
+
+# Reset submap
+bind =       , escape    , submap , reset
+bind = SUPER , d         , submap , reset
+bind =       , w         , submap , reset
+bind =       , r         , submap , reset
+bind =       , p         , submap , reset
+bind =       , t         , submap , reset
+bind =       , s         , submap , reset
+bind =       , b         , submap , reset
+bind =       , n         , submap , reset
+bind =       , backslash , submap , reset
+bind =       , k         , submap , reset
+
+submap = reset
+#+end_src
+
+Power Control
+#+begin_src conf
+bind = SUPER , z , submap , dm-power
+submap = dm-power
+
+bind =       , l , exec , $myDMScript/dm-power lock      # Lock Screen
+bind =       , s , exec , $myDMScript/dm-power suspend   # Suspend System
+bind =       , p , exec , $myDMScript/dm-power poweroff  # Shutdown System
+bind =       , r , exec , $myDMScript/dm-power reboot    # Reboot System
+bind =       , w , exec , $myDMScript/dm-power windows   # Reboot to Windows
+bind =       , z , exec , $myDMScript/dm-power suspend   # Suspend System
+bind = SUPER , z , exec , $myDMScript/dm-power suspend   # Suspend System
+
+# Reset submap
+bind =       , escape , submap , reset
+bind =       , l      , submap , reset
+bind =       , s      , submap , reset
+bind =       , p      , submap , reset
+bind =       , r      , submap , reset
+bind =       , w      , submap , reset
+bind =       , z      , submap , reset
+bind = SUPER , z      , submap , reset
+
+submap = reset
+#+end_src
+
+Screenshot
+#+begin_src conf
+bind = SUPER , s , submap , dm-screenshot
+submap = dm-screenshot
+
+bind =             , print , exec , $myDMScript/dm-screenshot screen # Fullscreen Screenshot
+bind = SUPER SHIFT , print , exec , $myDMScript/dm-screenshot area   # Selection Area Screenshot
+bind = ALT         , print , exec , $myDMScript/dm-screenshot window # Active Window Screenshot
+bind = SUPER       , print , exec , $myDMScript/dm-screenshot full   # Full Desktop Screenshot
+
+# Reset submap
+bind =             , escape , submap , reset
+bind =             , print  , submap , reset
+bind = SUPER SHIFT , print  , submap , reset
+bind = ALT         , print  , submap , reset
+bind = SUPER       , print  , submap , reset
+
+submap = reset
+#+end_src
+
+Notifications
+#+begin_src conf
+bind = SUPER , backslash , submap , dm-notify
+submap = dm-notify
+
+bind =       , backslash , exec , $myDMScript/dm-notify recent  # Show most recent Notification
+bind = SUPER , backslash , exec , $myDMScript/dm-notify recent  # Show most recent Notification
+bind = SHIFT , backslash , exec , $myDMScript/dm-notify recents # Show few recent Notifications
+bind =       , r         , exec , $myDMScript/dm-notify recents # Show few recent Notifications
+bind = SHIFT , c         , exec , $myDMScript/dm-notify clear   # Clear all Notifications
+bind =       , c         , exec , $myDMScript/dm-notify close   # Clear last Notification
+bind =       , a         , exec , $myDMScript/dm-notify context # Open last Notification
+
+# Reset submap
+bind =       , escape    , submap , reset
+bind =       , backslash , submap , reset
+bind = SUPER , backslash , submap , reset
+bind = SHIFT , backslash , submap , reset
+bind =       , r         , submap , reset
+bind = SHIFT , c         , submap , reset
+bind =       , c         , submap , reset
+bind =       , a         , submap , reset
+
+submap = reset
+#+end_src
+
+** DONE Launching Apps
+#+begin_src conf
+bind = CTRL ALT    , t      , exec , $myTerm          # Launch Terminal
+bind = SUPER       , return , exec , $myTerm          # Launch Terminal
+bind = SUPER       , c      , exec , $myIde           # Launch IDE
+bind = SUPER SHIFT , e      , exec , $myFiles         # Launch File Manager
+bind = SUPER       , b      , exec , $myWebBrowser    # Launch Web Browser
+bind = SUPER       , i      , exec , $myIncBrowser    # Launch Web Browser in Incognito Mode
+bind = SUPER       , p      , exec , $myPassManager   # Autofill Passwords
+bind = SUPER       , r      , exec , $myLauncher      # Launch Launcher
+bind = SUPER SHIFT , r      , exec , wofi --show drun # Launch wofi
+#+end_src
+
+Primary
+#+begin_src conf
+bind = SUPER , o , submap , app-primary
+submap = app-primary
+
+bind = , t , exec , $myTorBrowser                               # Launch Tor Browser
+bind = , m , exec , $myTerm --class $myCliMusic -e $myCliMusic  # Launch Music Player
+bind = , s , exec , $mySteam                                    # Launch Steam
+
+# Reset submap
+bind = , escape , submap , reset
+bind = , t      , submap , reset
+bind = , m      , submap , reset
+bind = , s      , submap , reset
+
+submap = reset
+#+end_src
+
+Secondary
+#+begin_src conf
+bind = CTRL ALT , o , submap , app-secondary
+submap = app-secondary
+
+bind = , t , exec , $myTerm -e $myCliText
+                                                      #  Launch Text Editor
+bind = , p , exec , $myPhotoLibrary                   #  Launch Photo Librar
+bind = , g , exec , $myImgEditor                      #  Launch Image Editor
+bind = , r , exec , $myVctEditor                      #  Launch Vector Editor
+bind = , v , exec , $myVidEditor                      #  Launch Video Editor
+
+# Reset submap
+bind = , escape , submap , reset
+bind = , t      , submap , reset
+bind = , p      , submap , reset
+bind = , g      , submap , reset
+bind = , r      , submap , reset
+bind = , v      , submap , reset
+
+submap = reset
+#+end_src
+
+* Mouse Bindings
+#+begin_src conf
+# Scroll through existing workspaces with mainMod + scroll
+# bind = SUPER , mouse_down , workspace , e+1
+# bind = SUPER , mouse_up   , workspace , e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = SUPER , mouse:272 , movewindow
+bindm = SUPER , mouse:273 , resizewindow
+#+end_src
