@@ -13,6 +13,16 @@
 - [[#startup][Startup]]
 - [[#environment-variables][Environment Variables]]
 - [[#general][General]]
+- [[#rules][Rules]]
+  - [[#workspace-1---internet][Workspace 1 - Internet]]
+  - [[#workspace-2---gaming][Workspace 2 - Gaming]]
+  - [[#workspace-3---coding][Workspace 3 - Coding]]
+  - [[#workspace-4---computer][Workspace 4 - Computer]]
+  - [[#workspace-5---music][Workspace 5 - Music]]
+  - [[#workspace-6---graphics][Workspace 6 - Graphics]]
+  - [[#workspace-7---chat][Workspace 7 - Chat]]
+  - [[#workspace-8---sandbox][Workspace 8 - Sandbox]]
+  - [[#workspace-9---monitor][Workspace 9 - Monitor]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
 - [[#misc][Misc]]
@@ -24,16 +34,6 @@
 - [[#gestures][Gestures]]
 - [[#devices][Devices]]
   - [[#mouse][Mouse]]
-- [[#rules][Rules]]
-  - [[#workspace-1---internet][Workspace 1 - Internet]]
-  - [[#workspace-2---gaming][Workspace 2 - Gaming]]
-  - [[#workspace-3---coding][Workspace 3 - Coding]]
-  - [[#workspace-4---computer][Workspace 4 - Computer]]
-  - [[#workspace-5---music][Workspace 5 - Music]]
-  - [[#workspace-6---graphics][Workspace 6 - Graphics]]
-  - [[#workspace-7---chat][Workspace 7 - Chat]]
-  - [[#workspace-8---sandbox][Workspace 8 - Sandbox]]
-  - [[#workspace-9---monitor][Workspace 9 - Monitor]]
 - [[#keybindings][Keybindings]]
   - [[#strt-system][STRT System]]
   - [[#strt-windows][STRT Windows]]
@@ -53,6 +53,7 @@
 |-----------+-------------|
 | hyprland  |             |
 | hyprpaper |             |
+| waybar-hyprland |             |
 |-----------+-------------|
 
 #+begin_example shell
@@ -121,6 +122,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 # exec-once = waybar & hyprpaper & firefox
 exec-once = hyprpaper
+exec-once = waybar
 #+end_src
 
 * Environment Variables
@@ -175,6 +177,102 @@ general {
 
     layout = dwindle
 }
+#+end_src
+
+* Rules
+See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+#+begin_src conf
+# mark xwayland windows
+windowrulev2 = bordercolor rgb($base0F) rgb($base00),xwayland:1
+
+# mpv
+windowrulev2 = float,class:^(mpv)$
+windowrulev2 = pseudo,class:^(mpv)$,floating:0
+windowrulev2 = center,floating:1
+#+end_src
+
+** Workspace 1 - Internet
+#+begin_src conf
+windowrule = workspace 1 silent,^(firefox)$
+windowrule = workspace 1 silent,^(Tor Browser)$
+windowrule = workspace 1 silent,^(Chromium)$
+windowrule = workspace 1 silent,^(Google-chrome)$
+windowrule = workspace 1 silent,^(Brave-browser)$
+windowrule = workspace 1 silent,^(vivaldi-stable)$
+windowrule = workspace 1 silent,^(org.qutebrowser.qutebrowser$)
+windowrule = workspace 1 silent,^(nyxt)$
+#+end_src
+
+** Workspace 2 - Gaming
+#+begin_src conf
+windowrule = workspace 2 silent,^(Wine)$
+windowrule = workspace 2 silent,^(dolphin-emu)$
+windowrule = workspace 2 silent,^(Lutris)$
+windowrule = workspace 2 silent,^(Citra)$
+windowrule = workspace 2 silent,^(SuperTuxKart)$
+windowrule = workspace 2 silent,^(Steam)$
+windowrule = workspace 2 silent,^(battle.net)$
+#+end_src
+
+** Workspace 3 - Coding
+#+begin_src conf
+windowrule = workspace 3 silent,^(Emacs)$
+windowrule = workspace 3 silent,^(Geany)$
+windowrule = workspace 3 silent,^(Atom)$
+windowrule = workspace 3 silent,^(Subl3)$
+windowrule = workspace 3 silent,^(code-oss)$
+windowrule = workspace 3 silent,^(Oomox)$
+windowrule = workspace 3 silent,^(Unity)$
+windowrule = workspace 3 silent,^(UnityHub)$
+windowrule = workspace 3 silent,^(jetbrains-studio)$
+#+end_src
+
+** Workspace 4 - Computer
+#+begin_src conf
+windowrule = workspace 4 silent,^(dolphin)$
+windowrule = workspace 4 silent,^(ark)$
+windowrule = workspace 4 silent,^(Pcmanfm)$
+windowrule = workspace 4 silent,^(File-roller)$
+windowrule = workspace 4 silent,^(googledocs)$
+windowrule = workspace 4 silent,^(keep)$
+windowrule = workspace 4 silent,^(calendar)$
+#+end_src
+
+** Workspace 5 - Music
+#+begin_src conf
+windowrule = workspace 5 silent,^(ncmpcpp)$
+windowrule = workspace 5 silent,^(Spotify)$
+#+end_src
+
+** Workspace 6 - Graphics
+#+begin_src conf
+windowrule = workspace 6 silent,^(Gimp)$
+windowrule = workspace 6 silent,^(Inkscape)$
+windowrule = workspace 6 silent,^(Flowblade)$
+windowrule = workspace 6 silent,^(org.kde.digikam)$
+windowrule = workspace 6 silent,^(obs)$
+windowrule = workspace 6 silent,^(kdenlive)$
+#+end_src
+
+** Workspace 7 - Chat
+#+begin_src conf
+windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
+windowrule   = workspace 7 silent,^(Slack)$
+windowrule   = workspace 7 silent,^(discord)$
+windowrule   = workspace 7 silent,^(signal)$
+windowrulev2 = workspace 7 silent,class:^(Steam)$,title:^(Friends List)$
+#+end_src
+
+** Workspace 8 - Sandbox
+#+begin_src conf
+windowrule = workspace 8 silent,^(Virt-manager)$
+windowrule = workspace 8 silent,^VirtualBox
+windowrule = workspace 8 silent,^(Cypress)$
+#+end_src
+
+** Workspace 9 - Monitor
+#+begin_src conf
+windowrule = workspace 9 silent,^(btop)$
 #+end_src
 
 * Decoration
@@ -309,102 +407,6 @@ device:epic-mouse-v1 {
 }
 #+end_src
 
-* Rules
-See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-#+begin_src conf
-# mark xwayland windows
-windowrulev2 = bordercolor rgb($base0F) rgb($base00),xwayland:1
-
-# mpv
-windowrulev2 = float,class:^(mpv)$
-windowrulev2 = pseudo,class:^(mpv)$,floating:0
-windowrulev2 = center,floating:1
-#+end_src
-
-** Workspace 1 - Internet
-#+begin_src conf
-windowrule = workspace 1 silent,^(firefox)$
-windowrule = workspace 1 silent,^(Tor Browser)$
-windowrule = workspace 1 silent,^(Chromium)$
-windowrule = workspace 1 silent,^(Google-chrome)$
-windowrule = workspace 1 silent,^(Brave-browser)$
-windowrule = workspace 1 silent,^(vivaldi-stable)$
-windowrule = workspace 1 silent,^(org.qutebrowser.qutebrowser$)
-windowrule = workspace 1 silent,^(nyxt)$
-#+end_src
-
-** Workspace 2 - Gaming
-#+begin_src conf
-windowrule = workspace 2 silent,^(Wine)$
-windowrule = workspace 2 silent,^(dolphin-emu)$
-windowrule = workspace 2 silent,^(Lutris)$
-windowrule = workspace 2 silent,^(Citra)$
-windowrule = workspace 2 silent,^(SuperTuxKart)$
-windowrule = workspace 2 silent,^(steam)$
-windowrule = workspace 2 silent,^(battle.net)$
-#+end_src
-
-** Workspace 3 - Coding
-#+begin_src conf
-windowrule = workspace 3 silent,^(Emacs)$
-windowrule = workspace 3 silent,^(Geany)$
-windowrule = workspace 3 silent,^(Atom)$
-windowrule = workspace 3 silent,^(Subl3)$
-windowrule = workspace 3 silent,^(code-oss)$
-windowrule = workspace 3 silent,^(Oomox)$
-windowrule = workspace 3 silent,^(Unity)$
-windowrule = workspace 3 silent,^(UnityHub)$
-windowrule = workspace 3 silent,^(jetbrains-studio)$
-#+end_src
-
-** Workspace 4 - Computer
-#+begin_src conf
-windowrule = workspace 4 silent,^(dolphin)$
-windowrule = workspace 4 silent,^(ark)$
-windowrule = workspace 4 silent,^(Pcmanfm)$
-windowrule = workspace 4 silent,^(File-roller)$
-windowrule = workspace 4 silent,^(googledocs)$
-windowrule = workspace 4 silent,^(keep)$
-windowrule = workspace 4 silent,^(calendar)$
-#+end_src
-
-** Workspace 5 - Music
-#+begin_src conf
-windowrule = workspace 5 silent,^(ncmpcpp)$
-windowrule = workspace 5 silent,^(Spotify)$
-#+end_src
-
-** Workspace 6 - Graphics
-#+begin_src conf
-windowrule = workspace 6 silent,^(Gimp)$
-windowrule = workspace 6 silent,^(Inkscape)$
-windowrule = workspace 6 silent,^(Flowblade)$
-windowrule = workspace 6 silent,^(org.kde.digikam)$
-windowrule = workspace 6 silent,^(obs)$
-windowrule = workspace 6 silent,^(kdenlive)$
-#+end_src
-
-** Workspace 7 - Chat
-#+begin_src conf
-windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
-windowrule   = workspace 7 silent,^(Slack)$
-windowrule   = workspace 7 silent,^(discord)$
-windowrule   = workspace 7 silent,^(signal)$
-windowrulev2 = workspace 7 silent,class:^(Steam)$,title:^(Friends List)$
-#+end_src
-
-** Workspace 8 - Sandbox
-#+begin_src conf
-windowrule = workspace 8 silent,^(Virt-manager)$
-windowrule = workspace 8 silent,^VirtualBox
-windowrule = workspace 8 silent,^(Cypress)$
-#+end_src
-
-** Workspace 9 - Monitor
-#+begin_src conf
-windowrule = workspace 9 silent,^(btop)$
-#+end_src
-
 * Keybindings
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** STRT System
@@ -482,16 +484,17 @@ bind = SUPER SHIFT , m , togglesplit , # Mirror Layout
 ** DONE Workspaces
 Focus
 #+begin_src conf
-bind = SUPER , 1 , workspace , 1
-bind = SUPER , 2 , workspace , 2
-bind = SUPER , 3 , workspace , 3
-bind = SUPER , 4 , workspace , 4
-bind = SUPER , 5 , workspace , 5
-bind = SUPER , 6 , workspace , 6
-bind = SUPER , 7 , workspace , 7
-bind = SUPER , 8 , workspace , 8
-bind = SUPER , 9 , workspace , 9
-bind = SUPER , 0 , workspace , 10
+bind = SUPER , tab , workspace , previous # Toggle Workspace
+bind = SUPER , 1   , workspace , 1
+bind = SUPER , 2   , workspace , 2
+bind = SUPER , 3   , workspace , 3
+bind = SUPER , 4   , workspace , 4
+bind = SUPER , 5   , workspace , 5
+bind = SUPER , 6   , workspace , 6
+bind = SUPER , 7   , workspace , 7
+bind = SUPER , 8   , workspace , 8
+bind = SUPER , 9   , workspace , 9
+bind = SUPER , 0   , workspace , 10
 #+end_src
 
 Moving Windows
