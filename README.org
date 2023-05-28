@@ -9,7 +9,9 @@
 - [[#dependencies][Dependencies]]
 - [[#apps][Apps]]
 - [[#theme][Theme]]
-- [[#core][Core]]
+- [[#monitors][Monitors]]
+- [[#startup][Startup]]
+- [[#environment-variables][Environment Variables]]
 - [[#general][General]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
@@ -35,7 +37,7 @@
 - [[#keybindings][Keybindings]]
   - [[#strt-system][STRT System]]
   - [[#strt-windows][STRT Windows]]
-  - [[#monitors][Monitors]]
+  - [[#monitors-1][Monitors]]
   - [[#layouts-1][Layouts]]
   - [[#workspaces][Workspaces]]
   - [[#strt-scratchpads][STRT Scratchpads]]
@@ -108,35 +110,36 @@ $mySysBluetooth  = blueman-manager
 source=./themes/base16.conf
 #+end_src
 
-* Core
-PLEASE USE THE CONFIG PROVIDED IN THE GIT REPO /examples/hypr.conf AND EDIT IT,
-
-Please note not all available settings / options are set here.
-For a full list, see the wiki
+* Monitors
+See https://wiki.hyprland.org/Configuring/Monitors/
 #+begin_src conf
-# See https://wiki.hyprland.org/Configuring/Monitors/
 monitor=,highrr,auto,auto
+#+end_src
 
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
-
-# Execute your favorite apps at launch
+* Startup
+See https://wiki.hyprland.org/Configuring/Keywords/ for more
+#+begin_src conf
 # exec-once = waybar & hyprpaper & firefox
 exec-once = hyprpaper
+#+end_src
 
-# Source a file (multi-file configs)
-# source = ~/.config/hypr/myColors.conf
-
-# Toolkit Backend Variables
+* Environment Variables
+Toolkit Backend Variables
+#+begin_src conf
 env = GDK_BACKEND,wayland,x11     # GTK: Use wayland if available, fall back to x11 if not.
 env = QT_QPA_PLATFORM,wayland;xcb # QT: Use wayland if available, fall back to x11 if not.
 env = QT_QPA_PLATFORMTHEME,qt5ct  # Tells QT based applications to pick your theme from qt5ct, use with Kvantum.
+#+end_src
 
-# Theming Related Variables
+Theming Related Variables
+#+begin_src conf
 # env = GTK_THEME,                  # Set a GTK theme manually, for those who want to avoid appearance tools such as lxappearance or nwg-look
 # env = XCURSOR_THEME,              # Set your cursor theme. The theme needs to be installed and readable by your user.
 env = XCURSOR_SIZE,24             # Set cursor size. See here for why you might want this variable set.
+#+end_src
 
-# XDG Specifications
+XDG Specifications
+#+begin_src conf
 env = XDG_SESSION_TYPE,wayland
 env = XDG_SESSION_DESKTOP,Hyprland
 #+end_src
@@ -507,6 +510,7 @@ bind = SUPER SHIFT , 0 , movetoworkspacesilent , 10
 
 ** STRT Scratchpads
 Not an acceptable solution yet
+see https://github.com/hyprwm/Hyprland/issues/1988
 #+begin_src conf
 bind = SUPER , grave , exec , [workspace special:terminal] alacritty
 bind = SUPER , grave , togglespecialworkspace , terminal
