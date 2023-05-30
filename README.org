@@ -114,15 +114,16 @@ source=./themes/base16.conf
 * Monitors
 See https://wiki.hyprland.org/Configuring/Monitors/
 #+begin_src conf
+monitor=HDMI-A-1,preferred,auto,auto
 monitor=,highrr,auto,auto
 #+end_src
 
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
-# exec-once = waybar & hyprpaper & firefox
 exec-once = hyprpaper
 exec-once = waybar
+exec-once = $myScript/auto-start.sh
 #+end_src
 
 * Environment Variables
