@@ -1,0 +1,54 @@
+{
+    "pyprland": {
+        "plugins": [
+            "scratchpads"
+        ]
+    },
+    "scratchpads": {
+        "term": {
+            "command": "alacritty --class sp-term",
+            "animation": "",
+            "unfocus": ""
+        },
+        "files": {
+            "command": "alacritty --class sp-files -e vifm",
+            "animation": "",
+            "unfocus": ""
+        },
+        "htop": {
+            "command": "alacritty --class sp-htop -e htop",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "music": {
+            "command": "alacritty --class sp-music -e ncmpcpp",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "torrent": {
+            "command": "transmission-gtk",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "anki": {
+            "command": "anki",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "whatsapp": {
+            "command": "whatsapp-for-linux",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "discord": {
+            "command": "discord",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "calculator": {
+            "command": "gnome-calculator",
+            "animation": "fromRight",
+            "unfocus": ""
+        }
+    }
+}

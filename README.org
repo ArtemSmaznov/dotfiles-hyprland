@@ -14,6 +14,7 @@
 - [[#environment-variables][Environment Variables]]
 - [[#general][General]]
 - [[#rules][Rules]]
+- [[#rules---workspaces][Rules - Workspaces]]
   - [[#workspace-1---internet][Workspace 1 - Internet]]
   - [[#workspace-2---gaming][Workspace 2 - Gaming]]
   - [[#workspace-3---coding][Workspace 3 - Coding]]
@@ -23,6 +24,17 @@
   - [[#workspace-7---chat][Workspace 7 - Chat]]
   - [[#workspace-8---sandbox][Workspace 8 - Sandbox]]
   - [[#workspace-9---monitor][Workspace 9 - Monitor]]
+- [[#rules---scratchpads][Rules - Scratchpads]]
+  - [[#terminal][Terminal]]
+  - [[#files][Files]]
+  - [[#music][Music]]
+  - [[#torrent][Torrent]]
+  - [[#anki][Anki]]
+  - [[#vm][VM]]
+  - [[#whatsapp][WhatsApp]]
+  - [[#discord][Discord]]
+  - [[#htop][Htop]]
+  - [[#calculator][Calculator]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
 - [[#misc][Misc]]
@@ -46,18 +58,21 @@
   - [[#launching-apps][Launching Apps]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#wallpaper][Wallpaper]]
+- [[#plugins][Plugins]]
 
 * Dependencies
-|-----------+-------------|
-| Name      | Description |
-|-----------+-------------|
-| hyprland  |             |
-| hyprpaper |             |
+|-----------------+-------------|
+| Name            | Description |
+|-----------------+-------------|
+| hyprland        |             |
+| hyprpaper       |             |
 | waybar-hyprland |             |
-|-----------+-------------|
+| pyprland        | plugins     |
+|-----------------+-------------|
 
 #+begin_example shell
 sudo pacman -S hyprland hyprpaper
+paru -S pyprland
 #+end_example
 
 * Apps
@@ -121,8 +136,10 @@ monitor=,highrr,auto,auto
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
+exec-once = swayidle
 exec-once = hyprpaper
 exec-once = waybar
+exec-once = pypr
 exec-once = $myScript/auto-start.sh
 #+end_src
 
@@ -170,7 +187,7 @@ general {
     col.inactive_border = rgba($base03aa)
 
     no_cursor_warps = true      # will not warp the cursor in many cases (focusing, keybinds, etc)
-    cursor_inactive_timeout = 5 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
+    cursor_inactive_timeout = 0 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
 
     no_focus_fallback = true    # will not fall back to the next available window when moving focus in a direction where no window was found
 
@@ -192,6 +209,7 @@ windowrulev2 = pseudo,class:^(mpv)$,floating:0
 windowrulev2 = center,floating:1
 #+end_src
 
+* Rules - Workspaces
 ** Workspace 1 - Internet
 #+begin_src conf
 windowrule = workspace 1 silent,^(firefox)$
@@ -206,13 +224,14 @@ windowrule = workspace 1 silent,^(nyxt)$
 
 ** Workspace 2 - Gaming
 #+begin_src conf
-windowrule = workspace 2 silent,^(Wine)$
-windowrule = workspace 2 silent,^(dolphin-emu)$
-windowrule = workspace 2 silent,^(Lutris)$
-windowrule = workspace 2 silent,^(Citra)$
-windowrule = workspace 2 silent,^(SuperTuxKart)$
-windowrule = workspace 2 silent,^(Steam)$
-windowrule = workspace 2 silent,^(battle.net)$
+windowrule   = workspace 2 silent,^(Wine)$
+windowrule   = workspace 2 silent,^(dolphin-emu)$
+windowrule   = workspace 2 silent,^(Lutris)$
+windowrule   = workspace 2 silent,^(Citra)$
+windowrule   = workspace 2 silent,^(SuperTuxKart)$
+windowrule   = workspace 2 silent,^(Steam)$
+windowrulev2 = workspace 2 silent,title:^(Steam)$
+windowrule   = workspace 2 silent,^(battle.net)$
 #+end_src
 
 ** Workspace 3 - Coding
@@ -276,6 +295,97 @@ windowrule = workspace 8 silent,^(Cypress)$
 windowrule = workspace 9 silent,^(btop)$
 #+end_src
 
+* Rules - Scratchpads
+** Terminal
+#+begin_src conf
+$scratchpad = ^(sp-term)$
+windowrule = size 50% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Files
+#+begin_src conf
+$scratchpad = ^(sp-files)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Music
+#+begin_src conf
+$scratchpad = ^(sp-music)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Torrent
+#+begin_src conf
+$scratchpad = ^(com.transmissionbt.transmission*)
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Anki
+#+begin_src conf
+$scratchpad = ^(anki)$
+windowrule = size 20% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** VM
+#+begin_src conf
+$scratchpad = ^(virt-manager)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** WhatsApp
+#+begin_src conf
+$scratchpad = ^(whatsapp-for-linux)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Discord
+#+begin_src conf
+$scratchpad = ^(discord)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Htop
+#+begin_src conf
+$scratchpad = ^(sp-htop)$
+windowrule = size 80% 80%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
+** Calculator
+#+begin_src conf
+$scratchpad = ^(org.gnome.Calculator)$
+windowrule = size 70% 70%,$scratchpad
+windowrule = float,$scratchpad
+windowrule = center,$scratchpad
+windowrule = workspace special silent,$scratchpad
+#+end_src
+
 * Decoration
 See https://wiki.hyprland.org/Configuring/Variables/ for more
 #+begin_src conf
@@ -313,6 +423,11 @@ input {
     #
     follow_mouse = 0
 
+    # 0 - Cursor movement will not change focus.
+    # 1 - focus will change to the window under the cursor when changing from tiled-to-floating and vice versa.
+    # 2 - focus will also follow mouse on float-to-float switches.
+    float_switch_override_focus = 0
+
     repeat_rate = 25   # The repeat rate for held-down keys, in repeats per second.
     repeat_delay = 300 # Delay before a held-down key is repeated, in milliseconds.
 
@@ -341,7 +456,7 @@ misc {
     enable_swallow = false              # Enable window swallowing
     focus_on_activate = false           # Whether Hyprland should focus an app that requests to be focused
 
-    # allow_session_lock_restore = false  # will allow you to restart a lockscreen app in case it crashes
+    # allow_session_lock_restore = true   # will allow you to restart a lockscreen app in case it crashes
 }
 #+end_src
 
@@ -516,8 +631,34 @@ bind = SUPER SHIFT , 0 , movetoworkspacesilent , 10
 Not an acceptable solution yet
 see https://github.com/hyprwm/Hyprland/issues/1988
 #+begin_src conf
-bind = SUPER , grave , exec , [workspace special:terminal] alacritty
-bind = SUPER , grave , togglespecialworkspace , terminal
+bind = SUPER    , grave  , exec , pypr toggle term
+bind = SUPER    , e      , exec , pypr toggle files
+bind = CTRL ALT , delete , exec , pypr toggle htop
+
+bind = SUPER , s , submap , scratchpad
+submap = scratchpad
+
+bind = , m , exec , pypr toggle music
+bind = , t , exec , pypr toggle torrent
+bind = , a , exec , pypr toggle anki
+bind = , v , exec , pypr toggle vm
+bind = , w , exec , pypr toggle whatsapp
+bind = , d , exec , pypr toggle discord
+bind = , c , exec , pypr toggle calculator
+bind = , h , exec , pypr toggle htop
+
+# Reset submap
+bind =       , escape    , submap , reset
+bind =       , m         , submap , reset
+bind =       , t         , submap , reset
+bind =       , a         , submap , reset
+bind =       , v         , submap , reset
+bind =       , w         , submap , reset
+bind =       , d         , submap , reset
+bind =       , c         , submap , reset
+bind =       , h         , submap , reset
+
+submap = reset
 #+end_src
 
 ** DONE Media Keys
@@ -710,4 +851,73 @@ bindm = SUPER , mouse:273 , resizewindow
 #+begin_src conf
 preload = ~/pictures/wallpapers/faded/stairs.jpg
 wallpaper = ,~/pictures/wallpapers/faded/stairs.jpg
+#+end_src
+
+* Plugins
+:PROPERTIES:
+:header-args: :tangle pyprland.json
+:END:
+#+begin_src json
+{
+    "pyprland": {
+        "plugins": [
+            "scratchpads"
+        ]
+    },
+    "scratchpads": {
+        "term": {
+            "command": "alacritty --class sp-term",
+            "animation": "",
+            "unfocus": ""
+        },
+        "files": {
+            "command": "alacritty --class sp-files -e vifm",
+            "animation": "",
+            "unfocus": ""
+        },
+        "htop": {
+            "command": "alacritty --class sp-htop -e htop",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "music": {
+            "command": "alacritty --class sp-music -e ncmpcpp",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "torrent": {
+            "command": "transmission-gtk",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "anki": {
+            "command": "anki",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "whatsapp": {
+            "command": "whatsapp-for-linux",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "discord": {
+            "command": "discord",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "calculator": {
+            "command": "gnome-calculator",
+            "animation": "fromRight",
+            "unfocus": ""
+        }
+    }
+}
+#+end_src
+
+#+begin_src json :tangle no
+        "vm": {
+            "command": "virt-manager",
+            "animation": "",
+            "unfocus": ""
+        },
 #+end_src
