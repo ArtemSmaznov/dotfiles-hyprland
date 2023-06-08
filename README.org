@@ -187,7 +187,7 @@ general {
     col.inactive_border = rgba($base03aa)
 
     no_cursor_warps = true      # will not warp the cursor in many cases (focusing, keybinds, etc)
-    cursor_inactive_timeout = 0 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
+    cursor_inactive_timeout = 5 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
 
     no_focus_fallback = true    # will not fall back to the next available window when moving focus in a direction where no window was found
 
@@ -518,9 +518,9 @@ gestures {
 Example per-device config
 See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 #+begin_src conf
-device:epic-mouse-v1 {
-    sensitivity = -0.5
-}
+# device:logitech-mx-master-3-1 {
+#     sensitivity = 0
+# }
 #+end_src
 
 * Keybindings
@@ -764,16 +764,12 @@ bind = SHIFT , backslash , exec , $myDMScript/dm-notify recents # Show few recen
 bind =       , r         , exec , $myDMScript/dm-notify recents # Show few recent Notifications
 bind = SHIFT , c         , exec , $myDMScript/dm-notify clear   # Clear all Notifications
 bind =       , c         , exec , $myDMScript/dm-notify close   # Clear last Notification
+bind =       , backspace , exec , $myDMScript/dm-notify close   # Clear last Notification
 bind =       , a         , exec , $myDMScript/dm-notify context # Open last Notification
 
 # Reset submap
 bind =       , escape    , submap , reset
-bind =       , backslash , submap , reset
-bind = SUPER , backslash , submap , reset
-bind = SHIFT , backslash , submap , reset
-bind =       , r         , submap , reset
 bind = SHIFT , c         , submap , reset
-bind =       , c         , submap , reset
 bind =       , a         , submap , reset
 
 submap = reset
@@ -889,6 +885,16 @@ wallpaper = ,~/pictures/wallpapers/faded/stairs.jpg
             "command": "transmission-gtk",
             "animation": "fromTop",
             "unfocus": "hide"
+        }
+    }
+}
+#+end_src
+
+#+begin_src json :tangle no
+        "vm": {
+            "command": "virt-manager",
+            "animation": "",
+            "unfocus": ""
         },
         "anki": {
             "command": "anki",
@@ -910,14 +916,4 @@ wallpaper = ,~/pictures/wallpapers/faded/stairs.jpg
             "animation": "fromRight",
             "unfocus": ""
         }
-    }
-}
-#+end_src
-
-#+begin_src json :tangle no
-        "vm": {
-            "command": "virt-manager",
-            "animation": "",
-            "unfocus": ""
-        },
 #+end_src
