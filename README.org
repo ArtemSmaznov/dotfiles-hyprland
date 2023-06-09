@@ -206,7 +206,7 @@ windowrulev2 = bordercolor rgb($base0F) rgb($base00),xwayland:1
 # mpv
 windowrulev2 = float,class:^(mpv)$
 windowrulev2 = pseudo,class:^(mpv)$,floating:0
-windowrulev2 = center,floating:1
+windowrulev2 = center,class:^(mpv)$,floating:1
 #+end_src
 
 * Rules - Workspaces
