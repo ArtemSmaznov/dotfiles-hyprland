@@ -464,6 +464,7 @@ misc {
 #+begin_src conf
 binds {
     workspace_back_and_forth = true # an attempt to switch to the currently focused workspace will instead switch to the previous workspace
+    allow_workspace_cycles = true   # If enabled, workspaces don’t forget their previous workspace, so cycles can be created by switching to the first workspace in a sequence, then endlessly going to the previous workspace.
 }
 #+end_src
 
