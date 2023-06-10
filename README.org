@@ -136,8 +136,9 @@ monitor=,highrr,auto,auto
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
-exec-once = swayidle
 exec-once = hyprpaper
+exec-once = $myScript/set-wallpaper.sh
+exec-once = swayidle
 exec-once = waybar
 exec-once = pypr
 exec-once = $myScript/auto-start.sh
@@ -846,8 +847,9 @@ bindm = SUPER , mouse:273 , resizewindow
 :header-args: :tangle hyprpaper.conf
 :END:
 #+begin_src conf
-preload = ~/pictures/wallpapers/faded/stairs.jpg
-wallpaper = ,~/pictures/wallpapers/faded/stairs.jpg
+# placeholder wallpaper to allow hyprpaper to start
+preload = ~/pictures/wallpapers/logos/penguin.jpg
+wallpaper = ,~/pictures/wallpapers/logos/penguin.jpg
 #+end_src
 
 * Plugins
