@@ -208,8 +208,12 @@ windowrulev2 = float,class:^(mpv)$
 windowrulev2 = pseudo,class:^(mpv)$,floating:0
 windowrulev2 = center,class:^(mpv)$,floating:1
 
-# maximized
+# maximized windows
 windowrulev2 = rounding 0,fullscreen:1
+
+# inhibit idle in games
+windowrulev2 = idleinhibit focus,class:^steam_app
+windowrulev2 = idleinhibit focus,class:x86_64$
 #+end_src
 
 * Rules - Workspaces
