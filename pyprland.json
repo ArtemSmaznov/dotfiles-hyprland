@@ -29,6 +29,31 @@
             "command": "transmission-gtk",
             "animation": "fromTop",
             "unfocus": "hide"
+        },
+        "vm": {
+            "command": "virt-manager",
+            "animation": "",
+            "unfocus": ""
+        },
+        "anki": {
+            "command": "anki",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "whatsapp": {
+            "command": "whatsapp-for-linux",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "discord": {
+            "command": "discord",
+            "animation": "fromTop",
+            "unfocus": ""
+        },
+        "calculator": {
+            "command": "gnome-calculator",
+            "animation": "fromRight",
+            "unfocus": ""
         }
     }
 }
