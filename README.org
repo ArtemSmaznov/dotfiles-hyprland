@@ -137,10 +137,10 @@ monitor=,highrr,auto,auto
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = hyprpaper
-exec-once = $myScript/set-wallpaper.sh
-exec-once = swayidle
+# exec-once = swayidle
 exec-once = waybar
 exec-once = $myScript/auto-start.sh
+exec-once = sleep 3 && $myScript/set-wallpaper.sh
 #+end_src
 
 * Environment Variables
