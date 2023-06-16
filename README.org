@@ -236,8 +236,8 @@ windowrule   = workspace 2 silent,^(dolphin-emu)$
 windowrule   = workspace 2 silent,^(Lutris)$
 windowrule   = workspace 2 silent,^(Citra)$
 windowrule   = workspace 2 silent,^(SuperTuxKart)$
-windowrule   = workspace 2 silent,^(Steam)$
-windowrulev2 = workspace 2 silent,title:^(Steam)$
+windowrule   = workspace 2 silent,^(steam)$
+# windowrulev2 = workspace 2 silent,title:^(Steam)$
 windowrule   = workspace 2 silent,^(battle.net)$
 #+end_src
 
@@ -287,7 +287,7 @@ windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
 windowrule   = workspace 7 silent,^(Slack)$
 windowrule   = workspace 7 silent,^(discord)$
 windowrule   = workspace 7 silent,^(signal)$
-windowrulev2 = workspace 7 silent,class:^(Steam)$,title:^(Friends List)$
+windowrulev2 = workspace 7 silent,class:^(steam)$,title:^(Friends List)$
 #+end_src
 
 ** Workspace 8 - Sandbox
