@@ -138,6 +138,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = hyprpaper
 # exec-once = swayidle
+exec-once = wlsunset -t 3500 -l 54.2 -L -4.5
 exec-once = waybar
 exec-once = $myScript/auto-start.sh
 exec-once = sleep 3 && $myScript/set-wallpaper.sh
@@ -767,22 +768,10 @@ submap = reset
 
 Screenshot
 #+begin_src conf
-bind = SUPER , s , submap , dm-screenshot
-submap = dm-screenshot
-
-bind =             , print , exec , $myDMScript/dm-screenshot screen # Fullscreen Screenshot
-bind = SUPER SHIFT , print , exec , $myDMScript/dm-screenshot area   # Selection Area Screenshot
-bind = ALT         , print , exec , $myDMScript/dm-screenshot window # Active Window Screenshot
-bind = SUPER       , print , exec , $myDMScript/dm-screenshot full   # Full Desktop Screenshot
-
-# Reset submap
-bind =             , escape , submap , reset
-bind =             , print  , submap , reset
-bind = SUPER SHIFT , print  , submap , reset
-bind = ALT         , print  , submap , reset
-bind = SUPER       , print  , submap , reset
-
-submap = reset
+bind =             , print , exec , $myScript/screenshot.sh monitor # Fullscreen Screenshot
+bind = SUPER SHIFT , print , exec , $myScript/screenshot.sh area    # Selection Area Screenshot
+bind = ALT         , print , exec , $myScript/screenshot.sh window  # Active Window Screenshot
+bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Desktop Screenshot
 #+end_src
 
 Notifications
@@ -877,8 +866,8 @@ bindm = SUPER , mouse:273 , resizewindow
 :END:
 #+begin_src conf
 # placeholder wallpaper to allow hyprpaper to start
-preload = ~/pictures/wallpapers/logos/penguin.jpg
-wallpaper = ,~/pictures/wallpapers/logos/penguin.jpg
+preload = /usr/share/hyprland/wall_anime_2K.png
+wallpaper = ,/usr/share/hyprland/wall_anime_2K.png
 #+end_src
 
 * Scripts

@@ -8,52 +8,62 @@
         "term": {
             "command": "alacritty --class sp-term",
             "animation": "",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "files": {
             "command": "alacritty --class sp-files -e vifm",
             "animation": "",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "htop": {
             "command": "alacritty --class sp-htop -e htop",
             "animation": "fromTop",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "music": {
             "command": "alacritty --class sp-music -e ncmpcpp",
             "animation": "fromTop",
-            "unfocus": "hide"
+            "unfocus": "hide",
+            "lazy": true
         },
         "torrent": {
             "command": "transmission-gtk",
             "animation": "fromTop",
-            "unfocus": "hide"
+            "unfocus": "hide",
+            "lazy": true
         },
         "vm": {
             "command": "virt-manager",
             "animation": "",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "anki": {
             "command": "anki",
             "animation": "fromTop",
-            "unfocus": "hide"
+            "unfocus": "hide",
+            "lazy": true
         },
         "whatsapp": {
             "command": "whatsapp-for-linux",
             "animation": "fromTop",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "discord": {
             "command": "discord",
             "animation": "fromTop",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         },
         "calculator": {
             "command": "gnome-calculator",
             "animation": "fromRight",
-            "unfocus": ""
+            "unfocus": "",
+            "lazy": true
         }
     }
 }
