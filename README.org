@@ -59,6 +59,7 @@
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#wallpaper][Wallpaper]]
 - [[#scripts][Scripts]]
+  - [[#toggle-layout][Toggle Layout]]
   - [[#toggle-scratchpad][Toggle Scratchpad]]
 
 * Dependencies
@@ -509,9 +510,9 @@ dwindle {
 #+end_src
 
 ** Master
+See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
 #+begin_src conf
 master {
-    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
     new_is_master = true
 }
 #+end_src
@@ -551,6 +552,7 @@ bind = SUPER       , F11 , fullscreen     , 0  # Toggle Fullscreen
 bind = SUPER SHIFT , f   , fullscreen     , 0  # Toggle Fullscreen
 bind = SUPER       , m   , fullscreen     , 1  # Toggle Maximize
 bind = SUPER       , f   , togglefloating ,    # Toggle Floating
+bind = SUPER CTRL  , f   , pin            ,    # Toggle Pinnned
 #+end_src
 
 Focus
@@ -626,8 +628,9 @@ Swapping
 ** Layouts
 Dwindle
 #+begin_src conf
-bind = SUPER SHIFT , p , pseudo ,      # Toggle Pseudo
-bind = SUPER SHIFT , m , togglesplit , # Mirror Layout
+bind = ALT         , space , exec        , $myHyprConfig/toggle-layout.sh # switch layouts
+bind = SUPER SHIFT , p     , pseudo      ,                                # Toggle Pseudo
+bind = SUPER SHIFT , m     , togglesplit ,                                # Mirror Layout
 #+end_src
 
 ** Workspaces
@@ -871,6 +874,25 @@ wallpaper = ,/usr/share/hyprland/wall_anime_2K.png
 #+end_src
 
 * Scripts
+** Toggle Layout
+:PROPERTIES:
+:header-args: :shebang #!/usr/bin/env bash :tangle toggle-layout.sh
+:END:
+#+begin_src shell
+layout="$1"
+
+if [ ! "$layout" ]; then
+    current_layout=$(hyprctl getoption general:layout | grep str | awk '{print $2}' | tr -d '"')
+    if [ "$current_layout" = "dwindle" ]; then
+        layout="master"
+    else
+        layout="dwindle"
+    fi
+fi
+
+hyprctl keyword general:layout "$layout"
+#+end_src
+
 ** Toggle Scratchpad
 :PROPERTIES:
 :header-args: :shebang #!/usr/bin/env bash :tangle toggle-scratchpad.sh
