@@ -59,8 +59,12 @@
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#wallpaper][Wallpaper]]
 - [[#scripts][Scripts]]
+  - [[#toggle-borders][Toggle Borders]]
+  - [[#toggle-corners][Toggle Corners]]
+  - [[#toggle-gaps][Toggle Gaps]]
   - [[#toggle-layout][Toggle Layout]]
   - [[#toggle-scratchpad][Toggle Scratchpad]]
+  - [[#toggle-zen][Toggle Zen]]
 
 * Dependencies
 |-----------------+-------------|
@@ -125,6 +129,11 @@ $mySysBluetooth  = blueman-manager
 * Theme
 #+begin_src conf
 source=./themes/base16.conf
+
+$gaps = 7
+$gaps_double = 14
+$borders = 5
+$corners = 10
 #+end_src
 
 * Monitors
@@ -181,19 +190,19 @@ env = WLR_NO_HARDWARE_CURSORS,1
 See https://wiki.hyprland.org/Configuring/Variables/ for more
 #+begin_src conf
 general {
-    gaps_in = 7                 # gaps between windows
-    gaps_out = 14               # gaps between windows and monitor edges
+    gaps_in = $gaps              # gaps between windows
+    gaps_out = $gaps_double      # gaps between windows and monitor edges
 
-    border_size = 5
+    border_size = $borders
     col.active_border = rgba($base0Eee) rgba($base0Dee) 45deg
     col.inactive_border = rgba($base03aa)
 
-    no_cursor_warps = true      # will not warp the cursor in many cases (focusing, keybinds, etc)
+    no_cursor_warps = true       # will not warp the cursor in many cases (focusing, keybinds, etc)
     cursor_inactive_timeout = 30 # after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
 
-    no_focus_fallback = true    # will not fall back to the next available window when moving focus in a direction where no window was found
+    no_focus_fallback = true     # will not fall back to the next available window when moving focus in a direction where no window was found
 
-    resize_on_border = true     # enables resizing windows by clicking and dragging on borders and gaps
+    resize_on_border = true      # enables resizing windows by clicking and dragging on borders and gaps
 
     layout = dwindle
 }
@@ -401,7 +410,7 @@ windowrule = center,$scratchpad
 See https://wiki.hyprland.org/Configuring/Variables/ for more
 #+begin_src conf
 decoration {
-    rounding = 10
+    rounding = $corners
     blur = yes
     blur_size = 7
     blur_passes = 3
@@ -542,6 +551,22 @@ Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = SUPER CTRL , q     , exit                ,                          # Quit Hyprland
 bind = SUPER CTRL , r     , forcerendererreload ,                          # Restart Hyprland
 bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # Toggle JP language
+
+bind = SUPER , t , submap , toggle
+submap = toggle
+
+bind = , b , exec , $myHyprConfig/toggle-borders.sh $borders            # Toggle Window Borders
+bind = , c , exec , $myHyprConfig/toggle-corners.sh $corners            # Toggle Corners
+bind = , g , exec , $myHyprConfig/toggle-gaps.sh $gaps                  # Toggle Gaps
+bind = , z , exec , $myHyprConfig/toggle-zen.sh $borders $corners $gaps # Toggle Zen Mode
+
+# Reset submap
+bind = , b , submap , reset
+bind = , c , submap , reset
+bind = , g , submap , reset
+bind = , z , submap , reset
+
+submap = reset
 #+end_src
 
 ** Windows
@@ -874,11 +899,62 @@ wallpaper = ,/usr/share/hyprland/wall_anime_2K.png
 #+end_src
 
 * Scripts
+** Toggle Borders
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-borders.sh
+default_value=$1
+
+option="general:border_size"
+type="int"
+
+current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $2}' | tr -d '"')
+if [ $current_value = 0 ]; then
+    value=$default_value
+else
+    value=0
+fi
+
+hyprctl keyword "$option" $value
+#+end_src
+
+** Toggle Corners
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-corners.sh
+default_value=$1
+
+option="decoration:rounding"
+type="int"
+
+current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $2}' | tr -d '"')
+if [ $current_value = 0 ]; then
+    value=$default_value
+else
+    value=0
+fi
+
+hyprctl keyword "$option" $value
+#+end_src
+
+** Toggle Gaps
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-gaps.sh
+default_value=$1
+
+option="general:gaps_in"
+option2="general:gaps_out"
+type="int"
+
+
+current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $2}' | tr -d '"')
+if [ $current_value = 0 ]; then
+    value=$default_value
+else
+    value=0
+fi
+
+hyprctl keyword "$option" $value
+hyprctl keyword "$option2" $((value*=2))
+#+end_src
+
 ** Toggle Layout
-:PROPERTIES:
-:header-args: :shebang #!/usr/bin/env bash :tangle toggle-layout.sh
-:END:
-#+begin_src shell
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-layout.sh
 layout="$1"
 
 if [ ! "$layout" ]; then
@@ -894,10 +970,7 @@ hyprctl keyword general:layout "$layout"
 #+end_src
 
 ** Toggle Scratchpad
-:PROPERTIES:
-:header-args: :shebang #!/usr/bin/env bash :tangle toggle-scratchpad.sh
-:END:
-#+begin_src shell
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-scratchpad.sh
 #
 sp_name="$1"
 sp_class="$2"
@@ -915,3 +988,27 @@ else
     hyprctl dispatch togglespecialworkspace "$sp_name"
 fi
 #+end_src
+
+** Toggle Zen
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-zen.sh
+default_borders="$1"
+default_corners="$2"
+default_gaps="$3"
+
+borders=$(hyprctl getoption general:border_size | grep int | awk '{print $2}' | tr -d '"')
+corners=$(hyprctl getoption decoration:rounding | grep int | awk '{print $2}' | tr -d '"')
+gaps=$(hyprctl getoption general:gaps_in | grep int | awk '{print $2}' | tr -d '"')
+
+if [[ $borders = 0 && $corners = 0 && $gaps = 0 ]]; then
+    hyprctl keyword general:border_size $default_borders
+    hyprctl keyword decoration:rounding $default_corners
+    hyprctl keyword general:gaps_in $default_gaps
+    hyprctl keyword general:gaps_out $((default_gaps *= 2))
+else
+    hyprctl keyword general:border_size 0
+    hyprctl keyword decoration:rounding 0
+    hyprctl keyword general:gaps_in 0
+    hyprctl keyword general:gaps_out 0
+fi
+#+end_src
+
