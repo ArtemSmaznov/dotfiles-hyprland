@@ -57,7 +57,6 @@
   - [[#dm-scripts][dm-scripts]]
   - [[#launching-apps][Launching Apps]]
 - [[#mouse-bindings][Mouse Bindings]]
-- [[#wallpaper][Wallpaper]]
 - [[#scripts][Scripts]]
   - [[#toggle-borders][Toggle Borders]]
   - [[#toggle-corners][Toggle Corners]]
@@ -146,12 +145,10 @@ monitor=,highrr,auto,auto
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
-exec-once = hyprpaper
 # exec-once = swayidle
 exec-once = wlsunset -t 3500 -l 54.2 -L -4.5
 exec-once = waybar
 exec-once = $myScript/auto-start.sh
-exec-once = sleep 3 && $myScript/set-wallpaper.sh
 #+end_src
 
 * Environment Variables
@@ -522,7 +519,8 @@ dwindle {
 See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
 #+begin_src conf
 master {
-    new_is_master = true
+    new_is_master = false
+    no_gaps_when_only = false # whether to apply gaps when there is only one window on a workspace, aka. smart gaps.
 }
 #+end_src
 
@@ -886,16 +884,6 @@ submap = reset
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = SUPER , mouse:272 , movewindow
 bindm = SUPER , mouse:273 , resizewindow
-#+end_src
-
-* Wallpaper
-:PROPERTIES:
-:header-args: :tangle hyprpaper.conf
-:END:
-#+begin_src conf
-# placeholder wallpaper to allow hyprpaper to start
-preload = /usr/share/hyprland/wall_anime_2K.png
-wallpaper = ,/usr/share/hyprland/wall_anime_2K.png
 #+end_src
 
 * Scripts
