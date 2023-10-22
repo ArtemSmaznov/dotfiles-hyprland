@@ -414,10 +414,6 @@ See https://wiki.hyprland.org/Configuring/Variables/ for more
 #+begin_src conf
 decoration {
     rounding = $corners
-    blur = yes
-    blur_size = 7
-    blur_passes = 3
-    blur_new_optimizations = on
 
     drop_shadow = yes
     shadow_range = 12
@@ -425,6 +421,13 @@ decoration {
     col.shadow = rgba(1a1a1aee)
 
     dim_inactive = false
+
+    blur {
+        enabled = yes
+        size = 7
+        passes = 3
+        new_optimizations = on
+    }
 }
 #+end_src
 
