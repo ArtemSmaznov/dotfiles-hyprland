@@ -1,3 +1,6 @@
+:PROPERTIES:
+:ID:       5164eb69-db1d-4eb1-81d0-d1d75a490ea6
+:END:
 #+title:       Hyprland
 #+author:      Artem Smaznov
 #+description: wlroots-based tiling Wayland compositor written in C++
@@ -10,6 +13,7 @@
 - [[#apps][Apps]]
 - [[#theme][Theme]]
 - [[#monitors][Monitors]]
+- [[#waybar][Waybar]]
 - [[#startup][Startup]]
 - [[#environment-variables][Environment Variables]]
 - [[#general][General]]
@@ -58,6 +62,7 @@
   - [[#launching-apps][Launching Apps]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#scripts][Scripts]]
+  - [[#dmscripts][DMScripts]]
   - [[#toggle-borders][Toggle Borders]]
   - [[#toggle-corners][Toggle Corners]]
   - [[#toggle-gaps][Toggle Gaps]]
@@ -142,6 +147,7 @@ monitor=HDMI-A-1,preferred,auto,auto
 monitor=,highrr,auto,auto
 #+end_src
 
+* [[id:8d66f45b-11a8-43fe-b8e7-9ef284aff619][Waybar]]
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
@@ -886,7 +892,8 @@ bindm = SUPER , mouse:272 , movewindow
 bindm = SUPER , mouse:273 , resizewindow
 #+end_src
 
-* Scripts
+* [[id:d4c60fae-8667-4066-902f-692a61572338][Scripts]]
+** [[id:c9d06930-ec33-4afc-b320-3942fa73e592][DMScripts]]
 ** Toggle Borders
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-borders.sh
 default_value=$1
