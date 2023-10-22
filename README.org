@@ -472,8 +472,8 @@ misc {
 
     mouse_move_focuses_monitor = false
 
-    mouse_move_enables_dpms = false     # If DPMS is set to off, wake up the monitors if the mouse moves.
-    key_press_enables_dpms = false      # If DPMS is set to off, wake up the monitors if a key is pressed.
+    mouse_move_enables_dpms = true     # If DPMS is set to off, wake up the monitors if the mouse moves.
+    key_press_enables_dpms = true      # If DPMS is set to off, wake up the monitors if a key is pressed.
 
     animate_manual_resizes = true       # will animate manual window resizes/moves	bool	false
     animate_mouse_windowdragging = true # will animate windows being dragged by mouse, note that this can cause weird behavior on some curves
