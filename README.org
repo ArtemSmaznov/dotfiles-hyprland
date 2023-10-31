@@ -695,6 +695,20 @@ bind = SUPER SHIFT , 9 , movetoworkspacesilent , 9
 bind = SUPER SHIFT , 0 , movetoworkspacesilent , 10
 #+end_src
 
+Moving Windows with switching Workspace
+#+begin_src conf
+bind = SUPER SHIFT CTRL , 1 , movetoworkspace , 1
+bind = SUPER SHIFT CTRL , 2 , movetoworkspace , 2
+bind = SUPER SHIFT CTRL , 3 , movetoworkspace , 3
+bind = SUPER SHIFT CTRL , 4 , movetoworkspace , 4
+bind = SUPER SHIFT CTRL , 5 , movetoworkspace , 5
+bind = SUPER SHIFT CTRL , 6 , movetoworkspace , 6
+bind = SUPER SHIFT CTRL , 7 , movetoworkspace , 7
+bind = SUPER SHIFT CTRL , 8 , movetoworkspace , 8
+bind = SUPER SHIFT CTRL , 9 , movetoworkspace , 9
+bind = SUPER SHIFT CTRL , 0 , movetoworkspace , 10
+#+end_src
+
 ** Scratchpads
 Not an acceptable solution yet
 see https://github.com/hyprwm/Hyprland/issues/1988
