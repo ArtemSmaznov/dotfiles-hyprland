@@ -437,7 +437,8 @@ input {
     kb_layout = us,ru,jp
     kb_variant =
     kb_model =
-    kb_options = grp:lalt_lshift_toggle
+    # kb_options = grp:lalt_lshift_toggle
+    kb_options =
     kb_rules =
 
     # Specify if and how cursor movement should affect window focus
@@ -556,7 +557,7 @@ Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 #+begin_src conf
 bind = SUPER CTRL , q     , exit                ,                          # Quit Hyprland
 bind = SUPER CTRL , r     , forcerendererreload ,                          # Restart Hyprland
-bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # Toggle JP language
+bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # Toggle language
 
 bind = SUPER , t , submap , toggle
 submap = toggle
