@@ -153,7 +153,6 @@ monitor=,highrr,auto,auto
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 # exec-once = swayidle
-exec-once = wlsunset -t 3500 -l 54.2 -L -4.5
 exec-once = waybar
 exec-once = $myScript/auto-start.sh
 #+end_src
