@@ -568,10 +568,11 @@ bind = , g , exec , $myHyprConfig/toggle-gaps.sh $gaps                  # Toggle
 bind = , z , exec , $myHyprConfig/toggle-zen.sh $borders $corners $gaps # Toggle Zen Mode
 
 # Reset submap
-bind = , b , submap , reset
-bind = , c , submap , reset
-bind = , g , submap , reset
-bind = , z , submap , reset
+bind = , escape , submap , reset
+bind = , b      , submap , reset
+bind = , c      , submap , reset
+bind = , g      , submap , reset
+bind = , z      , submap , reset
 
 submap = reset
 #+end_src
