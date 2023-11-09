@@ -298,11 +298,11 @@ windowrule = workspace 6 silent,^(kdenlive)$
 
 ** Workspace 7 - Chat
 #+begin_src conf
-windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
-windowrule   = workspace 7 silent,^(Slack)$
-windowrule   = workspace 7 silent,^(discord)$
-windowrule   = workspace 7 silent,^(signal)$
-windowrulev2 = workspace 7 silent,class:^([Ss]team)$,title:^(Friends List)$
+# windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
+# windowrule   = workspace 7 silent,^(Slack)$
+# windowrule   = workspace 7 silent,^(discord)$
+# windowrule   = workspace 7 silent,^(signal)$
+# windowrulev2 = workspace 7 silent,class:^([Ss]team)$,title:^(Friends List)$
 #+end_src
 
 ** Workspace 8 - Sandbox
@@ -383,7 +383,7 @@ windowrule = center,$scratchpad
 #+end_src
 
 ** Discord
-#+begin_src conf
+#+begin_src conf :tangle no
 $scratchpad = ^(discord)$
 windowrule = unset,$scratchpad
 windowrule = size 70% 70%,$scratchpad
@@ -880,15 +880,17 @@ Primary
 bind = SUPER , o , submap , app-primary
 submap = app-primary
 
-bind = , t , exec , $myTorBrowser                               # Launch Tor Browser
+bind = , d , exec , $myDiscord                                  # Launch Discord
 bind = , m , exec , $myTerm --class $myCliMusic -e $myCliMusic  # Launch Music Player
 bind = , s , exec , $mySteam                                    # Launch Steam
+bind = , t , exec , $myTorBrowser                               # Launch Tor Browser
 
 # Reset submap
 bind = , escape , submap , reset
-bind = , t      , submap , reset
+bind = , d      , submap , reset
 bind = , m      , submap , reset
 bind = , s      , submap , reset
+bind = , t      , submap , reset
 
 submap = reset
 #+end_src
