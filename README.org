@@ -797,16 +797,18 @@ Power Control
 bind = SUPER , z , submap , dm-power
 submap = dm-power
 
-bind =       , l , exec , $myDMScript/dm-power lock      # Lock Screen
-bind =       , s , exec , $myDMScript/dm-power suspend   # Suspend System
-bind =       , p , exec , $myDMScript/dm-power poweroff  # Shutdown System
-bind =       , r , exec , $myDMScript/dm-power reboot    # Reboot System
-bind =       , w , exec , $myDMScript/dm-power windows   # Reboot to Windows
-bind =       , z , exec , $myDMScript/dm-power suspend   # Suspend System
-bind = SUPER , z , exec , $myDMScript/dm-power suspend   # Suspend System
+bind =       , c , exec , $myDMScript/dm-power controller # Disconnect all controllers
+bind =       , l , exec , $myDMScript/dm-power lock       # Lock Screen
+bind =       , s , exec , $myDMScript/dm-power suspend    # Suspend System
+bind =       , p , exec , $myDMScript/dm-power poweroff   # Shutdown System
+bind =       , r , exec , $myDMScript/dm-power reboot     # Reboot System
+bind =       , w , exec , $myDMScript/dm-power windows    # Reboot to Windows
+bind =       , z , exec , $myDMScript/dm-power suspend    # Suspend System
+bind = SUPER , z , exec , $myDMScript/dm-power suspend    # Suspend System
 
 # Reset submap
 bind =       , escape , submap , reset
+bind =       , c      , submap , reset
 bind =       , l      , submap , reset
 bind =       , s      , submap , reset
 bind =       , p      , submap , reset
