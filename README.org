@@ -17,7 +17,7 @@
 - [[#startup][Startup]]
 - [[#environment-variables][Environment Variables]]
 - [[#general][General]]
-- [[#rules][Rules]]
+- [[#window-rules][Window Rules]]
   - [[#xwayland-windows][XWayland Windows]]
   - [[#floating-windows][Floating Windows]]
   - [[#maximized-windows][Maximized Windows]]
@@ -25,6 +25,7 @@
   - [[#apps-1][Apps]]
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
+- [[#workspace-rules][Workspace Rules]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
 - [[#misc][Misc]]
@@ -37,12 +38,13 @@
 - [[#devices][Devices]]
   - [[#mouse][Mouse]]
 - [[#keybindings][Keybindings]]
+  - [[#hold-leader][HOLD Leader]]
   - [[#system][System]]
   - [[#windows][Windows]]
   - [[#monitors-1][Monitors]]
   - [[#layouts-1][Layouts]]
   - [[#workspaces-1][Workspaces]]
-  - [[#scratchpads-1][Scratchpads]]
+  - [[#special-workspaces][Special Workspaces]]
   - [[#media-keys][Media Keys]]
   - [[#dm-scripts][dm-scripts]]
   - [[#launching-apps][Launching Apps]]
@@ -53,7 +55,7 @@
   - [[#toggle-corners][Toggle Corners]]
   - [[#toggle-gaps][Toggle Gaps]]
   - [[#toggle-layout][Toggle Layout]]
-  - [[#toggle-scratchpad][Toggle Scratchpad]]
+  - [[#toggle-special-workspace][Toggle Special Workspace]]
   - [[#toggle-zen][Toggle Zen]]
 
 * Dependencies
@@ -77,7 +79,7 @@ $myHyprConfig    = $HOME/.config/hypr
 
 # cli tools
 $myTerm          = alacritty
-$myCliFiles      = vifmrun
+$myCliFiles      = alacritty -e vifmrun
 $myCliMusic      = ncmpcpp
 $myCliText       = vim
 $myCliSysAudio   = alsamixer
@@ -124,6 +126,7 @@ source=./themes/base16.conf
 $gaps = 7
 $gaps_double = 14
 $borders = 5
+$borders_double = 10
 $corners = 10
 #+end_src
 
@@ -198,7 +201,7 @@ general {
 }
 #+end_src
 
-* Rules
+* Window Rules
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
@@ -225,21 +228,21 @@ windowrulev2 = idleinhibit focus,class:x86_64$
 ** Apps
 *** MPV
 #+begin_src conf
-$app = ^(mpv)$
+$app_filter = ^(mpv)$
 #---------------------------------------------------
-windowrulev2 = float,class:$app
-#+end_src
-
-Floating
-#+begin_src conf
-windowrulev2 = center,class:$app,floating:1
-windowrulev2 = keepaspectratio,class:$app,floating:1
-windowrulev2 = dimaround,class:$app,floating:1
+windowrule = pseudo,$app_filter
 #+end_src
 
 Tiled
 #+begin_src conf
-windowrulev2 = pseudo,class:$app,floating:0
+windowrulev2 = pseudo,class:$app_filter,floating:0
+#+end_src
+
+Floating
+#+begin_src conf
+windowrulev2 = dimaround,class:$app_filter,floating:1
+windowrulev2 = keepaspectratio,class:$app_filter,floating:1
+windowrulev2 = center,class:$app_filter,floating:1
 #+end_src
 
 ** Workspaces
@@ -330,35 +333,25 @@ windowrule = workspace 9 silent,^(btop)$
 ** Scratchpads
 *** Terminal
 #+begin_src conf
-$scratchpad = ^(sp-term)$
-#---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 50% 80%,$scratchpad
-windowrule = center,$scratchpad
+# $app_filter = ^(sp-term)$
+# $workspace = sp-term
+# #---------------------------------------------------
+# windowrule = unset,$app_filter
+# windowrule = workspace special:$workspace silent,$app_filter
+# windowrule = float,$app_filter
+# windowrule = size 50% 80%,$app_filter
+# windowrule = center,$app_filter
 #+end_src
 
 *** Files
 #+begin_src conf
-$scratchpad = ^(sp-files)$
-#---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 50% 70%,$scratchpad
-windowrule = center,$scratchpad
-#+end_src
-
-*** Music
-#+begin_src conf
-$scratchpad = ^(sp-music)$
-#---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 50% 70%,$scratchpad
-windowrule = center,$scratchpad
+# $scratchpad = ^(sp-files)$
+# #---------------------------------------------------
+# windowrule = unset,$scratchpad
+# # windowrule = workspace special silent,$scratchpad
+# windowrule = float,$scratchpad
+# windowrule = size 50% 70%,$scratchpad
+# windowrule = center,$scratchpad
 #+end_src
 
 *** Torrent
@@ -377,7 +370,6 @@ windowrule = center,$scratchpad
 $scratchpad = ^(anki)$
 #---------------------------------------------------
 windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
 windowrule = float,$scratchpad
 windowrule = size 20% 70%,$scratchpad
 windowrule = center,$scratchpad
@@ -389,43 +381,19 @@ windowrule = dimaround,$scratchpad
 $scratchpad = ^(virt-manager)$
 #---------------------------------------------------
 windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
+windowrule = workspace special:vm silent,$scratchpad
 windowrule = float,$scratchpad
 windowrule = size 20% 50%,$scratchpad
 windowrule = move 10% 10%,$scratchpad
-#+end_src
-
-*** WhatsApp
-#+begin_src conf
-$scratchpad = ^(whatsapp-for-linux)$
-#---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 30% 70%,$scratchpad
-windowrule = move 60% 5%,$scratchpad
-#+end_src
-
-*** Discord
-#+begin_src conf :tangle no
-$scratchpad = ^(discord)$
-#---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 30% 70%,$scratchpad
-windowrule = move 60% 5%,$scratchpad
 #+end_src
 
 *** Htop
 #+begin_src conf
 $scratchpad = ^(sp-htop)$
 #---------------------------------------------------
-windowrule = unset,$scratchpad
-# windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 80% 80%,$scratchpad
-windowrule = center,$scratchpad
+# windowrule = float,$scratchpad
+# windowrule = size 80% 80%,$scratchpad
+# windowrule = center,$scratchpad
 windowrule = stayfocused,$scratchpad
 windowrule = dimaround,$scratchpad
 #+end_src
@@ -439,6 +407,28 @@ windowrule = unset,$scratchpad
 windowrule = float,$scratchpad
 windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
+#+end_src
+
+* TODO Workspace Rules
+#+begin_src conf
+workspace = special:term       , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:files      , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:music      , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:chats      , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:audio      , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:torrent    , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:anki       , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:vm         , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:calculator , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:htop       , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = special:btop       , bordersize:$borders_double , gapsin:0 , gapsout:0
+#+end_src
+
+Native Scratchpad
+- compare with toggle script
+#+begin_src conf
+workspace = special:foo, on-created-empty:alacritty -e ncmpcpp
+bind = SUPER CTRL , d , togglespecialworkspace , foo
 #+end_src
 
 * Decoration
@@ -587,6 +577,33 @@ See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 
 * Keybindings
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+** HOLD Leader
+:PROPERTIES:
+:header-args: :tangle no
+:END:
+#+begin_src conf
+bind = SUPER , space , submap , leader
+submap = leader
+bind = , escape , submap , reset
+#+end_src
+*** Open
+#+begin_src conf
+bind = , o , submap , leader-open
+submap = leader-open
+bind = , escape , submap , reset
+#+end_src
+
+**** Chats
+#+begin_src conf
+bind = , c , togglespecialworkspace , chats
+bind = , c , submap                 , reset
+#+end_src
+
+*** Leader-end
+#+begin_src conf
+submap = reset
+#+end_src
+
 ** System
 #+begin_src conf
 bind = SUPER CTRL , q     , exit                ,                          # Quit Hyprland
@@ -744,38 +761,33 @@ bind = SUPER SHIFT CTRL , 9 , movetoworkspace , 9
 bind = SUPER SHIFT CTRL , 0 , movetoworkspace , 10
 #+end_src
 
-** Scratchpads
-Not an acceptable solution yet
-see https://github.com/hyprwm/Hyprland/issues/1988
+** Special Workspaces
+Toggle
 #+begin_src conf
-bind = SUPER    , grave  , exec , $myHyprConfig/toggle-scratchpad.sh "sp-term"  "sp-term"  "alacritty --class sp-term"
-bind = SUPER    , e      , exec , $myHyprConfig/toggle-scratchpad.sh "sp-files" "sp-files" "alacritty --class sp-files -e vifm"
-bind = CTRL ALT , delete , exec , $myHyprConfig/toggle-scratchpad.sh "sp-htop"  "sp-htop"  "alacritty --class sp-htop -e htop"
+bind = SUPER ALT , grave , togglespecialworkspace ,
+bind = SUPER ALT , 1     , togglespecialworkspace , 1
+bind = SUPER ALT , 2     , togglespecialworkspace , 2
+bind = SUPER ALT , 3     , togglespecialworkspace , 3
+bind = SUPER ALT , 4     , togglespecialworkspace , 4
+bind = SUPER ALT , 5     , togglespecialworkspace , 5
+bind = SUPER ALT , m     , togglespecialworkspace , music
+bind = SUPER ALT , a     , togglespecialworkspace , audio
+bind = SUPER ALT , c     , togglespecialworkspace , chats
+bind = SUPER ALT , v     , togglespecialworkspace , vm
+#+end_src
 
-bind = SUPER , s , submap , scratchpad
-submap = scratchpad
-#                                                    | "workspace name" | "class"                          | "bin"
-bind = , m , exec , $myHyprConfig/toggle-scratchpad.sh "sp-music"         "sp-music"                         "alacritty --class sp-music -e ncmpcpp"
-bind = , t , exec , $myHyprConfig/toggle-scratchpad.sh "sp-torrent"       "com.transmissionbt.transmission"  "transmission-gtk"
-bind = , a , exec , $myHyprConfig/toggle-scratchpad.sh "sp-anki"          "anki"                             "anki"
-bind = , v , exec , $myHyprConfig/toggle-scratchpad.sh "sp-vm"            "virt-manager"                     "virt-manager"
-bind = , w , exec , $myHyprConfig/toggle-scratchpad.sh "sp-whatsapp"      "whatsapp-for-linux"               "whatsapp-for-linux"
-bind = , d , exec , $myHyprConfig/toggle-scratchpad.sh "sp-discord"       "discord"                          "discord"
-bind = , c , exec , $myHyprConfig/toggle-scratchpad.sh "sp-calculator"    "org.gnome.Calculator"             "gnome-calculator"
-bind = , h , exec , $myHyprConfig/toggle-scratchpad.sh "sp-htop"          "sp-htop"                          "alacritty --class sp-htop -e htop"
-
-# Reset submap
-bind =       , escape    , submap , reset
-bind =       , m         , submap , reset
-bind =       , t         , submap , reset
-bind =       , a         , submap , reset
-bind =       , v         , submap , reset
-bind =       , w         , submap , reset
-bind =       , d         , submap , reset
-bind =       , c         , submap , reset
-bind =       , h         , submap , reset
-
-submap = reset
+Moving Windows
+#+begin_src conf
+bind = SUPER ALT SHIFT , grave , movetoworkspacesilent , special
+bind = SUPER ALT SHIFT , 1     , movetoworkspacesilent , special:1
+bind = SUPER ALT SHIFT , 2     , movetoworkspacesilent , special:2
+bind = SUPER ALT SHIFT , 3     , movetoworkspacesilent , special:3
+bind = SUPER ALT SHIFT , 4     , movetoworkspacesilent , special:4
+bind = SUPER ALT SHIFT , 5     , movetoworkspacesilent , special:5
+bind = SUPER ALT SHIFT , m     , movetoworkspacesilent , special:music
+bind = SUPER ALT SHIFT , a     , movetoworkspacesilent , special:audio
+bind = SUPER ALT SHIFT , c     , movetoworkspacesilent , special:chats
+bind = SUPER ALT SHIFT , v     , movetoworkspacesilent , special:vm
 #+end_src
 
 ** Media Keys
@@ -883,17 +895,113 @@ submap = reset
 #+end_src
 
 ** Launching Apps
+*** SUPER
 #+begin_src conf
-bind = CTRL ALT    , t      , exec , $myTerm          # Launch Terminal
 bind = SUPER       , return , exec , $myTerm          # Launch Terminal
 bind = SUPER       , c      , exec , $myIde           # Launch IDE
-bind = SUPER SHIFT , e      , exec , $myFiles         # Launch File Manager
+bind = SUPER SHIFT , e      , exec , $myCliFiles      # Launch File Manager
 bind = SUPER       , b      , exec , $myWebBrowser    # Launch Web Browser
 bind = SUPER       , i      , exec , $myIncBrowser    # Launch Web Browser in Incognito Mode
 bind = SUPER       , r      , exec , $myLauncher      # Launch Launcher
+
+bind = SUPER    , grave  , exec , $myHyprConfig/toggle-sp.sh "term"   "sp-term"   "alacritty --class sp-term"
+bind = SUPER    , e      , exec , $myHyprConfig/toggle-sp.sh "files"  "sp-files"  "alacritty --class sp-files -e vifm"
 #+end_src
 
-Pass
+*** TODO SUPER Scratchpads
+#+begin_src conf
+bind = SUPER , s , submap , scratchpad
+submap = scratchpad
+#                                            | special workspace | class                             | command
+bind = , a , exec , $myHyprConfig/toggle-sp.sh "anki"              "anki"                              "anki"
+bind = , c , exec , $myHyprConfig/toggle-sp.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
+bind = , d , exec , $myHyprConfig/toggle-sp.sh "chats"             "discord"                           $myDiscord
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
+bind = , t , exec , $myHyprConfig/toggle-sp.sh "torrent"           "com.transmissionbt.transmission"   "transmission-gtk"
+bind = , v , exec , $myHyprConfig/toggle-sp.sh "vm"                "virt-manager"                      "virt-manager"
+bind = , w , exec , $myHyprConfig/toggle-sp.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
+
+# Reset submap
+bind =       , escape    , submap , reset
+bind =       , a         , submap , reset
+bind =       , c         , submap , reset
+bind =       , d         , submap , reset
+bind =       , m         , submap , reset
+bind =       , t         , submap , reset
+bind =       , v         , submap , reset
+bind =       , w         , submap , reset
+
+submap = reset
+#+end_src
+
+*** SUPER Open
+#+begin_src conf
+bind = SUPER , o , submap , app-primary
+submap = app-primary
+
+#                                            | special workspace | class                             | command
+bind = , c , togglespecialworkspace , chats
+bind = , d , exec , $myHyprConfig/toggle-sp.sh "chats"             "discord"                           $myDiscord
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
+bind = , m , exec , $myHyprConfig/toggle-sp.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
+bind = , s , exec , $mySteam
+bind = , i , exec , vimiv $XDG_PICTURES_DIR
+bind = , t , exec , $myTorBrowser
+bind = , w , exec , $myHyprConfig/toggle-sp.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
+
+# Reset submap
+bind = , escape , submap , reset
+bind = , c      , submap , reset
+bind = , d      , submap , reset
+bind = , m      , submap , reset
+bind = , s      , submap , reset
+bind = , i      , submap , reset
+bind = , t      , submap , reset
+bind = , v      , submap , reset
+bind = , w      , submap , reset
+
+submap = reset
+#+end_src
+
+*** CTRL ALT Open
+#+begin_src conf
+bind = CTRL ALT , o , submap , app-secondary
+submap = app-secondary
+
+bind = , e , exec , $myFiles        #  Launch GUI File Manager
+bind = , p , exec , $myPhotoLibrary #  Launch Photo Librar
+bind = , g , exec , $myImgEditor    #  Launch Image Editor
+bind = , r , exec , $myVctEditor    #  Launch Vector Editor
+bind = , v , exec , $myVidEditor    #  Launch Video Editor
+
+# Reset submap
+bind = , escape , submap , reset
+bind = , e      , submap , reset
+bind = , p      , submap , reset
+bind = , g      , submap , reset
+bind = , r      , submap , reset
+bind = , v      , submap , reset
+
+submap = reset
+#+end_src
+
+*** TODO CTRL ALT
+#+begin_src conf
+bind = CTRL ALT , delete , exec                   , $myHyprConfig/toggle-sp.sh "htop"  "sp-htop"  "alacritty --class sp-htop -e htop"
+bind = CTRL ALT , end    , exec                   , $myHyprConfig/toggle-sp.sh "btop"  "sp-btop"  "alacritty --class sp-btop -e btop"
+bind = CTRL ALT , t      , exec                   , $myTerm
+
+bind = CTRL ALT , a      , togglespecialworkspace , audio
+bind = CTRL ALT , a      , exec                   , [workspace special:audio] pavucontrol
+bind = CTRL ALT , a      , exec                   , [workspace special:audio] qpwgraph
+# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-sp.sh "volume" "pavucontrol" "pavucontrol"
+# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-sp.sh "volume" "pavucontrol" "pavucontrol & qpwgraph"
+#+end_src
+
+*** SUPER Pass
 #+begin_src conf
 bind = SUPER , p , submap , pass
 submap = pass
@@ -905,49 +1013,6 @@ bind = , c , exec , $myPassCopy     # Copy Password
 bind = , escape , submap , reset
 bind = , p      , submap , reset
 bind = , c      , submap , reset
-
-submap = reset
-#+end_src
-
-Primary
-#+begin_src conf
-bind = SUPER , o , submap , app-primary
-submap = app-primary
-
-bind = , d , exec , $myDiscord                                  # Launch Discord
-bind = , m , exec , $myTerm --class $myCliMusic -e $myCliMusic  # Launch Music Player
-bind = , s , exec , $mySteam                                    # Launch Steam
-bind = , t , exec , $myTorBrowser                               # Launch Tor Browser
-
-# Reset submap
-bind = , escape , submap , reset
-bind = , d      , submap , reset
-bind = , m      , submap , reset
-bind = , s      , submap , reset
-bind = , t      , submap , reset
-
-submap = reset
-#+end_src
-
-Secondary
-#+begin_src conf
-bind = CTRL ALT , o , submap , app-secondary
-submap = app-secondary
-
-bind = , t , exec , $myTerm -e $myCliText
-                                                      #  Launch Text Editor
-bind = , p , exec , $myPhotoLibrary                   #  Launch Photo Librar
-bind = , g , exec , $myImgEditor                      #  Launch Image Editor
-bind = , r , exec , $myVctEditor                      #  Launch Vector Editor
-bind = , v , exec , $myVidEditor                      #  Launch Video Editor
-
-# Reset submap
-bind = , escape , submap , reset
-bind = , t      , submap , reset
-bind = , p      , submap , reset
-bind = , g      , submap , reset
-bind = , r      , submap , reset
-bind = , v      , submap , reset
 
 submap = reset
 #+end_src
@@ -1035,30 +1100,30 @@ fi
 hyprctl keyword general:layout "$layout"
 #+end_src
 
-** Toggle Scratchpad
-+ [ ] re-review pyprland
-+ [ ] allow tiling after second open
-  - first toggle spawns the floating app
-  - second toggle hides it
-  - third toggle opens it as scratchpad
+** TODO Toggle Special Workspace
+- [ ] multi-spawn
 
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-scratchpad.sh
-#
-sp_name="$1"
-sp_class="$2"
-command="$3"
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle toggle-sp.sh
+workspace_name="$1"
+app_class="$2"
+app_command="$3"
 
-spIsSpawed=$(hyprctl -j clients | jq -c ".[] | select(.class | contains(\"$sp_class\"))")
-spIsHidden=$(hyprctl -j workspaces | jq -c ".[] | select(.name == \"special:$sp_name\")")
+workspace_is_spawed=$(hyprctl -j clients | jq -c ".[] | select(.class | contains(\"$app_class\"))")
+workspace_is_hidden=$(hyprctl -j workspaces | jq -c ".[] | select(.name == \"special:$workspace_name\")")
 
-if [[ ! $spIsSpawed ]]; then
-    # hyprctl dispatch exec \[workspace special:"$sp_name"\] "$command"
-    $command &
-elif [[ ! $spIsHidden ]]; then
-    hyprctl dispatch movetoworkspacesilent special:"$sp_name","$sp_class"
-else
-    hyprctl dispatch togglespecialworkspace "$sp_name"
+# spawn app on the given special workspace
+if [[ ! $workspace_is_spawed ]]; then
+    hyprctl dispatch exec \[workspace special:"$workspace_name"\] "$app_command"
+    exit 0
 fi
+
+# rip the app back into special workspace if it is empty
+if [[ ! $workspace_is_hidden ]]; then
+    hyprctl dispatch movetoworkspacesilent special:"$workspace_name","$app_class"
+fi
+
+# show the special workspace
+hyprctl dispatch togglespecialworkspace "$workspace_name"
 #+end_src
 
 ** Toggle Zen
