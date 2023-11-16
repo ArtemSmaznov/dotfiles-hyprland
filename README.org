@@ -764,7 +764,7 @@ bind = SUPER SHIFT CTRL , 0 , movetoworkspace , 10
 ** Special Workspaces
 Toggle
 #+begin_src conf
-bind = SUPER ALT , grave , togglespecialworkspace ,
+bind = SUPER ALT , grave , togglespecialworkspace , term
 bind = SUPER ALT , 1     , togglespecialworkspace , 1
 bind = SUPER ALT , 2     , togglespecialworkspace , 2
 bind = SUPER ALT , 3     , togglespecialworkspace , 3
@@ -778,7 +778,7 @@ bind = SUPER ALT , v     , togglespecialworkspace , vm
 
 Moving Windows
 #+begin_src conf
-bind = SUPER ALT SHIFT , grave , movetoworkspacesilent , special
+bind = SUPER ALT SHIFT , grave , movetoworkspacesilent , term
 bind = SUPER ALT SHIFT , 1     , movetoworkspacesilent , special:1
 bind = SUPER ALT SHIFT , 2     , movetoworkspacesilent , special:2
 bind = SUPER ALT SHIFT , 3     , movetoworkspacesilent , special:3
