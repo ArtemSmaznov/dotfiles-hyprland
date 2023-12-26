@@ -230,7 +230,7 @@ windowrulev2 = idleinhibit focus,class:x86_64$
 #+begin_src conf
 $app_filter = ^(mpv)$
 #---------------------------------------------------
-windowrule = pseudo,$app_filter
+windowrule = float,$app_filter
 #+end_src
 
 Tiled
