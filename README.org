@@ -142,6 +142,7 @@ monitor=,highrr,auto,auto
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = waybar
+# exec-once = hyprctl dispatch focusmonitor 1
 exec-once = $myScript/auto-start.sh
 # exec-once = swayidle
 #+end_src
