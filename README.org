@@ -411,25 +411,39 @@ windowrule = move 82% 5%,$scratchpad
 #+end_src
 
 * TODO Workspace Rules
+Workspaces
 #+begin_src conf
-workspace = special:term       , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:files      , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:music      , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:chats      , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:audio      , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:torrent    , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:anki       , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:vm         , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:calculator , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:htop       , bordersize:$borders_double , gapsin:0 , gapsout:0
-workspace = special:btop       , bordersize:$borders_double , gapsin:0 , gapsout:0
+workspace = 1, persistent:true, monitor:DP-1, default:true
+workspace = 2, persistent:true, monitor:DP-1
+workspace = 3, persistent:true, monitor:DP-1
+workspace = 4, persistent:true, monitor:DP-1
+workspace = 5, persistent:true, monitor:DP-2
+workspace = 6, persistent:true, monitor:DP-1
+workspace = 7, persistent:true, monitor:DP-1
+workspace = 8, persistent:true, monitor:DP-1
+workspace = 9, persistent:true, monitor:DP-1
+#+end_src
+
+Special Workspaces
+#+begin_src conf
+workspace = special:term       , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:files      , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:music      , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:chats      , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:audio      , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:torrent    , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:anki       , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:vm         , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:calculator , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:htop       , bordersize:$borders_double , gapsin:50 , gapsout:125
+workspace = special:btop       , bordersize:$borders_double , gapsin:50 , gapsout:125
 #+end_src
 
 Native Scratchpad
 - compare with toggle script
 #+begin_src conf
-workspace = special:foo, on-created-empty:alacritty -e ncmpcpp
-bind = SUPER CTRL , d , togglespecialworkspace , foo
+# workspace = special:foo, on-created-empty:alacritty -e ncmpcpp
+# bind = SUPER CTRL , d , togglespecialworkspace , foo
 #+end_src
 
 * Decoration
