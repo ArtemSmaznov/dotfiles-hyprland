@@ -253,6 +253,17 @@ windowrulev2 = keepaspectratio,class:$app_filter,floating:1
 windowrulev2 = center,class:$app_filter,floating:1
 #+end_src
 
+*** Steam
+#+begin_src conf
+windowrule   = workspace 2 silent,^([Ss]team)$
+#+end_src
+
+Steam updater floating window
+#+begin_src conf
+windowrulev2 = workspace 2 silent,title:^(Steam)$,floating:1
+windowrulev2 = nofocus,title:^(Steam)$,floating:1
+#+end_src
+
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
@@ -268,13 +279,12 @@ windowrulev2 = center,class:$app_filter,floating:1
 
 *** Workspace 2 - Gaming
 #+begin_src conf
+windowrule   = workspace 2 silent,^([Bb]attle.net)$
 windowrule   = workspace 2 silent,^([Ww]ine)$
 windowrule   = workspace 2 silent,^(dolphin-emu)$
 windowrule   = workspace 2 silent,^([Ll]utris)$
 windowrule   = workspace 2 silent,^(Citra)$
 windowrule   = workspace 2 silent,^(SuperTuxKart)$
-windowrule   = workspace 2 silent,^([Ss]team)$
-windowrule   = workspace 2 silent,^([Bb]attle.net)$
 #+end_src
 
 *** Workspace 3 - Coding
