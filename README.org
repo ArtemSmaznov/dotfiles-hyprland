@@ -52,12 +52,14 @@
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#scripts][Scripts]]
   - [[#dmscripts][DMScripts]]
-  - [[#toggle-borders][Toggle Borders]]
-  - [[#toggle-corners][Toggle Corners]]
-  - [[#toggle-gaps][Toggle Gaps]]
-  - [[#toggle-layout][Toggle Layout]]
-  - [[#toggle-special-workspace][Toggle Special Workspace]]
-  - [[#toggle-zen][Toggle Zen]]
+  - [[#toggle-borders][toggle-borders]]
+  - [[#toggle-corners][toggle-corners]]
+  - [[#toggle-gaps][toggle-gaps]]
+  - [[#toggle-layout][toggle-layout]]
+  - [[#toggle-special-workspace][toggle-special workspace]]
+  - [[#toggle-zen][toggle-zen]]
+  - [[#get-current-monitor][get-current-monitor]]
+  - [[#get-current-workspace][get-current-workspace]]
 
 * Dependencies
 |-----------------+-------------|
@@ -152,6 +154,7 @@ monitor=     , preferred     , auto      , auto
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = waybar
+# exec-once = eww open bar0
 # exec-once = hyprctl dispatch focusmonitor 1
 exec-once = $myScript/auto-start.sh
 # exec-once = swayidle
@@ -1117,8 +1120,7 @@ bindm = SUPER , mouse:273 , resizewindow
 
 * [[id:d4c60fae-8667-4066-902f-692a61572338][Scripts]]
 ** [[id:c9d06930-ec33-4afc-b320-3942fa73e592][DMScripts]]
-** Toggle Borders
-
+** toggle-borders
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-borders.sh
 default_value=$1
 
@@ -1135,8 +1137,7 @@ fi
 hyprctl keyword "$option" $value
 #+end_src
 
-** Toggle Corners
-
+** toggle-corners
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-corners.sh
 default_value=$1
 
@@ -1153,8 +1154,7 @@ fi
 hyprctl keyword "$option" $value
 #+end_src
 
-** Toggle Gaps
-
+** toggle-gaps
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-gaps.sh
 default_value=$1
 
@@ -1174,8 +1174,7 @@ hyprctl keyword "$option" $value
 hyprctl keyword "$option2" $((value*=2))
 #+end_src
 
-** Toggle Layout
-
+** toggle-layout
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-layout.sh
 layout="$1"
 
@@ -1191,8 +1190,7 @@ fi
 hyprctl keyword general:layout "$layout"
 #+end_src
 
-** Toggle Special Workspace
-
+** toggle-special workspace
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-special-ws.sh
 workspace_name="$1"
 app_class="$2"
@@ -1216,8 +1214,7 @@ fi
 hyprctl dispatch togglespecialworkspace "$workspace_name"
 #+end_src
 
-** Toggle Zen
-
+** toggle-zen
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-zen.sh
 default_borders="$1"
 default_corners="$2"
@@ -1238,5 +1235,29 @@ else
     hyprctl keyword general:gaps_in 0
     hyprctl keyword general:gaps_out 0
 fi
+#+end_src
+
+** get-current-monitor
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-monitor.sh
+[ $1 ] && param=$1 || param=name
+
+hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
+#+end_src
+
+** get-current-workspace
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-workspace.sh
+# arguments
+case $1 in
+    'current') monitor=$(./get-current-monitor.sh id);;
+    '') monitor=$(./get-current-monitor.sh id);;
+    *) monitor=$1;;
+esac
+case $2 in
+    '') param=name ;;
+    *) param=$2 ;;
+esac
+
+# execution
+hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$param"
 #+end_src
 
