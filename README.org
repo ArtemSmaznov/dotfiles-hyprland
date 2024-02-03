@@ -36,9 +36,6 @@
   - [[#dwindle][Dwindle]]
   - [[#master][Master]]
 - [[#gestures][Gestures]]
-- [[#devices][Devices]]
-  - [[#mouse][Mouse]]
-- [[#keybindings][Keybindings]]
   - [[#hold-leader][HOLD Leader]]
   - [[#system][System]]
   - [[#windows][Windows]]
@@ -432,7 +429,7 @@ windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
 #+end_src
 
-* TODO Workspace Rules
+* Workspace Rules
 Workspaces
 #+begin_src conf
 workspace = 1, persistent:true, monitor:DP-1, default:true
@@ -444,6 +441,7 @@ workspace = 6, persistent:true, monitor:DP-1
 workspace = 7, persistent:true, monitor:DP-1
 workspace = 8, persistent:true, monitor:DP-1
 workspace = 9, persistent:true, monitor:DP-1
+# workspace = name:star, persistent:true, monitor:DP-1
 #+end_src
 
 Special Workspaces
@@ -630,17 +628,6 @@ gestures {
 }
 #+end_src
 
-* Devices
-** Mouse
-Example per-device config
-See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-#+begin_src conf
-# device:logitech-mx-master-3-1 {
-#     sensitivity = 0
-# }
-#+end_src
-
-* Keybindings
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** HOLD Leader
 :PROPERTIES:
@@ -797,6 +784,7 @@ bind = SUPER , 6   , focusworkspaceoncurrentmonitor , 6
 bind = SUPER , 7   , focusworkspaceoncurrentmonitor , 7
 bind = SUPER , 8   , focusworkspaceoncurrentmonitor , 8
 bind = SUPER , 9   , focusworkspaceoncurrentmonitor , 9
+bind = SUPER , 0   , focusworkspaceoncurrentmonitor , name:star
 #+end_src
 
 Moving Windows
@@ -810,6 +798,7 @@ bind = SUPER SHIFT , 6 , movetoworkspacesilent , 6
 bind = SUPER SHIFT , 7 , movetoworkspacesilent , 7
 bind = SUPER SHIFT , 8 , movetoworkspacesilent , 8
 bind = SUPER SHIFT , 9 , movetoworkspacesilent , 9
+bind = SUPER SHIFT , 0 , movetoworkspacesilent , name:star
 #+end_src
 
 Moving Windows with switching Workspace
