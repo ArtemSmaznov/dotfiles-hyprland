@@ -495,11 +495,15 @@ decoration {
     shadow_scale = 1.0                    # shadow’s scale. [0.0 - 1.0]
 
     blur {
-        enabled = yes
+        enabled = true
         size = 8
         passes = 3
-        new_optimizations = on
-        noise = 0.1
+        ignore_opacity = true
+        new_optimizations = true
+        xray = false
+        noise = 0.03
+        special = false
+        special = false
     }
 
     dim_inactive = false
