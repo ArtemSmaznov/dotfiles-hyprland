@@ -26,6 +26,7 @@
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
 - [[#workspace-rules][Workspace Rules]]
+- [[#layer-rules][Layer Rules]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
 - [[#misc][Misc]]
@@ -462,6 +463,19 @@ Native Scratchpad
 #+begin_src conf
 # workspace = special:foo, on-created-empty:alacritty -e ncmpcpp
 # bind = SUPER CTRL , d , togglespecialworkspace , foo
+#+end_src
+* Layer Rules
+|-------+-----------|
+| Layer | Role      |
+|-------+-----------|
+|     3 | overlay   |
+|     2 | top       |
+|     1 | bottom    |
+|     0 | backgroud |
+|-------+-----------|
+
+#+begin_src conf
+layerrule = blur, waybar
 #+end_src
 
 * Decoration
