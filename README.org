@@ -464,6 +464,7 @@ Native Scratchpad
 # workspace = special:foo, on-created-empty:alacritty -e ncmpcpp
 # bind = SUPER CTRL , d , togglespecialworkspace , foo
 #+end_src
+
 * Layer Rules
 |-------+-----------|
 | Layer | Role      |
@@ -476,6 +477,7 @@ Native Scratchpad
 
 #+begin_src conf
 layerrule = blur, waybar
+layerrule = blur, gtk-layer-shell # eww
 #+end_src
 
 * Decoration
