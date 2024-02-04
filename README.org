@@ -36,6 +36,9 @@
   - [[#dwindle][Dwindle]]
   - [[#master][Master]]
 - [[#gestures][Gestures]]
+- [[#devices][Devices]]
+  - [[#mouse][Mouse]]
+- [[#keybindings][Keybindings]]
   - [[#hold-leader][HOLD Leader]]
   - [[#system][System]]
   - [[#windows][Windows]]
@@ -49,14 +52,19 @@
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#scripts][Scripts]]
   - [[#dmscripts][DMScripts]]
+  - [[#get-current-monitor][get-current-monitor]]
+  - [[#get-current-workspace][get-current-workspace]]
+  - [[#get-window-title][get-window-title]]
+  - [[#get-workspaces][get-workspaces]]
+  - [[#listen-current-monitor][listen-current-monitor]]
+  - [[#listen-current-workspace][listen-current-workspace]]
+  - [[#listen-window-title][listen-window-title]]
   - [[#toggle-borders][toggle-borders]]
   - [[#toggle-corners][toggle-corners]]
   - [[#toggle-gaps][toggle-gaps]]
   - [[#toggle-layout][toggle-layout]]
-  - [[#toggle-special-workspace][toggle-special workspace]]
+  - [[#toggle-special-workspace][toggle-special-workspace]]
   - [[#toggle-zen][toggle-zen]]
-  - [[#get-current-monitor][get-current-monitor]]
-  - [[#get-current-workspace][get-current-workspace]]
 
 * Dependencies
 |-----------------+-------------|
@@ -150,9 +158,7 @@ monitor=     , preferred     , auto      , auto
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
-exec-once = waybar
-# exec-once = eww open bar0
-# exec-once = hyprctl dispatch focusmonitor 1
+exec-once = eww open-many main-bar second-bar
 exec-once = $myScript/auto-start.sh
 # exec-once = swayidle
 #+end_src
@@ -531,7 +537,7 @@ input {
     # 2 - Cursor focus will be detached from keyboard focus. Clicking on a window will move keyboard focus to that window.
     # 3 - Cursor focus will be completely separate from keyboard focus. Clicking on a window will not change keyboard focus.
     #
-    follow_mouse = 0
+    follow_mouse = 2
 
     # 0 - Cursor movement will not change focus.
     # 1 - focus will change to the window under the cursor when changing from tiled-to-floating and vice versa.
@@ -542,7 +548,7 @@ input {
     repeat_delay = 300 # Delay before a held-down key is repeated, in milliseconds.
 
     touchpad {
-        natural_scroll = no
+        natural_scroll = false
     }
 
     sensitivity = 0    # -1.0 - 1.0, 0 means no modification.
@@ -624,10 +630,21 @@ master {
 #+begin_src conf
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = off
+    workspace_swipe = false
 }
 #+end_src
 
+* Devices
+** Mouse
+Example per-device config
+See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
+#+begin_src conf
+# device:logitech-mx-master-3-1 {
+#     sensitivity = 0
+# }
+#+end_src
+
+* Keybindings
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** HOLD Leader
 :PROPERTIES:
@@ -970,8 +987,8 @@ bind = SUPER       , b      , exec , $myWebBrowser    # Launch Web Browser
 bind = SUPER       , i      , exec , $myIncBrowser    # Launch Web Browser in Incognito Mode
 bind = SUPER       , r      , exec , $myLauncher      # Launch Launcher
 
-bind = SUPER    , grave  , exec , $myHyprConfig/toggle-special-ws.sh "term"   "sp-term"   "alacritty --class sp-term"
-bind = SUPER    , e      , exec , $myHyprConfig/toggle-special-ws.sh "files"  "sp-files"  "alacritty --class sp-files -e vifm"
+bind = SUPER    , grave  , exec , $myHyprConfig/toggle-special-workspace.sh "term"   "sp-term"   "alacritty --class sp-term"
+bind = SUPER    , e      , exec , $myHyprConfig/toggle-special-workspace.sh "files"  "sp-files"  "alacritty --class sp-files -e vifm"
 #+end_src
 
 *** TODO SUPER Scratchpads
@@ -979,15 +996,15 @@ bind = SUPER    , e      , exec , $myHyprConfig/toggle-special-ws.sh "files"  "s
 bind = SUPER , s , submap , scratchpad
 submap = scratchpad
 #                                            | special workspace | class                             | command
-bind = , a , exec , $myHyprConfig/toggle-special-ws.sh "anki"              "anki"                              "anki"
-bind = , c , exec , $myHyprConfig/toggle-special-ws.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
-bind = , d , exec , $myHyprConfig/toggle-special-ws.sh "chats"             "discord"                           $myDiscord
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
-bind = , t , exec , $myHyprConfig/toggle-special-ws.sh "torrent"           "com.transmissionbt.transmission"   "transmission-gtk"
-bind = , v , exec , $myHyprConfig/toggle-special-ws.sh "vm"                "virt-manager"                      "virt-manager"
-bind = , w , exec , $myHyprConfig/toggle-special-ws.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
+bind = , a , exec , $myHyprConfig/toggle-special-workspace.sh "anki"              "anki"                              "anki"
+bind = , c , exec , $myHyprConfig/toggle-special-workspace.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
+bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
+bind = , t , exec , $myHyprConfig/toggle-special-workspace.sh "torrent"           "com.transmissionbt.transmission"   "transmission-gtk"
+bind = , v , exec , $myHyprConfig/toggle-special-workspace.sh "vm"                "virt-manager"                      "virt-manager"
+bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
 
 # Reset submap
 bind =       , escape    , submap , reset
@@ -1009,14 +1026,14 @@ submap = app-primary
 
 #                                            | special workspace | class                             | command
 bind = , c , togglespecialworkspace , chats
-bind = , d , exec , $myHyprConfig/toggle-special-ws.sh "chats"             "discord"                           $myDiscord
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
-bind = , m , exec , $myHyprConfig/toggle-special-ws.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
+bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
+bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
 bind = , s , exec , $mySteam
 bind = , i , exec , vimiv $XDG_PICTURES_DIR
 bind = , t , exec , $myTorBrowser
-bind = , w , exec , $myHyprConfig/toggle-special-ws.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
+bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
 
 # Reset submap
 bind = , escape , submap , reset
@@ -1056,15 +1073,15 @@ submap = reset
 
 *** TODO CTRL ALT
 #+begin_src conf
-bind = CTRL ALT , delete , exec                   , $myHyprConfig/toggle-special-ws.sh "htop"  "sp-htop"  "alacritty --class sp-htop -e htop"
-bind = CTRL ALT , end    , exec                   , $myHyprConfig/toggle-special-ws.sh "btop"  "sp-btop"  "alacritty --class sp-btop -e btop"
+bind = CTRL ALT , delete , exec                   , $myHyprConfig/toggle-special-workspace.sh "htop"  "sp-htop"  "alacritty --class sp-htop -e htop"
+bind = CTRL ALT , end    , exec                   , $myHyprConfig/toggle-special-workspace.sh "btop"  "sp-btop"  "alacritty --class sp-btop -e btop"
 bind = CTRL ALT , t      , exec                   , $myTerm
 
 bind = CTRL ALT , a      , togglespecialworkspace , audio
 bind = CTRL ALT , a      , exec                   , [workspace special:audio] pavucontrol
 bind = CTRL ALT , a      , exec                   , [workspace special:audio] qpwgraph
-# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-special-ws.sh "volume" "pavucontrol" "pavucontrol"
-# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-special-ws.sh "volume" "pavucontrol" "pavucontrol & qpwgraph"
+# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-special-workspace.sh "volume" "pavucontrol" "pavucontrol"
+# bind = CTRL ALT , v      , exec                   , $myHyprConfig/toggle-special-workspace.sh "volume" "pavucontrol" "pavucontrol & qpwgraph"
 #+end_src
 
 *** SUPER Pass
@@ -1096,6 +1113,103 @@ bindm = SUPER , mouse:273 , resizewindow
 
 * [[id:d4c60fae-8667-4066-902f-692a61572338][Scripts]]
 ** [[id:c9d06930-ec33-4afc-b320-3942fa73e592][DMScripts]]
+** get-current-monitor
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-monitor.sh
+[ $1 ] && param=$1 || param=name
+
+hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
+#+end_src
+
+** get-current-workspace
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-workspace.sh
+# arguments
+case $1 in
+    'current') monitor=$(./get-current-monitor.sh id);;
+    '') monitor=$(./get-current-monitor.sh id);;
+    *) monitor=$1;;
+esac
+case $2 in
+    '') param=name ;;
+    *) param=$2 ;;
+esac
+
+# execution
+hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$param"
+#+end_src
+
+** get-window-title
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-window-title.sh
+hyprctl activewindow -j | jq --raw-output .title
+#+end_src
+
+** get-workspaces
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-workspaces.sh
+# focused_monitor_id=$(./get-current-monitor.sh id)
+
+workspace_ids=$(hyprctl workspaces -j | jq -r '.[] | select(.name | contains("special") | not ) | .id' | sort )
+
+getWorkspaceName () {
+    id=$1
+    hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .name"
+}
+
+getWorkspaceWindows () {
+    id=$1
+    hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows"
+}
+
+workspaceIsEmpty () {
+    id=$1
+    num_windows=$(hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows")
+    [ "$num_windows" -eq 0 ] && echo true || echo false
+}
+
+workspaceActiveOn () {
+    id=$1
+    mon_0_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 0)
+    mon_1_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 1)
+
+    if [ "$id" -eq "$mon_0_workspace_id" ]; then
+        echo 0;
+    elif [ "$id" -eq "$mon_1_workspace_id" ]; then
+        echo 1;
+    else
+        echo 2;
+    fi
+}
+
+output="["
+for id in ${workspace_ids[@]}; do
+    output+="{"\
+"\"id\":$id,"\
+"\"name\":\"$(getWorkspaceName $id)\","\
+"\"windows\":$(getWorkspaceWindows $id),"\
+"\"monitor\":$(workspaceActiveOn $id $1)"\
+"},"
+done
+
+echo "${output%,}]"
+#+end_src
+
+** listen-current-monitor
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-current-monitor.sh
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+  stdbuf -o0 awk -F '>>|,' -e '/^focusedmon>>/ {print $2}'
+#+end_src
+
+** listen-current-workspace
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-current-workspace.sh
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+  stdbuf -o0 awk -F '>>|,' -e '/^workspace>>/ {print $2}' -e '/^focusedmon>>/ {print $3}'
+#+end_src
+
+** listen-window-title
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-window-title.sh
+/home/artem/.config/hypr/scripts/get-window-title.sh
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+  stdbuf -o0 awk -F '>>|,' '/^activewindow>>/{print $3}'
+#+end_src
+
 ** toggle-borders
 #+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-borders.sh
 default_value=$1
@@ -1166,8 +1280,8 @@ fi
 hyprctl keyword general:layout "$layout"
 #+end_src
 
-** toggle-special workspace
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-special-ws.sh
+** toggle-special-workspace
+#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-special-workspace.sh
 workspace_name="$1"
 app_class="$2"
 app_command="$3"
@@ -1212,28 +1326,3 @@ else
     hyprctl keyword general:gaps_out 0
 fi
 #+end_src
-
-** get-current-monitor
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-monitor.sh
-[ $1 ] && param=$1 || param=name
-
-hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
-#+end_src
-
-** get-current-workspace
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-workspace.sh
-# arguments
-case $1 in
-    'current') monitor=$(./get-current-monitor.sh id);;
-    '') monitor=$(./get-current-monitor.sh id);;
-    *) monitor=$1;;
-esac
-case $2 in
-    '') param=name ;;
-    *) param=$2 ;;
-esac
-
-# execution
-hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$param"
-#+end_src
-
