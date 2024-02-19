@@ -158,7 +158,7 @@ monitor=     , preferred     , auto      , auto
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
-exec-once = eww open-many main-bar second-bar
+exec-once = eww open-many main-bar second-bar status-panel
 exec-once = $myScript/auto-start.sh
 # exec-once = swayidle
 #+end_src
