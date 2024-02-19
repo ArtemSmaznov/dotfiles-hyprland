@@ -702,6 +702,7 @@ submap = reset
 States
 #+begin_src conf
 bind = SUPER       , q   , killactive     ,    # Close focused Window
+bind = SUPER SHIFT , F11 , fakefullscreen , 0  # Toggle Fullscreen
 bind = SUPER       , F11 , fullscreen     , 0  # Toggle Fullscreen
 bind = SUPER SHIFT , f   , fullscreen     , 0  # Toggle Fullscreen
 bind = SUPER       , m   , fullscreen     , 1  # Toggle Maximize
