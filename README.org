@@ -873,18 +873,23 @@ bind = SUPER ALT SHIFT , v     , movetoworkspacesilent , special:vm
 #+end_src
 
 ** Media Keys
+System audio
 #+begin_src conf
-bindl =      , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2 # Increase System Volume
-bindl =      , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2 # Decrease System Volume
-bindl =      , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # Mute
-bindl = CTRL , XF86AudioRaiseVolume , exec , mpc volume +2                            # Increase Player Volume
-bindl = CTRL , XF86AudioLowerVolume , exec , mpc volume -2                            # Decrease Player Volume
-bindl =      , XF86AudioPrev        , exec , mpc prev                                 # Prev Song
-bindl =      , XF86AudioNext        , exec , mpc next                                 # Next Song
-bindl =      , XF86AudioPlay        , exec , mpc toggle                               # Play/Pause Music
-bindl = CTRL , XF86AudioPlay        , exec , mpc single                               # [s] Single Mode
-bindl =      , XF86AudioStop        , exec , mpc stop                                 # Stop Music
-bindl = CTRL , XF86AudioStop        , exec , mpc random                               # [z] Shuffle Mode
+bindl =      , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2     # Increase System Volume
+bindl =      , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2     # Decrease System Volume
+bindl =      , XF86AudioMute        , exec , $myScript/toggle-mute.sh        # Mute
+#+end_src
+
+Player audio
+#+begin_src conf
+bindl = CTRL , XF86AudioRaiseVolume , exec , $myScript/playerctl.sh vol-up   # Increase Player Volume
+bindl = CTRL , XF86AudioLowerVolume , exec , $myScript/playerctl.sh vol-down # Decrease Player Volume
+bindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # Prev Song
+bindl =      , XF86AudioNext        , exec , $myScript/playerctl.sh next     # Next Song
+bindl =      , XF86AudioPlay        , exec , $myScript/playerctl.sh toggle   # Play/Pause Music
+bindl =      , XF86AudioStop        , exec , $myScript/playerctl.sh stop     # Stop Music
+bindl = CTRL , XF86AudioPlay        , exec , $myScript/playerctl.sh single   # [s] Single Mode
+bindl = CTRL , XF86AudioStop        , exec , $myScript/playerctl.sh random   # [z] Shuffle Mode
 #+end_src
 
 ** dm-scripts
