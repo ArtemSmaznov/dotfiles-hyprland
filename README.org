@@ -718,23 +718,7 @@ bind = SUPER     , k   , movefocus , u         # Move focus to above Window
 bind = SUPER     , l   , movefocus , r         # Move focus to right Window
 #+end_src
 
-Swapping
-#+begin_src conf
-bind = SUPER SHIFT , h , swapwindow , l        # Swap focused Window with left Window
-bind = SUPER SHIFT , j , swapwindow , d        # Swap focused Window with below Window
-bind = SUPER SHIFT , k , swapwindow , u        # Swap focused Window with above Window
-bind = SUPER SHIFT , l , swapwindow , r        # Swap focused Window with right Window
-#+end_src
-
-Moving
-#+begin_src conf
-bind = SUPER ALT , h , movewindow , l          # Move focused Window with left Window
-bind = SUPER ALT , j , movewindow , d          # Move focused Window with below Window
-bind = SUPER ALT , k , movewindow , u          # Move focused Window with above Window
-bind = SUPER ALT , l , movewindow , r          # Move focused Window with right Window
-#+end_src
-
-Resizing
+Resizing windows
 #+begin_src conf
 bind = SUPER , equal , splitratio , exact 1    # Reset fucused Window size
 
@@ -744,13 +728,30 @@ binde = SUPER CTRL , k , resizeactive ,  0 -20 # Grow focused Window up
 binde = SUPER CTRL , l , resizeactive , 20 0   # Grow focused Window right
 #+end_src
 
-Move Floating Windows
+Swapping tiled windows
 #+begin_src conf
+bind = SUPER SHIFT , h , swapwindow , l        # Swap focused Window with left Window
+bind = SUPER SHIFT , j , swapwindow , d        # Swap focused Window with below Window
+bind = SUPER SHIFT , k , swapwindow , u        # Swap focused Window with above Window
+bind = SUPER SHIFT , l , swapwindow , r        # Swap focused Window with right Window
+#+end_src
+
+Move floating windows
+#+begin_src conf
+binde = SUPER CTRL  , c     , centerwindow
 binde = SUPER       , equal , centerwindow ,         # Center floating Window
 binde = SUPER SHIFT , h     , moveactive   , -20 0   # Move floating Window left
 binde = SUPER SHIFT , j     , moveactive   ,  0 20   # Move floating Window down
 binde = SUPER SHIFT , k     , moveactive   ,  0 -20  # Move floating Window up
 binde = SUPER SHIFT , l     , moveactive   , 20 0    # Move floating Window right
+#+end_src
+
+Special Moving windows
+#+begin_src conf
+bind = SUPER ALT , h , movewindow , l          # Move focused Window left
+bind = SUPER ALT , j , movewindow , d          # Move focused Window below
+bind = SUPER ALT , k , movewindow , u          # Move focused Window above
+bind = SUPER ALT , l , movewindow , r          # Move focused Window right
 #+end_src
 
 Masters
