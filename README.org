@@ -222,11 +222,13 @@ See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
 windowrulev2 = bordercolor rgba($base0Faa) rgb($base00),xwayland:1
-windowrulev2 = bordersize 1,pinned:1
 #+end_src
 
 ** Floating Windows
 #+begin_src conf
+windowrulev2 = noborder,pinned:1
+windowrulev2 = nodim,pinned:1
+windowrulev2 = opacity override 0.7,pinned:1
 #+end_src
 
 ** Maximized Windows
