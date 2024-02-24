@@ -98,7 +98,8 @@ $myCliSysTasks   = htop
 $myWebBrowser    = qutebrowser
 $myIncBrowser    = qutebrowser --target private-window
 $myTorBrowser    = torbrowser-launcher
-$myIde           = emacsclient -ca ''
+$myIde           = emacs
+# $myIde           = emacsclient -ca ''
 $myFiles         = pcmanfm
 $mySteam         = /usr/bin/steam-runtime %U
 
