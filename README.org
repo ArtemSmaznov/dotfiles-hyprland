@@ -998,17 +998,15 @@ bind = SUPER    , grave  , exec , $myHyprConfig/toggle-special-workspace.sh "ter
 bind = SUPER    , e      , exec , $myHyprConfig/toggle-special-workspace.sh "files"  "sp-files"  "alacritty --class sp-files -e vifm"
 #+end_src
 
-*** TODO SUPER Scratchpads
+*** SUPER Scratchpads
 #+begin_src conf
 bind = SUPER , s , submap , scratchpad
 submap = scratchpad
-#                                            | special workspace | class                             | command
+#                                                            | special workspace | class                             | command
 bind = , a , exec , $myHyprConfig/toggle-special-workspace.sh "anki"              "anki"                              "anki"
 bind = , c , exec , $myHyprConfig/toggle-special-workspace.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
 bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
 bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
-bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
-bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
 bind = , t , exec , $myHyprConfig/toggle-special-workspace.sh "torrent"           "com.transmissionbt.transmission"   "transmission-gtk"
 bind = , v , exec , $myHyprConfig/toggle-special-workspace.sh "vm"                "virt-manager"                      "virt-manager"
 bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
@@ -1031,12 +1029,10 @@ submap = reset
 bind = SUPER , o , submap , app-primary
 submap = app-primary
 
-#                                            | special workspace | class                             | command
+#                                                            | special workspace | class                             | command
 bind = , c , togglespecialworkspace , chats
 bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
 bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
-bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-clock"                          "alacritty --class sp-clock -e tty-clock -ct -C 3"
-bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-visualizer"                     "alacritty --class sp-visualizer -e cava"
 bind = , s , exec , $mySteam
 bind = , i , exec , vimiv $XDG_PICTURES_DIR
 bind = , t , exec , $myTorBrowser
