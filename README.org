@@ -483,8 +483,14 @@ Native Scratchpad
 
 #+begin_src conf
 layerrule = blur, waybar
-layerrule = blur, gtk-layer-shell # eww
-layerrule = ignorealpha 0, gtk-layer-shell # eww
+
+# eww
+layerrule = blur, gtk-layer-shell
+layerrule = ignorealpha 0, gtk-layer-shell
+
+# wofi
+layerrule = blur, wofi
+layerrule = ignorealpha 0, wofi
 #+end_src
 
 * Decoration
