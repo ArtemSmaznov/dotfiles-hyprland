@@ -126,6 +126,9 @@ $myDiscord       = discord
 $mySysPower      = xfce4-power-manager-settings
 $mySysNetwork    = nm-connection-editor
 $mySysBluetooth  = blueman-manager
+
+# eww
+$panel-power     = powermenu-panel
 #+end_src
 
 * Theme
@@ -933,28 +936,32 @@ submap = reset
 
 Power Control
 #+begin_src conf
+bind = SUPER , z , exec , eww update wm-key-chord="dm-power"
+bind = SUPER , z , exec , eww open $panel-power
 bind = SUPER , z , submap , dm-power
 submap = dm-power
 
-bind =       , c , exec , $myDMScript/dm-power controller # Disconnect all controllers
-bind =       , l , exec , $myDMScript/dm-power lock       # Lock Screen
-bind =       , s , exec , $myDMScript/dm-power suspend    # Suspend System
 bind =       , p , exec , $myDMScript/dm-power poweroff   # Shutdown System
 bind =       , r , exec , $myDMScript/dm-power reboot     # Reboot System
-bind =       , w , exec , $myDMScript/dm-power windows    # Reboot to Windows
+bind =       , s , exec , $myDMScript/dm-power suspend    # Suspend System
+bind =       , l , exec , $myDMScript/dm-power lock       # Lock Screen
 bind =       , z , exec , $myDMScript/dm-power suspend    # Suspend System
 bind = SUPER , z , exec , $myDMScript/dm-power suspend    # Suspend System
+bind =       , c , exec , $myDMScript/dm-power controller # Disconnect all controllers
 
 # Reset submap
+bind =       , escape , exec   , eww update wm-key-chord=""
+bind =       , escape , exec   , eww close $panel-power
 bind =       , escape , submap , reset
-bind =       , c      , submap , reset
 bind =       , l      , submap , reset
 bind =       , s      , submap , reset
 bind =       , p      , submap , reset
 bind =       , r      , submap , reset
-bind =       , w      , submap , reset
 bind =       , z      , submap , reset
 bind = SUPER , z      , submap , reset
+bind =       , c      , exec   , eww update wm-key-chord=""
+bind =       , c      , exec   , eww close $panel-power
+bind =       , c      , submap , reset
 
 submap = reset
 #+end_src
