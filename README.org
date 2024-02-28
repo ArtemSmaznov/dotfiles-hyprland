@@ -120,7 +120,10 @@ $myVidEditor     = kdenlive
 
 # chat apps
 $myWhatsApp      = whatsapp-for-linux
-$myDiscord       = discord
+# $myDiscord       = discord
+# $myDiscordClass  = discord
+$myDiscord       = webcord
+$myDiscordClass  = WebCord
 
 # system tools
 $mySysPower      = xfce4-power-manager-settings
@@ -1018,7 +1021,7 @@ submap = scratchpad
 #                                                            | special workspace | class                             | command
 bind = , a , exec , $myHyprConfig/toggle-special-workspace.sh "anki"              "anki"                              "anki"
 bind = , c , exec , $myHyprConfig/toggle-special-workspace.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
-bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
+bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             $myDiscordClass                     $myDiscord
 bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
 bind = , t , exec , $myHyprConfig/toggle-special-workspace.sh "torrent"           "com.transmissionbt.transmission"   "transmission-gtk"
 bind = , v , exec , $myHyprConfig/toggle-special-workspace.sh "vm"                "virt-manager"                      "virt-manager"
@@ -1044,7 +1047,7 @@ submap = app-primary
 
 #                                                            | special workspace | class                             | command
 bind = , c , togglespecialworkspace , chats
-bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "discord"                           $myDiscord
+bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             $myDiscordClass                     $myDiscord
 bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"             "sp-music"                          "alacritty --class sp-music -e ncmpcpp"
 bind = , s , exec , $mySteam
 bind = , i , exec , vimiv $XDG_PICTURES_DIR
