@@ -64,6 +64,7 @@
   - [[#toggle-gaps][toggle-gaps]]
   - [[#toggle-layout][toggle-layout]]
   - [[#toggle-special-workspace][toggle-special-workspace]]
+  - [[#toggle-status-bar][toggle-status-bar]]
   - [[#toggle-zen][toggle-zen]]
 
 * Dependencies
@@ -695,6 +696,7 @@ bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh    # 
 bind = SUPER , t , submap , toggle
 submap = toggle
 
+bind = , s , exec , $myHyprConfig/toggle-status-bar.sh                        # Toggle Status Bar
 bind = , b , exec , $myHyprConfig/toggle-borders.sh $borders                  # Toggle Window Borders
 bind = , c , exec , $myHyprConfig/toggle-corners.sh $corners                  # Toggle Corners
 bind = , g , exec , $myHyprConfig/toggle-gaps.sh $gaps_inner                  # Toggle Gaps
@@ -702,6 +704,7 @@ bind = , z , exec , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner # 
 
 # Reset submap
 bind = , escape , submap , reset
+bind = , s      , submap , reset
 bind = , b      , submap , reset
 bind = , c      , submap , reset
 bind = , g      , submap , reset
@@ -1132,16 +1135,19 @@ bindm = SUPER , mouse:273 , resizewindow
 #+end_src
 
 * [[id:d4c60fae-8667-4066-902f-692a61572338][Scripts]]
+:PROPERTIES:
+:header-args: :shebang #!/usr/bin/env bash
+:END:
 ** [[id:c9d06930-ec33-4afc-b320-3942fa73e592][DMScripts]]
 ** get-current-monitor
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-monitor.sh
+#+begin_src shell bash :tangle scripts/get-current-monitor.sh
 [ $1 ] && param=$1 || param=name
 
 hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
 #+end_src
 
 ** get-current-workspace
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-current-workspace.sh
+#+begin_src shell bash :tangle scripts/get-current-workspace.sh
 # arguments
 case $1 in
     'current') monitor=$(./get-current-monitor.sh id);;
@@ -1158,12 +1164,12 @@ hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$par
 #+end_src
 
 ** get-window-title
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-window-title.sh
+#+begin_src shell bash :tangle scripts/get-window-title.sh
 hyprctl activewindow -j | jq --raw-output .title
 #+end_src
 
 ** get-workspaces
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/get-workspaces.sh
+#+begin_src shell bash :tangle scripts/get-workspaces.sh
 # focused_monitor_id=$(./get-current-monitor.sh id)
 
 workspace_ids=$(hyprctl workspaces -j | jq -r '.[] | select(.name | contains("special") | not ) | .id' | sort )
@@ -1212,26 +1218,26 @@ echo "${output%,}]"
 #+end_src
 
 ** listen-current-monitor
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-current-monitor.sh
+#+begin_src shell bash :tangle scripts/listen-current-monitor.sh
 socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
   stdbuf -o0 awk -F '>>|,' -e '/^focusedmon>>/ {print $2}'
 #+end_src
 
 ** listen-current-workspace
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-current-workspace.sh
+#+begin_src shell bash :tangle scripts/listen-current-workspace.sh
 socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
   stdbuf -o0 awk -F '>>|,' -e '/^workspace>>/ {print $2}' -e '/^focusedmon>>/ {print $3}'
 #+end_src
 
 ** listen-window-title
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/listen-window-title.sh
+#+begin_src shell bash :tangle scripts/listen-window-title.sh
 /home/artem/.config/hypr/scripts/get-window-title.sh
 socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
   stdbuf -o0 awk -F '>>|,' '/^activewindow>>/{print $3}'
 #+end_src
 
 ** toggle-borders
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-borders.sh
+#+begin_src shell bash :tangle scripts/toggle-borders.sh
 default_value=$1
 
 option="general:border_size"
@@ -1248,7 +1254,7 @@ hyprctl keyword "$option" $value
 #+end_src
 
 ** toggle-corners
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-corners.sh
+#+begin_src shell bash :tangle scripts/toggle-corners.sh
 default_value=$1
 
 option="decoration:rounding"
@@ -1265,7 +1271,7 @@ hyprctl keyword "$option" $value
 #+end_src
 
 ** toggle-gaps
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-gaps.sh
+#+begin_src shell bash :tangle scripts/toggle-gaps.sh
 default_value=$1
 
 option="general:gaps_in"
@@ -1285,7 +1291,7 @@ hyprctl keyword "$option2" $((value*=2))
 #+end_src
 
 ** toggle-layout
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-layout.sh
+#+begin_src shell bash :tangle scripts/toggle-layout.sh
 layout="$1"
 
 if [ ! "$layout" ]; then
@@ -1301,7 +1307,7 @@ hyprctl keyword general:layout "$layout"
 #+end_src
 
 ** toggle-special-workspace
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-special-workspace.sh
+#+begin_src shell bash :tangle scripts/toggle-special-workspace.sh
 workspace_name="$1"
 app_class="$2"
 app_command="$3"
@@ -1324,8 +1330,29 @@ fi
 hyprctl dispatch togglespecialworkspace "$workspace_name"
 #+end_src
 
+** toggle-status-bar
+#+begin_src shell :tangle scripts/toggle-status-bar.sh
+# environment variables
+#-------------------------------------------------------------------------------
+[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+
+# variables
+#-------------------------------------------------------------------------------
+
+# functions
+#-------------------------------------------------------------------------------
+
+# setup
+#-------------------------------------------------------------------------------
+focused_monitor_id=$(get-current-monitor.sh id)
+
+# execution
+#===============================================================================
+"$XDG_CONFIG_HOME"/eww/scripts/toggle-status-bar.sh toggle "$focused_monitor_id"
+#+end_src
+
 ** toggle-zen
-#+begin_src shell :shebang #!/usr/bin/env bash :tangle scripts/toggle-zen.sh
+#+begin_src shell bash :tangle scripts/toggle-zen.sh
 default_borders="$1"
 default_corners="$2"
 default_gaps="$3"
