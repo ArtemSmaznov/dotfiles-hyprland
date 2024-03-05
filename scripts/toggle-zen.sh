@@ -3,18 +3,38 @@ default_borders="$1"
 default_corners="$2"
 default_gaps="$3"
 
-borders=$(hyprctl getoption general:border_size | grep int | awk '{print $2}' | tr -d '"')
-corners=$(hyprctl getoption decoration:rounding | grep int | awk '{print $2}' | tr -d '"')
-gaps=$(hyprctl getoption general:gaps_in | grep int | awk '{print $2}' | tr -d '"')
+# environment variables
+#-------------------------------------------------------------------------------
+[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 
+# variables
+#-------------------------------------------------------------------------------
+borders=$(hyprctl getoption general:border_size | grep int | awk '{print $NF}' | tr -d '"')
+corners=$(hyprctl getoption decoration:rounding | grep int | awk '{print $NF}' | tr -d '"')
+gaps=$(hyprctl getoption general:gaps_in | grep type | awk '{print $NF}' | tr -d '"')
+
+# functions
+#-------------------------------------------------------------------------------
+
+# setup
+#-------------------------------------------------------------------------------
 if [[ $borders = 0 && $corners = 0 && $gaps = 0 ]]; then
-    hyprctl keyword general:border_size $default_borders
-    hyprctl keyword decoration:rounding $default_corners
-    hyprctl keyword general:gaps_in $default_gaps
-    hyprctl keyword general:gaps_out $((default_gaps *= 2))
+    bar_action="open"
+    border_size="$default_borders"
+    rounding="$default_corners"
+    gap_size="$default_gaps"
 else
-    hyprctl keyword general:border_size 0
-    hyprctl keyword decoration:rounding 0
-    hyprctl keyword general:gaps_in 0
-    hyprctl keyword general:gaps_out 0
+    bar_action="close"
+    border_size=0
+    rounding=0
+    gap_size=0
 fi
+
+# execution
+#===============================================================================
+"$XDG_CONFIG_HOME"/hypr/scripts/toggle-status-bar.sh "$bar_action"
+hyprctl --batch "\
+    keyword general:border_size $border_size ; \
+    keyword decoration:rounding $rounding ; \
+    keyword general:gaps_in $gap_size ; \
+    keyword general:gaps_out $((gap_size *= 2)) "
