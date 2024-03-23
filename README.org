@@ -54,6 +54,7 @@
   - [[#dmscripts][DMScripts]]
   - [[#get-current-monitor][get-current-monitor]]
   - [[#get-current-workspace][get-current-workspace]]
+  - [[#get-submap-keys][get-submap-keys]]
   - [[#get-window-title][get-window-title]]
   - [[#get-workspaces][get-workspaces]]
   - [[#listen-submap][listen-submap]]
@@ -677,12 +678,14 @@ Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 :END:
 #+begin_src conf
 bind = SUPER , space , submap , leader
+
 submap = leader
 bind = , escape , submap , reset
 #+end_src
 *** Open
 #+begin_src conf
 bind = , o , submap , leader-open
+
 submap = leader-open
 bind = , escape , submap , reset
 #+end_src
@@ -705,16 +708,16 @@ bind = SUPER CTRL , r     , forcerendererreload ,                             # 
 bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh    # Toggle language
 
 bind = SUPER , t , submap , toggle
+
 submap = toggle
+bind =       , s , exec   , $myHyprConfig/toggle-status-bar.sh                        # toggle status bar
+bind =       , b , exec   , $myHyprConfig/toggle-borders.sh $borders                  # toggle window borders
+bind =       , c , exec   , $myHyprConfig/toggle-corners.sh $corners                  # toggle corners
+bind =       , g , exec   , $myHyprConfig/toggle-gaps.sh $gaps_inner                  # toggle gaps
+bind =       , z , exec   , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner # toggle zen mode
+bind =       , h , exec   , $myScript/toggle-headphones.sh                            # toggle bluetooth headphones
 
-bind = , s , exec , $myHyprConfig/toggle-status-bar.sh                        # Toggle Status Bar
-bind = , b , exec , $myHyprConfig/toggle-borders.sh $borders                  # Toggle Window Borders
-bind = , c , exec , $myHyprConfig/toggle-corners.sh $corners                  # Toggle Corners
-bind = , g , exec , $myHyprConfig/toggle-gaps.sh $gaps_inner                  # Toggle Gaps
-bind = , z , exec , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner # Toggle Zen Mode
-bind = , h , exec , $myScript/toggle-headphones.sh                            # Toggle Bluetooth Headphones
-
-# Reset submap
+# reset submap
 bind = , escape , submap , reset
 bind = , s      , submap , reset
 bind = , b      , submap , reset
@@ -925,8 +928,8 @@ bindl = CTRL , XF86AudioStop        , exec , $myScript/musictl.sh random   # [z]
 Global
 #+begin_src conf
 bind = SUPER , d , submap , dm-global
-submap = dm-global
 
+submap = dm-global
 bind = SUPER , d         , exec , $myDMScript/dm-master     # DM Master
 bind =       , w         , exec , $myDMScript/dm-wallpaper  # DM Wallpaper
 bind =       , r         , exec , $myDMScript/dm-record     # DM Record
@@ -938,7 +941,7 @@ bind =       , n         , exec , $myDMScript/dm-notify     # DM Notify
 bind =       , backslash , exec , $myDMScript/dm-notify     # DM Notify
 bind =       , k         , exec , $myDMScript/dm-keys       # DM Keys
 
-# Reset submap
+# reset submap
 bind =       , escape    , submap , reset
 bind = SUPER , d         , submap , reset
 bind =       , w         , submap , reset
@@ -958,8 +961,8 @@ Power Control
 #+begin_src conf
 bind = SUPER , z , exec , eww open $panel-power
 bind = SUPER , z , submap , dm-power
-submap = dm-power
 
+submap = dm-power
 bind =       , p , exec , $myDMScript/dm-power poweroff   # Shutdown System
 bind =       , r , exec , $myDMScript/dm-power reboot     # Reboot System
 bind =       , s , exec , $myDMScript/dm-power suspend    # Suspend System
@@ -968,7 +971,7 @@ bind =       , z , exec , $myDMScript/dm-power suspend    # Suspend System
 bind = SUPER , z , exec , $myDMScript/dm-power suspend    # Suspend System
 bind =       , c , exec , $myDMScript/dm-power controller # Disconnect all controllers
 
-# Reset submap
+# reset submap
 bind =       , escape , exec   , eww close $panel-power
 bind =       , escape , submap , reset
 bind =       , l      , exec   , eww close $panel-power
@@ -997,8 +1000,8 @@ bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Deskt
 Notifications
 #+begin_src conf
 bind = SUPER , backslash , submap , dm-notify
-submap = dm-notify
 
+submap = dm-notify
 bind =       , backslash , exec , $myDMScript/dm-notify recent  # Show most recent Notification
 bind = SUPER , backslash , exec , $myDMScript/dm-notify recent  # Show most recent Notification
 bind = SHIFT , backslash , exec , $myDMScript/dm-notify recents # Show few recent Notifications
@@ -1008,7 +1011,7 @@ bind =       , c         , exec , $myDMScript/dm-notify close   # Clear last Not
 bind =       , backspace , exec , $myDMScript/dm-notify close   # Clear last Notification
 bind =       , a         , exec , $myDMScript/dm-notify context # Open last Notification
 
-# Reset submap
+# reset submap
 bind =       , escape    , submap , reset
 bind =       , backspace , submap , reset
 bind = SHIFT , c         , submap , reset
@@ -1034,8 +1037,8 @@ bind = SUPER    , e      , exec , $myHyprConfig/toggle-special-workspace.sh "fil
 *** SUPER Scratchpads
 #+begin_src conf
 bind = SUPER , s , submap , scratchpad
-submap = scratchpad
 #                                                            | special workspace | class                             | command
+submap = scratchpad
 bind = , a , exec , $myHyprConfig/toggle-special-workspace.sh "anki"              "anki"                              "anki"
 bind = , c , exec , $myHyprConfig/toggle-special-workspace.sh "calculator"        "org.gnome.Calculator"              "gnome-calculator"
 bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             $myDiscordClass                     $myDiscord
@@ -1044,7 +1047,7 @@ bind = , t , exec , $myHyprConfig/toggle-special-workspace.sh "torrent"         
 bind = , v , exec , $myHyprConfig/toggle-special-workspace.sh "vm"                "virt-manager"                      "virt-manager"
 bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
 
-# Reset submap
+# reset submap
 bind =       , escape    , submap , reset
 bind =       , a         , submap , reset
 bind =       , c         , submap , reset
@@ -1060,9 +1063,8 @@ submap = reset
 *** SUPER Open
 #+begin_src conf
 bind = SUPER , o , submap , app-primary
-submap = app-primary
-
 #                                                            | special workspace | class                             | command
+submap = app-primary
 # bind = , c , togglespecialworkspace , chats
 bind = , c , exec , $myColorPicker
 bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             $myDiscordClass                     $myDiscord
@@ -1072,7 +1074,7 @@ bind = , i , exec , vimiv $XDG_PICTURES_DIR
 bind = , t , exec , $myTorBrowser
 bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"             "whatsapp-for-linux"                "whatsapp-for-linux"
 
-# Reset submap
+# reset submap
 bind = , escape , submap , reset
 bind = , c      , submap , reset
 bind = , d      , submap , reset
@@ -1089,15 +1091,15 @@ submap = reset
 *** CTRL ALT Open
 #+begin_src conf
 bind = CTRL ALT , o , submap , app-secondary
-submap = app-secondary
 
+submap = app-secondary
 bind = , e , exec , $myFiles        #  Launch GUI File Manager
 bind = , p , exec , $myPhotoLibrary #  Launch Photo Librar
 bind = , g , exec , $myImgEditor    #  Launch Image Editor
 bind = , r , exec , $myVctEditor    #  Launch Vector Editor
 bind = , v , exec , $myVidEditor    #  Launch Video Editor
 
-# Reset submap
+# reset submap
 bind = , escape , submap , reset
 bind = , e      , submap , reset
 bind = , p      , submap , reset
@@ -1124,12 +1126,12 @@ bind = CTRL ALT , a      , exec                   , [workspace special:audio] qp
 *** SUPER Pass
 #+begin_src conf
 bind = SUPER , p , submap , pass
-submap = pass
 
+submap = pass
 bind = , p , exec , $myPassType     # Autofill Password
 bind = , c , exec , $myPassCopy     # Copy Password
 
-# Reset submap
+# reset submap
 bind = , escape , submap , reset
 bind = , p      , submap , reset
 bind = , c      , submap , reset
@@ -1175,6 +1177,27 @@ esac
 
 # execution
 hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$param"
+#+end_src
+
+** get-submap-keys
+#+begin_src shell bash :tangle scripts/get-submap-keys.sh
+submap="$1"
+
+# environment variables
+#-------------------------------------------------------------------------------
+[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+
+# variables
+#-------------------------------------------------------------------------------
+config_path="$XDG_CONFIG_HOME/hypr/hyprland.conf"
+
+# execution
+#===============================================================================
+sed -n "/submap\s*=\s*$submap/,/^# reset submap$/p" "$config_path" |
+    head --lines -2 |
+    tail --lines +2 |
+    sed s/#/,/ |
+    awk -F, '{ print $2 "-" $5 }'
 #+end_src
 
 ** get-window-title
