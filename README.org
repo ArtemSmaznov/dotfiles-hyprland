@@ -182,6 +182,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 exec-once = eww open-many main-bar second-bar status-panel
 exec-once = $myScript/auto-start.sh
 exec-once = hypridle
+exec-once = hyprctl setcursor HyprBibataModernClassicSVG 32
 # exec-once = swayidle
 #+end_src
 
@@ -216,8 +217,11 @@ Theming Related Variables
 env = XCURSOR_THEME,breeze_cursors  # Set your cursor theme. The theme needs to be installed and readable by your user.
 env = XCURSOR_SIZE,32               # Set cursor size. See here for why you might want this variable set.
 
-env = HYPRCURSOR_THEME,capitaine-cursors # Set your cursor theme. The theme needs to be installed and readable by your user.
-env = HYPRCURSOR_SIZE,32                 # Set cursor size. See here for why you might want this variable set.
+# Set your cursor theme. The theme needs to be installed and readable by your user.
+# env = HYPRCURSOR_THEME,capitaine-cursors
+# env = HYPRCURSOR_THEME,Bibata-Modern-Classic
+# env = HYPRCURSOR_THEME,HyprBibataModernClassicSVG
+# env = HYPRCURSOR_SIZE,32                 # Set cursor size. See here for why you might want this variable set.
 #+end_src
 
 * General
@@ -607,6 +611,7 @@ misc {
     # allow_session_lock_restore = true   # will allow you to restart a lockscreen app in case it crashes
 
     vrr = 2                             # controls the VRR (Adaptive Sync) of your monitors. 0 - off, 1 - on, 2 - fullscreen only
+    enable_hyprcursor = true
 }
 #+end_src
 
