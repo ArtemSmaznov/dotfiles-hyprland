@@ -512,14 +512,25 @@ Native Scratchpad
 
 #+begin_src conf
 layerrule = blur, waybar
+#+end_src
 
-# eww
-layerrule = blur, gtk-layer-shell
-layerrule = ignorealpha 0, gtk-layer-shell
-layerrule = blur, status-panel
-layerrule = ignorealpha 0, status-panel
+eww
+#+begin_src conf
+# default windows
+$namespace = gtk-layer-shell
+layerrule = blur, $namespace
+layerrule = ignorealpha 0, $namespace
+layerrule = animation slide, $namespace
 
-# wofi
+# status-panel
+$namespace = status-panel
+layerrule = blur, $namespace
+layerrule = ignorealpha 0, $namespace
+layerrule = animation slide, $namespace
+#+end_src
+
+wofi
+#+begin_src conf
 layerrule = blur, wofi
 layerrule = ignorealpha 0, wofi
 #+end_src
