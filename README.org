@@ -1041,8 +1041,8 @@ submap = reset
 
 ** Submap dm-power
 #+begin_src conf
-bind = SUPER , z , submap , dm-power
 bind = SUPER , z , exec , eww open $panel-power
+bind = SUPER , z , submap , dm-power
 
 submap = dm-power
 bind =       , p , exec , $myDMScript/dm-power poweroff   # shutdown system
