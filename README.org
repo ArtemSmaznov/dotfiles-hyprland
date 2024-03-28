@@ -97,6 +97,7 @@ sudo pacman -S hyprland hyprpaper
 $myScript        = $HOME/.local/bin
 $myDMScript      = $HOME/.local/bin/dm-scripts
 $myHyprConfig    = $HOME/.config/hypr/scripts
+$myEwwScript     = $HOME/.config/eww/scripts
 
 # cli tools
 $myTerm          = alacritty
@@ -146,6 +147,7 @@ $mySysBluetooth  = blueman-manager
 
 # eww
 $panel-power     = powermenu-panel
+$status-panel    = status-panel
 #+end_src
 
 * Theme
@@ -1116,21 +1118,25 @@ submap = reset
 bind = SUPER , t , submap , toggle
 
 submap = toggle
-bind =       , s , exec   , $myHyprConfig/toggle-status-bar.sh                        # toggle status bar
-bind =       , b , exec   , $myHyprConfig/toggle-borders.sh $borders                  # toggle window borders
-bind =       , c , exec   , $myHyprConfig/toggle-corners.sh $corners                  # toggle corners
-bind =       , g , exec   , $myHyprConfig/toggle-gaps.sh $gaps_inner                  # toggle gaps
-bind =       , z , exec   , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner # toggle zen mode
-bind =       , h , exec   , $myScript/toggle-headphones.sh                            # toggle bluetooth headphones
+bind =       , s , exec   , $myHyprConfig/toggle-status-bar.sh                                                    # toggle status bar
+bind =       , b , exec   , $myHyprConfig/toggle-borders.sh $borders                                              # toggle window borders
+bind =       , c , exec   , $myHyprConfig/toggle-corners.sh $corners                                              # toggle corners
+bind =       , g , exec   , $myHyprConfig/toggle-gaps.sh $gaps_inner                                              # toggle gaps
+bind =       , z , exec   , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner                             # toggle zen mode
+bind =       , h , exec   , $myScript/toggle-headphones.sh                                                        # toggle bluetooth headphones
+bind =       , q , exec   , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $status-panel # toggle status panel
+bind = SHIFT , q , exec   , $myEwwScript/toggle-window.sh $status-panel                                           # toggle status panel on default monitor
 
 # reset submap
-bind = , escape , submap , reset
-bind = , s      , submap , reset
-bind = , b      , submap , reset
-bind = , c      , submap , reset
-bind = , g      , submap , reset
-bind = , z      , submap , reset
-bind = , h      , submap , reset
+bind =       , escape , submap , reset
+bind =       , s      , submap , reset
+bind =       , b      , submap , reset
+bind =       , c      , submap , reset
+bind =       , g      , submap , reset
+bind =       , z      , submap , reset
+bind =       , h      , submap , reset
+bind =       , q      , submap , reset
+bind = SHIFT , q      , submap , reset
 
 submap = reset
 #+end_src
