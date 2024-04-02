@@ -60,24 +60,6 @@
   - [[#hold-submap-leader][HOLD Submap Leader]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#debug][Debug]]
-- [[#scripts][Scripts]]
-  - [[#dmscripts][DMScripts]]
-  - [[#get-current-monitor][get-current-monitor]]
-  - [[#get-current-workspace][get-current-workspace]]
-  - [[#get-submap-keys][get-submap-keys]]
-  - [[#get-window-title][get-window-title]]
-  - [[#get-workspaces][get-workspaces]]
-  - [[#listen-submap][listen-submap]]
-  - [[#listen-current-monitor][listen-current-monitor]]
-  - [[#listen-current-workspace][listen-current-workspace]]
-  - [[#listen-window-title][listen-window-title]]
-  - [[#toggle-borders][toggle-borders]]
-  - [[#toggle-corners][toggle-corners]]
-  - [[#toggle-gaps][toggle-gaps]]
-  - [[#toggle-layout][toggle-layout]]
-  - [[#toggle-special-workspace][toggle-special-workspace]]
-  - [[#toggle-status-bar][toggle-status-bar]]
-  - [[#toggle-zen][toggle-zen]]
 
 * Dependencies
 |-----------------+-------------|
@@ -148,6 +130,7 @@ $mySysBluetooth  = blueman-manager
 # eww
 $panel-power     = powermenu-panel
 $quick-settings  = quick-settings
+$which-key       = which-key
 #+end_src
 
 * Theme
@@ -526,6 +509,11 @@ layerrule = animation slide, $namespace
 layerrule = blur, $quick-settings
 layerrule = ignorealpha 0, $quick-settings
 layerrule = animation slide, $quick-settings
+
+# which-key
+layerrule = blur, $which-key
+layerrule = ignorealpha 0, $which-key
+layerrule = animation slide, $which-key
 #+end_src
 
 wofi
@@ -936,158 +924,153 @@ bind = CTRL ALT , a      , exec                   , [workspace special:audio] qp
 
 ** Submap app-primary
 #+begin_src conf
+bind = SUPER , o , exec   , $myEwwScript/which-key.sh app-primary
 bind = SUPER , o , submap , app-primary
-#                                                            | workspace | class               | command
+
 submap = app-primary
 bind = , c , exec , $myColorPicker                                                                                                       # color picker
-bind = , s , exec , $mySteam                                                                                                             # steam
-bind = , i , exec , vimiv $XDG_PICTURES_DIR                                                                                              # image viewer
-bind = , t , exec , $myTorBrowser                                                                                                        # tor browser
 bind = , d , exec , $myHyprConfig/toggle-special-workspace.sh "chats"      $myDiscordClass       $myDiscord                              # toggle chats
+bind = , i , exec , vimiv $XDG_PICTURES_DIR                                                                                              # image viewer
 bind = , m , exec , $myHyprConfig/toggle-special-workspace.sh "music"      "sp-music"            "alacritty --class sp-music -e ncmpcpp" # toggle music player
+bind = , s , exec , $mySteam                                                                                                             # steam
+bind = , t , exec , $myTorBrowser                                                                                                        # tor browser
 bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"      "whatsapp-for-linux"  "whatsapp-for-linux"                    # toggle whatsapp
 
-# reset submap
-bind = , escape , submap , reset
-bind = , c      , submap , reset
-bind = , s      , submap , reset
-bind = , i      , submap , reset
-bind = , t      , submap , reset
-bind = , v      , submap , reset
-bind = , d      , submap , reset
-bind = , m      , submap , reset
-bind = , w      , submap , reset
+bind = , catchall , exec , $myHyprConfig/reset-submap.sh
+bind = , c        , exec , $myHyprConfig/reset-submap.sh
+bind = , d        , exec , $myHyprConfig/reset-submap.sh
+bind = , i        , exec , $myHyprConfig/reset-submap.sh
+bind = , m        , exec , $myHyprConfig/reset-submap.sh
+bind = , s        , exec , $myHyprConfig/reset-submap.sh
+bind = , t        , exec , $myHyprConfig/reset-submap.sh
+bind = , v        , exec , $myHyprConfig/reset-submap.sh
+bind = , w        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap app-secondary
 #+begin_src conf
+bind = CTRL ALT , o , exec   , $myEwwScript/which-key.sh app-secondary
 bind = CTRL ALT , o , submap , app-secondary
 
 submap = app-secondary
 bind = , e , exec , $myFiles        # gui file manager
-bind = , p , exec , $myPhotoLibrary # photo library
 bind = , g , exec , $myImgEditor    # image editor
+bind = , p , exec , $myPhotoLibrary # photo library
 bind = , r , exec , $myVctEditor    # vector image editor
 bind = , v , exec , $myVidEditor    # video editor
 
-# reset submap
-bind = , escape , submap , reset
-bind = , e      , submap , reset
-bind = , p      , submap , reset
-bind = , g      , submap , reset
-bind = , r      , submap , reset
-bind = , v      , submap , reset
+bind = , catchall , exec , $myHyprConfig/reset-submap.sh
+bind = , e        , exec , $myHyprConfig/reset-submap.sh
+bind = , g        , exec , $myHyprConfig/reset-submap.sh
+bind = , p        , exec , $myHyprConfig/reset-submap.sh
+bind = , r        , exec , $myHyprConfig/reset-submap.sh
+bind = , v        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap dm-global
 #+begin_src conf
+bind = SUPER , d , exec   , $myEwwScript/which-key.sh dm-global
 bind = SUPER , d , submap , dm-global
 
 submap = dm-global
-bind = SUPER , d         , exec , $myDMScript/dm-master     # dm-master
-bind =       , w         , exec , $myDMScript/dm-wallpaper  # dm-wallpaper
-bind =       , r         , exec , $myDMScript/dm-record     # dm-record
-bind =       , p         , exec , $myDMScript/dm-power      # dm-power
-bind =       , t         , exec , $myDMScript/dm-theme      # dm-theme
-bind =       , s         , exec , $myDMScript/dm-screenshot # dm-screenshot
-bind =       , b         , exec , $myDMScript/dm-bookman    # dm-bookman
-bind =       , n         , exec , $myDMScript/dm-notify     # dm-notify
 bind =       , backslash , exec , $myDMScript/dm-notify     # dm-notify
+bind =       , b         , exec , $myDMScript/dm-bookman    # dm-bookman
+bind = SUPER , d         , exec , $myDMScript/dm-master     # dm-master
 bind =       , k         , exec , $myDMScript/dm-keys       # dm-keys
+bind =       , n         , exec , $myDMScript/dm-notify     # dm-notify
+bind =       , p         , exec , $myDMScript/dm-power      # dm-power
+bind =       , r         , exec , $myDMScript/dm-record     # dm-record
+bind =       , s         , exec , $myDMScript/dm-screenshot # dm-screenshot
+bind =       , t         , exec , $myDMScript/dm-theme      # dm-theme
+bind =       , w         , exec , $myDMScript/dm-wallpaper  # dm-wallpaper
 
-# reset submap
-bind =       , escape    , submap , reset
-bind = SUPER , d         , submap , reset
-bind =       , w         , submap , reset
-bind =       , r         , submap , reset
-bind =       , p         , submap , reset
-bind =       , t         , submap , reset
-bind =       , s         , submap , reset
-bind =       , b         , submap , reset
-bind =       , n         , submap , reset
-bind =       , backslash , submap , reset
-bind =       , k         , submap , reset
+bind =       , catchall  , exec , $myHyprConfig/reset-submap.sh
+bind =       , backslash , exec , $myHyprConfig/reset-submap.sh
+bind =       , b         , exec , $myHyprConfig/reset-submap.sh
+bind = SUPER , d         , exec , $myHyprConfig/reset-submap.sh
+bind =       , k         , exec , $myHyprConfig/reset-submap.sh
+bind =       , n         , exec , $myHyprConfig/reset-submap.sh
+bind =       , p         , exec , $myHyprConfig/reset-submap.sh
+bind =       , r         , exec , $myHyprConfig/reset-submap.sh
+bind =       , s         , exec , $myHyprConfig/reset-submap.sh
+bind =       , t         , exec , $myHyprConfig/reset-submap.sh
+bind =       , w         , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap dm-notify
 #+begin_src conf
+bind = SUPER , backslash , exec   , $myEwwScript/which-key.sh dm-notify
 bind = SUPER , backslash , submap , dm-notify
 
 submap = dm-notify
-bind =       , backslash , exec , $myDMScript/dm-notify recent  # show last notification
-bind = SUPER , backslash , exec , $myDMScript/dm-notify recent  # show last notification
-bind = SHIFT , backslash , exec , $myDMScript/dm-notify recents # show recent notifications
-bind =       , r         , exec , $myDMScript/dm-notify recents # show recent notifications
-bind = SHIFT , c         , exec , $myDMScript/dm-notify clear   # clear all notifications
-bind =       , c         , exec , $myDMScript/dm-notify close   # clear last notification
 bind =       , backspace , exec , $myDMScript/dm-notify close   # clear last notification
+bind = SUPER , backslash , exec , $myDMScript/dm-notify recent  # show last notification
+bind =       , backslash , exec , $myDMScript/dm-notify recent  # show last notification
+bind = SHIFT , backslash , exec , $myDMScript/dm-notify recents # show recent notifications
 bind =       , a         , exec , $myDMScript/dm-notify context # open last notification
+bind =       , c         , exec , $myDMScript/dm-notify close   # clear last notification
+bind = SHIFT , c         , exec , $myDMScript/dm-notify clear   # clear all notifications
+bind =       , r         , exec , $myDMScript/dm-notify recents # show recent notifications
 
-# reset submap
-bind =       , escape    , submap , reset
-bind =       , backspace , submap , reset
-bind = SHIFT , c         , submap , reset
-bind =       , a         , submap , reset
+bind =       , catchall  , exec , $myHyprConfig/reset-submap.sh
+bind =       , backspace , exec , $myHyprConfig/reset-submap.sh
+bind =       , a         , exec , $myHyprConfig/reset-submap.sh
+bind = SHIFT , c         , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap dm-power
 #+begin_src conf
-bind = SUPER , z , exec , eww open $panel-power
+bind = SUPER , z , exec   , $myEwwScript/which-key.sh dm-power
 bind = SUPER , z , submap , dm-power
 
 submap = dm-power
+bind =       , c , exec , $myDMScript/dm-power controller # disconnect all controllers
+bind =       , l , exec , $myDMScript/dm-power lock       # lock screen
 bind =       , p , exec , $myDMScript/dm-power poweroff   # shutdown system
 bind =       , r , exec , $myDMScript/dm-power reboot     # reboot system
 bind =       , s , exec , $myDMScript/dm-power suspend    # suspend system
-bind =       , l , exec , $myDMScript/dm-power lock       # lock screen
 bind =       , z , exec , $myDMScript/dm-power suspend    # suspend system
 bind = SUPER , z , exec , $myDMScript/dm-power suspend    # suspend system
-bind =       , c , exec , $myDMScript/dm-power controller # disconnect all controllers
 
-# reset submap
-bind =       , escape , exec   , eww close $panel-power
-bind =       , escape , submap , reset
-bind =       , l      , exec   , eww close $panel-power
-bind =       , l      , submap , reset
-bind =       , s      , exec   , eww close $panel-power
-bind =       , s      , submap , reset
-bind =       , p      , submap , reset
-bind =       , r      , submap , reset
-bind =       , z      , exec   , eww close $panel-power
-bind =       , z      , submap , reset
-bind = SUPER , z      , submap , reset
-bind =       , c      , exec   , eww close $panel-power
-bind =       , c      , submap , reset
+bind =       , catchall , exec , $myHyprConfig/reset-submap.sh
+bind =       , c        , exec , $myHyprConfig/reset-submap.sh
+bind =       , l        , exec , $myHyprConfig/reset-submap.sh
+bind =       , p        , exec , $myHyprConfig/reset-submap.sh
+bind =       , r        , exec , $myHyprConfig/reset-submap.sh
+bind =       , s        , exec , $myHyprConfig/reset-submap.sh
+bind =       , z        , exec , $myHyprConfig/reset-submap.sh
+bind = SUPER , z        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap pass
 #+begin_src conf
+bind = SUPER , p , exec   , $myEwwScript/which-key.sh pass
 bind = SUPER , p , submap , pass
 
 submap = pass
-bind = , p , exec , $myPassType # autofill password
 bind = , c , exec , $myPassCopy # copy password
+bind = , p , exec , $myPassType # autofill password
 
-# reset submap
-bind = , escape , submap , reset
-bind = , p      , submap , reset
-bind = , c      , submap , reset
+bind = , catchall , exec , $myHyprConfig/reset-submap.sh
+bind = , c        , exec , $myHyprConfig/reset-submap.sh
+bind = , p        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap scratchpad
 #+begin_src conf
+bind = SUPER , s , exec   , $myEwwScript/which-key.sh scratchpad
 bind = SUPER , s , submap , scratchpad
 #                                                            | workspace  | class                            | command
 submap = scratchpad
@@ -1099,43 +1082,42 @@ bind = , t , exec , $myHyprConfig/toggle-special-workspace.sh "torrent"     "com
 bind = , v , exec , $myHyprConfig/toggle-special-workspace.sh "vm"          "virt-manager"                     "virt-manager"                          # vm
 bind = , w , exec , $myHyprConfig/toggle-special-workspace.sh "chats"       "whatsapp-for-linux"               "whatsapp-for-linux"                    # whatsapp
 
-# reset submap
-bind =       , escape    , submap , reset
-bind =       , a         , submap , reset
-bind =       , c         , submap , reset
-bind =       , d         , submap , reset
-bind =       , m         , submap , reset
-bind =       , t         , submap , reset
-bind =       , v         , submap , reset
-bind =       , w         , submap , reset
+bind = , catchall , exec , $myHyprConfig/reset-submap.sh
+bind = , a        , exec , $myHyprConfig/reset-submap.sh
+bind = , c        , exec , $myHyprConfig/reset-submap.sh
+bind = , d        , exec , $myHyprConfig/reset-submap.sh
+bind = , m        , exec , $myHyprConfig/reset-submap.sh
+bind = , t        , exec , $myHyprConfig/reset-submap.sh
+bind = , v        , exec , $myHyprConfig/reset-submap.sh
+bind = , w        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
 
 ** Submap toggle
 #+begin_src conf
+bind = SUPER , t , exec   , $myEwwScript/which-key.sh toggle
 bind = SUPER , t , submap , toggle
 
 submap = toggle
-bind =       , s , exec   , $myHyprConfig/toggle-status-bar.sh                                                      # toggle status bar
-bind =       , b , exec   , $myHyprConfig/toggle-borders.sh $borders                                                # toggle window borders
-bind =       , c , exec   , $myHyprConfig/toggle-corners.sh $corners                                                # toggle corners
-bind =       , g , exec   , $myHyprConfig/toggle-gaps.sh $gaps_inner                                                # toggle gaps
-bind =       , z , exec   , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner                               # toggle zen mode
-bind =       , h , exec   , $myScript/toggle-headphones.sh                                                          # toggle bluetooth headphones
-bind =       , q , exec   , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle status panel
-bind = SHIFT , q , exec   , $myEwwScript/toggle-window.sh $quick-settings                                           # toggle status panel on default monitor
+bind =       , b , exec , $myHyprConfig/toggle-borders.sh $borders                                                # toggle window borders
+bind =       , c , exec , $myHyprConfig/toggle-corners.sh $corners                                                # toggle corners
+bind =       , g , exec , $myHyprConfig/toggle-gaps.sh $gaps_inner                                                # toggle gaps
+bind =       , h , exec , $myScript/toggle-headphones.sh                                                          # toggle bluetooth headphones
+bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle status panel
+bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh $quick-settings                                           # toggle status panel on default monitor
+bind =       , s , exec , $myHyprConfig/toggle-status-bar.sh                                                      # toggle status bar
+bind =       , z , exec , $myHyprConfig/toggle-zen.sh $borders $corners $gaps_inner                               # toggle zen mode
 
-# reset submap
-bind =       , escape , submap , reset
-bind =       , s      , submap , reset
-bind =       , b      , submap , reset
-bind =       , c      , submap , reset
-bind =       , g      , submap , reset
-bind =       , z      , submap , reset
-bind =       , h      , submap , reset
-bind =       , q      , submap , reset
-bind = SHIFT , q      , submap , reset
+bindr =       , catchall , exec , $myHyprConfig/reset-submap.sh
+bind  =       , b        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , c        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , g        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , h        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , q        , exec , $myHyprConfig/reset-submap.sh
+bind  = SHIFT , Q        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , s        , exec , $myHyprConfig/reset-submap.sh
+bind  =       , z        , exec , $myHyprConfig/reset-submap.sh
 
 submap = reset
 #+end_src
@@ -1197,291 +1179,3 @@ debug {
 }
 #+end_src
 
-* [[id:d4c60fae-8667-4066-902f-692a61572338][Scripts]]
-:PROPERTIES:
-:header-args: :shebang #!/usr/bin/env bash
-:END:
-** [[id:c9d06930-ec33-4afc-b320-3942fa73e592][DMScripts]]
-** get-current-monitor
-#+begin_src shell bash :tangle scripts/get-current-monitor.sh
-[ $1 ] && param=$1 || param=name
-
-hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
-#+end_src
-
-** get-current-workspace
-#+begin_src shell bash :tangle scripts/get-current-workspace.sh
-# arguments
-case $1 in
-    'current') monitor=$(./get-current-monitor.sh id);;
-    '') monitor=$(./get-current-monitor.sh id);;
-    *) monitor=$1;;
-esac
-case $2 in
-    '') param=name ;;
-    *) param=$2 ;;
-esac
-
-# execution
-hyprctl monitors -j | jq -r ".[] | select(.id==$monitor) | .activeWorkspace.$param"
-#+end_src
-
-** get-submap-keys
-#+begin_src shell bash :tangle scripts/get-submap-keys.sh
-submap="$1"
-
-# environment variables
-#-------------------------------------------------------------------------------
-[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
-
-# variables
-#-------------------------------------------------------------------------------
-config_path="$XDG_CONFIG_HOME/hypr/hyprland.conf"
-
-# execution
-#===============================================================================
-sed -n "/submap\s*=\s*$submap/,/^# reset submap$/p" "$config_path" |
-    head --lines -2 |
-    tail --lines +2 |
-    sed s/#/,/ |
-    awk -F, '{ print $2 "-" $5 }'
-#+end_src
-
-** get-window-title
-#+begin_src shell bash :tangle scripts/get-window-title.sh
-hyprctl activewindow -j | jq --raw-output .title
-#+end_src
-
-** get-workspaces
-#+begin_src shell bash :tangle scripts/get-workspaces.sh
-# focused_monitor_id=$(./get-current-monitor.sh id)
-
-workspace_ids=$(hyprctl workspaces -j | jq -r '.[] | select(.name | contains("special") | not ) | .id' | sort )
-
-getWorkspaceName () {
-    id=$1
-    hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .name"
-}
-
-getWorkspaceWindows () {
-    id=$1
-    hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows"
-}
-
-workspaceIsEmpty () {
-    id=$1
-    num_windows=$(hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows")
-    [ "$num_windows" -eq 0 ] && echo true || echo false
-}
-
-workspaceActiveOn () {
-    id=$1
-    mon_0_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 0)
-    mon_1_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 1)
-
-    if [ "$id" -eq "$mon_0_workspace_id" ]; then
-        echo 0;
-    elif [ "$id" -eq "$mon_1_workspace_id" ]; then
-        echo 1;
-    else
-        echo 2;
-    fi
-}
-
-output="["
-for id in ${workspace_ids[@]}; do
-    output+="{"\
-"\"id\":$id,"\
-"\"name\":\"$(getWorkspaceName $id)\","\
-"\"windows\":$(getWorkspaceWindows $id),"\
-"\"monitor\":$(workspaceActiveOn $id $1)"\
-"},"
-done
-
-echo "${output%,}]"
-#+end_src
-
-** listen-submap
-#+begin_src shell bash :tangle scripts/listen-submap.sh
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
-  stdbuf -o0 awk -F '>>|,' -e '/^submap>>/ {print $2}'
-#+end_src
-
-** listen-current-monitor
-#+begin_src shell bash :tangle scripts/listen-current-monitor.sh
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
-  stdbuf -o0 awk -F '>>|,' -e '/^focusedmon>>/ {print $2}'
-#+end_src
-
-** listen-current-workspace
-#+begin_src shell bash :tangle scripts/listen-current-workspace.sh
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
-  stdbuf -o0 awk -F '>>|,' -e '/^workspace>>/ {print $2}' -e '/^focusedmon>>/ {print $3}'
-#+end_src
-
-** listen-window-title
-#+begin_src shell bash :tangle scripts/listen-window-title.sh
-/home/artem/.config/hypr/scripts/get-window-title.sh
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
-  stdbuf -o0 awk -F '>>|,' '/^activewindow>>/{print $3}'
-#+end_src
-
-** toggle-borders
-#+begin_src shell bash :tangle scripts/toggle-borders.sh
-default_value=$1
-
-option="general:border_size"
-type="int"
-
-current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
-if [ $current_value = 0 ]; then
-    value=$default_value
-else
-    value=0
-fi
-
-hyprctl keyword "$option" $value
-#+end_src
-
-** toggle-corners
-#+begin_src shell bash :tangle scripts/toggle-corners.sh
-default_value=$1
-
-option="decoration:rounding"
-type="int"
-
-current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
-if [ $current_value = 0 ]; then
-    value=$default_value
-else
-    value=0
-fi
-
-hyprctl keyword "$option" $value
-#+end_src
-
-** toggle-gaps
-#+begin_src shell bash :tangle scripts/toggle-gaps.sh
-default_value=$1
-
-option="general:gaps_in"
-option2="general:gaps_out"
-type="custom type"
-
-
-current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
-if [ $current_value = 0 ]; then
-    value=$default_value
-else
-    value=0
-fi
-
-hyprctl keyword "$option" $value
-hyprctl keyword "$option2" $((value*=2))
-#+end_src
-
-** toggle-layout
-#+begin_src shell bash :tangle scripts/toggle-layout.sh
-layout="$1"
-
-if [ ! "$layout" ]; then
-    current_layout=$(hyprctl getoption general:layout | grep str | awk '{print $2}' | tr -d '"')
-    if [ "$current_layout" = "dwindle" ]; then
-        layout="master"
-    else
-        layout="dwindle"
-    fi
-fi
-
-hyprctl keyword general:layout "$layout"
-#+end_src
-
-** toggle-special-workspace
-#+begin_src shell bash :tangle scripts/toggle-special-workspace.sh
-workspace_name="$1"
-app_class="$2"
-app_command="$3"
-
-workspace_is_spawed=$(hyprctl -j clients | jq -c ".[] | select(.class | contains(\"$app_class\"))")
-workspace_is_hidden=$(hyprctl -j workspaces | jq -c ".[] | select(.name == \"special:$workspace_name\")")
-
-# spawn app on the given special workspace
-if [[ ! $workspace_is_spawed ]]; then
-    hyprctl dispatch exec \[workspace special:"$workspace_name"\] "$app_command"
-    exit 0
-fi
-
-# rip the app back into special workspace if it is empty
-if [[ ! $workspace_is_hidden ]]; then
-    hyprctl dispatch movetoworkspacesilent special:"$workspace_name","$app_class"
-fi
-
-# show the special workspace
-hyprctl dispatch togglespecialworkspace "$workspace_name"
-#+end_src
-
-** toggle-status-bar
-#+begin_src shell :tangle scripts/toggle-status-bar.sh
-[ -z "$1" ] && action="toggle" || action="$1"
-
-# environment variables
-#-------------------------------------------------------------------------------
-[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
-
-# variables
-#-------------------------------------------------------------------------------
-
-# functions
-#-------------------------------------------------------------------------------
-
-# setup
-#-------------------------------------------------------------------------------
-focused_monitor_id=$("$HOME"/.local/bin/get-current-monitor.sh id)
-
-# execution
-#===============================================================================
-"$XDG_CONFIG_HOME"/eww/scripts/toggle-status-bar.sh "$action" "$focused_monitor_id"
-#+end_src
-
-** toggle-zen
-#+begin_src shell bash :tangle scripts/toggle-zen.sh
-default_borders="$1"
-default_corners="$2"
-default_gaps="$3"
-
-# environment variables
-#-------------------------------------------------------------------------------
-[ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
-
-# variables
-#-------------------------------------------------------------------------------
-borders=$(hyprctl getoption general:border_size | grep int | awk '{print $NF}' | tr -d '"')
-corners=$(hyprctl getoption decoration:rounding | grep int | awk '{print $NF}' | tr -d '"')
-gaps=$(hyprctl getoption general:gaps_in | grep type | awk '{print $NF}' | tr -d '"')
-
-# functions
-#-------------------------------------------------------------------------------
-
-# setup
-#-------------------------------------------------------------------------------
-if [[ $borders = 0 && $corners = 0 && $gaps = 0 ]]; then
-    bar_action="open"
-    border_size="$default_borders"
-    rounding="$default_corners"
-    gap_size="$default_gaps"
-else
-    bar_action="close"
-    border_size=0
-    rounding=0
-    gap_size=0
-fi
-
-# execution
-#===============================================================================
-"$XDG_CONFIG_HOME"/hypr/scripts/toggle-status-bar.sh "$bar_action"
-hyprctl --batch "\
-    keyword general:border_size $border_size ; \
-    keyword decoration:rounding $rounding ; \
-    keyword general:gaps_in $gap_size ; \
-    keyword general:gaps_out $((gap_size *= 2)) "
-#+end_src
