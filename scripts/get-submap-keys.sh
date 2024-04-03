@@ -14,6 +14,10 @@ sed -n "/submap\s*=\s*$submap/,/^$/p" "$config_path" |
     tail --lines +2 |
     sed -e 's/#/,/' \
         -e 's/^bind *= *//' \
-        -e 's/ *, */,/g' |
+        -e 's/ *, */,/g' \
+        -e 's/SUPER/S/' \
+        -e 's/SHIFT//' \
+        -e 's/CTRL/C/' \
+        -e 's/ALT/M/' |
     awk -F, '{ print "[\"" $1 "\",\"" $2 "\",\"" $5 "\"]" }' |
     jq -cs '.'
