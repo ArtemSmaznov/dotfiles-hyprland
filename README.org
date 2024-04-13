@@ -283,6 +283,11 @@ windowrulev2 = workspace 2 silent,title:^(Steam)$,floating:1
 windowrulev2 = nofocus,title:^(Steam)$,floating:1
 #+end_src
 
+*** Scrcpy
+#+begin_src conf
+windowrule = tile,^([Ss]crcpy)$
+#+end_src
+
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
