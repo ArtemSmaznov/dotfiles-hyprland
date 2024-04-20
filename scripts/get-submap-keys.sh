@@ -19,5 +19,5 @@ sed -n "/submap\s*=\s*$submap/,/^$/p" "$config_path" |
         -e 's/SHIFT//' \
         -e 's/CTRL/C/' \
         -e 's/ALT/M/' |
-    awk -F, '{ print "[\"" $1 "\",\"" $2 "\",\"" $5 "\"]" }' |
+    awk -F, '$5!="" { print "[\"" $1 "\",\"" $2 "\",\"" $5 "\"]" }' |
     jq -cs '.'
