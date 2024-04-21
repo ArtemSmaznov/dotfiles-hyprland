@@ -1130,16 +1130,20 @@ submap = reset
 Quick Settings
 #+begin_src conf
 submap = quick-settings
-bind = , b , exec , $myScript/btctl.sh toggle      # toggle bluetooth
-bind = , v , exec , $myScript/vpnctl.sh toggle     # toggle vpn
-bind = , h , exec , $myScript/toggle-headphones.sh # toggle bluetooth headphones
+bind = , b , exec , $myScript/btctl.sh toggle       # toggle bluetooth
+bind = , e , exec , $myScript/netctl.sh toggle eth  # toggle ethernet
+bind = , v , exec , $myScript/vpnctl.sh toggle      # toggle vpn
+bind = , h , exec , $myScript/toggle-headphones.sh  # toggle bluetooth headphones
+bind = , w , exec , $myScript/netctl.sh toggle wlan # toggle wi-fi
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh toggle
 bind  = , backspace , submap , toggle
 bind  = , b         , exec   , $myHyprScript/reset-submap.sh
+bind  = , e         , exec   , $myHyprScript/reset-submap.sh
 bind  = , h         , exec   , $myHyprScript/reset-submap.sh
 bind  = , v         , exec   , $myHyprScript/reset-submap.sh
+bind  = , w         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
