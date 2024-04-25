@@ -157,6 +157,7 @@ Extras:
 #       name , resolution    , position  , scale , extras
 monitor=DP-1 , highrr        , 0x0       , auto
 monitor=DP-2 , 1920x1080@144 , 760x-1080 , auto
+# monitor=DP-2 , disable
 monitor=     , preferred     , auto      , auto
 #+end_src
 
@@ -1201,6 +1202,7 @@ submap = reset
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = SUPER , mouse:272 , movewindow
 bindm = SUPER , mouse:273 , resizewindow
+# bindm = , mouse:133 , movewindow
 #+end_src
 
 * Debug
