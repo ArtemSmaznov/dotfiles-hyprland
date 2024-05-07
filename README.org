@@ -99,6 +99,7 @@ $myIde           = emacs
 $myFiles         = pcmanfm
 $mySteam         = /usr/bin/steam-runtime %U
 $myEmail         = thunderbird
+$myEmailClass    = thunderbird
 
 # extra tools
 $myLauncher      = wofi --show drun
@@ -473,6 +474,7 @@ Special Workspaces
 workspace = special:term       , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:files      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:music      , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:email      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:chats      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:audio      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:torrent    , bordersize:$borders_special , gapsin:50 , gapsout:125
@@ -1101,6 +1103,7 @@ submap = scratchpad
 bind = , a , exec , $myHyprScript/toggle-special-workspace.sh "anki"        "anki"                             "anki"                                  # anki
 bind = , c , exec , $myHyprScript/toggle-special-workspace.sh "calculator"  "org.gnome.Calculator"             "gnome-calculator"                      # calculator
 bind = , d , exec , $myHyprScript/toggle-special-workspace.sh "chats"       $myDiscordClass                    $myDiscord                              # discord
+bind = , e , exec , $myHyprScript/toggle-special-workspace.sh "email"       $myEmailClass                      $myEmail                                # email client
 bind = , m , exec , $myHyprScript/toggle-special-workspace.sh "music"       "sp-music"                         "alacritty --class sp-music -e ncmpcpp" # music player
 bind = , t , exec , $myHyprScript/toggle-special-workspace.sh "torrent"     "com.transmissionbt.transmission"  "transmission-gtk"                      # torrent
 bind = , v , exec , $myHyprScript/toggle-special-workspace.sh "vm"          "virt-manager"                     "virt-manager"                          # vm
@@ -1110,6 +1113,7 @@ bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , a        , exec , $myHyprScript/reset-submap.sh
 bind  = , c        , exec , $myHyprScript/reset-submap.sh
 bind  = , d        , exec , $myHyprScript/reset-submap.sh
+bind  = , e        , exec , $myHyprScript/reset-submap.sh
 bind  = , m        , exec , $myHyprScript/reset-submap.sh
 bind  = , t        , exec , $myHyprScript/reset-submap.sh
 bind  = , v        , exec , $myHyprScript/reset-submap.sh
