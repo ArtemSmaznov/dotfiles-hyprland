@@ -580,6 +580,9 @@ input {
     #
     follow_mouse = 2
 
+    # If disabled, mouse focus won’t switch to the hovered window unless the mouse crosses a window boundary when follow_mouse=1.
+    mouse_refocus = false
+
     # 0 - Cursor movement will not change focus.
     # 1 - focus will change to the window under the cursor when changing from tiled-to-floating and vice versa.
     # 2 - focus will also follow mouse on float-to-float switches.
@@ -617,6 +620,10 @@ misc {
 
     vrr = 2                             # controls the VRR (Adaptive Sync) of your monitors. 0 - off, 1 - on, 2 - fullscreen only
     enable_hyprcursor = true
+
+    layers_hog_keyboard_focus = true
+    focus_on_activate = true
+    mouse_move_focuses_monitor = false
 }
 #+end_src
 
@@ -625,6 +632,12 @@ misc {
 binds {
     workspace_back_and_forth = true     # an attempt to switch to the currently focused workspace will instead switch to the previous workspace
     allow_workspace_cycles = true       # If enabled, workspaces don’t forget their previous workspace, so cycles can be created by switching to the first workspace in a sequence, then endlessly going to the previous workspace.
+
+    # sets the preferred focus finding method when using focuswindow/movewindow/etc with a direction.
+    # 0 - history (recent have priority)
+    # 1 - length (longer shared edges have priority)
+    focus_preferred_method = 0
+
     movefocus_cycles_fullscreen = false # If enabled, when on a fullscreen window, movefocus will cycle fullscreen, if not, it will move the focus in a direction.
 }
 #+end_src
