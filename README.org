@@ -98,6 +98,7 @@ $myIde           = emacs
 # $myIde           = emacsclient -ca ''
 $myFiles         = pcmanfm
 $mySteam         = /usr/bin/steam-runtime %U
+$myEmail         = thunderbird
 
 # extra tools
 $myLauncher      = wofi --show drun
@@ -936,6 +937,7 @@ bind = SUPER , o , submap , app-primary
 submap = app-primary
 bind =       , c , exec , $myColorPicker                                                                              # color picker
 bind =       , d , exec , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord                # toggle chats
+bind =       , e , exec , $myEmail                                                                                    # email client
 bind =       , i , exec , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
 bind =       , m , exec , $myCliMusic                                                                                 # music player
 bind = SHIFT , M , exec , [workspace 5 silent] $myCliMusic                                                            # music player on default workspace
@@ -946,6 +948,7 @@ bind =       , w , exec , $myHyprScript/toggle-special-workspace.sh "chats" "wha
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
 bind  =       , c        , exec , $myHyprScript/reset-submap.sh
 bind  =       , d        , exec , $myHyprScript/reset-submap.sh
+bind  =       , e        , exec , $myHyprScript/reset-submap.sh
 bind  =       , i        , exec , $myHyprScript/reset-submap.sh
 bind  =       , m        , exec , $myHyprScript/reset-submap.sh
 bind  = SHIFT , M        , exec , $myHyprScript/reset-submap.sh
