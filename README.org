@@ -1176,7 +1176,7 @@ Panels
 #+begin_src conf
 submap = panels
 bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle quick-settings panel
-bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh $quick-settings                                           # toggle quick-settings panel on default monitor
+bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # toggle quick-settings panel on secondary monitor
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec   , $myEwwScript/which-key.sh toggle
