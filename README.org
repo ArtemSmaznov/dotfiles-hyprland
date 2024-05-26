@@ -130,6 +130,7 @@ $mySysNetwork    = nm-connection-editor
 $mySysBluetooth  = blueman-manager
 
 # eww
+$panel-monitor   = monitor
 $panel-power     = powermenu-panel
 $quick-settings  = quick-settings
 $which-key       = which-key
@@ -516,9 +517,9 @@ layerrule = ignorealpha 0, $namespace
 layerrule = animation slide, $namespace
 
 # monitor
-layerrule = blur, monitor
-layerrule = ignorealpha 0, monitor
-layerrule = animation slide, monitor
+layerrule = blur, $panel-monitor
+layerrule = ignorealpha 0, $panel-monitor
+layerrule = animation slide, $panel-monitor
 
 # quick-settings
 layerrule = blur, $quick-settings
@@ -1175,12 +1176,16 @@ submap = reset
 Panels
 #+begin_src conf
 submap = panels
+bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # toggle quick-settings panel
+bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # toggle quick-settings panel on secondary monitor
 bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle quick-settings panel
 bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # toggle quick-settings panel on secondary monitor
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec   , $myEwwScript/which-key.sh toggle
 bind  =       , backspace , submap , toggle
+bind  =       , m         , exec   , $myHyprScript/reset-submap.sh
+bind  = SHIFT , M         , exec   , $myHyprScript/reset-submap.sh
 bind  =       , q         , exec   , $myHyprScript/reset-submap.sh
 bind  = SHIFT , Q         , exec   , $myHyprScript/reset-submap.sh
 
