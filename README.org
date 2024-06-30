@@ -697,7 +697,7 @@ dwindle {
 See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
 #+begin_src conf
 master {
-    new_is_master = false
+    new_status = slave
     no_gaps_when_only = false # whether to apply gaps when there is only one window on a workspace, aka. smart gaps.
 }
 #+end_src
