@@ -820,7 +820,7 @@ bind = SUPER SHIFT , F3 , movewindow , mon:2 # move window to monitor 3
 ** Layouts
 Dwindle
 #+begin_src conf
-bind = ALT , space , exec , $myHyprScript/toggle-layout.sh # switch layouts
+bind = SUPER , space , exec , $myHyprScript/toggle-layout.sh # switch layouts
 #+end_src
 
 ** Workspaces
