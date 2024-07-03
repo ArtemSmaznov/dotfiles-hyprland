@@ -1141,15 +1141,15 @@ bind = SUPER , t , exec   , $myEwwScript/which-key.sh toggle
 bind = SUPER , t , submap , toggle
 
 submap = toggle
-bind =       , b , exec   , $myHyprScript/toggle-borders.sh $borders                                                # toggle window borders
-bind =       , c , exec   , $myHyprScript/toggle-corners.sh $corners                                                # toggle corners
-bind =       , g , exec   , $myHyprScript/toggle-gaps.sh $gaps_inner                                                # toggle gaps
+bind =       , b , exec   , $myHyprScript/toggle-borders.sh $borders                                                # window borders
+bind =       , c , exec   , $myHyprScript/toggle-corners.sh $corners                                                # corners
+bind =       , g , exec   , $myHyprScript/toggle-gaps.sh $gaps_inner                                                # gaps
 bind =       , p , exec   , $myEwwScript/which-key.sh panels toggle
 bind =       , p , submap , panels                                                                                  # +panels
 bind =       , q , exec   , $myEwwScript/which-key.sh quick-settings toggle
 bind =       , q , submap , quick-settings                                                                          # +quick-settings
-bind =       , s , exec   , $myHyprScript/toggle-status-bar.sh                                                      # toggle status bar
-bind =       , z , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner                               # toggle zen mode
+bind =       , s , exec   , $myHyprScript/toggle-status-bar.sh                                                      # status bar
+bind =       , z , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner                               # zen mode
 
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
 bind  =       , b        , exec , $myHyprScript/reset-submap.sh
@@ -1164,12 +1164,12 @@ submap = reset
 Quick Settings
 #+begin_src conf
 submap = quick-settings
-bind = , b , exec , $myScript/btctl.sh toggle           # toggle bluetooth
-bind = , e , exec , $myScript/netctl.sh toggle ethernet # toggle ethernet
-bind = , h , exec , $myScript/toggle-headphones.sh      # toggle bluetooth headphones
-bind = , s , exec , $myScript/toggle-speakers.sh        # toggle bluetooth speakers
-bind = , v , exec , $myScript/vpnctl.sh toggle          # toggle vpn
-bind = , w , exec , $myScript/netctl.sh toggle wifi     # toggle wi-fi
+bind = , b , exec , $myScript/btctl.sh toggle           # bluetooth
+bind = , e , exec , $myScript/netctl.sh toggle ethernet # ethernet
+bind = , h , exec , $myScript/toggle-headphones.sh      # bluetooth headphones
+bind = , s , exec , $myScript/toggle-speakers.sh        # bluetooth speakers
+bind = , v , exec , $myScript/vpnctl.sh toggle          # vpn
+bind = , w , exec , $myScript/netctl.sh toggle wifi     # wi-fi
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh toggle
@@ -1187,10 +1187,10 @@ submap = reset
 Panels
 #+begin_src conf
 submap = panels
-bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # toggle monitor panel
-bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # toggle monitor panel on secondary monitor
-bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle quick-settings panel
-bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # toggle quick-settings panel on secondary monitor
+bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # monitor panel
+bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # monitor panel on secondary monitor
+bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # quick-settings panel
+bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # quick-settings panel on secondary monitor
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec   , $myEwwScript/which-key.sh toggle
