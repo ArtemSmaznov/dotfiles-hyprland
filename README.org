@@ -1187,8 +1187,8 @@ submap = reset
 Panels
 #+begin_src conf
 submap = panels
-bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # toggle quick-settings panel
-bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # toggle quick-settings panel on secondary monitor
+bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # toggle monitor panel
+bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # toggle monitor panel on secondary monitor
 bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # toggle quick-settings panel
 bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # toggle quick-settings panel on secondary monitor
 
