@@ -46,19 +46,19 @@
   - [[#layouts-1][Layouts]]
   - [[#workspaces-1][Workspaces]]
   - [[#special-workspaces][Special Workspaces]]
-  - [[#media-keys][Media Keys]]
-  - [[#screenshots][Screenshots]]
   - [[#launching-apps][Launching Apps]]
   - [[#ctrl-alt][CTRL ALT]]
-  - [[#submap-app-primary][Submap app-primary]]
-  - [[#submap-app-secondary][Submap app-secondary]]
-  - [[#submap-dm-global][Submap dm-global]]
-  - [[#submap-dm-notify][Submap dm-notify]]
-  - [[#submap-dm-power][Submap dm-power]]
-  - [[#submap-pass][Submap pass]]
-  - [[#submap-scratchpad][Submap scratchpad]]
-  - [[#submap-toggle][Submap toggle]]
-  - [[#hold-submap-leader][HOLD Submap Leader]]
+  - [[#media-keys][media keys]]
+  - [[#print-screen][print screen]]
+  - [[#o-open][o open]]
+  - [[#ctrl-alt-o][ctrl-alt-o]]
+  - [[#d-dm-scripts][d dm-scripts]]
+  - [[#backslash-dm-notify][backslash dm-notify]]
+  - [[#z-dm-power][z dm-power]]
+  - [[#p-pass][p pass]]
+  - [[#s-scratchpad][s scratchpad]]
+  - [[#t-toggle][t toggle]]
+  - [[#hold-leader][HOLD leader]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#debug][Debug]]
 
@@ -905,32 +905,6 @@ bind = SUPER ALT SHIFT , c     , movetoworkspacesilent , special:chats # move wi
 bind = SUPER ALT SHIFT , v     , movetoworkspacesilent , special:vm    # move window to special workspace vm
 #+end_src
 
-** Media Keys
-System audio
-#+begin_src conf
-bindl = , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2 # increase system volume
-bindl = , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2 # decrease system volume
-bindl = , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # toggle mute
-#+end_src
-
-Player audio
-#+begin_src conf
-bindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
-bindl =      , XF86AudioNext        , exec , $myScript/playerctl.sh next     # player next
-bindl =      , XF86AudioPlay        , exec , $myScript/playerctl.sh toggle   # player play/pause
-bindl =      , XF86AudioStop        , exec , $myScript/playerctl.sh stop     # player stop
-bindl = CTRL , XF86AudioPlay        , exec , $myScript/musictl.sh single     # music [s] single mode
-bindl = CTRL , XF86AudioStop        , exec , $myScript/musictl.sh random     # music [z] shuffle mode
-#+end_src
-
-** Screenshots
-#+begin_src conf
-bind =             , print , exec , $myScript/screenshot.sh monitor # Fullscreen Screenshot
-bind = SUPER SHIFT , print , exec , $myScript/screenshot.sh area    # Selection Area Screenshot
-bind = ALT         , print , exec , $myScript/screenshot.sh window  # Active Window Screenshot
-bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Desktop Screenshot
-#+end_src
-
 ** Launching Apps
 #+begin_src conf
 bind = SUPER , grave , exec , $myHyprScript/toggle-special-workspace.sh "term"  "sp-term"  "alacritty --class sp-term"          # toggle terminal
@@ -957,7 +931,33 @@ bind = CTRL ALT , a      , exec                   , [workspace special:audio] qp
 # bind = CTRL ALT , v      , exec                   , $myHyprScript/toggle-special-workspace.sh "volume" "pavucontrol" "pavucontrol & qpwgraph"
 #+end_src
 
-** Submap app-primary
+** media keys
+System audio
+#+begin_src conf
+bindl = , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2 # increase system volume
+bindl = , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2 # decrease system volume
+bindl = , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # toggle mute
+#+end_src
+
+Player audio
+#+begin_src conf
+bindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
+bindl =      , XF86AudioNext        , exec , $myScript/playerctl.sh next     # player next
+bindl =      , XF86AudioPlay        , exec , $myScript/playerctl.sh toggle   # player play/pause
+bindl =      , XF86AudioStop        , exec , $myScript/playerctl.sh stop     # player stop
+bindl = CTRL , XF86AudioPlay        , exec , $myScript/musictl.sh single     # music [s] single mode
+bindl = CTRL , XF86AudioStop        , exec , $myScript/musictl.sh random     # music [z] shuffle mode
+#+end_src
+
+** print screen
+#+begin_src conf
+bind =             , print , exec , $myScript/screenshot.sh monitor # Fullscreen Screenshot
+bind = SUPER SHIFT , print , exec , $myScript/screenshot.sh area    # Selection Area Screenshot
+bind = ALT         , print , exec , $myScript/screenshot.sh window  # Active Window Screenshot
+bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Desktop Screenshot
+#+end_src
+
+** o open
 #+begin_src conf
 bind = SUPER , o , exec   , $myEwwScript/which-key.sh app-primary
 bind = SUPER , o , submap , app-primary
@@ -988,7 +988,7 @@ bind  =       , w        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap app-secondary
+** ctrl-alt-o
 #+begin_src conf
 bind = CTRL ALT , o , exec   , $myEwwScript/which-key.sh app-secondary
 bind = CTRL ALT , o , submap , app-secondary
@@ -1010,7 +1010,7 @@ bind  = , v        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap dm-global
+** d dm-scripts
 #+begin_src conf
 bind = SUPER , d , exec   , $myEwwScript/which-key.sh dm-global
 bind = SUPER , d , submap , dm-global
@@ -1042,7 +1042,7 @@ bind  =       , w         , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap dm-notify
+** backslash dm-notify
 #+begin_src conf
 bind = SUPER , backslash , exec   , $myEwwScript/which-key.sh dm-notify
 bind = SUPER , backslash , submap , dm-notify
@@ -1065,7 +1065,7 @@ bind  = SHIFT , c         , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap dm-power
+** z dm-power
 #+begin_src conf
 bind = SUPER , z , exec   , $myEwwScript/which-key.sh dm-power
 bind = SUPER , z , submap , dm-power
@@ -1091,7 +1091,7 @@ bind  = SUPER , z        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap pass
+** p pass
 #+begin_src conf
 bind = SUPER , p , exec   , $myEwwScript/which-key.sh pass
 bind = SUPER , p , submap , pass
@@ -1107,7 +1107,7 @@ bind  = , p        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap scratchpad
+** s scratchpad
 #+begin_src conf
 bind = SUPER , s , exec   , $myEwwScript/which-key.sh scratchpad
 bind = SUPER , s , submap , scratchpad
@@ -1135,7 +1135,7 @@ bind  = , w        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** Submap toggle
+** t toggle
 #+begin_src conf
 bind = SUPER , t , exec   , $myEwwScript/which-key.sh toggle
 bind = SUPER , t , submap , toggle
@@ -1203,7 +1203,7 @@ bind  = SHIFT , Q         , exec   , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** HOLD Submap Leader
+** HOLD leader
 :PROPERTIES:
 :header-args: :tangle no
 :END:
@@ -1213,7 +1213,7 @@ bind = SUPER , space , submap , leader
 submap = leader
 bind = , escape , submap , reset
 #+end_src
-*** Open
+*** o open
 #+begin_src conf
 bind = , o , submap , leader-open
 
@@ -1221,13 +1221,13 @@ submap = leader-open
 bind = , escape , submap , reset
 #+end_src
 
-**** Chats
+**** c chats
 #+begin_src conf
 bind = , c , togglespecialworkspace , chats
 bind = , c , submap                 , reset
 #+end_src
 
-*** Leader-end
+*** leader-end
 #+begin_src conf
 submap = reset
 #+end_src
