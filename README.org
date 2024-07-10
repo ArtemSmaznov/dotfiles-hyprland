@@ -1026,7 +1026,6 @@ bind =       , g , submap , games                                               
 bind =       , i , exec   , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
 bind =       , m , exec   , $myCliMusic                                                                                 # music player
 bind = SHIFT , M , exec   , [workspace 5 silent] $myCliMusic                                                            # music player on default workspace
-bind =       , s , exec   , $mySteam                                                                                    # steam
 bind =       , t , exec   , $myTorBrowser                                                                               # tor browser
 bind =       , w , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux" # toggle whatsapp
 
@@ -1037,7 +1036,6 @@ bind  =       , e        , exec , $myHyprScript/reset-submap.sh
 bind  =       , i        , exec , $myHyprScript/reset-submap.sh
 bind  =       , m        , exec , $myHyprScript/reset-submap.sh
 bind  = SHIFT , M        , exec , $myHyprScript/reset-submap.sh
-bind  =       , s        , exec , $myHyprScript/reset-submap.sh
 bind  =       , t        , exec , $myHyprScript/reset-submap.sh
 bind  =       , v        , exec , $myHyprScript/reset-submap.sh
 bind  =       , w        , exec , $myHyprScript/reset-submap.sh
