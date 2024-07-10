@@ -98,9 +98,9 @@ $myTorBrowser    = torbrowser-launcher
 $myIde           = emacs
 # $myIde           = emacsclient -ca ''
 $myFiles         = pcmanfm
-$mySteam         = /usr/bin/steam-runtime %U
 $myEmail         = thunderbird
 $myEmailClass    = thunderbird
+$mySteam         = /usr/bin/steam-runtime %U
 
 # extra tools
 $myLauncher      = wofi --show drun
@@ -959,31 +959,56 @@ bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Deskt
 
 ** o open
 #+begin_src conf
-bind = SUPER , o , exec   , $myEwwScript/which-key.sh app-primary
-bind = SUPER , o , submap , app-primary
+bind = SUPER , o , exec   , $myEwwScript/which-key.sh open
+bind = SUPER , o , submap , open
 
-submap = app-primary
-bind =       , c , exec , $myColorPicker                                                                              # color picker
-bind =       , d , exec , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord                # toggle chats
-bind =       , e , exec , $myEmail                                                                                    # email client
-bind =       , i , exec , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
-bind =       , m , exec , $myCliMusic                                                                                 # music player
-bind = SHIFT , M , exec , [workspace 5 silent] $myCliMusic                                                            # music player on default workspace
-bind =       , s , exec , $mySteam                                                                                    # steam
-bind =       , t , exec , $myTorBrowser                                                                               # tor browser
-bind =       , w , exec , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux" # toggle whatsapp
+submap = open
+bind =       , c , exec   , $myColorPicker                                                                              # color picker
+bind =       , d , exec   , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord                # toggle chats
+bind =       , e , exec   , $myEmail                                                                                    # email client
+bind =       , g , exec   , $myEwwScript/which-key.sh games open
+bind =       , g , submap , games                                                                                       # +games
+bind =       , i , exec   , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
+bind =       , m , exec   , $myCliMusic                                                                                 # music player
+bind = SHIFT , M , exec   , [workspace 5 silent] $myCliMusic                                                            # music player on default workspace
+bind =       , s , exec   , $mySteam                                                                                    # steam
+bind =       , t , exec   , $myTorBrowser                                                                               # tor browser
+bind =       , w , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux" # toggle whatsapp
 
-bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
-bind  =       , c        , exec , $myHyprScript/reset-submap.sh
-bind  =       , d        , exec , $myHyprScript/reset-submap.sh
-bind  =       , e        , exec , $myHyprScript/reset-submap.sh
-bind  =       , i        , exec , $myHyprScript/reset-submap.sh
-bind  =       , m        , exec , $myHyprScript/reset-submap.sh
-bind  = SHIFT , M        , exec , $myHyprScript/reset-submap.sh
-bind  =       , s        , exec , $myHyprScript/reset-submap.sh
-bind  =       , t        , exec , $myHyprScript/reset-submap.sh
-bind  =       , v        , exec , $myHyprScript/reset-submap.sh
-bind  =       , w        , exec , $myHyprScript/reset-submap.sh
+bindr =      , catchall , exec   , $myHyprScript/reset-submap.sh
+bind =       , c        , exec   , $myHyprScript/reset-submap.sh
+bind =       , d        , exec   , $myHyprScript/reset-submap.sh
+bind =       , e        , exec   , $myHyprScript/reset-submap.sh
+bind =       , i        , exec   , $myHyprScript/reset-submap.sh
+bind =       , m        , exec   , $myHyprScript/reset-submap.sh
+bind = SHIFT , M        , exec   , $myHyprScript/reset-submap.sh
+bind =       , s        , exec   , $myHyprScript/reset-submap.sh
+bind =       , t        , exec   , $myHyprScript/reset-submap.sh
+bind =       , v        , exec   , $myHyprScript/reset-submap.sh
+bind =       , w        , exec   , $myHyprScript/reset-submap.sh
+
+submap = reset
+#+end_src
+
+*** g games
+#+begin_src conf
+submap = games
+bind = , f , exec , fheroes2     # fheroes homm
+bind = , g , exec , gamehub      # gamehub
+bind = , h , exec , heroic       # heroic
+bind = , l , exec , lutris       # lutris
+bind = , s , exec , $mySteam     # steam
+bind = , v , exec , vcmilauncher # vcmi homm launcher
+
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind =  , backspace , exec   , $myEwwScript/which-key.sh open
+bind =  , backspace , submap , open
+bind =  , f         , exec   , $myHyprScript/reset-submap.sh
+bind =  , g         , exec   , $myHyprScript/reset-submap.sh
+bind =  , h         , exec   , $myHyprScript/reset-submap.sh
+bind =  , l         , exec   , $myHyprScript/reset-submap.sh
+bind =  , s         , exec   , $myHyprScript/reset-submap.sh
+bind =  , v         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
@@ -1161,7 +1186,7 @@ bind  =       , z        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-Quick Settings
+*** q quick-settings
 #+begin_src conf
 submap = quick-settings
 bind = , b , exec , $myScript/btctl.sh toggle           # bluetooth
