@@ -3,23 +3,23 @@
 
 workspace_ids=$(hyprctl workspaces -j | jq -r '.[] | select(.name | contains("special") | not ) | .id' | sort )
 
-getWorkspaceName () {
+function getWorkspaceName () {
     id=$1
     hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .name"
 }
 
-getWorkspaceWindows () {
+function getWorkspaceWindows () {
     id=$1
     hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows"
 }
 
-workspaceIsEmpty () {
+function workspaceIsEmpty () {
     id=$1
     num_windows=$(hyprctl workspaces -j | jq -r ".[] | select(.id==$id) | .windows")
     [ "$num_windows" -eq 0 ] && echo true || echo false
 }
 
-workspaceActiveOn () {
+function workspaceActiveOn () {
     id=$1
     mon_0_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 0)
     mon_1_workspace_id=$(~/.config/hypr/scripts/get-current-workspace.sh 1)
