@@ -730,15 +730,15 @@ bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # swi
 ** Windows
 States
 #+begin_src conf
-bind = SUPER       , q   , killactive     ,   # close focused window
-bind = SUPER SHIFT , F11 , fakefullscreen , 0 # toggle fullscreen
-bind = SUPER       , F11 , fullscreen     , 0 # toggle fullscreen
-bind = SUPER SHIFT , f   , fullscreen     , 0 # toggle fullscreen
-bind = SUPER       , m   , fullscreen     , 1 # toggle maximize
-bind = SUPER       , f   , togglefloating ,   # toggle floating
-bind = SUPER CTRL  , f   , pin            ,   # toggle pinnned
-bind = SUPER SHIFT , p   , pseudo         ,   # toggle pseudo
-bind = SUPER SHIFT , m   , togglesplit    ,   # mirror layout
+bind = SUPER       , q   , killactive      ,      # close focused window
+bind = SUPER SHIFT , F11 , fullscreenState , -1 2 # toggle fake fullscreen
+bind = SUPER       , F11 , fullscreen      , 0    # toggle fullscreen
+bind = SUPER SHIFT , f   , fullscreen      , 0    # toggle fullscreen
+bind = SUPER       , m   , fullscreen      , 1    # toggle maximize
+bind = SUPER       , f   , togglefloating  ,      # toggle floating
+bind = SUPER CTRL  , f   , pin             ,      # toggle pinnned
+bind = SUPER SHIFT , p   , pseudo          ,      # toggle pseudo
+bind = SUPER SHIFT , m   , togglesplit     ,      # mirror layout
 #+end_src
 
 Focus
