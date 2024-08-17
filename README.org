@@ -1046,6 +1046,7 @@ submap = reset
 *** g games
 #+begin_src conf
 submap = games
+bind = , d , exec , gzdoom       # gzdoom
 bind = , f , exec , fheroes2     # fheroes homm
 bind = , g , exec , gamehub      # gamehub
 bind = , h , exec , heroic       # heroic
@@ -1056,6 +1057,7 @@ bind = , v , exec , vcmilauncher # vcmi homm launcher
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh open
 bind  = , backspace , submap , open
+bind  = , d         , exec   , $myHyprScript/reset-submap.sh
 bind  = , f         , exec   , $myHyprScript/reset-submap.sh
 bind  = , g         , exec   , $myHyprScript/reset-submap.sh
 bind  = , h         , exec   , $myHyprScript/reset-submap.sh
