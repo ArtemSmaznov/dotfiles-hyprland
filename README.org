@@ -153,6 +153,9 @@ Extras:
 + mirror     , DP-1
 + bitdepth   , 10
 + vrr        , 2
+  | 0 | off        |
+  | 1 | on         |
+  | 2 | fullscreen |
 + transform  , 3
 
 #+begin_src conf
@@ -597,7 +600,7 @@ input {
     repeat_rate = 25   # The repeat rate for held-down keys, in repeats per second.
     repeat_delay = 300 # Delay before a held-down key is repeated, in milliseconds.
 
-    # scroll_factor = 0.5
+    scroll_factor = 1
     natural_scroll = false
 
     touchpad {
