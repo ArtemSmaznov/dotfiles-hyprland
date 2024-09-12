@@ -258,6 +258,7 @@ Games
 #+begin_src conf
 windowrulev2 = idleinhibit focus,class:^steam_app
 windowrulev2 = idleinhibit focus,class:x86_64$
+windowrulev2 = idleinhibit always,title:cava
 #+end_src
 
 ** Apps
