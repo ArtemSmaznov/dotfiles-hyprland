@@ -250,7 +250,8 @@ windowrulev2 = opacity override 0.7,pinned:1
 
 ** Maximized Windows
 #+begin_src conf
-windowrulev2 = rounding 0,fullscreen:1
+windowrulev2 = rounding 0,fullscreenstate:1 * # maximized windows
+windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 #+end_src
 
 ** Idle Inhibit
