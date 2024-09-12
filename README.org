@@ -937,8 +937,8 @@ bind = CTRL ALT , a      , exec                   , [workspace special:audio] qp
 ** media keys
 System audio
 #+begin_src conf
-bindl = , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 2 # increase system volume
-bindl = , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 2 # decrease system volume
+bindl = , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 5 # increase system volume
+bindl = , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 5 # decrease system volume
 bindl = , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # toggle mute
 #+end_src
 
