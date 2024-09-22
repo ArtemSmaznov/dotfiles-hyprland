@@ -161,8 +161,8 @@ Extras:
 #+begin_src conf
 #       name , resolution    , position  , scale , extras
 monitor=DP-1 , highrr        , 0x0       , auto
-monitor=DP-2 , 1920x1080@144 , 760x-1080 , auto
-# monitor=DP-2 , disable
+monitor=DP-3 , 1920x1080@144 , 760x-1080 , auto
+# monitor=DP-3 , disable
 monitor=     , preferred     , auto      , auto
 #+end_src
 
