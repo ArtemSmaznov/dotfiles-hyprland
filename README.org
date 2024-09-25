@@ -258,7 +258,9 @@ windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 Games
 #+begin_src conf
 windowrulev2 = idleinhibit focus,class:^steam_app
+windowrulev2 = idleinhibit focus,class:^vimiv$
 windowrulev2 = idleinhibit focus,class:x86_64$
+
 windowrulev2 = idleinhibit always,title:cava
 #+end_src
 
