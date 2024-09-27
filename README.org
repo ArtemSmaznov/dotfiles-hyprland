@@ -315,6 +315,14 @@ windowrulev2 = center,class:$app_filter,floating:1
 windowrule = float,$app_filter
 #+end_src
 
+*** Thunderbird
+#+begin_src conf
+$app_filter = ^(thunderbird)$
+
+# float dialogs and stuff
+windowrulev2 = float,$app_filter,title:Filters
+#+end_src
+
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
