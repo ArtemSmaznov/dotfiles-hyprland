@@ -222,7 +222,7 @@ general {
     gaps_workspaces = 20        # for animation transitions
 
     border_size = $borders
-    col.active_border = rgba($base0Eaa) rgba($base0Dee) 45deg
+    col.active_border = rgba($base0Eaa) rgba($base0Aaa) 90deg
     col.inactive_border = rgba($base03aa)
 
     # focus
