@@ -323,6 +323,14 @@ $app_filter = ^(thunderbird)$
 windowrulev2 = float,$app_filter,title:Filters
 #+end_src
 
+*** Scrcpy
+#+begin_src conf
+$app_filter = ^(scrcpy)$
+
+# float dialogs and stuff
+windowrulev2 = float,class:$app_filter
+#+end_src
+
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
