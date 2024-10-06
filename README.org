@@ -367,39 +367,39 @@ windowrule = workspace 3 silent,^(UnityHub)$
 windowrule = workspace 3 silent,^(jetbrains-studio)$
 #+end_src
 
-*** Workspace 4 - Computer
+*** Workspace 4 - Mail
 #+begin_src conf
-windowrule = workspace 4 silent,^(dolphin)$
-windowrule = workspace 4 silent,^(ark)$
-windowrule = workspace 4 silent,^(File-roller)$
-windowrule = workspace 4 silent,^(googledocs)$
-windowrule = workspace 4 silent,^(keep)$
-windowrule = workspace 4 silent,^(calendar)$
 windowrule = workspace 4 silent,^(thunderbird)$
 #+end_src
 
-*** Workspace 5 - Music
+*** Workspace 5 - Computer
 #+begin_src conf
-windowrule = workspace 5 silent,^(Spotify)$
+windowrule = workspace 5 silent,^(dolphin)$
+windowrule = workspace 5 silent,^(ark)$
+windowrule = workspace 5 silent,^(File-roller)$
+windowrule = workspace 5 silent,^(googledocs)$
+windowrule = workspace 5 silent,^(keep)$
+windowrule = workspace 5 silent,^(calendar)$
+windowrule = workspace 5 silent,^(thunderbird)$
 #+end_src
 
-*** Workspace 6 - Graphics
+*** Workspace 6 - Chat
 #+begin_src conf
-windowrule = workspace 6 silent,^([Gg]imp)$
-windowrule = workspace 6 silent,^(Inkscape)$
-windowrule = workspace 6 silent,^(Flowblade)$
-windowrule = workspace 6 silent,^(org.kde.digikam)$
-windowrule = workspace 6 silent,^(obs)$
-windowrule = workspace 6 silent,^(kdenlive)$
+# windowrule   = workspace 6 silent,^(whatsapp-for-linux)$
+# windowrule   = workspace 6 silent,^(Slack)$
+# windowrule   = workspace 6 silent,^(discord)$
+# windowrule   = workspace 6 silent,^(signal)$
+# windowrulev2 = workspace 6 silent,class:^([Ss]team)$,title:^(Friends List)$
 #+end_src
 
-*** Workspace 7 - Chat
+*** Workspace 7 - Graphics
 #+begin_src conf
-# windowrule   = workspace 7 silent,^(whatsapp-for-linux)$
-# windowrule   = workspace 7 silent,^(Slack)$
-# windowrule   = workspace 7 silent,^(discord)$
-# windowrule   = workspace 7 silent,^(signal)$
-# windowrulev2 = workspace 7 silent,class:^([Ss]team)$,title:^(Friends List)$
+windowrule = workspace 7 silent,^([Gg]imp)$
+windowrule = workspace 7 silent,^(Inkscape)$
+windowrule = workspace 7 silent,^(Flowblade)$
+windowrule = workspace 7 silent,^(org.kde.digikam)$
+windowrule = workspace 7 silent,^(obs)$
+windowrule = workspace 7 silent,^(kdenlive)$
 #+end_src
 
 *** Workspace 8 - Sandbox
@@ -409,9 +409,9 @@ windowrule = workspace 8 silent,^VirtualBox
 windowrule = workspace 8 silent,^(Cypress)$
 #+end_src
 
-*** Workspace 9 - Monitor
+*** Workspace 9 - Music
 #+begin_src conf
-windowrule = workspace 9 silent,^(btop)$
+windowrule = workspace 9 silent,^(Spotify)$
 #+end_src
 
 ** Scratchpads
@@ -500,11 +500,11 @@ workspace = 1, persistent:true, monitor:DP-1, default:true
 workspace = 2, persistent:true, monitor:DP-1
 workspace = 3, persistent:true, monitor:DP-1
 workspace = 4, persistent:true, monitor:DP-1
-workspace = 5, persistent:true, monitor:DP-3
+workspace = 5, persistent:true, monitor:DP-1
 workspace = 6, persistent:true, monitor:DP-1
 workspace = 7, persistent:true, monitor:DP-1
 workspace = 8, persistent:true, monitor:DP-1
-workspace = 9, persistent:true, monitor:DP-1
+workspace = 9, persistent:true, monitor:DP-3
 # workspace = name:star, persistent:true, monitor:DP-1
 #+end_src
 
@@ -1100,7 +1100,7 @@ bind =       , g , exec   , $myEwwScript/which-key.sh games open
 bind =       , g , submap , games                                                                                       # +games
 bind =       , i , exec   , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
 bind =       , m , exec   , $myCliMusic                                                                                 # music player
-bind = SHIFT , M , exec   , [workspace 5 silent] $myCliMusic                                                            # music player on default workspace
+bind = SHIFT , M , exec   , [workspace 9 silent] $myCliMusic                                                            # music player on default workspace
 bind =       , t , exec   , $myTorBrowser                                                                               # tor browser
 bind =       , w , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux" # toggle whatsapp
 
