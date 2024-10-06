@@ -1012,6 +1012,8 @@ bindl = , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # toggle mut
 
 Player audio
 #+begin_src conf
+bindl = CTRL , XF86AudioRaiseVolume , exec , $myScript/playerctl.sh vol-up   # player increase volume
+bindl = CTRL , XF86AudioLowerVolume , exec , $myScript/playerctl.sh vol-down # player decrease volumebindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
 bindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
 bindl =      , XF86AudioNext        , exec , $myScript/playerctl.sh next     # player next
 bindl =      , XF86AudioPlay        , exec , $myScript/playerctl.sh toggle   # player play/pause
