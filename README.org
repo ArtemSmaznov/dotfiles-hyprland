@@ -980,8 +980,9 @@ bind = SUPER ALT SHIFT , v     , movetoworkspacesilent , special:vm    # move wi
 bind = SUPER , grave , exec , $myHyprScript/toggle-special-workspace.sh "term"  "sp-term"  "alacritty --class sp-term"          # toggle terminal
 bind = SUPER , e     , exec , $myHyprScript/toggle-special-workspace.sh "files" "sp-files" "alacritty --class sp-files -e vifm" # toggle file manager
 
-bind = SUPER       , r      , exec , $myLauncher   # launch launcher
 bind = SUPER       , return , exec , $myTerm       # launch terminal
+bind = SUPER CTRL  , return , exec , $myLauncher   # launch launcher
+bind = SUPER       , r      , exec , $myLauncher   # launch launcher
 bind = SUPER       , c      , exec , $myIde        # launch ide
 bind = SUPER SHIFT , e      , exec , $myCliFiles   # launch file manager
 bind = SUPER       , b      , exec , $myWebBrowser # launch web browser
