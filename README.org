@@ -803,7 +803,6 @@ Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 #+begin_src conf
 bind = SUPER CTRL , q     , exit                ,                          # quit hyprland
 bind = SUPER CTRL , r     , forcerendererreload ,                          # restart hyprland
-bind = SUPER CTRL , l     , exec                , loginctl terminate-session "$XDG_SESSION_ID" # logout
 bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # switch language
 #+end_src
 
