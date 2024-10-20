@@ -109,6 +109,7 @@ $myHeroic        = uwsm app -- heroic
 $myLutris        = uwsm app -- lutris
 $mySteam         = uwsm app -- /usr/bin/steam-runtime %U
 $myVCMI          = uwsm app -- vcmilauncher
+$myNexus         = uwsm app -- /opt/nexusmods-app/NexusMods.App %u
 
 # extra tools
 $myLauncher      = wofi --show drun
@@ -1134,8 +1135,10 @@ bind = , f , exec , $myFHeroes2 # fheroes homm
 bind = , g , exec , $myGameHub  # gamehub
 bind = , h , exec , $myHeroic   # heroic
 bind = , l , exec , $myLutris   # lutris
+bind = , n , exec , $myNexus    # Nexus Mods App
 bind = , s , exec , $mySteam    # steam
 bind = , v , exec , $myVCMI     # vcmi homm launcher
+bind = , x , exec , $myNexus    # Nexus Mods App
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh open
@@ -1145,8 +1148,10 @@ bind  = , f         , exec   , $myHyprScript/reset-submap.sh
 bind  = , g         , exec   , $myHyprScript/reset-submap.sh
 bind  = , h         , exec   , $myHyprScript/reset-submap.sh
 bind  = , l         , exec   , $myHyprScript/reset-submap.sh
+bind  = , n         , exec   , $myHyprScript/reset-submap.sh
 bind  = , s         , exec   , $myHyprScript/reset-submap.sh
 bind  = , v         , exec   , $myHyprScript/reset-submap.sh
+bind  = , x         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
