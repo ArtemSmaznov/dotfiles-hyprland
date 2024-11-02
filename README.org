@@ -1249,12 +1249,12 @@ submap = reset
 *** q quick-settings
 #+begin_src conf
 submap = quick-settings
-bind = , b , exec , $myScript/btctl.sh toggle           # bluetooth
-bind = , e , exec , $myScript/netctl.sh toggle ethernet # ethernet
-bind = , h , exec , $myScript/toggle-headphones.sh      # bluetooth headphones
-bind = , s , exec , $myScript/toggle-speakers.sh        # bluetooth speakers
-bind = , v , exec , $myScript/vpnctl.sh toggle          # vpn
-bind = , w , exec , $myScript/netctl.sh toggle wifi     # wi-fi
+bind = , b , exec , systemd-run --user -u btctl-toggle.service -- $myScript/btctl.sh toggle           # bluetooth
+bind = , e , exec , $myScript/netctl.sh toggle ethernet                                               # ethernet
+bind = , h , exec , systemd-run --user -u btctl-headphones.service -- $myScript/toggle-headphones.sh  # bluetooth headphones
+bind = , s , exec , systemd-run --user -u btctl-speakers.service -- $myScript/toggle-speakers.sh      # bluetooth speakers
+bind = , v , exec , $myScript/vpnctl.sh toggle                                                        # vpn
+bind = , w , exec , $myScript/netctl.sh toggle wifi                                                   # wi-fi
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh toggle
@@ -1376,4 +1376,3 @@ debug {
     # error_limit = 5              # limits the number of displayed config file parsing errors.	int	5
 }
 #+end_src
-
