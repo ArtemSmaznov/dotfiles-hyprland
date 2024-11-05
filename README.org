@@ -56,6 +56,7 @@
   - [[#p-pass][p pass]]
   - [[#s-scratchpad][s scratchpad]]
   - [[#t-toggle][t toggle]]
+  - [[#w-window][w window]]
   - [[#z-dm-power][z dm-power]]
   - [[#ctrl-alt-o][ctrl-alt-o]]
   - [[#hold-leader][HOLD leader]]
@@ -1207,15 +1208,15 @@ bind = SUPER , t , exec   , $myEwwScript/which-key.sh toggle
 bind = SUPER , t , submap , toggle
 
 submap = toggle
-bind = , b , exec   , $myHyprScript/toggle-borders.sh $borders                                                # window borders
-bind = , c , exec   , $myHyprScript/toggle-corners.sh $corners                                                # corners
-bind = , g , exec   , $myHyprScript/toggle-gaps.sh $gaps_inner                                                # gaps
+bind = , b , exec   , $myHyprScript/bordersctl.sh $borders toggle                # window borders
+bind = , c , exec   , $myHyprScript/toggle-corners.sh $corners                   # rounded corners
+bind = , g , exec   , $myHyprScript/toggle-gaps.sh $gaps_inner                   # window gaps
 bind = , p , exec   , $myEwwScript/which-key.sh panels toggle
-bind = , p , submap , panels                                                                                  # +panels
+bind = , p , submap , panels                                                     # +panels
 bind = , q , exec   , $myEwwScript/which-key.sh quick-settings toggle
-bind = , q , submap , quick-settings                                                                          # +quick-settings
-bind = , s , exec   , $myHyprScript/toggle-status-bar.sh                                                      # status bar
-bind = , z , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner                               # zen mode
+bind = , q , submap , quick-settings                                             # +quick-settings
+bind = , s , exec   , $myHyprScript/toggle-status-bar.sh                         # status bar
+bind = , z , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner  # zen mode
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , b        , exec , $myHyprScript/reset-submap.sh
@@ -1268,6 +1269,38 @@ bind  = , w         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
+
+** w window
+#+begin_src conf
+bind = SUPER , w , exec   , $myEwwScript/which-key.sh window
+bind = SUPER , w , submap , window
+
+submap = window
+bind = , b , exec   , $myEwwScript/which-key.sh borders window
+bind = , b , submap , borders                                   # +borders
+
+bindr = , catchall , exec , $myHyprScript/reset-submap.sh
+
+submap = reset
+#+end_src
+
+*** b borders
+#+begin_src conf
+submap = borders
+bindde =       , minus , decrease size , exec , $myHyprScript/bordersctl.sh $borders decrease 1  # decrease size
+bindd  = SHIFT , equal , double size   , exec , $myHyprScript/bordersctl.sh $borders double      # double size
+bindde =       , equal , increase size , exec , $myHyprScript/bordersctl.sh $borders increase 1  # increase size
+bindd  = SHIFT , minus , disable       , exec , $myHyprScript/bordersctl.sh $borders disable     # disable
+bindd  =       , 0     , reset         , exec , $myHyprScript/bordersctl.sh $borders reset       # reset
+bindd  =       , t     , toggle        , exec , $myHyprScript/bordersctl.sh $borders toggle      # toggle
+
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  = , backspace , exec   , $myEwwScript/which-key.sh window
+bind  = , backspace , submap , window
+
+submap = reset
+#+end_src
+
 
 ** z dm-power
 #+begin_src conf
