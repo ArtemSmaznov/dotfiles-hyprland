@@ -13,11 +13,16 @@ sed -n "/submap\s*=\s*$submap/,/^$/p" "$config_path" |
     head --lines -1 |
     tail --lines +2 |
     sed -e 's/#/,/' \
-        -e 's/^bind *= *//' \
+        -e 's/^bind\w* *= *//' \
         -e 's/ *, */,/g' \
         -e 's/SUPER/S/' \
-        -e 's/SHIFT//' \
         -e 's/CTRL/C/' \
-        -e 's/ALT/M/' |
+        -e 's/ALT/M/' \
+        -e 's/SHIFT,minus/,_/' \
+        -e 's/SHIFT,equal/,+/' \
+        -e 's/SHIFT//' \
+        -e 's/minus/-/' \
+        -e 's/equal/=/' |
     awk -F, '$5!="" { print "[\"" $1 "\",\"" $2 "\",\"" $5 "\"]" }' |
+    sort |
     jq -cs '.'
