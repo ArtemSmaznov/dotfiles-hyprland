@@ -23,6 +23,6 @@ sed -n "/submap\s*=\s*$submap/,/^$/p" "$config_path" |
         -e 's/SHIFT//' \
         -e 's/minus/-/' \
         -e 's/equal/=/' |
-    awk -F, '$5!="" { print "[\"" $1 "\",\"" $2 "\",\"" $5 "\"]" }' |
+    awk -F, '$5!="" { print "[\"" $1 "\",\"" $2 "\",\"" $NF "\"]" }' |
     sort |
     jq -cs '.'
