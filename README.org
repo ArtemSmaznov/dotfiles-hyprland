@@ -338,6 +338,15 @@ $app_filter = ^(scrcpy)$
 windowrulev2 = float,class:$app_filter
 #+end_src
 
+*** Emacs
+#+begin_src conf
+$app_filter = ^(\*Org Src .* Doom Emacs)$ # org-edit-special window
+windowrulev2 = float,title:$app_filter
+windowrulev2 = center,title:$app_filter
+windowrulev2 = size 60% 80%,title:$app_filter
+windowrulev2 = dimaround,title:$app_filter
+#+end_src
+
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
