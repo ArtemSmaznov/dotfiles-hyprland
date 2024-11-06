@@ -43,7 +43,6 @@
   - [[#system][System]]
   - [[#windows][Windows]]
   - [[#monitors-1][Monitors]]
-  - [[#layouts-1][Layouts]]
   - [[#workspaces-1][Workspaces]]
   - [[#special-workspaces][Special Workspaces]]
   - [[#launching-apps][Launching Apps]]
@@ -59,7 +58,7 @@
   - [[#w-window][w window]]
   - [[#z-dm-power][z dm-power]]
   - [[#ctrl-alt-o][ctrl-alt-o]]
-  - [[#hold-leader][HOLD leader]]
+  - [[#leader][leader]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#debug][Debug]]
 
@@ -896,12 +895,6 @@ bind = SUPER SHIFT , F2 , movewindow , mon:1 # move window to monitor 2
 bind = SUPER SHIFT , F3 , movewindow , mon:2 # move window to monitor 3
 #+end_src
 
-** Layouts
-Dwindle
-#+begin_src conf
-bind = SUPER , space , exec , $myHyprScript/toggle-layout.sh # switch layouts
-#+end_src
-
 ** Workspaces
 Focus
 #+begin_src conf
@@ -1370,32 +1363,34 @@ bind  = , v        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** HOLD leader
-:PROPERTIES:
-:header-args: :tangle no
-:END:
+** leader
 #+begin_src conf
+bind = SUPER , space , exec   , $myEwwScript/which-key.sh leader
 bind = SUPER , space , submap , leader
 
 submap = leader
-bind = , escape , submap , reset
-#+end_src
-*** o open
-#+begin_src conf
-bind = , o , submap , leader-open
+bind = , l , exec   , $myEwwScript/which-key.sh layout leader
+bind = , l , submap , layout                                   # +layout
 
-submap = leader-open
-bind = , escape , submap , reset
+bindr = , catchall , exec , $myHyprScript/reset-submap.sh
+
+submap = reset
 #+end_src
 
-**** c chats
+*** l layout
 #+begin_src conf
-bind = , c , togglespecialworkspace , chats
-bind = , c , submap                 , reset
-#+end_src
+submap = layout
+bindd  = , d , dwindle       , exec , $myHyprScript/layoutctl.sh dwindle  # dwindle
+bindd  = , l , switch layout , exec , $myHyprScript/layoutctl.sh          # switch layout
+bindd  = , m , master        , exec , $myHyprScript/layoutctl.sh master   # master
 
-*** leader-end
-#+begin_src conf
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
+bind  = , backspace , submap , leader
+bind  = , d         , exec   , $myHyprScript/reset-submap.sh
+bind  = , l         , exec   , $myHyprScript/reset-submap.sh
+bind  = , m         , exec   , $myHyprScript/reset-submap.sh
+
 submap = reset
 #+end_src
 
