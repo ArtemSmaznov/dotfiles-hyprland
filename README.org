@@ -1363,12 +1363,13 @@ submap = reset
 **** b borders
 #+begin_src conf
 submap = borders
-bindd  =       , b     , toggle   , exec , $myHyprScript/borderctl.sh $borders toggle      # toggle
-bindd  =       , 0     , reset    , exec , $myHyprScript/borderctl.sh $borders reset       # reset
-bindde =       , minus , decrease , exec , $myHyprScript/borderctl.sh $borders decrease 1  # decrease
-bindde =       , equal , increase , exec , $myHyprScript/borderctl.sh $borders increase 1  # increase
-bindd  = SHIFT , minus , disable  , exec , $myHyprScript/borderctl.sh $borders disable     # disable
-bindd  = SHIFT , equal , double   , exec , $myHyprScript/borderctl.sh $borders double      # double
+bindd  =       , b     , toggle      , exec , $myHyprScript/borderctl.sh $borders toggle   # toggle
+bindd  =       , 0     , reset       , exec , $myHyprScript/borderctl.sh $borders reset    # reset
+bindde =       , minus , shrink      , exec , $myHyprScript/borderctl.sh $borders shrink 1 # shrink
+bindde =       , equal , grow        , exec , $myHyprScript/borderctl.sh $borders grow 1   # grow
+bindd  = SHIFT , 0     , disable     , exec , $myHyprScript/borderctl.sh $borders disable  # disable
+bindde = SHIFT , minus , shrink more , exec , $myHyprScript/borderctl.sh $borders shrink 5 # shrink more
+bindde = SHIFT , equal , grow more   , exec , $myHyprScript/borderctl.sh $borders grow 5   # grow more
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader
@@ -1380,12 +1381,13 @@ submap = reset
 **** g gaps
 #+begin_src conf
 submap = gaps
-bindd  =       , g     , toggle   , exec , $myHyprScript/gapctl.sh $gaps_inner toggle      # toggle
-bindd  =       , 0     , reset    , exec , $myHyprScript/gapctl.sh $gaps_inner reset       # reset
-bindde =       , minus , decrease , exec , $myHyprScript/gapctl.sh $gaps_inner decrease 1  # decrease
-bindde =       , equal , increase , exec , $myHyprScript/gapctl.sh $gaps_inner increase 1  # increase
-bindd  = SHIFT , minus , disable  , exec , $myHyprScript/gapctl.sh $gaps_inner disable     # disable
-bindd  = SHIFT , equal , double   , exec , $myHyprScript/gapctl.sh $gaps_inner double      # double
+bindd  =       , g     , toggle      , exec , $myHyprScript/gapctl.sh $gaps_inner toggle   # toggle
+bindd  =       , 0     , reset       , exec , $myHyprScript/gapctl.sh $gaps_inner reset    # reset
+bindde =       , minus , shrink      , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 1 # shrink
+bindde =       , equal , grow        , exec , $myHyprScript/gapctl.sh $gaps_inner grow 1   # grow
+bindd  = SHIFT , 0     , disable     , exec , $myHyprScript/gapctl.sh $gaps_inner disable  # disable
+bindde = SHIFT , minus , shrink more , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 5 # shrink more
+bindde = SHIFT , equal , grow more   , exec , $myHyprScript/gapctl.sh $borders grow 5      # grow more
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader

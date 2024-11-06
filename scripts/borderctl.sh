@@ -12,13 +12,13 @@ function setValue() {
     case "$1" in
     reset) value=$default_value ;;
     toggle) [ "$current_value" = 0 ] && value=$default_value || value=0 ;;
-    increase) value=$(("$current_value" + "$step")) ;;
-    decrease)
+    grow) value=$(("$current_value" + "$step")) ;;
+    shrink)
         [ "$current_value" -eq 0 ] && exit 0
+        [ "$current_value" -le "$step" ] && value=0 && return
         value=$(("$current_value" - "$step"))
         ;;
     disable) value=0 ;;
-    double) value=$(("$default_value" * 2)) ;;
     *)
         echo "error: unrecognized option '$1'"
         exit 1
