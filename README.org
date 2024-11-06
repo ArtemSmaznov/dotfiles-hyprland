@@ -17,6 +17,7 @@
 - [[#startup][Startup]]
 - [[#environment-variables][Environment Variables]]
 - [[#general][General]]
+- [[#groups][Groups]]
 - [[#window-rules][Window Rules]]
   - [[#xwayland-windows][XWayland Windows]]
   - [[#floating-windows][Floating Windows]]
@@ -230,7 +231,11 @@ general {
 
     border_size = $borders
     col.active_border = rgba($base0Eaa) rgba($base0Aaa) 90deg
-    col.inactive_border = rgba($base03aa)
+    col.inactive_border = rgba($base03aa) rgba($base0199) 90deg
+
+    # ungroupable window borders
+    col.nogroup_border = rgba($base08aa)
+    col.nogroup_border_active = rgba($base0844)
 
     # focus
     no_focus_fallback = true    # will not fall back to the next available window when moving focus in a direction where no window was found
@@ -241,11 +246,22 @@ general {
 }
 #+end_src
 
+* Groups
+#+begin_src conf
+group {
+    # group borders
+    col.border_active = rgba($base0Baa) rgba($base0Caa) 90deg
+    col.border_inactive = rgba($base0B44) rgba($base0C44) 90deg
+    # col.border_locked_active =
+    # col.border_locked_inactive =
+}
+#+end_src
+
 * Window Rules
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
-windowrulev2 = bordercolor rgba($base0Faa) rgb($base00),xwayland:1
+windowrulev2 = bordercolor rgba($base0Faa) rgba($base0F44),xwayland:1
 #+end_src
 
 ** Floating Windows
@@ -1407,12 +1423,11 @@ submap = reset
 **** g group
 #+begin_src conf
 submap = group
-bindd  = , g , group , exec , group # group
+bindd  = , g , group/ungroup , togglegroup  # group/ungroup
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader
 bind  = , backspace , submap , window
-bind  = , g         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
