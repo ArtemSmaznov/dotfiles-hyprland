@@ -1318,8 +1318,6 @@ bind = SUPER , space , exec   , $myEwwScript/which-key.sh leader
 bind = SUPER , space , submap , leader
 
 submap = leader
-bind = , l , exec   , $myEwwScript/which-key.sh layout leader
-bind = , l , submap , layout                                   # +layout
 bind = , w , exec   , $myEwwScript/which-key.sh window leader
 bind = , w , submap , window                                   # +window
 
@@ -1328,30 +1326,15 @@ bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-*** l layout
-#+begin_src conf
-submap = layout
-bindd  = , d , dwindle       , exec , $myHyprScript/layoutctl.sh dwindle  # dwindle
-bindd  = , l , switch layout , exec , $myHyprScript/layoutctl.sh          # switch layout
-bindd  = , m , master        , exec , $myHyprScript/layoutctl.sh master   # master
-
-bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
-bind  = , backspace , submap , leader
-bind  = , d         , exec   , $myHyprScript/reset-submap.sh
-bind  = , l         , exec   , $myHyprScript/reset-submap.sh
-bind  = , m         , exec   , $myHyprScript/reset-submap.sh
-
-submap = reset
-#+end_src
-
 *** w window
 #+begin_src conf
 submap = window
 bind = , b , exec   , $myEwwScript/which-key.sh borders window leader
-bind = , b , submap , borders                                   # +borders
+bind = , b , submap , borders # +borders
 bind = , g , exec   , $myEwwScript/which-key.sh gaps window leader
-bind = , g , submap , gaps                                      # +gaps
+bind = , g , submap , gaps    # +gaps
+bind = , l , exec   , $myEwwScript/which-key.sh layout window leader
+bind = , l , submap , layout  # +layout
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
@@ -1388,6 +1371,20 @@ bindde =       , equal , grow        , exec , $myHyprScript/gapctl.sh $gaps_inne
 bindd  = SHIFT , 0     , disable     , exec , $myHyprScript/gapctl.sh $gaps_inner disable  # disable
 bindde = SHIFT , minus , shrink more , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 5 # shrink more
 bindde = SHIFT , equal , grow more   , exec , $myHyprScript/gapctl.sh $borders grow 5      # grow more
+
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader
+bind  = , backspace , submap , window
+
+submap = reset
+#+end_src
+
+**** l layout
+#+begin_src conf
+submap = layout
+bindd  = , d , dwindle       , exec , $myHyprScript/layoutctl.sh set dwindle # dwindle
+bindd  = , l , switch layout , exec , $myHyprScript/layoutctl.sh toggle      # switch layout
+bindd  = , m , master        , exec , $myHyprScript/layoutctl.sh set master  # master
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader

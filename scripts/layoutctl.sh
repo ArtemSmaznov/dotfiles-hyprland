@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
-layout="$1"
+action="$1"
+layout="$2"
 
-# TODO align with gaps/borders-ctl scripts
-if [ ! "$layout" ]; then
-    current_layout=$(hyprctl getoption general:layout | grep str | awk '{print $2}' | tr -d '"')
-    if [ "$current_layout" = "dwindle" ]; then
-        layout="master"
-    else
-        layout="dwindle"
-    fi
-fi
+option="general:layout"
+type="str"
 
-hyprctl keyword general:layout "$layout"
+function setValue() {
+    current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
+
+    case "$1" in
+    toggle) [ "$current_value" = "dwindle" ] && value="master" || value="dwindle" ;;
+    set) value="$layout" ;;
+    *)
+        echo "error: unrecognized option '$1'"
+        exit 1
+        ;;
+    esac
+}
+
+setValue "$action"
+
+hyprctl keyword "$option" "$value"
