@@ -1493,7 +1493,7 @@ bindd  =       , g   , group/ungroup              , togglegroup                 
 bindd  =       , tab , next window                , changegroupactive            # next window
 bindd  =       , l   , toggle group lock          , lockactivegroup     , toggle # toggle group lock
 bindd  = SHIFT , L   , toggle lock on all groups  , lockgroups          , toggle # toggle lock on all groups
-bindd  = SHIFT , X   , restict window from groups , denywindowfromgroup , toggle # restict window from groups
+bindd  =       , x   , restict window from groups , denywindowfromgroup , toggle # restict window from groups
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec   , $myEwwScript/which-key.sh window leader
@@ -1501,7 +1501,7 @@ bind  =       , backspace , submap , window
 bind  =       , g         , exec   , $myHyprScript/reset-submap.sh
 bind  =       , l         , exec   , $myHyprScript/reset-submap.sh
 bind  = SHIFT , L         , exec   , $myHyprScript/reset-submap.sh
-bind  = SHIFT , X         , exec   , $myHyprScript/reset-submap.sh
+bind  =       , x         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
