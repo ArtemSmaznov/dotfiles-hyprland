@@ -249,11 +249,36 @@ general {
 * Groups
 #+begin_src conf
 group {
+    auto_group = true
+    insert_after_current = true
+    focus_removed_window = true
+    # drag_into_group = 1 # 0 (disabled), 1 (enabled), 2 (only when dragging into the groupbar)
+    merge_groups_on_drag = false
+    # merge_groups_on_groupbar = true
+    # merge_floated_into_tiled_on_groupbar = false
+    # group_on_movetoworkspace = false
+
     # group borders
     col.border_active = rgba($base0Baa) rgba($base0Daa) rgba($base0Caa) 45deg
     col.border_inactive = rgba($base0B44) rgba($base0D44) rgba($base0C44) 45deg
     # col.border_locked_active =
     # col.border_locked_inactive =
+
+    groupbar {
+        enabled = true
+        stacked = false
+        render_titles = true
+        scrolling = true
+
+        # styling
+        height = 26
+        font_size = 14
+        text_color = rgb($base07)
+
+        gradients = true
+        col.active = rgba($base00CC)
+        col.inactive = rgba($base0077)
+    }
 }
 #+end_src
 
@@ -684,8 +709,11 @@ input {
 * Misc
 #+begin_src conf
 misc {
-    disable_hyprland_logo = false
     disable_autoreload = false
+
+    # styling
+    font_family = Hack Nerd Font
+    disable_hyprland_logo = false
 
     # focus
     mouse_move_focuses_monitor = false
@@ -1428,6 +1456,7 @@ bindd  = , g , group/ungroup , togglegroup  # group/ungroup
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader
 bind  = , backspace , submap , window
+bind  = , g         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
