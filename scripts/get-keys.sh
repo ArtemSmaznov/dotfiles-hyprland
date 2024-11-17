@@ -16,7 +16,7 @@ hyprctl binds -j |
       | .modmask = (
           if   .modmask == 0 then \"\"
           elif .modmask == 1 then \"S\"
-          elif .modmask == 2 then \"M\"
+          elif .modmask == 64 then \"M\"
           elif .modmask == 3 then \"A\"
           else .modmask
           end
@@ -30,6 +30,7 @@ hyprctl binds -j |
           elif .key == \"colon\"     then \":\"
           elif .key == \"period\"    then \".\"
           elif .key == \"comma\"     then \",\"
+          elif .key == \"backspace\" then \"←\"
           else .key
           end
         )

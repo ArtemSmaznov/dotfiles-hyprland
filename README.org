@@ -885,80 +885,80 @@ See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** System
 #+begin_src conf
-bind = SUPER CTRL , q     , exit                ,                          # quit hyprland
-bind = SUPER CTRL , r     , forcerendererreload ,                          # restart hyprland
-bind = SHIFT      , ALT_L , exec                , $myScript/toggle-lang.sh # switch language
+bindd = SUPER CTRL , q     , quit hyprland    , exit                ,
+bindd = SUPER CTRL , r     , restart hyprland , forcerendererreload ,
+bindd = SHIFT      , ALT_L , switch language  , exec                , $myScript/toggle-lang.sh
 #+end_src
 
 ** Windows
 States
 #+begin_src conf
-bind = SUPER       , q   , killactive      ,              # close focused window
-bind = SUPER ALT   , q   , exec            , hyprctl kill # click window to close
-bind = SUPER SHIFT , F11 , fullscreenState , -1 2         # toggle fake fullscreen
-bind = SUPER       , F11 , fullscreen      , 0            # toggle fullscreen
-bind = SUPER SHIFT , f   , fullscreen      , 0            # toggle fullscreen
-bind = SUPER       , m   , fullscreen      , 1            # toggle maximize
-bind = SUPER       , f   , togglefloating  ,              # toggle floating
-bind = SUPER CTRL  , f   , pin             ,              # toggle pinnned
-bind = SUPER       , up  , pin             ,              # toggle pinnned
-bind = SUPER SHIFT , p   , pseudo          ,              # toggle pseudo
-bind = SUPER SHIFT , m   , togglesplit     ,              # mirror layout
+bindd = SUPER       , q   , close focused window   , killactive      ,
+bindd = SUPER ALT   , q   , click window to close  , exec            , hyprctl kill
+bindd = SUPER SHIFT , F11 , toggle fake fullscreen , fullscreenState , -1 2
+bindd = SUPER       , F11 , toggle fullscreen      , fullscreen      , 0
+bindd = SUPER SHIFT , f   , toggle fullscreen      , fullscreen      , 0
+bindd = SUPER       , m   , toggle maximize        , fullscreen      , 1
+bindd = SUPER       , f   , toggle floating        , togglefloating  ,
+bindd = SUPER CTRL  , f   , toggle pinnned         , pin             ,
+bindd = SUPER       , up  , toggle pinnned         , pin             ,
+bindd = SUPER SHIFT , p   , toggle pseudo          , pseudo          ,
+bindd = SUPER SHIFT , m   , mirror layout          , togglesplit     ,
 #+end_src
 
 Focus
 #+begin_src conf
-bind = SUPER     , h   , movefocus , l    # focus left window
-bind = SUPER     , j   , movefocus , d    # focus below window
-bind = SUPER     , k   , movefocus , u    # focus above window
-bind = SUPER     , l   , movefocus , r    # focus right window
+bindd = SUPER , h , focus left window  , movefocus , l    
+bindd = SUPER , j , focus below window , movefocus , d
+bindd = SUPER , k , focus above window , movefocus , u
+bindd = SUPER , l , focus right window , movefocus , r
 #+end_src
 
 Groups
 #+begin_src conf
-bindd = ALT       , tab , focus next window , changegroupactive , f # focus next window
-bindd = ALT SHIFT , tab , focus prev window , changegroupactive , b # focus prev window
+bindd = ALT       , tab , focus next window , changegroupactive , f
+bindd = ALT SHIFT , tab , focus prev window , changegroupactive , b
 
-bindd = SUPER , left  , focus prev window         , changegroupactive , b  # focus prev window
-bindd = SUPER , down  , move window down in stack , movegroupwindow   , f  # move window down in stack
-bindd = SUPER , up    , move window up in stack   , movegroupwindow   , b  # move window up in stack
-bindd = SUPER , right , focus next window         , changegroupactive , f  # focus next window
+bindd = SUPER , left  , focus prev window         , changegroupactive , b
+bindd = SUPER , down  , move window down in stack , movegroupwindow   , f
+bindd = SUPER , up    , move window up in stack   , movegroupwindow   , b
+bindd = SUPER , right , focus next window         , changegroupactive , f
 #+end_src
 
 Resizing windows
 #+begin_src conf
-bind = SUPER , equal , splitratio , exact 1    # reset fucused window size
+bindd = SUPER , equal , reset fucused window size , splitratio , exact 1
 
-binde = SUPER CTRL , h , resizeactive , -20 0  # grow focused window left
-binde = SUPER CTRL , j , resizeactive ,  0 20  # grow focused window down
-binde = SUPER CTRL , k , resizeactive ,  0 -20 # grow focused window up
-binde = SUPER CTRL , l , resizeactive , 20 0   # grow focused window right
+bindde = SUPER CTRL , h , grow focused window left  , resizeactive , -20 0
+bindde = SUPER CTRL , j , grow focused window down  , resizeactive ,  0 20
+bindde = SUPER CTRL , k , grow focused window up    , resizeactive ,  0 -20
+bindde = SUPER CTRL , l , grow focused window right , resizeactive , 20 0
 #+end_src
 
 Swapping tiled windows
 #+begin_src conf
-bind = SUPER SHIFT , h , swapwindow , l # swap focused window with left window
-bind = SUPER SHIFT , j , swapwindow , d # swap focused window with below window
-bind = SUPER SHIFT , k , swapwindow , u # swap focused window with above window
-bind = SUPER SHIFT , l , swapwindow , r # swap focused window with right window
+bindd = SUPER SHIFT , h , swap focused window with left window  , swapwindow , l
+bindd = SUPER SHIFT , j , swap focused window with below window , swapwindow , d
+bindd = SUPER SHIFT , k , swap focused window with above window , swapwindow , u
+bindd = SUPER SHIFT , l , swap focused window with right window , swapwindow , r
 #+end_src
 
 Move floating windows
 #+begin_src conf
-binde = SUPER CTRL  , c     , centerwindow
-binde = SUPER       , equal , centerwindow ,        # center floating window
-binde = SUPER SHIFT , h     , moveactive   , -20 0  # move floating window left
-binde = SUPER SHIFT , j     , moveactive   ,  0 20  # move floating window down
-binde = SUPER SHIFT , k     , moveactive   ,  0 -20 # move floating window up
-binde = SUPER SHIFT , l     , moveactive   , 20 0   # move floating window right
+binde  = SUPER CTRL  , c     , centerwindow
+binded = SUPER       , equal , center floating window     , centerwindow ,
+binded = SUPER SHIFT , h     , move floating window left  , moveactive   , -20 0
+binded = SUPER SHIFT , j     , move floating window down  , moveactive   ,  0 20
+binded = SUPER SHIFT , k     , move floating window up    , moveactive   ,  0 -20
+binded = SUPER SHIFT , l     , move floating window right , moveactive   , 20 0
 #+end_src
 
 Special Moving windows
 #+begin_src conf
-bind = SUPER ALT , h , movewindoworgroup , l # move focused window left
-bind = SUPER ALT , j , movewindoworgroup , d # move focused window below
-bind = SUPER ALT , k , movewindoworgroup , u # move focused window above
-bind = SUPER ALT , l , movewindoworgroup , r # move focused window right
+bindd = SUPER ALT , h , move focused window left  , movewindoworgroup , l
+bindd = SUPER ALT , j , move focused window below , movewindoworgroup , d
+bindd = SUPER ALT , k , move focused window above , movewindoworgroup , u
+bindd = SUPER ALT , l , move focused window right , movewindoworgroup , r
 #+end_src
 
 Masters
@@ -968,68 +968,67 @@ Masters
 ** Monitors
 Focus
 #+begin_src conf
-bind = SUPER , F1     , focusmonitor , 0 # move focus to monitor 1
-bind = SUPER , F2     , focusmonitor , 1 # move focus to monitor 2
-bind = SUPER , F3     , focusmonitor , 2 # move focus to monitor 3
-
-bind = SUPER , comma  , focusmonitor , d # move focus to below monitor
-bind = SUPER , period , focusmonitor , u # move focus to above monitor
+bindd = SUPER , F1     , move focus to monitor 1     , focusmonitor , 0
+bindd = SUPER , F2     , move focus to monitor 2     , focusmonitor , 1
+bindd = SUPER , F3     , move focus to monitor 3     , focusmonitor , 2
+bindd = SUPER , comma  , move focus to below monitor , focusmonitor , d
+bindd = SUPER , period , move focus to above monitor , focusmonitor , u
 #+end_src
 
 Moving Windows
 #+begin_src conf
-bind = SUPER SHIFT , comma  , movewindow , mon:d # move window to below monitor
-bind = SUPER SHIFT , period , movewindow , mon:u # move window to above monitor
+bindd = SUPER SHIFT , comma  , move window to below monitor , movewindow , mon:d
+bindd = SUPER SHIFT , period , move window to above monitor , movewindow , mon:u
 #+end_src
 
 Swapping
 #+begin_src conf
-bind = SUPER SHIFT , F1 , movewindow , mon:0 # move window to monitor 1
-bind = SUPER SHIFT , F2 , movewindow , mon:1 # move window to monitor 2
-bind = SUPER SHIFT , F3 , movewindow , mon:2 # move window to monitor 3
+bindd = SUPER SHIFT , F1 , move window to monitor 1 , movewindow , mon:0
+bindd = SUPER SHIFT , F2 , move window to monitor 2 , movewindow , mon:1
+bindd = SUPER SHIFT , F3 , move window to monitor 3 , movewindow , mon:2
 #+end_src
 
 ** Workspaces
 Focus
 #+begin_src conf
-bind = SUPER , tab , focusworkspaceoncurrentmonitor , previous # toggle last workspace
-bind = SUPER , 1   , focusworkspaceoncurrentmonitor , 1 # switch to workspace 1
-bind = SUPER , 2   , focusworkspaceoncurrentmonitor , 2 # switch to workspace 2
-bind = SUPER , 3   , focusworkspaceoncurrentmonitor , 3 # switch to workspace 3
-bind = SUPER , 4   , focusworkspaceoncurrentmonitor , 4 # switch to workspace 4
-bind = SUPER , 5   , focusworkspaceoncurrentmonitor , 5 # switch to workspace 5
-bind = SUPER , 6   , focusworkspaceoncurrentmonitor , 6 # switch to workspace 6
-bind = SUPER , 7   , focusworkspaceoncurrentmonitor , 7 # switch to workspace 7
-bind = SUPER , 8   , focusworkspaceoncurrentmonitor , 8 # switch to workspace 8
-bind = SUPER , 9   , focusworkspaceoncurrentmonitor , 9 # switch to workspace 9
-bind = SUPER , 0   , focusworkspaceoncurrentmonitor , name:star # switch to workspace star
+bindd = SUPER , tab , toggle last workspace    , focusworkspaceoncurrentmonitor , previous
+bindd = SUPER , 1   , switch to workspace 1    , focusworkspaceoncurrentmonitor , 1
+bindd = SUPER , 2   , switch to workspace 2    , focusworkspaceoncurrentmonitor , 2
+bindd = SUPER , 3   , switch to workspace 3    , focusworkspaceoncurrentmonitor , 3
+bindd = SUPER , 4   , switch to workspace 4    , focusworkspaceoncurrentmonitor , 4
+bindd = SUPER , 5   , switch to workspace 5    , focusworkspaceoncurrentmonitor , 5
+bindd = SUPER , 6   , switch to workspace 6    , focusworkspaceoncurrentmonitor , 6
+bindd = SUPER , 7   , switch to workspace 7    , focusworkspaceoncurrentmonitor , 7
+bindd = SUPER , 8   , switch to workspace 8    , focusworkspaceoncurrentmonitor , 8
+bindd = SUPER , 9   , switch to workspace 9    , focusworkspaceoncurrentmonitor , 9
+bindd = SUPER , 0   , switch to workspace star , focusworkspaceoncurrentmonitor , name:star
 #+end_src
 
 Moving Windows
 #+begin_src conf
-bind = SUPER SHIFT , 1 , movetoworkspacesilent , 1 # move window to workspace 1
-bind = SUPER SHIFT , 2 , movetoworkspacesilent , 2 # move window to workspace 2
-bind = SUPER SHIFT , 3 , movetoworkspacesilent , 3 # move window to workspace 3
-bind = SUPER SHIFT , 4 , movetoworkspacesilent , 4 # move window to workspace 4
-bind = SUPER SHIFT , 5 , movetoworkspacesilent , 5 # move window to workspace 5
-bind = SUPER SHIFT , 6 , movetoworkspacesilent , 6 # move window to workspace 6
-bind = SUPER SHIFT , 7 , movetoworkspacesilent , 7 # move window to workspace 7
-bind = SUPER SHIFT , 8 , movetoworkspacesilent , 8 # move window to workspace 8
-bind = SUPER SHIFT , 9 , movetoworkspacesilent , 9 # move window to workspace 9
-bind = SUPER SHIFT , 0 , movetoworkspacesilent , name:star # move window to workspace star
+bindd = SUPER SHIFT , 1 , move window to workspace 1    , movetoworkspacesilent , 1
+bindd = SUPER SHIFT , 2 , move window to workspace 2    , movetoworkspacesilent , 2
+bindd = SUPER SHIFT , 3 , move window to workspace 3    , movetoworkspacesilent , 3
+bindd = SUPER SHIFT , 4 , move window to workspace 4    , movetoworkspacesilent , 4
+bindd = SUPER SHIFT , 5 , move window to workspace 5    , movetoworkspacesilent , 5
+bindd = SUPER SHIFT , 6 , move window to workspace 6    , movetoworkspacesilent , 6
+bindd = SUPER SHIFT , 7 , move window to workspace 7    , movetoworkspacesilent , 7
+bindd = SUPER SHIFT , 8 , move window to workspace 8    , movetoworkspacesilent , 8
+bindd = SUPER SHIFT , 9 , move window to workspace 9    , movetoworkspacesilent , 9
+bindd = SUPER SHIFT , 0 , move window to workspace star , movetoworkspacesilent , name:star
 #+end_src
 
 Moving Windows with switching Workspace
 #+begin_src conf
-bind = SUPER SHIFT CTRL , 1 , moveworkspacetomonitor , 1 current # move window to workspace 1 with switch
-bind = SUPER SHIFT CTRL , 2 , moveworkspacetomonitor , 2 current # move window to workspace 2 with switch
-bind = SUPER SHIFT CTRL , 3 , moveworkspacetomonitor , 3 current # move window to workspace 3 with switch
-bind = SUPER SHIFT CTRL , 4 , moveworkspacetomonitor , 4 current # move window to workspace 4 with switch
-bind = SUPER SHIFT CTRL , 5 , moveworkspacetomonitor , 5 current # move window to workspace 5 with switch
-bind = SUPER SHIFT CTRL , 6 , moveworkspacetomonitor , 6 current # move window to workspace 6 with switch
-bind = SUPER SHIFT CTRL , 7 , moveworkspacetomonitor , 7 current # move window to workspace 7 with switch
-bind = SUPER SHIFT CTRL , 8 , moveworkspacetomonitor , 8 current # move window to workspace 8 with switch
-bind = SUPER SHIFT CTRL , 9 , moveworkspacetomonitor , 9 current # move window to workspace 9 with switch
+bindd = SUPER SHIFT CTRL , 1 , move window to workspace 1 with switch , moveworkspacetomonitor , 1 current
+bindd = SUPER SHIFT CTRL , 2 , move window to workspace 2 with switch , moveworkspacetomonitor , 2 current
+bindd = SUPER SHIFT CTRL , 3 , move window to workspace 3 with switch , moveworkspacetomonitor , 3 current
+bindd = SUPER SHIFT CTRL , 4 , move window to workspace 4 with switch , moveworkspacetomonitor , 4 current
+bindd = SUPER SHIFT CTRL , 5 , move window to workspace 5 with switch , moveworkspacetomonitor , 5 current
+bindd = SUPER SHIFT CTRL , 6 , move window to workspace 6 with switch , moveworkspacetomonitor , 6 current
+bindd = SUPER SHIFT CTRL , 7 , move window to workspace 7 with switch , moveworkspacetomonitor , 7 current
+bindd = SUPER SHIFT CTRL , 8 , move window to workspace 8 with switch , moveworkspacetomonitor , 8 current
+bindd = SUPER SHIFT CTRL , 9 , move window to workspace 9 with switch , moveworkspacetomonitor , 9 current
 
 bind = SUPER SHIFT CTRL , 1 , movetoworkspace , 1
 bind = SUPER SHIFT CTRL , 2 , movetoworkspace , 2
@@ -1045,47 +1044,47 @@ bind = SUPER SHIFT CTRL , 9 , movetoworkspace , 9
 ** Special Workspaces
 Toggle
 #+begin_src conf
-bind = SUPER ALT , grave , togglespecialworkspace , term  # toggle special workspace term
-bind = SUPER ALT , 1     , togglespecialworkspace , 1     # toggle special workspace 1
-bind = SUPER ALT , 2     , togglespecialworkspace , 2     # toggle special workspace 2
-bind = SUPER ALT , 3     , togglespecialworkspace , 3     # toggle special workspace 3
-bind = SUPER ALT , 4     , togglespecialworkspace , 4     # toggle special workspace 4
-bind = SUPER ALT , 5     , togglespecialworkspace , 5     # toggle special workspace 5
-bind = SUPER ALT , m     , togglespecialworkspace , music # toggle special workspace music
-bind = SUPER ALT , a     , togglespecialworkspace , audio # toggle special workspace audio
-bind = SUPER ALT , c     , togglespecialworkspace , chats # toggle special workspace chats
-bind = SUPER ALT , v     , togglespecialworkspace , vm    # toggle special workspace vm
+bindd = SUPER ALT , grave , toggle special workspace term  , togglespecialworkspace , term
+bindd = SUPER ALT , 1     , toggle special workspace 1     , togglespecialworkspace , 1
+bindd = SUPER ALT , 2     , toggle special workspace 2     , togglespecialworkspace , 2
+bindd = SUPER ALT , 3     , toggle special workspace 3     , togglespecialworkspace , 3
+bindd = SUPER ALT , 4     , toggle special workspace 4     , togglespecialworkspace , 4
+bindd = SUPER ALT , 5     , toggle special workspace 5     , togglespecialworkspace , 5
+bindd = SUPER ALT , m     , toggle special workspace music , togglespecialworkspace , music
+bindd = SUPER ALT , a     , toggle special workspace audio , togglespecialworkspace , audio
+bindd = SUPER ALT , c     , toggle special workspace chats , togglespecialworkspace , chats
+bindd = SUPER ALT , v     , toggle special workspace vm    , togglespecialworkspace , vm
 #+end_src
 
 Moving Windows
 #+begin_src conf
-bind = SUPER ALT SHIFT , grave , movetoworkspacesilent , term          # move window to special workspace term
-bind = SUPER ALT SHIFT , 1     , movetoworkspacesilent , special:1     # move window to special workspace 1
-bind = SUPER ALT SHIFT , 2     , movetoworkspacesilent , special:2     # move window to special workspace 2
-bind = SUPER ALT SHIFT , 3     , movetoworkspacesilent , special:3     # move window to special workspace 3
-bind = SUPER ALT SHIFT , 4     , movetoworkspacesilent , special:4     # move window to special workspace 4
-bind = SUPER ALT SHIFT , 5     , movetoworkspacesilent , special:5     # move window to special workspace 5
-bind = SUPER ALT SHIFT , m     , movetoworkspacesilent , special:music # move window to special workspace music
-bind = SUPER ALT SHIFT , a     , movetoworkspacesilent , special:audio # move window to special workspace audio
-bind = SUPER ALT SHIFT , c     , movetoworkspacesilent , special:chats # move window to special workspace chats
-bind = SUPER ALT SHIFT , v     , movetoworkspacesilent , special:vm    # move window to special workspace vm
+bindd = SUPER ALT SHIFT , grave , move window to special workspace term  , movetoworkspacesilent , term
+bindd = SUPER ALT SHIFT , 1     , move window to special workspace 1     , movetoworkspacesilent , special:1
+bindd = SUPER ALT SHIFT , 2     , move window to special workspace 2     , movetoworkspacesilent , special:2
+bindd = SUPER ALT SHIFT , 3     , move window to special workspace 3     , movetoworkspacesilent , special:3
+bindd = SUPER ALT SHIFT , 4     , move window to special workspace 4     , movetoworkspacesilent , special:4
+bindd = SUPER ALT SHIFT , 5     , move window to special workspace 5     , movetoworkspacesilent , special:5
+bindd = SUPER ALT SHIFT , m     , move window to special workspace music , movetoworkspacesilent , special:music
+bindd = SUPER ALT SHIFT , a     , move window to special workspace audio , movetoworkspacesilent , special:audio
+bindd = SUPER ALT SHIFT , c     , move window to special workspace chats , movetoworkspacesilent , special:chats
+bindd = SUPER ALT SHIFT , v     , move window to special workspace vm    , movetoworkspacesilent , special:vm
 #+end_src
 
 ** Launching Apps
 #+begin_src conf
-bind = SUPER , grave , exec , $myHyprScript/toggle-special-workspace.sh "term"  "sp-term"  "alacritty --class sp-term"          # toggle terminal
-bind = SUPER , e     , exec , $myHyprScript/toggle-special-workspace.sh "files" "sp-files" "alacritty --class sp-files -e vifm" # toggle file manager
+bindd = SUPER , grave , toggle terminal     , exec , $myHyprScript/toggle-special-workspace.sh "term"  "sp-term"  "alacritty --class sp-term"
+bindd = SUPER , e     , toggle file manager , exec , $myHyprScript/toggle-special-workspace.sh "files" "sp-files" "alacritty --class sp-files -e vifm"
 
-bind = SUPER       , return , exec , $myTerm       # launch terminal
-bind = SUPER CTRL  , return , exec , $myLauncher   # launch launcher
-bind = SUPER       , r      , exec , $myLauncher   # launch launcher
-bind = SUPER       , c      , exec , $myIde        # launch ide
-bind = SUPER SHIFT , e      , exec , $myCliFiles   # launch file manager
-bind = SUPER       , b      , exec , $myWebBrowser # launch web browser
-bind = SUPER       , i      , exec , $myIncBrowser # launch web browser in incognito mode
+bindd = SUPER       , return , launch terminal                      , exec , $myTerm
+bindd = SUPER CTRL  , return , launch launcher                      , exec , $myLauncher
+bindd = SUPER       , r      , launch launcher                      , exec , $myLauncher
+bindd = SUPER       , c      , launch ide                           , exec , $myIde
+bindd = SUPER SHIFT , e      , launch file manager                  , exec , $myCliFiles
+bindd = SUPER       , b      , launch web browser                   , exec , $myWebBrowser
+bindd = SUPER       , i      , launch web browser in incognito mode , exec , $myIncBrowser
 #+end_src
 
-** TODO CTRL ALT
+** CTRL ALT
 #+begin_src conf
 bind = CTRL ALT , delete , exec                   , $myHyprScript/toggle-special-workspace.sh "htop"  "sp-htop"  "alacritty --class sp-htop -e htop"
 bind = CTRL ALT , end    , exec                   , $myHyprScript/toggle-special-workspace.sh "btop"  "sp-btop"  "alacritty --class sp-btop -e btop"
@@ -1101,45 +1100,45 @@ bind = CTRL ALT , a      , exec                   , [workspace special:audio] qp
 ** media keys
 System audio
 #+begin_src conf
-bindl = , XF86AudioRaiseVolume , exec , $myScript/set-volume.sh + 5 # increase system volume
-bindl = , XF86AudioLowerVolume , exec , $myScript/set-volume.sh - 5 # decrease system volume
-bindl = , XF86AudioMute        , exec , $myScript/toggle-mute.sh    # toggle mute
+bindld = , XF86AudioRaiseVolume , increase system volume , exec , $myScript/set-volume.sh + 5
+bindld = , XF86AudioLowerVolume , decrease system volume , exec , $myScript/set-volume.sh - 5
+bindld = , XF86AudioMute        , toggle mute            , exec , $myScript/toggle-mute.sh
 #+end_src
 
 Player audio
 #+begin_src conf
-bindl = CTRL , XF86AudioRaiseVolume , exec , $myScript/playerctl.sh vol-up   # player increase volume
-bindl = CTRL , XF86AudioLowerVolume , exec , $myScript/playerctl.sh vol-down # player decrease volumebindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
-bindl =      , XF86AudioPrev        , exec , $myScript/playerctl.sh prev     # player prev
-bindl =      , XF86AudioNext        , exec , $myScript/playerctl.sh next     # player next
-bindl =      , XF86AudioPlay        , exec , $myScript/playerctl.sh toggle   # player play/pause
-bindl =      , XF86AudioStop        , exec , $myScript/playerctl.sh stop     # player stop
-bindl = CTRL , XF86AudioPlay        , exec , $myScript/musictl.sh single     # music [s] single mode
-bindl = CTRL , XF86AudioStop        , exec , $myScript/musictl.sh random     # music [z] shuffle mode
+binddl = CTRL , XF86AudioRaiseVolume , player increase volume , exec , $myScript/playerctl.sh vol-up
+binddl = CTRL , XF86AudioLowerVolume , player decrease volume , exec , $myScript/playerctl.sh vol-down
+binddl =      , XF86AudioPrev        , player prev            , exec , $myScript/playerctl.sh prev
+binddl =      , XF86AudioNext        , player next            , exec , $myScript/playerctl.sh next
+binddl =      , XF86AudioPlay        , player play/pause      , exec , $myScript/playerctl.sh toggle
+binddl =      , XF86AudioStop        , player stop            , exec , $myScript/playerctl.sh stop
+binddl = CTRL , XF86AudioPlay        , music [s] single mode  , exec , $myScript/musictl.sh single
+binddl = CTRL , XF86AudioStop        , music [z] shuffle mode , exec , $myScript/musictl.sh random
 #+end_src
 
 ** print screen
 #+begin_src conf
-bind =             , print , exec , $myScript/screenshot.sh monitor # Fullscreen Screenshot
-bind = SUPER SHIFT , print , exec , $myScript/screenshot.sh area    # Selection Area Screenshot
-bind = ALT         , print , exec , $myScript/screenshot.sh window  # Active Window Screenshot
-bind = SUPER       , print , exec , $myScript/screenshot.sh desktop # Full Desktop Screenshot
+bindd =             , print , fullscreen screenshot     , exec , $myScript/screenshot.sh monitor
+bindd = SUPER SHIFT , print , selection area screenshot , exec , $myScript/screenshot.sh area
+bindd = ALT         , print , active window screenshot  , exec , $myScript/screenshot.sh window
+bindd = SUPER       , print , full desktop screenshot   , exec , $myScript/screenshot.sh desktop
 #+end_src
 
 ** backslash dm-notify
 #+begin_src conf
-bind = SUPER , backslash , exec   , $myEwwScript/which-key.sh dm-notify
+bind = SUPER , backslash , exec   , $myEwwScript/which-key.sh -p "M-\\\-" dm-notify
 bind = SUPER , backslash , submap , dm-notify
 
 submap = dm-notify
-bind =       , backspace , exec , $myDMScript/dm-notify close   # clear last notification
-bind = SUPER , backslash , exec , $myDMScript/dm-notify recent  # show last notification
-bind =       , backslash , exec , $myDMScript/dm-notify recent  # show last notification
-bind = SHIFT , BACKSLASH , exec , $myDMScript/dm-notify recents # show recent notifications
-bind =       , a         , exec , $myDMScript/dm-notify context # open last notification
-bind =       , c         , exec , $myDMScript/dm-notify close   # clear last notification
-bind = SHIFT , C         , exec , $myDMScript/dm-notify clear   # clear all notifications
-bind =       , r         , exec , $myDMScript/dm-notify recents # show recent notifications
+bindd  =       , backspace , clear last notification   , exec , $myDMScript/dm-notify close
+bindd  = SUPER , backslash , show last notification    , exec , $myDMScript/dm-notify recent
+bindd  =       , backslash , show last notification    , exec , $myDMScript/dm-notify recent
+bindd  = SHIFT , BACKSLASH , show recent notifications , exec , $myDMScript/dm-notify recents
+bindd  =       , a         , open last notification    , exec , $myDMScript/dm-notify context
+bindd  =       , c         , clear last notification   , exec , $myDMScript/dm-notify close
+bindd  = SHIFT , C         , clear all notifications   , exec , $myDMScript/dm-notify clear
+bindd  =       , r         , show recent notifications , exec , $myDMScript/dm-notify recents
 
 bindr =       , catchall  , exec , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec , $myHyprScript/reset-submap.sh
@@ -1151,21 +1150,21 @@ submap = reset
 
 ** d dm-scripts
 #+begin_src conf
-bind = SUPER , d , exec   , $myEwwScript/which-key.sh dm-global
+bind = SUPER , d , exec   , $myEwwScript/which-key.sh -p "M-d-" dm-global
 bind = SUPER , d , submap , dm-global
 
 submap = dm-global
-bind =       , backslash , exec , $myDMScript/dm-notify     # dm-notify
-bind =       , b         , exec , $myDMScript/dm-bookman    # dm-bookman
-bind = SUPER , d         , exec , $myDMScript/dm-master     # dm-master
-bind =       , k         , exec , $myDMScript/dm-keys       # dm-keys
-bind =       , n         , exec , $myDMScript/dm-notify     # dm-notify
-bind =       , p         , exec , $myDMScript/dm-player     # dm-player
-bind =       , r         , exec , $myDMScript/dm-record     # dm-record
-bind =       , s         , exec , $myDMScript/dm-screenshot # dm-screenshot
-bind =       , t         , exec , $myDMScript/dm-theme      # dm-theme
-bind =       , w         , exec , $myDMScript/dm-wallpaper  # dm-wallpaper
-bind =       , z         , exec , $myDMScript/dm-power      # dm-power
+bindd  =       , backslash , dm-notify     , exec , $myDMScript/dm-notify
+bindd  =       , b         , dm-bookman    , exec , $myDMScript/dm-bookman
+bindd  = SUPER , d         , dm-master     , exec , $myDMScript/dm-master
+bindd  =       , k         , dm-keys       , exec , $myDMScript/dm-keys
+bindd  =       , n         , dm-notify     , exec , $myDMScript/dm-notify
+bindd  =       , p         , dm-player     , exec , $myDMScript/dm-player
+bindd  =       , r         , dm-record     , exec , $myDMScript/dm-record
+bindd  =       , s         , dm-screenshot , exec , $myDMScript/dm-screenshot
+bindd  =       , t         , dm-theme      , exec , $myDMScript/dm-theme
+bindd  =       , w         , dm-wallpaper  , exec , $myDMScript/dm-wallpaper
+bindd  =       , z         , dm-power      , exec , $myDMScript/dm-power
 
 bindr =       , catchall  , exec , $myHyprScript/reset-submap.sh
 bind  =       , backslash , exec , $myHyprScript/reset-submap.sh
@@ -1185,20 +1184,20 @@ submap = reset
 
 ** o open
 #+begin_src conf
-bind = SUPER , o , exec   , $myEwwScript/which-key.sh open
+bind = SUPER , o , exec   , $myEwwScript/which-key.sh -p "M-o-" open
 bind = SUPER , o , submap , open
 
 submap = open
-bind =       , c , exec   , $myColorPicker                                                                              # color picker
-bind =       , d , exec   , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord                # toggle chats
-bind =       , e , exec   , $myEmail                                                                                    # email client
-bind =       , g , exec   , $myEwwScript/which-key.sh games open
-bind =       , g , submap , games                                                                                       # +games
-bind =       , i , exec   , vimiv $XDG_PICTURES_DIR                                                                     # image viewer
-bind =       , m , exec   , $myCliMusic                                                                                 # music player
-bind = SHIFT , M , exec   , [workspace 9 silent] $myCliMusic                                                            # music player on default workspace
-bind =       , t , exec   , $myTorBrowser                                                                               # tor browser
-bind =       , w , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux" # toggle whatsapp
+bindd  =       , c , color picker                      , exec   , $myColorPicker
+bindd  =       , d , toggle chats                      , exec   , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord
+bindd  =       , e , email client                      , exec   , $myEmail
+bind   =       , g , exec                              , $myEwwScript/which-key.sh -p "M-o g-" games
+bindd  =       , g , +games                            , submap , games
+bindd  =       , i , image viewer                      , exec   , vimiv $XDG_PICTURES_DIR
+bindd  =       , m , music player                      , exec   , $myCliMusic
+bindd  = SHIFT , M , music player on default workspace , exec   , [workspace 9 silent] $myCliMusic
+bindd  =       , t , tor browser                       , exec   , $myTorBrowser
+bindd  =       , w , toggle whatsapp                   , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux"
 
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
 bind  =       , c        , exec , $myHyprScript/reset-submap.sh
@@ -1217,18 +1216,18 @@ submap = reset
 *** g games
 #+begin_src conf
 submap = games
-bind = , d , exec , $myGZDoom   # gzdoom
-bind = , f , exec , $myFHeroes2 # fheroes homm
-bind = , g , exec , $myGameHub  # gamehub
-bind = , h , exec , $myHeroic   # heroic
-bind = , l , exec , $myLutris   # lutris
-bind = , n , exec , $myNexus    # Nexus Mods App
-bind = , s , exec , $mySteam    # steam
-bind = , v , exec , $myVCMI     # vcmi homm launcher
-bind = , x , exec , $myNexus    # Nexus Mods App
+bindd  = , d , gzdoom             , exec , $myGZDoom
+bindd  = , f , fheroes homm       , exec , $myFHeroes2
+bindd  = , g , gamehub            , exec , $myGameHub
+bindd  = , h , heroic             , exec , $myHeroic
+bindd  = , l , lutris             , exec , $myLutris
+bindd  = , n , Nexus Mods App     , exec , $myNexus
+bindd  = , s , steam              , exec , $mySteam
+bindd  = , v , vcmi homm launcher , exec , $myVCMI
+bindd  = , x , Nexus Mods App     , exec , $myNexus
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh open
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "M-o-" open
 bind  = , backspace , submap , open
 bind  = , d         , exec   , $myHyprScript/reset-submap.sh
 bind  = , f         , exec   , $myHyprScript/reset-submap.sh
@@ -1245,13 +1244,13 @@ submap = reset
 
 ** p pass
 #+begin_src conf
-bind = SUPER , p , exec   , $myEwwScript/which-key.sh pass
+bind = SUPER , p , exec   , $myEwwScript/which-key.sh -p "M-p-" pass
 bind = SUPER , p , submap , pass
 
 submap = pass
-bind = , c , exec , wofi-pass --squash # copy field
-bind = , p , exec , wofi-pass --squash --type # fill field
-bind = , a , exec , wofi-pass --squash --type --autotype # autofill password
+bindd  = , c , copy field        , exec , wofi-pass --squash
+bindd  = , p , fill field        , exec , wofi-pass --squash --type
+bindd  = , a , autofill password , exec , wofi-pass --squash --type --autotype
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , c        , exec , $myHyprScript/reset-submap.sh
@@ -1263,18 +1262,19 @@ submap = reset
 
 ** s scratchpad
 #+begin_src conf
-bind = SUPER , s , exec   , $myEwwScript/which-key.sh scratchpad
+bind = SUPER , s , exec   , $myEwwScript/which-key.sh -p "M-s-" scratchpad
 bind = SUPER , s , submap , scratchpad
-#                                                            | workspace  | class                            | command
+
 submap = scratchpad
-bind = , a , exec , $myHyprScript/toggle-special-workspace.sh "anki"        "anki"                             "anki"                                  # anki
-bind = , c , exec , $myHyprScript/toggle-special-workspace.sh "calculator"  "org.gnome.Calculator"             "gnome-calculator"                      # calculator
-bind = , d , exec , $myHyprScript/toggle-special-workspace.sh "chats"       $myDiscordClass                    $myDiscord                              # discord
-bind = , e , exec , $myHyprScript/toggle-special-workspace.sh "email"       $myEmailClass                      $myEmail                                # email client
-bind = , m , exec , $myHyprScript/toggle-special-workspace.sh "music"       "sp-music"                         "alacritty --class sp-music -e ncmpcpp" # music player
-bind = , t , exec , $myHyprScript/toggle-special-workspace.sh "torrent"     "com.transmissionbt.transmission"  "transmission-gtk"                      # torrent
-bind = , v , exec , $myHyprScript/toggle-special-workspace.sh "vm"          "virt-manager"                     "virt-manager"                          # vm
-bind = , w , exec , $myHyprScript/toggle-special-workspace.sh "chats"       "whatsapp-for-linux"               "whatsapp-for-linux"                    # whatsapp
+#        ,   ,              ,      ,                                           workspace     class                              command
+bindd  = , a , anki         , exec , $myHyprScript/toggle-special-workspace.sh "anki"        "anki"                             "anki"
+bindd  = , c , calculator   , exec , $myHyprScript/toggle-special-workspace.sh "calculator"  "org.gnome.Calculator"             "gnome-calculator"
+bindd  = , d , discord      , exec , $myHyprScript/toggle-special-workspace.sh "chats"       $myDiscordClass                    $myDiscord
+bindd  = , e , email client , exec , $myHyprScript/toggle-special-workspace.sh "email"       $myEmailClass                      $myEmail
+bindd  = , m , music player , exec , $myHyprScript/toggle-special-workspace.sh "music"       "sp-music"                         "alacritty --class sp-music -e ncmpcpp"
+bindd  = , t , torrent      , exec , $myHyprScript/toggle-special-workspace.sh "torrent"     "com.transmissionbt.transmission"  "transmission-gtk"
+bindd  = , v , vm           , exec , $myHyprScript/toggle-special-workspace.sh "vm"          "virt-manager"                     "virt-manager"
+bindd  = , w , whatsapp     , exec , $myHyprScript/toggle-special-workspace.sh "chats"       "whatsapp-for-linux"               "whatsapp-for-linux"
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , a        , exec , $myHyprScript/reset-submap.sh
@@ -1291,19 +1291,19 @@ submap = reset
 
 ** t toggle
 #+begin_src conf
-bind = SUPER , t , exec   , $myEwwScript/which-key.sh toggle
+bind = SUPER , t , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
 bind = SUPER , t , submap , toggle
 
 submap = toggle
-bind = , b , exec   , $myHyprScript/borderctl.sh $borders toggle                # window borders
-bind = , c , exec   , $myHyprScript/toggle-corners.sh $corners                   # rounded corners
-bind = , g , exec   , $myHyprScript/gapctl.sh $gaps_inner toggle                # window gaps
-bind = , p , exec   , $myEwwScript/which-key.sh panels toggle
-bind = , p , submap , panels                                                     # +panels
-bind = , q , exec   , $myEwwScript/which-key.sh quick-settings toggle
-bind = , q , submap , quick-settings                                             # +quick-settings
-bind = , s , exec   , $myHyprScript/toggle-status-bar.sh                         # status bar
-bind = , z , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner  # zen mode
+bindd  = , b , window borders  , exec   , $myHyprScript/borderctl.sh $borders toggle
+bindd  = , c , rounded corners , exec   , $myHyprScript/toggle-corners.sh $corners
+bindd  = , g , window gaps     , exec   , $myHyprScript/gapctl.sh $gaps_inner toggle
+bind   = , p , exec            , $myEwwScript/which-key.sh -p "M-t p-" panels
+bindd  = , p , +panels         , submap , panels
+bind   = , q , exec            , $myEwwScript/which-key.sh -p "M-t q-" quick-settings
+bindd  = , q , +quick-settings , submap , quick-settings
+bindd  = , s , status bar      , exec   , $myHyprScript/toggle-status-bar.sh
+bindd  = , z , zen mode        , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , b        , exec , $myHyprScript/reset-submap.sh
@@ -1318,13 +1318,13 @@ submap = reset
 *** p panels
 #+begin_src conf
 submap = panels
-bind =       , m , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor  # monitor panel
-bind = SHIFT , M , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor                                       # monitor panel on secondary monitor
-bind =       , q , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings # quick-settings panel
-bind = SHIFT , Q , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings                                      # quick-settings panel on secondary monitor
+bindd  =       , m , monitor panel                             , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor
+bindd  = SHIFT , M , monitor panel on secondary monitor        , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor
+bindd  =       , q , quick-settings panel                      , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings
+bindd  = SHIFT , Q , quick-settings panel on secondary monitor , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  =       , backspace , exec   , $myEwwScript/which-key.sh toggle
+bind  =       , backspace , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
 bind  =       , backspace , submap , toggle
 bind  =       , m         , exec   , $myHyprScript/reset-submap.sh
 bind  = SHIFT , M         , exec   , $myHyprScript/reset-submap.sh
@@ -1337,15 +1337,15 @@ submap = reset
 *** q quick-settings
 #+begin_src conf
 submap = quick-settings
-bind = , b , exec , systemd-run --user -u btctl-toggle.service -- $myScript/btctl.sh toggle           # bluetooth
-bind = , e , exec , $myScript/netctl.sh toggle ethernet                                               # ethernet
-bind = , h , exec , systemd-run --user -u btctl-headphones.service -- $myScript/toggle-headphones.sh  # bluetooth headphones
-bind = , s , exec , systemd-run --user -u btctl-speakers.service -- $myScript/toggle-speakers.sh      # bluetooth speakers
-bind = , v , exec , $myScript/vpnctl.sh toggle                                                        # vpn
-bind = , w , exec , $myScript/netctl.sh toggle wifi                                                   # wi-fi
+bindd  = , b , bluetooth            , exec , systemd-run --user -u btctl-toggle.service -- $myScript/btctl.sh toggle
+bindd  = , e , ethernet             , exec , $myScript/netctl.sh toggle ethernet
+bindd  = , h , bluetooth headphones , exec , systemd-run --user -u btctl-headphones.service -- $myScript/toggle-headphones.sh
+bindd  = , s , bluetooth speakers   , exec , systemd-run --user -u btctl-speakers.service -- $myScript/toggle-speakers.sh
+bindd  = , v , vpn                  , exec , $myScript/vpnctl.sh toggle
+bindd  = , w , wi-fi                , exec , $myScript/netctl.sh toggle wifi
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh toggle
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
 bind  = , backspace , submap , toggle
 bind  = , b         , exec   , $myHyprScript/reset-submap.sh
 bind  = , e         , exec   , $myHyprScript/reset-submap.sh
@@ -1359,18 +1359,18 @@ submap = reset
 
 ** z dm-power
 #+begin_src conf
-bind = SUPER , z , exec   , $myEwwScript/which-key.sh dm-power
+bind = SUPER , z , exec   , $myEwwScript/which-key.sh -p "M-z-" dm-power
 bind = SUPER , z , submap , dm-power
 
 submap = dm-power
-bind =       , c , exec , $myDMScript/dm-power controller # disconnect all controllers
-bind =       , l , exec , $myDMScript/dm-power lock       # lock screen
-bind = SHIFT , L , exec , loginctl terminate-session "$XDG_SESSION_ID" # logout
-bind =       , p , exec , $myDMScript/dm-power poweroff   # shutdown system
-bind =       , r , exec , $myDMScript/dm-power reboot     # reboot system
-bind =       , s , exec , $myDMScript/dm-power suspend    # suspend system
-bind =       , z , exec , $myDMScript/dm-power suspend    # suspend system
-bind = SUPER , z , exec , $myDMScript/dm-power suspend    # suspend system
+bindd  =       , c , disconnect all controllers , exec , $myDMScript/dm-power controller
+bindd  =       , l , lock screen                , exec , $myDMScript/dm-power lock
+bindd  = SHIFT , L , logout                     , exec , loginctl terminate-session "$XDG_SESSION_ID"
+bindd  =       , p , shutdown system            , exec , $myDMScript/dm-power poweroff
+bindd  =       , r , reboot system              , exec , $myDMScript/dm-power reboot
+bindd  =       , s , suspend system             , exec , $myDMScript/dm-power suspend
+bindd  =       , z , suspend system             , exec , $myDMScript/dm-power suspend
+bindd  = SUPER , z , suspend system             , exec , $myDMScript/dm-power suspend
 
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
 bind  =       , c        , exec , $myHyprScript/reset-submap.sh
@@ -1387,15 +1387,15 @@ submap = reset
 
 ** ctrl-alt-o
 #+begin_src conf
-bind = CTRL ALT , o , exec   , $myEwwScript/which-key.sh app-secondary
-bind = CTRL ALT , o , submap , app-secondary
+bind = CTRL ALT , o , exec   , $myEwwScript/which-key.sh -p "C-A-o-" open-secondary
+bind = CTRL ALT , o , submap , open-secondary
 
-submap = app-secondary
-bind = , e , exec , $myFiles        # gui file manager
-bind = , g , exec , $myImgEditor    # image editor
-bind = , p , exec , $myPhotoLibrary # photo library
-bind = , r , exec , $myVctEditor    # vector image editor
-bind = , v , exec , $myVidEditor    # video editor
+submap = open-secondary
+bindd  = , e , gui file manager    , exec , $myFiles
+bindd  = , g , image editor        , exec , $myImgEditor
+bindd  = , p , photo library       , exec , $myPhotoLibrary
+bindd  = , r , vector image editor , exec , $myVctEditor
+bindd  = , v , video editor        , exec , $myVidEditor
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , e        , exec , $myHyprScript/reset-submap.sh
