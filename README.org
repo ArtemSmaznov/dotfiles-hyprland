@@ -1409,15 +1409,15 @@ submap = reset
 
 ** leader
 #+begin_src conf
-bind = SUPER , space , exec   , $myEwwScript/which-key.sh leader
+bind = SUPER , space , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind = SUPER , space , submap , leader
 
 submap = leader
-bind   = , e , exec                    , $myEwwScript/which-key.sh eww leader
+bind   = , e , exec                    , $myEwwScript/which-key.sh -p "SPC e-" eww
 bindd  = , e , +Elkowars Wacky Widgets , submap , eww
-bind   = , l , exec                    , $myEwwScript/which-key.sh layout leader
+bind   = , l , exec                    , $myEwwScript/which-key.sh -p "SPC l-" layout
 bindd  = , l , +layout                 , submap , layout
-bind   = , w , exec                    , $myEwwScript/which-key.sh window leader
+bind   = , w , exec                    , $myEwwScript/which-key.sh -p "SPC w-" window
 bindd  = , w , +window                 , submap , window
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
@@ -1432,7 +1432,7 @@ bindd  = , d , toggle debug panel , exec , eww set debug=true
 bindd  = , p , open playground    , exec , eww open --toggle playground
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind  = , backspace , submap , leader
 bindr = , d         , exec   , $myHyprScript/reset-submap.sh
 bindr = , p         , exec   , $myHyprScript/reset-submap.sh
@@ -1446,11 +1446,11 @@ submap = layout
 bindd  = , d , dwindle       , exec   , $myHyprScript/layoutctl.sh set dwindle
 bindd  = , l , switch layout , exec   , $myHyprScript/layoutctl.sh toggle
 bindd  = , m , master        , exec   , $myHyprScript/layoutctl.sh set master
-bind   = , g , exec          , $myEwwScript/which-key.sh gaps layout leader
+bind   = , g , exec          , $myEwwScript/which-key.sh -p "SPC l g-" gaps
 bindd  = , g , +gaps         , submap , gaps
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind  = , backspace , submap , leader
 
 submap = reset
@@ -1459,16 +1459,16 @@ submap = reset
 **** g gaps
 #+begin_src conf
 submap = gaps
-bindd  =       , g     , toggle      , exec , $myHyprScript/gapctl.sh $gaps_inner toggle   # toggle
-bindd  =       , 0     , reset       , exec , $myHyprScript/gapctl.sh $gaps_inner reset    # reset
-bindde =       , minus , shrink      , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 1 # shrink
-bindde =       , equal , grow        , exec , $myHyprScript/gapctl.sh $gaps_inner grow 1   # grow
-bindd  = SHIFT , 0     , disable     , exec , $myHyprScript/gapctl.sh $gaps_inner disable  # disable
-bindde = SHIFT , minus , shrink more , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 5 # shrink more
-bindde = SHIFT , equal , grow more   , exec , $myHyprScript/gapctl.sh $borders grow 5      # grow more
+bindd  =       , g     , toggle      , exec , $myHyprScript/gapctl.sh $gaps_inner toggle
+bindd  =       , 0     , reset       , exec , $myHyprScript/gapctl.sh $gaps_inner reset
+bindde =       , minus , shrink      , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 1
+bindde =       , equal , grow        , exec , $myHyprScript/gapctl.sh $gaps_inner grow 1
+bindd  = SHIFT , 0     , disable     , exec , $myHyprScript/gapctl.sh $gaps_inner disable
+bindde = SHIFT , minus , shrink more , exec , $myHyprScript/gapctl.sh $gaps_inner shrink 5
+bindde = SHIFT , equal , grow more   , exec , $myHyprScript/gapctl.sh $borders grow 5
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh layout leader
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC l-" layout
 bind  = , backspace , submap , layout
 
 submap = reset
@@ -1477,13 +1477,13 @@ submap = reset
 *** w window
 #+begin_src conf
 submap = window
-bind   = , b , exec     , $myEwwScript/which-key.sh borders window leader
+bind   = , b , exec     , $myEwwScript/which-key.sh -p "SPC w b-" borders
 bindd  = , b , +borders , submap , borders
-bind   = , g , exec     , $myEwwScript/which-key.sh group window leader
+bind   = , g , exec     , $myEwwScript/which-key.sh -p "SPC w g-" group
 bindd  = , g , +group   , submap , group
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh leader
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind  = , backspace , submap , leader
 
 submap = reset
@@ -1501,7 +1501,7 @@ bindde = SHIFT , minus , shrink more , exec , $myHyprScript/borderctl.sh $border
 bindde = SHIFT , equal , grow more   , exec , $myHyprScript/borderctl.sh $borders grow 5
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh window leader
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC w-" window
 bind  = , backspace , submap , window
 
 submap = reset
@@ -1517,7 +1517,7 @@ bindd  = SHIFT , L   , toggle lock on all groups  , lockgroups          , toggle
 bindd  =       , x   , restict window from groups , denywindowfromgroup , toggle
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  =       , backspace , exec   , $myEwwScript/which-key.sh window leader
+bind  =       , backspace , exec   , $myEwwScript/which-key.sh -p "SPC w-" window
 bind  =       , backspace , submap , window
 bind  =       , g         , exec   , $myHyprScript/reset-submap.sh
 bind  =       , l         , exec   , $myHyprScript/reset-submap.sh
