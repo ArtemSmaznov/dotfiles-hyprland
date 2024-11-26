@@ -653,8 +653,8 @@ decoration {
     fullscreen_opacity = 1.0
 
     # window dimming
-    dim_inactive = false
-    dim_strength = 0.5
+    dim_inactive = true
+    dim_strength = 0.25
     dim_special = 0.2
     dim_around = 0.4
 
