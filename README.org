@@ -905,6 +905,7 @@ bindd = SUPER       , F11 , toggle fullscreen      , fullscreen      , 0
 bindd = SUPER SHIFT , f   , toggle fullscreen      , fullscreen      , 0
 bindd = SUPER       , m   , toggle maximize        , fullscreen      , 1
 bindd = SUPER       , f   , toggle floating        , togglefloating  ,
+bind  = SUPER       , f   , centerwindow  ,
 bindd = SUPER CTRL  , f   , toggle pinnned         , pin             ,
 bindd = SUPER       , up  , toggle pinnned         , pin             ,
 bindd = SUPER SHIFT , p   , toggle pseudo          , pseudo          ,
