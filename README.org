@@ -58,7 +58,10 @@
   - [[#t-toggle][t toggle]]
   - [[#z-dm-power][z dm-power]]
   - [[#ctrl-alt-o][ctrl-alt-o]]
-  - [[#leader][leader]]
+- [[#leader-keybindings][Leader Keybindings]]
+  - [[#e-eww][e eww]]
+  - [[#l-layout][l layout]]
+  - [[#w-window][w window]]
 - [[#mouse-bindings][Mouse Bindings]]
 - [[#debug][Debug]]
 
@@ -1409,7 +1412,7 @@ bind  = , v        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-** leader
+* Leader Keybindings
 #+begin_src conf
 bind = SUPER , space , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind = SUPER , space , submap , leader
@@ -1427,7 +1430,7 @@ bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-*** e eww
+** e eww
 #+begin_src conf
 submap = eww
 bindd  = , d , toggle debug panel , exec , eww set debug=true
@@ -1442,7 +1445,7 @@ bindr = , p         , exec   , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-*** l layout
+** l layout
 #+begin_src conf
 submap = layout
 bindd  = , d , dwindle       , exec   , $myHyprScript/layoutctl.sh set dwindle
@@ -1458,7 +1461,7 @@ bind  = , backspace , submap , leader
 submap = reset
 #+end_src
 
-**** g gaps
+*** g gaps
 #+begin_src conf
 submap = gaps
 bindd  =       , g     , toggle      , exec , $myHyprScript/gapctl.sh $gaps_inner toggle
@@ -1476,7 +1479,7 @@ bind  = , backspace , submap , layout
 submap = reset
 #+end_src
 
-*** w window
+** w window
 #+begin_src conf
 submap = window
 bind   = , b , exec     , $myEwwScript/which-key.sh -p "SPC w b-" borders
@@ -1491,7 +1494,7 @@ bind  = , backspace , submap , leader
 submap = reset
 #+end_src
 
-**** b borders
+*** b borders
 #+begin_src conf
 submap = borders
 bindd  =       , b     , toggle      , exec , $myHyprScript/borderctl.sh $borders toggle
@@ -1509,7 +1512,7 @@ bind  = , backspace , submap , window
 submap = reset
 #+end_src
 
-**** g group
+*** g group
 #+begin_src conf
 submap = group
 bindd  =       , g   , group/ungroup              , togglegroup
