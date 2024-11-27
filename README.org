@@ -15,10 +15,10 @@
 - [[#monitors][Monitors]]
 - [[#waybar][Waybar]]
 - [[#startup][Startup]]
-- [[#environment-variables][Environment Variables]]
+- [[#environment-variables][Environment variables]]
 - [[#general][General]]
-- [[#groups][Groups]]
-- [[#window-rules][Window Rules]]
+- [[#window-stacking][Window stacking]]
+- [[#window-rules][Window rules]]
   - [[#xwayland-windows][XWayland Windows]]
   - [[#floating-windows][Floating Windows]]
   - [[#maximized-windows][Maximized Windows]]
@@ -26,8 +26,8 @@
   - [[#apps-1][Apps]]
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
-- [[#workspace-rules][Workspace Rules]]
-- [[#layer-rules][Layer Rules]]
+- [[#workspace-rules][Workspace rules]]
+- [[#layer-rules][Layer rules]]
 - [[#decoration][Decoration]]
 - [[#input][Input]]
 - [[#misc][Misc]]
@@ -40,7 +40,7 @@
 - [[#gestures][Gestures]]
 - [[#devices][Devices]]
   - [[#mouse][Mouse]]
-- [[#keybindings][Keybindings]]
+- [[#core-keybindings][Core keybindings]]
   - [[#system][System]]
   - [[#windows][Windows]]
   - [[#monitors-1][Monitors]]
@@ -58,11 +58,11 @@
   - [[#t-toggle][t toggle]]
   - [[#z-dm-power][z dm-power]]
   - [[#ctrl-alt-o][ctrl-alt-o]]
-- [[#leader-keybindings][Leader Keybindings]]
+- [[#leader-keybindings][Leader keybindings]]
   - [[#e-eww][e eww]]
   - [[#l-layout][l layout]]
   - [[#w-window][w window]]
-- [[#mouse-bindings][Mouse Bindings]]
+- [[#mouse-bindings][Mouse bindings]]
 - [[#debug][Debug]]
 
 * Dependencies
@@ -187,7 +187,7 @@ exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
 exec-once = uwsm app -S both -- eww open-many main-bar second-bar $quick-settings
 #+end_src
 
-* Environment Variables
+* Environment variables
 Toolkit Backend Variables
 #+begin_src conf
 env = GDK_BACKEND,wayland,x11     # GTK: Use wayland if available, fall back to x11 if not.
@@ -249,7 +249,7 @@ general {
 }
 #+end_src
 
-* Groups
+* Window stacking
 #+begin_src conf
 group {
     auto_group = true
@@ -287,7 +287,7 @@ group {
 }
 #+end_src
 
-* Window Rules
+* Window rules
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
@@ -562,7 +562,7 @@ windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
 #+end_src
 
-* Workspace Rules
+* Workspace rules
 Workspaces
 #+begin_src conf
 workspace = 1, persistent:true, monitor:DP-1, default:true
@@ -600,7 +600,7 @@ Native Scratchpad
 # bind = SUPER CTRL , d , togglespecialworkspace , foo
 #+end_src
 
-* Layer Rules
+* Layer rules
 |-------+------------|
 | Layer | Role       |
 |-------+------------|
@@ -886,7 +886,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 # }
 #+end_src
 
-* Keybindings
+* Core keybindings
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** System
 #+begin_src conf
@@ -1413,7 +1413,7 @@ bind  = , v        , exec , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-* Leader Keybindings
+* Leader keybindings
 #+begin_src conf
 bind = SUPER , space , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind = SUPER , space , submap , leader
@@ -1533,7 +1533,7 @@ bind  =       , x         , exec   , $myHyprScript/reset-submap.sh
 submap = reset
 #+end_src
 
-* Mouse Bindings
+* Mouse bindings
 #+begin_src conf
 # Scroll through existing workspaces with mainMod + scroll
 # bind = SUPER , mouse_down , workspace , e+1
