@@ -1300,68 +1300,6 @@ submap = reset
 #+begin_src conf
 bind = SUPER , t , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
 bind = SUPER , t , submap , toggle
-
-submap = toggle
-bindd  = , b , window borders  , exec   , $myHyprScript/borderctl.sh $borders toggle
-bindd  = , c , rounded corners , exec   , $myHyprScript/toggle-corners.sh $corners
-bindd  = , g , window gaps     , exec   , $myHyprScript/gapctl.sh $gaps_inner toggle
-bind   = , p , exec            , $myEwwScript/which-key.sh -p "M-t p-" panels
-bindd  = , p , +panels         , submap , panels
-bind   = , q , exec            , $myEwwScript/which-key.sh -p "M-t q-" quick-settings
-bindd  = , q , +quick-settings , submap , quick-settings
-bindd  = , s , status bar      , exec   , $myHyprScript/toggle-status-bar.sh
-bindd  = , z , zen mode        , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner
-
-bindr = , catchall , exec , $myHyprScript/reset-submap.sh
-bind  = , b        , exec , $myHyprScript/reset-submap.sh
-bind  = , c        , exec , $myHyprScript/reset-submap.sh
-bind  = , g        , exec , $myHyprScript/reset-submap.sh
-bind  = , s        , exec , $myHyprScript/reset-submap.sh
-bind  = , z        , exec , $myHyprScript/reset-submap.sh
-
-submap = reset
-#+end_src
-
-*** p panels
-#+begin_src conf
-submap = panels
-bindd  =       , m , monitor panel                             , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor
-bindd  = SHIFT , M , monitor panel on secondary monitor        , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor
-bindd  =       , q , quick-settings panel                      , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings
-bindd  = SHIFT , Q , quick-settings panel on secondary monitor , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings
-
-bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  =       , backspace , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
-bind  =       , backspace , submap , toggle
-bind  =       , m         , exec   , $myHyprScript/reset-submap.sh
-bind  = SHIFT , M         , exec   , $myHyprScript/reset-submap.sh
-bind  =       , q         , exec   , $myHyprScript/reset-submap.sh
-bind  = SHIFT , Q         , exec   , $myHyprScript/reset-submap.sh
-
-submap = reset
-#+end_src
-
-*** q quick-settings
-#+begin_src conf
-submap = quick-settings
-bindd  = , b , bluetooth            , exec , systemd-run --user -u btctl-toggle.service -- $myScript/btctl.sh toggle
-bindd  = , e , ethernet             , exec , $myScript/netctl.sh toggle ethernet
-bindd  = , h , bluetooth headphones , exec , systemd-run --user -u btctl-headphones.service -- $myScript/toggle-headphones.sh
-bindd  = , s , bluetooth speakers   , exec , systemd-run --user -u btctl-speakers.service -- $myScript/toggle-speakers.sh
-bindd  = , v , vpn                  , exec , $myScript/vpnctl.sh toggle
-bindd  = , w , wi-fi                , exec , $myScript/netctl.sh toggle wifi
-
-bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
-bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "M-t-" toggle
-bind  = , backspace , submap , toggle
-bind  = , b         , exec   , $myHyprScript/reset-submap.sh
-bind  = , e         , exec   , $myHyprScript/reset-submap.sh
-bind  = , h         , exec   , $myHyprScript/reset-submap.sh
-bind  = , s         , exec   , $myHyprScript/reset-submap.sh
-bind  = , v         , exec   , $myHyprScript/reset-submap.sh
-bind  = , w         , exec   , $myHyprScript/reset-submap.sh
-
-submap = reset
 #+end_src
 
 ** z dm-power
@@ -1486,14 +1424,71 @@ submap = reset
 ** t toggle
 #+begin_src conf
 submap = toggle
-bindd  = , d , window dimming , exec , $myHyprScript/toggle-dimming.sh 1
+bindd  = , b , window borders  , exec   , $myHyprScript/borderctl.sh $borders toggle
+bindd  = , c , rounded corners , exec   , $myHyprScript/toggle-corners.sh $corners
+bindd  = , d , window dimming  , exec   , $myHyprScript/toggle-dimming.sh 1
+bindd  = , g , window gaps     , exec   , $myHyprScript/gapctl.sh $gaps_inner toggle
+bind   = , p , exec            , $myEwwScript/which-key.sh -p "SPC t p-" panels
+bindd  = , p , +panels         , submap , panels
+bind   = , q , exec            , $myEwwScript/which-key.sh -p "SPC t q-" quick-settings
+bindd  = , q , +quick-settings , submap , quick-settings
+bindd  = , s , status bar      , exec   , $myHyprScript/toggle-status-bar.sh
+bindd  = , z , zen mode        , exec   , $myHyprScript/toggle-zen.sh $borders $corners $gaps_inner
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind  = , backspace , submap , leader
+bind  = , b         , exec   , $myHyprScript/reset-submap.sh
+bind  = , c         , exec   , $myHyprScript/reset-submap.sh
+bind  = , g         , exec   , $myHyprScript/reset-submap.sh
+bind  = , s         , exec   , $myHyprScript/reset-submap.sh
+bind  = , z         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
+
+*** p panels
+#+begin_src conf
+submap = panels
+bindd  =       , m , monitor panel                             , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor
+bindd  = SHIFT , M , monitor panel on secondary monitor        , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor
+bindd  =       , q , quick-settings panel                      , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings
+bindd  = SHIFT , Q , quick-settings panel on secondary monitor , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings
+
+bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  =       , backspace , exec   , $myEwwScript/which-key.sh -p "SPC t-" toggle
+bind  =       , backspace , submap , toggle
+bind  =       , m         , exec   , $myHyprScript/reset-submap.sh
+bind  = SHIFT , M         , exec   , $myHyprScript/reset-submap.sh
+bind  =       , q         , exec   , $myHyprScript/reset-submap.sh
+bind  = SHIFT , Q         , exec   , $myHyprScript/reset-submap.sh
+
+submap = reset
+#+end_src
+
+*** q quick-settings
+#+begin_src conf
+submap = quick-settings
+bindd  = , b , bluetooth            , exec , systemd-run --user -u btctl-toggle.service -- $myScript/btctl.sh toggle
+bindd  = , e , ethernet             , exec , $myScript/netctl.sh toggle ethernet
+bindd  = , h , bluetooth headphones , exec , systemd-run --user -u btctl-headphones.service -- $myScript/toggle-headphones.sh
+bindd  = , s , bluetooth speakers   , exec , systemd-run --user -u btctl-speakers.service -- $myScript/toggle-speakers.sh
+bindd  = , v , vpn                  , exec , $myScript/vpnctl.sh toggle
+bindd  = , w , wi-fi                , exec , $myScript/netctl.sh toggle wifi
+
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC t-" toggle
+bind  = , backspace , submap , toggle
+bind  = , b         , exec   , $myHyprScript/reset-submap.sh
+bind  = , e         , exec   , $myHyprScript/reset-submap.sh
+bind  = , h         , exec   , $myHyprScript/reset-submap.sh
+bind  = , s         , exec   , $myHyprScript/reset-submap.sh
+bind  = , v         , exec   , $myHyprScript/reset-submap.sh
+bind  = , w         , exec   , $myHyprScript/reset-submap.sh
+
+submap = reset
+#+end_src
+
 
 ** w window
 #+begin_src conf
