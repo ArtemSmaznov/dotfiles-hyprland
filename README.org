@@ -1402,6 +1402,7 @@ bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind  = , backspace , submap , leader
 bind  = , b         , exec   , $myHyprScript/reset-submap.sh
 bind  = , c         , exec   , $myHyprScript/reset-submap.sh
+bind  = , d         , exec   , $myHyprScript/reset-submap.sh
 bind  = , g         , exec   , $myHyprScript/reset-submap.sh
 bind  = , s         , exec   , $myHyprScript/reset-submap.sh
 bind  = , z         , exec   , $myHyprScript/reset-submap.sh
@@ -1450,7 +1451,6 @@ bind  = , w         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
-
 
 ** w window
 #+begin_src conf
