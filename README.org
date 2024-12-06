@@ -360,7 +360,7 @@ windowrulev2 = dimaround,title:$app_filter
 
 *** Lutris
 #+begin_src conf
-$app_filter = ^(lutris)$
+$app_filter = ^(net.lutris.Lutris)$
 windowrulev2 = group,class:$app_filter
 #+end_src
 
@@ -436,7 +436,7 @@ windowrule = workspace 7 silent,^(Cypress)$
 windowrule   = workspace 8 silent,^([Bb]attle.net)$
 windowrule   = workspace 8 silent,^([Ww]ine)$
 windowrule   = workspace 8 silent,^(dolphin-emu)$
-windowrule   = workspace 8 silent,^([Ll]utris)$
+windowrule   = workspace 8 silent,^(net.lutris.Lutris)$
 windowrule   = workspace 8 silent,^(Citra)$
 windowrule   = workspace 8 silent,^(SuperTuxKart)$
 #+end_src
