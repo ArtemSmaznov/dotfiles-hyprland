@@ -187,7 +187,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
-exec-once = uwsm app -S both -- eww open-many main-bar second-bar $quick-settings
+exec-once = uwsm app -S both -- eww open-many main-bar $quick-settings
 #+end_src
 
 * General
@@ -368,12 +368,6 @@ $app_filter = net.lutris.Lutris
 windowrulev2 = group,class:$app_filter
 #+end_src
 
-*** SysLog
-#+begin_src conf
-$app_filter = syslog
-windowrulev2 = fullscreen,class:$app_filter
-#+end_src
-
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
@@ -544,7 +538,7 @@ workspace = 3, persistent:true, monitor:DP-1
 workspace = 4, persistent:true, monitor:DP-1
 workspace = 5, persistent:true, monitor:DP-1
 workspace = 6, persistent:true, monitor:DP-1
-workspace = 7, persistent:false, monitor:DP-3, on-created-empty: $mySysLog
+workspace = 7, persistent:false, monitor:DP-3, default:true , on-created-empty: $mySysLog , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0
 workspace = 8, persistent:true, monitor:DP-1
 workspace = 9, persistent:true, monitor:DP-1
 # workspace = name:star, persistent:true, monitor:DP-1
