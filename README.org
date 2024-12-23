@@ -22,9 +22,18 @@
   - [[#floating-windows][Floating Windows]]
   - [[#maximized-windows][Maximized Windows]]
   - [[#idle-inhibit][Idle Inhibit]]
-  - [[#apps-1][Apps]]
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
+- [[#app-rules][App rules]]
+  - [[#mpv][MPV]]
+  - [[#steam][Steam]]
+  - [[#scrcpy][Scrcpy]]
+  - [[#okular][Okular]]
+  - [[#thunderbird][Thunderbird]]
+  - [[#scrcpy-1][Scrcpy]]
+  - [[#emacs][Emacs]]
+  - [[#lutris][Lutris]]
+  - [[#mini-visualizer][Mini visualizer]]
 - [[#workspace-rules][Workspace rules]]
 - [[#layer-rules][Layer rules]]
 - [[#decoration][Decoration]]
@@ -90,6 +99,7 @@ $myEwwScript     = $HOME/.config/eww/scripts
 $myTerm          = uwsm app -- alacritty
 $myCliFiles      = uwsm app -- alacritty -e vifmrun
 $myCliMusic      = alacritty --class ncmpcpp -e ncmpcpp
+$myVisualizer    = alacritty --class mini-visualizer -e cava
 $mySysLog        = alacritty --class syslog -e $myScript/syslog.sh
 $myCliText       = vim
 $myCliSysAudio   = alsamixer
@@ -188,6 +198,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
 exec-once = uwsm app -S both -- eww open-many main-bar $quick-settings
+exec-once = $myVisualizer
 #+end_src
 
 * General
@@ -280,92 +291,7 @@ windowrulev2 = idleinhibit focus,class:steam_app.*
 windowrulev2 = idleinhibit focus,class:vimiv
 windowrulev2 = idleinhibit focus,class:.*x86_64
 
-windowrulev2 = idleinhibit always,title:cava
-#+end_src
-
-** Apps
-*** MPV
-#+begin_src conf
-$app_filter = mpv
-
-# floating
-windowrulev2 = dimaround,class:$app_filter,floating:1
-windowrulev2 = keepaspectratio,class:$app_filter,floating:1
-windowrulev2 = stayfocused,class:$app_filter,floating:1
-windowrulev2 = center,class:$app_filter,floating:1
-
-# tiled
-windowrulev2 = pseudo,class:$app_filter,floating:0
-
-# initial state
-windowrule = float,$app_filter
-#+end_src
-
-*** Steam
-#+begin_src conf
-windowrule   = workspace 8 silent,[Ss]team
-
-# steam updater floating window
-windowrulev2 = workspace 8 silent,title:Steam,floating:1
-windowrulev2 = nofocus,title:Steam,floating:1
-
-# fix workspace switches for games
-windowrulev2 = tag +game,class:steam_app
-windowrulev2 = renderunfocused,tag:game
-
-# float dialogs and stuff
-windowrulev2 = float,title:SteamTinkerLaunch
-#+end_src
-
-*** Scrcpy
-#+begin_src conf
-windowrule = tile,[Ss]crcpy
-#+end_src
-
-*** Okular
-#+begin_src conf
-$app_filter = org.kde.okular
-
-# floating
-windowrulev2 = keepaspectratio,class:$app_filter,floating:1
-windowrulev2 = stayfocused,class:$app_filter,floating:1
-windowrulev2 = center,class:$app_filter,floating:1
-
-# initial state
-windowrule = float,$app_filter
-#+end_src
-
-*** Thunderbird
-#+begin_src conf
-$app_filter = thunderbird,title:.*Filters.*
-
-# float dialogs and stuff
-windowrulev2 = float,$app_filter
-windowrulev2 = size: 100 70%,$app_filter
-windowrulev2 = move: 30% 15%,$app_filter
-#+end_src
-
-*** Scrcpy
-#+begin_src conf
-$app_filter = scrcpy
-
-# float dialogs and stuff
-windowrulev2 = float,class:$app_filter
-#+end_src
-
-*** Emacs
-#+begin_src conf
-$app_filter = \*Org Src .* Doom Emacs # org-edit-special window
-windowrulev2 = float,title:$app_filter
-windowrulev2 = center,title:$app_filter
-windowrulev2 = size 60% 80%,title:$app_filter
-windowrulev2 = dimaround,title:$app_filter
-#+end_src
-
-*** Lutris
-#+begin_src conf
-$app_filter = net.lutris.Lutris
-windowrulev2 = group,class:$app_filter
+windowrulev2 = idleinhibit always,class:Alacritty,title:cava
 #+end_src
 
 ** Workspaces
@@ -527,6 +453,100 @@ windowrule = unset,$scratchpad
 windowrule = float,$scratchpad
 windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
+#+end_src
+
+* App rules
+** MPV
+#+begin_src conf
+$app_filter = mpv
+
+# floating
+windowrulev2 = dimaround,class:$app_filter,floating:1
+windowrulev2 = keepaspectratio,class:$app_filter,floating:1
+windowrulev2 = stayfocused,class:$app_filter,floating:1
+windowrulev2 = center,class:$app_filter,floating:1
+
+# tiled
+windowrulev2 = pseudo,class:$app_filter,floating:0
+
+# initial state
+windowrule = float,$app_filter
+#+end_src
+
+** Steam
+#+begin_src conf
+windowrule   = workspace 8 silent,[Ss]team
+
+# steam updater floating window
+windowrulev2 = workspace 8 silent,title:Steam,floating:1
+windowrulev2 = nofocus,title:Steam,floating:1
+
+# fix workspace switches for games
+windowrulev2 = tag +game,class:steam_app
+windowrulev2 = renderunfocused,tag:game
+
+# float dialogs and stuff
+windowrulev2 = float,title:SteamTinkerLaunch
+#+end_src
+
+** Scrcpy
+#+begin_src conf
+windowrule = tile,[Ss]crcpy
+#+end_src
+
+** Okular
+#+begin_src conf
+$app_filter = org.kde.okular
+
+# floating
+windowrulev2 = keepaspectratio,class:$app_filter,floating:1
+windowrulev2 = stayfocused,class:$app_filter,floating:1
+windowrulev2 = center,class:$app_filter,floating:1
+
+# initial state
+windowrule = float,$app_filter
+#+end_src
+
+** Thunderbird
+#+begin_src conf
+$app_filter = thunderbird,title:.*Filters.*
+
+# float dialogs and stuff
+windowrulev2 = float,$app_filter
+windowrulev2 = size: 100 70%,$app_filter
+windowrulev2 = move: 30% 15%,$app_filter
+#+end_src
+
+** Scrcpy
+#+begin_src conf
+$app_filter = scrcpy
+
+# float dialogs and stuff
+windowrulev2 = float,class:$app_filter
+#+end_src
+
+** Emacs
+#+begin_src conf
+$app_filter = \*Org Src .* Doom Emacs # org-edit-special window
+windowrulev2 = float,title:$app_filter
+windowrulev2 = center,title:$app_filter
+windowrulev2 = size 60% 80%,title:$app_filter
+windowrulev2 = dimaround,title:$app_filter
+#+end_src
+
+** Lutris
+#+begin_src conf
+$app_filter = net.lutris.Lutris
+windowrulev2 = group,class:$app_filter
+#+end_src
+
+** Mini visualizer
+#+begin_src conf
+$app_filter = class:mini-visualizer
+windowrulev2 = float                               , $app_filter
+windowrulev2 = move $gaps_outer 100%-w-$gaps_outer , $app_filter
+windowrulev2 = size 17% 300                        , $app_filter
+windowrulev2 = pin                                 , $app_filter
 #+end_src
 
 * Workspace rules
@@ -857,6 +877,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
 Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 ** System
 #+begin_src conf
+bindd = SUPER CTRL , d     , debug            , exec                , $myVisualizer
 bindd = SUPER CTRL , q     , quit hyprland    , exec                , uwsm stop
 bindd = SUPER CTRL , r     , restart hyprland , forcerendererreload ,
 bindd = SHIFT      , ALT_L , switch language  , exec                , $myScript/toggle-lang.sh
