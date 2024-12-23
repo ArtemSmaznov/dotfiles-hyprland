@@ -276,9 +276,9 @@ windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 ** Idle Inhibit
 Games
 #+begin_src conf
-windowrulev2 = idleinhibit focus,class:^steam_app
-windowrulev2 = idleinhibit focus,class:^vimiv$
-windowrulev2 = idleinhibit focus,class:x86_64$
+windowrulev2 = idleinhibit focus,class:steam_app.*
+windowrulev2 = idleinhibit focus,class:vimiv
+windowrulev2 = idleinhibit focus,class:.*x86_64
 
 windowrulev2 = idleinhibit always,title:cava
 #+end_src
@@ -286,7 +286,7 @@ windowrulev2 = idleinhibit always,title:cava
 ** Apps
 *** MPV
 #+begin_src conf
-$app_filter = ^(mpv)$
+$app_filter = mpv
 
 # floating
 windowrulev2 = dimaround,class:$app_filter,floating:1
@@ -303,27 +303,28 @@ windowrule = float,$app_filter
 
 *** Steam
 #+begin_src conf
-windowrule   = workspace 8 silent,^([Ss]team)$
+windowrule   = workspace 8 silent,[Ss]team
 
 # steam updater floating window
-windowrulev2 = workspace 8 silent,title:^(Steam)$,floating:1
-windowrulev2 = nofocus,title:^(Steam)$,floating:1
+windowrulev2 = workspace 8 silent,title:Steam,floating:1
+windowrulev2 = nofocus,title:Steam,floating:1
 
 # fix workspace switches for games
-windowrulev2 = tag +game,class:^(steam_app)
+windowrulev2 = tag +game,class:steam_app
 windowrulev2 = renderunfocused,tag:game
 
 # float dialogs and stuff
-windowrulev2 = float,title:^(SteamTinkerLaunch)
+windowrulev2 = float,title:SteamTinkerLaunch
 #+end_src
 
 *** Scrcpy
 #+begin_src conf
-windowrule = tile,^([Ss]crcpy)$
+windowrule = tile,[Ss]crcpy
 #+end_src
+
 *** Okular
 #+begin_src conf
-$app_filter = ^(org.kde.okular)$
+$app_filter = org.kde.okular
 
 # floating
 windowrulev2 = keepaspectratio,class:$app_filter,floating:1
@@ -336,17 +337,17 @@ windowrule = float,$app_filter
 
 *** Thunderbird
 #+begin_src conf
-$app_filter = ^(thunderbird)$
+$app_filter = thunderbird,title:.*Filters.*
 
 # float dialogs and stuff
-windowrulev2 = float,$app_filter,title:Filters
-windowrulev2 = size: 100 70%,$app_filter,title:Filters
-windowrulev2 = move: 30% 15%,$app_filter,title:Filters
+windowrulev2 = float,$app_filter
+windowrulev2 = size: 100 70%,$app_filter
+windowrulev2 = move: 30% 15%,$app_filter
 #+end_src
 
 *** Scrcpy
 #+begin_src conf
-$app_filter = ^(scrcpy)$
+$app_filter = scrcpy
 
 # float dialogs and stuff
 windowrulev2 = float,class:$app_filter
@@ -354,7 +355,7 @@ windowrulev2 = float,class:$app_filter
 
 *** Emacs
 #+begin_src conf
-$app_filter = ^(\*Org Src .* Doom Emacs)$ # org-edit-special window
+$app_filter = \*Org Src .* Doom Emacs # org-edit-special window
 windowrulev2 = float,title:$app_filter
 windowrulev2 = center,title:$app_filter
 windowrulev2 = size 60% 80%,title:$app_filter
@@ -363,102 +364,102 @@ windowrulev2 = dimaround,title:$app_filter
 
 *** Lutris
 #+begin_src conf
-$app_filter = ^(net.lutris.Lutris)$
+$app_filter = net.lutris.Lutris
 windowrulev2 = group,class:$app_filter
 #+end_src
 
 *** SysLog
 #+begin_src conf
-$app_filter = ^(syslog)$
+$app_filter = syslog
 windowrulev2 = fullscreen,class:$app_filter
 #+end_src
 
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
-# windowrule = workspace 1 silent,^(firefox)$
-# windowrule = workspace 1 silent,^(Tor Browser)$
-# windowrule = workspace 1 silent,^(Chromium)$
-# windowrule = workspace 1 silent,^(Google-chrome)$
-# windowrule = workspace 1 silent,^(Brave-browser)$
-# windowrule = workspace 1 silent,^(vivaldi-stable)$
-# windowrule = workspace 1 silent,^(org.qutebrowser.qutebrowser)$
-# windowrule = workspace 1 silent,^(nyxt)$
+# windowrule = workspace 1 silent,firefox
+# windowrule = workspace 1 silent,Tor Browser
+# windowrule = workspace 1 silent,Chromium
+# windowrule = workspace 1 silent,Google-chrome
+# windowrule = workspace 1 silent,Brave-browser
+# windowrule = workspace 1 silent,vivaldi-stable
+# windowrule = workspace 1 silent,org.qutebrowser.qutebrowser
+# windowrule = workspace 1 silent,nyxt
 #+end_src
 
 *** Workspace 2 - Mail
 #+begin_src conf
-windowrule = workspace 2 silent,^(thunderbird)$
+windowrule = workspace 2 silent,thunderbird
 #+end_src
 
 *** Workspace 3 - Coding
 #+begin_src conf
-windowrule = workspace 3 silent,^([Ee]macs)$
-windowrule = workspace 3 silent,^(Geany)$
-windowrule = workspace 3 silent,^(Atom)$
-windowrule = workspace 3 silent,^(Subl3)$
-windowrule = workspace 3 silent,^(code-oss)$
-windowrule = workspace 3 silent,^(Oomox)$
-windowrule = workspace 3 silent,^(Unity)$
-windowrule = workspace 3 silent,^(UnityHub)$
-windowrule = workspace 3 silent,^(jetbrains-studio)$
+windowrule = workspace 3 silent,[Ee]macs
+windowrule = workspace 3 silent,Geany
+windowrule = workspace 3 silent,Atom
+windowrule = workspace 3 silent,Subl3
+windowrule = workspace 3 silent,code-oss
+windowrule = workspace 3 silent,Oomox
+windowrule = workspace 3 silent,Unity
+windowrule = workspace 3 silent,UnityHub
+windowrule = workspace 3 silent,jetbrains-studio
 #+end_src
 
 *** Workspace 4 - Computer
 #+begin_src conf
-windowrule = workspace 4 silent,^(dolphin)$
-windowrule = workspace 4 silent,^(ark)$
-windowrule = workspace 4 silent,^(File-roller)$
-windowrule = workspace 4 silent,^(googledocs)$
-windowrule = workspace 4 silent,^(keep)$
-windowrule = workspace 4 silent,^(calendar)$
+windowrule = workspace 4 silent,dolphin
+windowrule = workspace 4 silent,ark
+windowrule = workspace 4 silent,File-roller
+windowrule = workspace 4 silent,googledocs
+windowrule = workspace 4 silent,keep
+windowrule = workspace 4 silent,calendar
 #+end_src
 
 *** Workspace 5 - Chat
 #+begin_src conf
-# windowrule   = workspace 5 silent,^(whatsapp-for-linux)$
-# windowrule   = workspace 5 silent,^(Slack)$
-# windowrule   = workspace 5 silent,^(discord)$
-# windowrule   = workspace 5 silent,^(signal)$
-# windowrulev2 = workspace 5 silent,class:^([Ss]team)$,title:^(Friends List)$
+# windowrule   = workspace 5 silent,whatsapp-for-linux
+# windowrule   = workspace 5 silent,Slack
+# windowrule   = workspace 5 silent,discord
+# windowrule   = workspace 5 silent,signal
+# windowrulev2 = workspace 5 silent,class:[Ss]team,title:Friends List.*
 #+end_src
 
 *** Workspace 6 - Graphics
 #+begin_src conf
-windowrule = workspace 6 silent,^([Gg]imp)$
-windowrule = workspace 6 silent,^(Inkscape)$
-windowrule = workspace 6 silent,^(Flowblade)$
-windowrule = workspace 6 silent,^(org.kde.digikam)$
-windowrule = workspace 6 silent,^(obs)$
-windowrule = workspace 6 silent,^(kdenlive)$
+windowrule = workspace 6 silent,[Gg]imp
+windowrule = workspace 6 silent,Inkscape
+windowrule = workspace 6 silent,Flowblade
+windowrule = workspace 6 silent,org.kde.digikam
+windowrule = workspace 6 silent,obs
+windowrule = workspace 6 silent,kdenlive
 #+end_src
 
 *** Workspace 7 - Sandbox
 #+begin_src conf
-windowrule = workspace 7 silent,^(Virt-manager)$
-windowrule = workspace 7 silent,^VirtualBox
-windowrule = workspace 7 silent,^(Cypress)$
+windowrule = workspace 7 silent,Virt-manager
+windowrule = workspace 7 silent,VirtualBox
+windowrule = workspace 7 silent,Cypress
 #+end_src
 
 *** Workspace 8 - Gaming
 #+begin_src conf
-windowrule   = workspace 8 silent,^([Bb]attle.net)$
-windowrule   = workspace 8 silent,^([Ww]ine)$
-windowrule   = workspace 8 silent,^(dolphin-emu)$
-windowrule   = workspace 8 silent,^(net.lutris.Lutris)$
-windowrule   = workspace 8 silent,^(Citra)$
-windowrule   = workspace 8 silent,^(SuperTuxKart)$
+windowrule   = workspace 8 silent,[Bb]attle.net
+windowrule   = workspace 8 silent,[Ww]ine
+windowrule   = workspace 8 silent,dolphin-emu
+windowrule   = workspace 8 silent,net.lutris.Lutris
+windowrule   = workspace 8 silent,Citra
+windowrule   = workspace 8 silent,SuperTuxKart
 #+end_src
 
 *** Workspace 9 - Music
 #+begin_src conf
-windowrule = workspace 9 silent,^(Spotify)$
+windowrule = workspace 9 silent,Spotify
 #+end_src
 
 ** Scratchpads
 *** Terminal
 #+begin_src conf
-# $app_filter = ^(sp-term)$
+# $app_filter = sp-term
 # $workspace = sp-term
 # #---------------------------------------------------
 # windowrule = unset,$app_filter
@@ -470,7 +471,7 @@ windowrule = workspace 9 silent,^(Spotify)$
 
 *** Files
 #+begin_src conf
-# $scratchpad = ^(sp-files)$
+# $scratchpad = sp-files
 # #---------------------------------------------------
 # windowrule = unset,$scratchpad
 # # windowrule = workspace special silent,$scratchpad
@@ -481,7 +482,7 @@ windowrule = workspace 9 silent,^(Spotify)$
 
 *** Torrent
 #+begin_src conf
-$scratchpad = ^(com.transmissionbt.transmission*)
+$scratchpad = com.transmissionbt.transmission*
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
@@ -492,7 +493,7 @@ windowrule = center,$scratchpad
 
 *** Anki
 #+begin_src conf
-$scratchpad = ^(anki)$
+$scratchpad = anki
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 windowrule = float,$scratchpad
@@ -503,7 +504,7 @@ windowrule = dimaround,$scratchpad
 
 *** VM
 #+begin_src conf
-$scratchpad = ^(virt-manager)$
+$scratchpad = virt-manager
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 windowrule = workspace special:vm silent,$scratchpad
@@ -514,7 +515,7 @@ windowrule = move 10% 10%,$scratchpad
 
 *** Htop
 #+begin_src conf
-$scratchpad = ^(sp-htop)$
+$scratchpad = sp-htop
 #---------------------------------------------------
 # windowrule = float,$scratchpad
 # windowrule = size 80% 80%,$scratchpad
@@ -525,7 +526,7 @@ windowrule = dimaround,$scratchpad
 
 *** Calculator
 #+begin_src conf
-$scratchpad = ^(org.gnome.Calculator)$
+$scratchpad = org.gnome.Calculator
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
