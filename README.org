@@ -198,7 +198,6 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
 exec-once = uwsm app -S both -- eww open-many main-bar $quick-settings
-exec-once = $myVisualizer
 #+end_src
 
 * General
@@ -291,7 +290,7 @@ windowrulev2 = idleinhibit focus,class:steam_app.*
 windowrulev2 = idleinhibit focus,class:vimiv
 windowrulev2 = idleinhibit focus,class:.*x86_64
 
-windowrulev2 = idleinhibit always,class:Alacritty,title:cava
+windowrulev2 = idleinhibit always,title:cava
 #+end_src
 
 ** Workspaces
@@ -543,6 +542,7 @@ windowrulev2 = group,class:$app_filter
 ** Mini visualizer
 #+begin_src conf
 $app_filter = class:mini-visualizer
+windowrulev2 = noinitialfocus                      , $app_filter
 windowrulev2 = float                               , $app_filter
 windowrulev2 = move $gaps_outer 100%-w-$gaps_outer , $app_filter
 windowrulev2 = size 17% 300                        , $app_filter
