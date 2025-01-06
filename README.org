@@ -353,26 +353,25 @@ windowrule = workspace 6 silent,obs
 windowrule = workspace 6 silent,kdenlive
 #+end_src
 
-*** Workspace 7 - Sandbox
+*** Workspace 7 - Gaming
 #+begin_src conf
-windowrule = workspace 7 silent,Virt-manager
-windowrule = workspace 7 silent,VirtualBox
-windowrule = workspace 7 silent,Cypress
+windowrule   = workspace 7 silent,[Bb]attle.net
+windowrule   = workspace 7 silent,[Ww]ine
+windowrule   = workspace 7 silent,dolphin-emu
+windowrule   = workspace 7 silent,Citra
+windowrule   = workspace 7 silent,SuperTuxKart
 #+end_src
 
-*** Workspace 8 - Gaming
+*** Workspace 8 - Music
 #+begin_src conf
-windowrule   = workspace 8 silent,[Bb]attle.net
-windowrule   = workspace 8 silent,[Ww]ine
-windowrule   = workspace 8 silent,dolphin-emu
-windowrule   = workspace 8 silent,net.lutris.Lutris
-windowrule   = workspace 8 silent,Citra
-windowrule   = workspace 8 silent,SuperTuxKart
+windowrule = workspace 8 silent,Spotify
 #+end_src
 
-*** Workspace 9 - Music
+*** Workspace 9 - Sandbox
 #+begin_src conf
-windowrule = workspace 9 silent,Spotify
+windowrule = workspace 9 silent,Virt-manager
+windowrule = workspace 9 silent,VirtualBox
+windowrule = workspace 9 silent,Cypress
 #+end_src
 
 ** Scratchpads
@@ -474,10 +473,10 @@ windowrule = float,$app_filter
 
 ** Steam
 #+begin_src conf
-windowrule   = workspace 8 silent,[Ss]team
+windowrule = workspace 7 silent,[Ss]team
 
 # steam updater floating window
-windowrulev2 = workspace 8 silent,title:Steam,floating:1
+windowrulev2 = workspace 7 silent,title:Steam,floating:1
 windowrulev2 = nofocus,title:Steam,floating:1
 
 # fix workspace switches for games
@@ -535,6 +534,8 @@ windowrulev2 = dimaround,title:$app_filter
 
 ** Lutris
 #+begin_src conf
+windowrule   = workspace 7 silent,net.lutris.Lutris
+
 $app_filter = net.lutris.Lutris
 windowrulev2 = group,class:$app_filter
 #+end_src
@@ -551,17 +552,17 @@ windowrulev2 = pin                                 , $app_filter
 
 * Workspace rules
 Workspaces
+e.g. workspace = name:star , persistent:true , monitor:DP-1
 #+begin_src conf
-workspace = 1, persistent:true, monitor:DP-1, default:true
-workspace = 2, persistent:true, monitor:DP-1
-workspace = 3, persistent:true, monitor:DP-1
-workspace = 4, persistent:true, monitor:DP-1
-workspace = 5, persistent:true, monitor:DP-1
-workspace = 6, persistent:true, monitor:DP-1
-workspace = 7, persistent:false, monitor:DP-3, default:true , on-created-empty: $mySysLog , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0
-workspace = 8, persistent:true, monitor:DP-1
-workspace = 9, persistent:true, monitor:DP-1
-# workspace = name:star, persistent:true, monitor:DP-1
+workspace = 1 , persistent:true  , monitor:DP-1 , default:true
+workspace = 2 , persistent:true  , monitor:DP-1
+workspace = 3 , persistent:true  , monitor:DP-1
+workspace = 4 , persistent:true  , monitor:DP-1
+workspace = 5 , persistent:true  , monitor:DP-1
+workspace = 6 , persistent:true  , monitor:DP-1
+workspace = 7 , persistent:true  , monitor:DP-1
+workspace = 8 , persistent:true  , monitor:DP-1
+workspace = 9 , persistent:false , monitor:DP-3 , default:true , on-created-empty: $mySysLog , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0
 #+end_src
 
 Special Workspaces
