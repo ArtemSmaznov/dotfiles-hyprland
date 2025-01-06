@@ -353,18 +353,18 @@ windowrule = workspace 6 silent,obs
 windowrule = workspace 6 silent,kdenlive
 #+end_src
 
-*** Workspace 7 - Gaming
+*** Workspace 7 - Music
 #+begin_src conf
-windowrule   = workspace 7 silent,[Bb]attle.net
-windowrule   = workspace 7 silent,[Ww]ine
-windowrule   = workspace 7 silent,dolphin-emu
-windowrule   = workspace 7 silent,Citra
-windowrule   = workspace 7 silent,SuperTuxKart
+windowrule = workspace 7 silent,Spotify
 #+end_src
 
-*** Workspace 8 - Music
+*** Workspace 8 - Gaming
 #+begin_src conf
-windowrule = workspace 8 silent,Spotify
+windowrule   = workspace 8 silent,[Bb]attle.net
+windowrule   = workspace 8 silent,[Ww]ine
+windowrule   = workspace 8 silent,dolphin-emu
+windowrule   = workspace 8 silent,Citra
+windowrule   = workspace 8 silent,SuperTuxKart
 #+end_src
 
 *** Workspace 9 - Sandbox
@@ -473,10 +473,10 @@ windowrule = float,$app_filter
 
 ** Steam
 #+begin_src conf
-windowrule = workspace 7 silent,[Ss]team
+windowrule = workspace 8 silent,[Ss]team
 
 # steam updater floating window
-windowrulev2 = workspace 7 silent,title:Steam,floating:1
+windowrulev2 = workspace 8 silent,title:Steam,floating:1
 windowrulev2 = nofocus,title:Steam,floating:1
 
 # fix workspace switches for games
@@ -534,7 +534,7 @@ windowrulev2 = dimaround,title:$app_filter
 
 ** Lutris
 #+begin_src conf
-windowrule   = workspace 7 silent,net.lutris.Lutris
+windowrule   = workspace 8 silent,net.lutris.Lutris
 
 $app_filter = net.lutris.Lutris
 windowrulev2 = group,class:$app_filter
