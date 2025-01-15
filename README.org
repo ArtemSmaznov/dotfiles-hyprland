@@ -537,7 +537,6 @@ windowrulev2 = dimaround,title:$app_filter
 windowrule   = workspace 8 silent,net.lutris.Lutris
 
 $app_filter = net.lutris.Lutris
-windowrulev2 = group,class:$app_filter
 #+end_src
 
 ** Mini visualizer
