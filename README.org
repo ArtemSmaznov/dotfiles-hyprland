@@ -73,6 +73,7 @@
   - [[#w-window][w window]]
   - [[#w-workspace][W workspace]]
 - [[#mouse-bindings][Mouse bindings]]
+- [[#experimental][Experimental]]
 - [[#debug][Debug]]
 
 * Dependencies
@@ -222,6 +223,7 @@ general {
     resize_on_border = true     # enables resizing windows by clicking and dragging on borders and gaps
 
     layout = dwindle
+
 }
 #+end_src
 
@@ -1557,6 +1559,16 @@ bindm = SUPER , mouse:273 , resizewindow
 # bindm = , mouse:133 , movewindow
 #+end_src
 
+* Experimental
+https://wiki.hyprland.org/Configuring/Variables/#experimental
+#+begin_src conf
+# experimental {
+#     wide_color_gamut = false
+#     hdr = false
+#     xx_color_management_v4 = false
+# }
+#+end_src
+
 * Debug
 #+begin_src conf
 debug {
@@ -1573,3 +1585,4 @@ debug {
     # error_limit = 5              # limits the number of displayed config file parsing errors.	int	5
 }
 #+end_src
+
