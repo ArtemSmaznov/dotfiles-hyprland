@@ -30,7 +30,6 @@
   - [[#scrcpy][Scrcpy]]
   - [[#okular][Okular]]
   - [[#thunderbird][Thunderbird]]
-  - [[#scrcpy-1][Scrcpy]]
   - [[#emacs][Emacs]]
   - [[#lutris][Lutris]]
   - [[#mini-visualizer][Mini visualizer]]
@@ -491,7 +490,11 @@ windowrulev2 = float,title:SteamTinkerLaunch
 
 ** Scrcpy
 #+begin_src conf
-windowrule = tile,[Ss]crcpy
+$app_filter = [Ss]crcpy
+windowrulev2 = tile,class:$app_filter
+windowrulev2 = pseudo,class:$app_filter
+windowrulev2 = keepaspectratio,class:$app_filter
+windowrulev2 = opacity override 0.7,class:$app_filter
 #+end_src
 
 ** Okular
@@ -515,14 +518,6 @@ $app_filter = thunderbird,title:.*Filters.*
 windowrulev2 = float,$app_filter
 windowrulev2 = size: 100 70%,$app_filter
 windowrulev2 = move: 30% 15%,$app_filter
-#+end_src
-
-** Scrcpy
-#+begin_src conf
-$app_filter = scrcpy
-
-# float dialogs and stuff
-windowrulev2 = float,class:$app_filter
 #+end_src
 
 ** Emacs
