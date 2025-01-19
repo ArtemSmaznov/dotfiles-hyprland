@@ -495,6 +495,7 @@ windowrulev2 = tile,class:$app_filter
 windowrulev2 = pseudo,class:$app_filter
 windowrulev2 = keepaspectratio,class:$app_filter
 windowrulev2 = opacity override 0.7,class:$app_filter
+windowrulev2 = noborder,class:$app_filter
 #+end_src
 
 ** Okular
@@ -563,18 +564,19 @@ workspace = 9 , persistent:false , monitor:DP-3 , default:true , on-created-empt
 
 Special Workspaces
 #+begin_src conf
-workspace = special:term       , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:files      , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:music      , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:email      , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:chats      , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:audio      , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:torrent    , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:anki       , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:vm         , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:calculator , bordersize:$borders_special , gapsin:50 , gapsout:125
-workspace = special:htop       , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:audio      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:btop       , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:calculator , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:chats      , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:email      , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:files      , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:htop       , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:music      , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:phone      , bordersize:$borders_special , gapsin:50 , gapsout:20
+workspace = special:term       , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:torrent    , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:vm         , bordersize:$borders_special , gapsin:50 , gapsout:125
 #+end_src
 
 Native Scratchpad
@@ -1263,6 +1265,7 @@ bindd  = , c , calculator   , exec , $myHyprScript/toggle-special-workspace.sh "
 bindd  = , d , discord      , exec , $myHyprScript/toggle-special-workspace.sh "chats"       $myDiscordClass                    $myDiscord
 bindd  = , e , email client , exec , $myHyprScript/toggle-special-workspace.sh "email"       $myEmailClass                      $myEmail
 bindd  = , m , music player , exec , $myHyprScript/toggle-special-workspace.sh "music"       "sp-music"                         "alacritty --class sp-music -e ncmpcpp"
+bindd  = , p , phone        , exec , $myHyprScript/toggle-special-workspace.sh "phone"       "scrcpy"                           "scrcpy"
 bindd  = , t , torrent      , exec , $myHyprScript/toggle-special-workspace.sh "torrent"     "com.transmissionbt.transmission"  "transmission-gtk"
 bindd  = , v , vm           , exec , $myHyprScript/toggle-special-workspace.sh "vm"          "virt-manager"                     "virt-manager"
 bindd  = , w , whatsapp     , exec , $myHyprScript/toggle-special-workspace.sh "chats"       "whatsapp-for-linux"               "whatsapp-for-linux"
@@ -1273,6 +1276,7 @@ bind  = , c        , exec , $myHyprScript/reset-submap.sh
 bind  = , d        , exec , $myHyprScript/reset-submap.sh
 bind  = , e        , exec , $myHyprScript/reset-submap.sh
 bind  = , m        , exec , $myHyprScript/reset-submap.sh
+bind  = , p        , exec , $myHyprScript/reset-submap.sh
 bind  = , t        , exec , $myHyprScript/reset-submap.sh
 bind  = , v        , exec , $myHyprScript/reset-submap.sh
 bind  = , w        , exec , $myHyprScript/reset-submap.sh
