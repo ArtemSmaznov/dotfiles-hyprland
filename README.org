@@ -1100,14 +1100,16 @@ bindld = , XF86AudioMute        , toggle mute            , exec , $myScript/togg
 
 Player audio
 #+begin_src conf
-binddl = CTRL , XF86AudioRaiseVolume , player increase volume , exec , $myScript/playerctl.sh vol-up
-binddl = CTRL , XF86AudioLowerVolume , player decrease volume , exec , $myScript/playerctl.sh vol-down
-binddl =      , XF86AudioPrev        , player prev            , exec , $myScript/playerctl.sh prev
-binddl =      , XF86AudioNext        , player next            , exec , $myScript/playerctl.sh next
-binddl =      , XF86AudioPlay        , player play/pause      , exec , $myScript/playerctl.sh toggle
-binddl =      , XF86AudioStop        , player stop            , exec , $myScript/playerctl.sh stop
-binddl = CTRL , XF86AudioPlay        , music [s] single mode  , exec , $myScript/musictl.sh single
-binddl = CTRL , XF86AudioStop        , music [z] shuffle mode , exec , $myScript/musictl.sh random
+binddl =      , XF86AudioPlay        , player play/pause                , exec , $myScript/playerctl.sh toggle
+binddl =      , XF86AudioStop        , player stop                      , exec , $myScript/playerctl.sh stop
+binddl =      , XF86AudioPrev        , player prev                      , exec , $myScript/playerctl.sh prev
+binddl =      , XF86AudioNext        , player next                      , exec , $myScript/playerctl.sh next
+binddl = CTRL , XF86AudioPlay        , music [s] single mode            , exec , $myScript/musictl.sh single
+binddl = CTRL , XF86AudioStop        , music [z] shuffle mode           , exec , $myScript/musictl.sh random
+binddl = CTRL , XF86AudioPrev        , replay track from the beginning  , exec , $myScript/musictl.sh replay
+binddl = CTRL , XF86AudioNext        , skip track and remove from queue , exec , $myScript/musictl.sh skip
+binddl = CTRL , XF86AudioRaiseVolume , player increase volume           , exec , $myScript/playerctl.sh vol-up
+binddl = CTRL , XF86AudioLowerVolume , player decrease volume           , exec , $myScript/playerctl.sh vol-down
 #+end_src
 
 ** print screen
