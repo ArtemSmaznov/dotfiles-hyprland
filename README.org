@@ -1569,11 +1569,11 @@ bindm = SUPER , mouse:273 , resizewindow
 * Experimental
 https://wiki.hyprland.org/Configuring/Variables/#experimental
 #+begin_src conf
-# experimental {
-#     wide_color_gamut = false
-#     hdr = false
-#     xx_color_management_v4 = false
-# }
+experimental {
+    wide_color_gamut = false
+    hdr = false
+    xx_color_management_v4 = true
+}
 #+end_src
 
 * Debug
