@@ -882,6 +882,12 @@ bindd = SUPER CTRL , r     , restart hyprland , forcerendererreload ,
 bindd = SHIFT      , ALT_L , switch language  , exec                , $myScript/toggle-lang.sh
 #+end_src
 
+*** TODO master escape
+make it close all special workspaces. custom script needed
+#+begin_src conf
+bindd = SUPER , escape , !!! super escape !!! , exec , echo !!! SUPER ESCAPE !!!
+#+end_src
+
 ** Windows
 States
 #+begin_src conf
