@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
+# options ----------------------------------------------------------------------
 default_value=$1
 action="$2"
 step="$3"
 
+# variables ====================================================================
 option="general:gaps_in"
 option2="general:gaps_out"
 type="custom type"
 
+# functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function setValue() {
-    current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
+    current_value=$(
+        hyprctl getoption "$option" |
+            grep "$type" |
+            awk '{print $NF}' |
+            tr -d '"'
+    )
 
     case "$1" in
     reset) value=$default_value ;;
@@ -27,7 +35,9 @@ function setValue() {
     esac
 }
 
+# setup ________________________________________________________________________
 setValue "$action"
 
+# execution ********************************************************************
 hyprctl keyword "$option" "$value"
 hyprctl keyword "$option2" $((value * 2))

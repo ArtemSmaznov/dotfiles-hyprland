@@ -8,9 +8,24 @@ default_gaps="$3"
 [ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 
 # variables ====================================================================
-borders=$(hyprctl getoption general:border_size | grep int | awk '{print $NF}' | tr -d '"')
-corners=$(hyprctl getoption decoration:rounding | grep int | awk '{print $NF}' | tr -d '"')
-gaps=$(hyprctl getoption general:gaps_in | grep type | awk '{print $NF}' | tr -d '"')
+borders=$(
+    hyprctl getoption general:border_size |
+        grep int |
+        awk '{print $NF}' |
+        tr -d '"'
+)
+corners=$(
+    hyprctl getoption decoration:rounding |
+        grep int |
+        awk '{print $NF}' |
+        tr -d '"'
+)
+gaps=$(
+    hyprctl getoption general:gaps_in |
+        grep type |
+        awk '{print $NF}' |
+        tr -d '"'
+)
 
 # setup ________________________________________________________________________
 if [[ $borders = 0 && $corners = 0 && $gaps = 0 ]]; then

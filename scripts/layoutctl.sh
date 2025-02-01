@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
+# options ----------------------------------------------------------------------
 action="$1"
 layout="$2"
 
+# variables ====================================================================
 option="general:layout"
 type="str"
 
+# functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function setValue() {
-    current_value=$(hyprctl getoption "$option" | grep "$type" | awk '{print $NF}' | tr -d '"')
+    current_value=$(
+        hyprctl getoption "$option" |
+            grep "$type" |
+            awk '{print $NF}' |
+            tr -d '"'
+    )
 
     case "$1" in
     toggle) [ "$current_value" = "dwindle" ] && value="master" || value="dwindle" ;;
@@ -18,6 +26,8 @@ function setValue() {
     esac
 }
 
+# setup ________________________________________________________________________
 setValue "$action"
 
+# execution ********************************************************************
 hyprctl keyword "$option" "$value"

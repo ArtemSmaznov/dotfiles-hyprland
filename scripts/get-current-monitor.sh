@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-[ $1 ] && param=$1 || param=name
+# options ----------------------------------------------------------------------
+[ "$1" ] && param=$1 || param=name
 
-hyprctl monitors -j | jq -r ".[] | select(.focused) | .$param"
+# execution ********************************************************************
+hyprctl monitors -j |
+    jq -r ".[] |
+        select(.focused) |
+        .$param "
