@@ -597,6 +597,7 @@ Native Scratchpad
 |     0 | background |
 |-------+------------|
 
+status bars
 #+begin_src conf
 layerrule = blur, waybar
 #+end_src
@@ -629,6 +630,12 @@ wofi
 #+begin_src conf
 layerrule = blur, wofi
 layerrule = ignorealpha 0, wofi
+#+end_src
+
+notifications
+#+begin_src conf
+layerrule = blur, notifications
+layerrule = ignorealpha 0, notifications
 #+end_src
 
 * Decoration
