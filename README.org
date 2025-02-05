@@ -198,6 +198,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
 exec-once = uwsm app -S both -- eww open-many main-bar second-bar $quick-settings indicators
+exec-once = dunst
 #+end_src
 
 * General
