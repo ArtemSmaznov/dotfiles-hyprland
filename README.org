@@ -33,6 +33,7 @@
   - [[#emacs][Emacs]]
   - [[#lutris][Lutris]]
   - [[#mini-visualizer][Mini visualizer]]
+  - [[#virtmanager][VirtManager]]
 - [[#workspace-rules][Workspace rules]]
 - [[#layer-rules][Layer rules]]
 - [[#decoration][Decoration]]
@@ -369,13 +370,7 @@ windowrule   = workspace 8 silent,Citra
 windowrule   = workspace 8 silent,SuperTuxKart
 #+end_src
 
-*** Workspace 9 - Sandbox
-#+begin_src conf
-windowrule = workspace 9 silent,Virt-manager
-windowrule = workspace 9 silent,VirtualBox
-windowrule = workspace 9 silent,Cypress
-#+end_src
-
+*** Workspace 9 - Syslog
 ** Scratchpads
 *** Terminal
 #+begin_src conf
@@ -422,15 +417,12 @@ windowrule = center,$scratchpad
 windowrule = dimaround,$scratchpad
 #+end_src
 
-*** VM
-#+begin_src conf
+*** VirtManager
+#+begin_src conf :tangle no
 $scratchpad = virt-manager
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 windowrule = workspace special:vm silent,$scratchpad
-windowrule = float,$scratchpad
-windowrule = size 20% 50%,$scratchpad
-windowrule = move 10% 10%,$scratchpad
 #+end_src
 
 *** Htop
@@ -546,6 +538,12 @@ windowrulev2 = float                               , $app_filter
 windowrulev2 = move $gaps_outer 100%-w-$gaps_outer , $app_filter
 windowrulev2 = size 17% 300                        , $app_filter
 windowrulev2 = pin                                 , $app_filter
+#+end_src
+
+** VirtManager
+#+begin_src conf
+# $app_filter = Virt-manager
+# windowrulev2 = float,title:$app_filter
 #+end_src
 
 * Workspace rules
