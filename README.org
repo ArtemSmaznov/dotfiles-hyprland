@@ -155,11 +155,12 @@ $mySysNetwork    = nm-connection-editor
 $mySysBluetooth  = blueman-manager
 
 # eww
-$panel-monitor   = monitor
-$panel-power     = powermenu-panel
-$quick-settings  = quick-settings
-$which-key       = which-key
-$playground-eww  = playground
+$eww-monitor        = monitor
+$eww-power          = powermenu-panel
+$eww-quick-settings = quick-settings
+$eww-which-key      = which-key
+$eww-playground     = playground
+$eww-indicators     = indicators
 #+end_src
 
 * Theme
@@ -199,7 +200,7 @@ See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
-exec-once = uwsm app -S both -- eww open-many main-bar second-bar $quick-settings indicators
+exec-once = uwsm app -S both -- eww open-many main-bar second-bar $eww-quick-settings $eww-indicators
 exec-once = dunst
 #+end_src
 
@@ -611,19 +612,19 @@ layerrule = ignorealpha 0, $namespace
 layerrule = animation slide, $namespace
 
 # monitor
-layerrule = blur, $panel-monitor
-layerrule = ignorealpha 0, $panel-monitor
-layerrule = animation slide, $panel-monitor
+layerrule = blur, $eww-monitor
+layerrule = ignorealpha 0, $eww-monitor
+layerrule = animation slide, $eww-monitor
 
 # quick-settings
-layerrule = blur, $quick-settings
-layerrule = ignorealpha 0, $quick-settings
-layerrule = animation slide, $quick-settings
+layerrule = blur, $eww-quick-settings
+layerrule = ignorealpha 0, $eww-quick-settings
+layerrule = animation slide, $eww-quick-settings
 
 # which-key
-layerrule = blur, $which-key
-layerrule = ignorealpha 0, $which-key
-layerrule = animation slide, $which-key
+layerrule = blur, $eww-which-key
+layerrule = ignorealpha 0, $eww-which-key
+layerrule = animation slide, $eww-which-key
 #+end_src
 
 wofi
@@ -1457,12 +1458,12 @@ submap = reset
 *** p panels
 #+begin_src conf
 submap = panels
-bindd  =       , m , monitor panel                             , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $panel-monitor
-bindd  = SHIFT , M , monitor panel on secondary monitor        , exec , $myEwwScript/toggle-window.sh -m 1 $panel-monitor
-bindd  =       , p , playground panel                          , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $playground-eww
-bindd  = SHIFT , P , playground panel on secondary monitor     , exec , $myEwwScript/toggle-window.sh -m 1 $playground-eww
-bindd  =       , q , quick-settings panel                      , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $quick-settings
-bindd  = SHIFT , Q , quick-settings panel on secondary monitor , exec , $myEwwScript/toggle-window.sh -m 1 $quick-settings
+bindd  =       , m , monitor panel                             , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $eww-monitor
+bindd  = SHIFT , M , monitor panel on secondary monitor        , exec , $myEwwScript/toggle-window.sh -m 1 $eww-monitor
+bindd  =       , p , playground panel                          , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $eww-playground
+bindd  = SHIFT , P , playground panel on secondary monitor     , exec , $myEwwScript/toggle-window.sh -m 1 $eww-playground
+bindd  =       , q , quick-settings panel                      , exec , $myEwwScript/toggle-window.sh -m $($myScript/get-current-monitor.sh id) $eww-quick-settings
+bindd  = SHIFT , Q , quick-settings panel on secondary monitor , exec , $myEwwScript/toggle-window.sh -m 1 $eww-quick-settings
 
 bindr =       , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  =       , backspace , exec   , $myEwwScript/which-key.sh -p "SPC t-" toggle
