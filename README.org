@@ -479,9 +479,12 @@ windowrulev2 = nofocus,title:Steam,floating:1
 # float dialogs and stuff
 windowrulev2 = float,title:SteamTinkerLaunch
 
+windowrulev2 = tag +misc-game , class:steam_app.*,title:^$ # non-game windows spawned by launching games
+windowrulev2 = center         , tag:misc-game
+
 windowrulev2 = tag +game       , class:steam_app.*,title:negative:^$ # game windows
-windowrulev2 = renderunfocused , tag:game          # fix workspace switches for games
-windowrulev2 = fullscreen      , tag:game          # force fullscreen
+windowrulev2 = renderunfocused , tag:game                            # fix workspace switches for games
+windowrulev2 = fullscreen      , tag:game
 #+end_src
 
 ** Scrcpy
