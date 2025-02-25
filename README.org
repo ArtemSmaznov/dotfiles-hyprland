@@ -25,12 +25,11 @@
   - [[#scratchpads][Scratchpads]]
 - [[#application-rules][Application rules]]
   - [[#mpv][MPV]]
-  - [[#steam][Steam]]
+  - [[#games][Games]]
   - [[#scrcpy][Scrcpy]]
   - [[#okular][Okular]]
   - [[#thunderbird][Thunderbird]]
   - [[#emacs][Emacs]]
-  - [[#lutris][Lutris]]
   - [[#mini-visualizer][Mini visualizer]]
   - [[#virtmanager][VirtManager]]
 - [[#idle-inhibit-rules][Idle inhibit rules]]
@@ -458,18 +457,19 @@ windowrulev2 = pseudo,class:$app_filter,floating:0
 windowrule = float,$app_filter
 #+end_src
 
-** Steam
+** Games
 #+begin_src conf
-windowrule = workspace 8 silent,[Ss]team
+windowrulev2 = tag +game-launcher , class:net.lutris.Lutris
+windowrulev2 = tag +game-launcher , class:[Ss]team            # game launchers
+windowrulev2 = workspace 8 silent , tag:game-launcher
 
-# steam updater floating window
-windowrulev2 = workspace 8 silent,title:Steam,floating:1
-windowrulev2 = nofocus,title:Steam,floating:1
+windowrulev2 = tag +steam-floats  , title:Steam,floating:1    # steam updater floating window
+windowrulev2 = workspace 8 silent , tag:steam-floats
+windowrulev2 = nofocus            , tag:steam-floats
 
-# float dialogs and stuff
-windowrulev2 = float,title:SteamTinkerLaunch
+windowrulev2 = float,title:SteamTinkerLaunch                  # float dialogs and stuff
 
-windowrulev2 = tag +misc-game , class:steam_app.*,title:^$ # non-game windows spawned by launching games
+windowrulev2 = tag +misc-game , class:steam_app.*,title:^$    # non-game windows spawned by launching games
 windowrulev2 = center         , tag:misc-game
 
 windowrulev2 = tag +game       , class:steam_app.*,title:negative:^$ # game windows
@@ -517,13 +517,6 @@ windowrulev2 = float,title:$app_filter
 windowrulev2 = center,title:$app_filter
 windowrulev2 = size 60% 80%,title:$app_filter
 windowrulev2 = dimaround,title:$app_filter
-#+end_src
-
-** Lutris
-#+begin_src conf
-windowrule   = workspace 8 silent,net.lutris.Lutris
-
-$app_filter = net.lutris.Lutris
 #+end_src
 
 ** Mini visualizer
