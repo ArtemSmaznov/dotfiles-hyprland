@@ -476,12 +476,12 @@ windowrule = workspace 8 silent,[Ss]team
 windowrulev2 = workspace 8 silent,title:Steam,floating:1
 windowrulev2 = nofocus,title:Steam,floating:1
 
-# fix workspace switches for games
-windowrulev2 = tag +game,class:steam_app
-windowrulev2 = renderunfocused,tag:game
-
 # float dialogs and stuff
 windowrulev2 = float,title:SteamTinkerLaunch
+
+windowrulev2 = tag +game       , class:steam_app.*,title:negative:^$ # game windows
+windowrulev2 = renderunfocused , tag:game          # fix workspace switches for games
+windowrulev2 = fullscreen      , tag:game          # force fullscreen
 #+end_src
 
 ** Scrcpy
