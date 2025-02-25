@@ -21,10 +21,9 @@
   - [[#xwayland-windows][XWayland Windows]]
   - [[#floating-windows][Floating Windows]]
   - [[#maximized-windows][Maximized Windows]]
-  - [[#idle-inhibit][Idle Inhibit]]
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
-- [[#app-rules][App rules]]
+- [[#application-rules][Application rules]]
   - [[#mpv][MPV]]
   - [[#steam][Steam]]
   - [[#scrcpy][Scrcpy]]
@@ -34,6 +33,7 @@
   - [[#lutris][Lutris]]
   - [[#mini-visualizer][Mini visualizer]]
   - [[#virtmanager][VirtManager]]
+- [[#idle-inhibit-rules][Idle inhibit rules]]
 - [[#workspace-rules][Workspace rules]]
 - [[#layer-rules][Layer rules]]
 - [[#decoration][Decoration]]
@@ -289,16 +289,6 @@ windowrulev2 = dimaround 1,fullscreenstate:1 * # maximized windows
 windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 #+end_src
 
-** Idle Inhibit
-Games
-#+begin_src conf
-windowrulev2 = idleinhibit focus,class:steam_app.*
-windowrulev2 = idleinhibit focus,class:vimiv
-windowrulev2 = idleinhibit focus,class:.*x86_64
-
-windowrulev2 = idleinhibit always,title:cava
-#+end_src
-
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
@@ -450,7 +440,7 @@ windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
 #+end_src
 
-* App rules
+* Application rules
 ** MPV
 #+begin_src conf
 $app_filter = mpv
@@ -550,6 +540,14 @@ windowrulev2 = pin                                 , $app_filter
 #+begin_src conf
 # $app_filter = Virt-manager
 # windowrulev2 = float,title:$app_filter
+#+end_src
+
+* Idle inhibit rules
+#+begin_src conf
+windowrulev2 = idleinhibit focus  , tag:game
+windowrulev2 = idleinhibit focus  , class:.*x86_64
+windowrulev2 = idleinhibit focus  , class:vimiv
+windowrulev2 = idleinhibit always , title:cava
 #+end_src
 
 * Workspace rules
