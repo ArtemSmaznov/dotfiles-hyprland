@@ -270,7 +270,7 @@ group {
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
-windowrulev2 = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) 45deg rgba($base0944) rgba($base0844) rgba($base0A44) 45deg,xwayland:1
+windowrulev2 = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) 45deg,xwayland:1
 #+end_src
 
 ** Floating Windows
