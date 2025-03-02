@@ -13,7 +13,6 @@
 - [[#apps][Apps]]
 - [[#theme][Theme]]
 - [[#monitors][Monitors]]
-- [[#waybar][Waybar]]
 - [[#startup][Startup]]
 - [[#general][General]]
 - [[#window-stacking][Window stacking]]
@@ -193,7 +192,6 @@ monitor=DP-3 , 1920x1080@144 , 760x-1080 , auto
 monitor=     , preferred     , auto      , auto
 #+end_src
 
-* [[id:8d66f45b-11a8-43fe-b8e7-9ef284aff619][Waybar]]
 * Startup
 See https://wiki.hyprland.org/Configuring/Keywords/ for more
 #+begin_src conf
