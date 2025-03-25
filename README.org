@@ -186,7 +186,7 @@ Extras:
 
 #+begin_src conf
 #       name , resolution    , position  , scale , extras
-monitor=DP-1 , highrr        , 0x0       , auto
+monitor=DP-1 , highrr        , 0x0       , auto  , vrr,2  , bitdepth,10
 monitor=DP-3 , 1920x1080@144 , 760x-1080 , auto
 # monitor=DP-3 , disable
 monitor=     , preferred     , auto      , auto
@@ -1572,8 +1572,6 @@ bindm = SUPER , mouse:273 , resizewindow
 https://wiki.hyprland.org/Configuring/Variables/#experimental
 #+begin_src conf
 experimental {
-    wide_color_gamut = false
-    hdr = false
     xx_color_management_v4 = true
 }
 #+end_src
