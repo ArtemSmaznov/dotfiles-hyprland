@@ -268,21 +268,21 @@ group {
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland Windows
 #+begin_src conf
-windowrulev2 = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) 45deg,xwayland:1
+windowrule = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) 45deg,xwayland:1
 #+end_src
 
 ** Floating Windows
 #+begin_src conf
-windowrulev2 = noborder,pinned:1
-windowrulev2 = nodim,pinned:1
-windowrulev2 = opacity override 0.7,pinned:1
+windowrule = noborder,pinned:1
+windowrule = nodim,pinned:1
+windowrule = opacity override 0.7,pinned:1
 #+end_src
 
 ** Maximized Windows
 #+begin_src conf
-windowrulev2 = norounding 1,fullscreenstate:1 * # maximized windows
-windowrulev2 = dimaround 1,fullscreenstate:1 * # maximized windows
-windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
+windowrule = norounding 1,fullscreenstate:1 * # maximized windows
+windowrule = dimaround 1,fullscreenstate:1 * # maximized windows
+windowrule = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 #+end_src
 
 ** Workspaces
@@ -332,7 +332,7 @@ windowrule = workspace 4 silent,class:calendar
 # windowrule   = workspace 5 silent,class:Slack
 # windowrule   = workspace 5 silent,class:discord
 # windowrule   = workspace 5 silent,class:signal
-# windowrulev2 = workspace 5 silent,class:class:[Ss]team,title:Friends List.*
+# windowrule = workspace 5 silent,class:class:[Ss]team,title:Friends List.*
 #+end_src
 
 *** Workspace 6 - Graphics
@@ -442,13 +442,13 @@ windowrule = move 82% 5%,$scratchpad
 $app_filter = class:mpv
 
 # floating
-windowrulev2 = dimaround,$app_filter,floating:1
-windowrulev2 = keepaspectratio,$app_filter,floating:1
-windowrulev2 = stayfocused,$app_filter,floating:1
-windowrulev2 = center,$app_filter,floating:1
+windowrule = dimaround,$app_filter,floating:1
+windowrule = keepaspectratio,$app_filter,floating:1
+windowrule = stayfocused,$app_filter,floating:1
+windowrule = center,$app_filter,floating:1
 
 # tiled
-windowrulev2 = pseudo,$app_filter,floating:0
+windowrule = pseudo,$app_filter,floating:0
 
 # initial state
 windowrule = float,$app_filter
@@ -456,32 +456,32 @@ windowrule = float,$app_filter
 
 ** Games
 #+begin_src conf
-windowrulev2 = tag +game-launcher , class:net.lutris.Lutris
-windowrulev2 = tag +game-launcher , class:[Ss]team            # game launchers
-windowrulev2 = workspace 8 silent , tag:game-launcher
+windowrule = tag +game-launcher , class:net.lutris.Lutris
+windowrule = tag +game-launcher , class:[Ss]team            # game launchers
+windowrule = workspace 8 silent , tag:game-launcher
 
-windowrulev2 = tag +steam-floats  , title:Steam,floating:1    # steam updater floating window
-windowrulev2 = workspace 8 silent , tag:steam-floats
-windowrulev2 = nofocus            , tag:steam-floats
+windowrule = tag +steam-floats  , title:Steam,floating:1    # steam updater floating window
+windowrule = workspace 8 silent , tag:steam-floats
+windowrule = nofocus            , tag:steam-floats
 
-windowrulev2 = float,title:SteamTinkerLaunch                  # float dialogs and stuff
+windowrule = float,title:SteamTinkerLaunch                  # float dialogs and stuff
 
-windowrulev2 = tag +misc-game , class:steam_app.*,title:^$    # non-game windows spawned by launching games
-windowrulev2 = center         , tag:misc-game
+windowrule = tag +misc-game , class:steam_app.*,title:^$    # non-game windows spawned by launching games
+windowrule = center         , tag:misc-game
 
-windowrulev2 = tag +game       , class:steam_app.*,title:negative:^$ # game windows
-windowrulev2 = renderunfocused , tag:game                            # fix workspace switches for games
-windowrulev2 = fullscreen      , tag:game
+windowrule = tag +game       , class:steam_app.*,title:negative:^$ # game windows
+windowrule = renderunfocused , tag:game                            # fix workspace switches for games
+windowrule = fullscreen      , tag:game
 #+end_src
 
 ** Scrcpy
 #+begin_src conf
 $app_filter = class:[Ss]crcpy
-windowrulev2 = tile,$app_filter
-windowrulev2 = pseudo,$app_filter
-windowrulev2 = keepaspectratio,$app_filter
-windowrulev2 = opacity override 0.7,$app_filter
-windowrulev2 = noborder,$app_filter
+windowrule = tile,$app_filter
+windowrule = pseudo,$app_filter
+windowrule = keepaspectratio,$app_filter
+windowrule = opacity override 0.7,$app_filter
+windowrule = noborder,$app_filter
 #+end_src
 
 ** Okular
@@ -489,9 +489,9 @@ windowrulev2 = noborder,$app_filter
 $app_filter = class:org.kde.okular
 
 # floating
-windowrulev2 = keepaspectratio,$app_filter,floating:1
-windowrulev2 = stayfocused,$app_filter,floating:1
-windowrulev2 = center,$app_filter,floating:1
+windowrule = keepaspectratio,$app_filter,floating:1
+windowrule = stayfocused,$app_filter,floating:1
+windowrule = center,$app_filter,floating:1
 
 # initial state
 windowrule = float,$app_filter
@@ -502,42 +502,42 @@ windowrule = float,$app_filter
 $app_filter = thunderbird,title:.*Filters.*
 
 # float dialogs and stuff
-windowrulev2 = float,$app_filter
-windowrulev2 = size: 100 70%,$app_filter
-windowrulev2 = move: 30% 15%,$app_filter
+windowrule = float,$app_filter
+windowrule = size: 100 70%,$app_filter
+windowrule = move: 30% 15%,$app_filter
 #+end_src
 
 ** Emacs
 #+begin_src conf
 $app_filter = title:\*Org Src .* Doom Emacs # org-edit-special window
-windowrulev2 = float,$app_filter
-windowrulev2 = center,$app_filter
-windowrulev2 = size 60% 80%,$app_filter
-windowrulev2 = dimaround,$app_filter
+windowrule = float,$app_filter
+windowrule = center,$app_filter
+windowrule = size 60% 80%,$app_filter
+windowrule = dimaround,$app_filter
 #+end_src
 
 ** Mini visualizer
 #+begin_src conf
 $app_filter = class:mini-visualizer
-windowrulev2 = noinitialfocus                      , $app_filter
-windowrulev2 = float                               , $app_filter
-windowrulev2 = move $gaps_outer 100%-w-$gaps_outer , $app_filter
-windowrulev2 = size 17% 300                        , $app_filter
-windowrulev2 = pin                                 , $app_filter
+windowrule = noinitialfocus                      , $app_filter
+windowrule = float                               , $app_filter
+windowrule = move $gaps_outer 100%-w-$gaps_outer , $app_filter
+windowrule = size 17% 300                        , $app_filter
+windowrule = pin                                 , $app_filter
 #+end_src
 
 ** VirtManager
 #+begin_src conf
 # $app_filter = title:Virt-manager
-# windowrulev2 = float,$app_filter
+# windowrule = float,$app_filter
 #+end_src
 
 * Idle inhibit rules
 #+begin_src conf
-windowrulev2 = idleinhibit focus  , tag:game
-windowrulev2 = idleinhibit focus  , class:.*x86_64
-windowrulev2 = idleinhibit focus  , class:vimiv
-windowrulev2 = idleinhibit always , title:cava
+windowrule = idleinhibit focus  , tag:game
+windowrule = idleinhibit focus  , class:.*x86_64
+windowrule = idleinhibit focus  , class:vimiv
+windowrule = idleinhibit always , title:cava
 #+end_src
 
 * Workspace rules
