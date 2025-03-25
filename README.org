@@ -288,83 +288,83 @@ windowrulev2 = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
-# windowrule = workspace 1 silent,firefox
-# windowrule = workspace 1 silent,Tor Browser
-# windowrule = workspace 1 silent,Chromium
-# windowrule = workspace 1 silent,Google-chrome
-# windowrule = workspace 1 silent,Brave-browser
-# windowrule = workspace 1 silent,vivaldi-stable
-# windowrule = workspace 1 silent,org.qutebrowser.qutebrowser
-# windowrule = workspace 1 silent,nyxt
+# windowrule = workspace 1 silent,class:firefox
+# windowrule = workspace 1 silent,class:Tor Browser
+# windowrule = workspace 1 silent,class:Chromium
+# windowrule = workspace 1 silent,class:Google-chrome
+# windowrule = workspace 1 silent,class:Brave-browser
+# windowrule = workspace 1 silent,class:vivaldi-stable
+# windowrule = workspace 1 silent,class:org.qutebrowser.qutebrowser
+# windowrule = workspace 1 silent,class:nyxt
 #+end_src
 
 *** Workspace 2 - Mail
 #+begin_src conf
-windowrule = workspace 2 silent,thunderbird
+windowrule = workspace 2 silent,class:thunderbird
 #+end_src
 
 *** Workspace 3 - Coding
 #+begin_src conf
-windowrule = workspace 3 silent,[Ee]macs
-windowrule = workspace 3 silent,Geany
-windowrule = workspace 3 silent,Atom
-windowrule = workspace 3 silent,Subl3
-windowrule = workspace 3 silent,code-oss
-windowrule = workspace 3 silent,Oomox
-windowrule = workspace 3 silent,Unity
-windowrule = workspace 3 silent,UnityHub
-windowrule = workspace 3 silent,jetbrains-studio
+windowrule = workspace 3 silent,class:[Ee]macs
+windowrule = workspace 3 silent,class:Geany
+windowrule = workspace 3 silent,class:Atom
+windowrule = workspace 3 silent,class:Subl3
+windowrule = workspace 3 silent,class:code-oss
+windowrule = workspace 3 silent,class:Oomox
+windowrule = workspace 3 silent,class:Unity
+windowrule = workspace 3 silent,class:UnityHub
+windowrule = workspace 3 silent,class:jetbrains-studio
 #+end_src
 
 *** Workspace 4 - Computer
 #+begin_src conf
-windowrule = workspace 4 silent,dolphin
-windowrule = workspace 4 silent,ark
-windowrule = workspace 4 silent,File-roller
-windowrule = workspace 4 silent,googledocs
-windowrule = workspace 4 silent,keep
-windowrule = workspace 4 silent,calendar
+windowrule = workspace 4 silent,class:dolphin
+windowrule = workspace 4 silent,class:ark
+windowrule = workspace 4 silent,class:File-roller
+windowrule = workspace 4 silent,class:googledocs
+windowrule = workspace 4 silent,class:keep
+windowrule = workspace 4 silent,class:calendar
 #+end_src
 
 *** Workspace 5 - Chat
 #+begin_src conf
-# windowrule   = workspace 5 silent,whatsapp-for-linux
-# windowrule   = workspace 5 silent,Slack
-# windowrule   = workspace 5 silent,discord
-# windowrule   = workspace 5 silent,signal
-# windowrulev2 = workspace 5 silent,class:[Ss]team,title:Friends List.*
+# windowrule   = workspace 5 silent,class:whatsapp-for-linux
+# windowrule   = workspace 5 silent,class:Slack
+# windowrule   = workspace 5 silent,class:discord
+# windowrule   = workspace 5 silent,class:signal
+# windowrulev2 = workspace 5 silent,class:class:[Ss]team,title:Friends List.*
 #+end_src
 
 *** Workspace 6 - Graphics
 #+begin_src conf
-windowrule = workspace 6 silent,[Gg]imp
-windowrule = workspace 6 silent,Inkscape
-windowrule = workspace 6 silent,Flowblade
-windowrule = workspace 6 silent,org.kde.digikam
-windowrule = workspace 6 silent,obs
-windowrule = workspace 6 silent,kdenlive
+windowrule = workspace 6 silent,class:[Gg]imp
+windowrule = workspace 6 silent,class:Inkscape
+windowrule = workspace 6 silent,class:Flowblade
+windowrule = workspace 6 silent,class:org.kde.digikam
+windowrule = workspace 6 silent,class:obs
+windowrule = workspace 6 silent,class:kdenlive
 #+end_src
 
 *** Workspace 7 - Music
 #+begin_src conf
-windowrule = workspace 7 silent,Spotify
+windowrule = workspace 7 silent,class:Spotify
 #+end_src
 
 *** Workspace 8 - Gaming
 #+begin_src conf
-windowrule   = workspace 8 silent,[Bb]attle.net
-windowrule   = workspace 8 silent,[Ww]ine
-windowrule   = workspace 8 silent,dolphin-emu
-windowrule   = workspace 8 silent,Citra
-windowrule   = workspace 8 silent,SuperTuxKart
+windowrule   = workspace 8 silent,class:[Bb]attle.net
+windowrule   = workspace 8 silent,class:[Ww]ine
+windowrule   = workspace 8 silent,class:dolphin-emu
+windowrule   = workspace 8 silent,class:Citra
+windowrule   = workspace 8 silent,class:SuperTuxKart
 #+end_src
 
 *** Workspace 9 - Syslog
 ** Scratchpads
 *** Terminal
 #+begin_src conf
-# $app_filter = sp-term
-# $workspace = sp-term
+# $app_filter = class:sp-term
+# $workspace = class:sp-term
 # #---------------------------------------------------
 # windowrule = unset,$app_filter
 # windowrule = workspace special:$workspace silent,$app_filter
@@ -375,7 +375,7 @@ windowrule   = workspace 8 silent,SuperTuxKart
 
 *** Files
 #+begin_src conf
-# $scratchpad = sp-files
+# $scratchpad = class:sp-files
 # #---------------------------------------------------
 # windowrule = unset,$scratchpad
 # # windowrule = workspace special silent,$scratchpad
@@ -386,7 +386,7 @@ windowrule   = workspace 8 silent,SuperTuxKart
 
 *** Torrent
 #+begin_src conf
-$scratchpad = com.transmissionbt.transmission*
+$scratchpad = class:com.transmissionbt.transmission*
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
@@ -397,7 +397,7 @@ windowrule = center,$scratchpad
 
 *** Anki
 #+begin_src conf
-$scratchpad = anki
+$scratchpad = class:anki
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 windowrule = float,$scratchpad
@@ -408,7 +408,7 @@ windowrule = dimaround,$scratchpad
 
 *** VirtManager
 #+begin_src conf :tangle no
-$scratchpad = virt-manager
+$scratchpad = class:virt-manager
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 windowrule = workspace special:vm silent,$scratchpad
@@ -416,7 +416,7 @@ windowrule = workspace special:vm silent,$scratchpad
 
 *** Htop
 #+begin_src conf
-$scratchpad = sp-htop
+$scratchpad = class:sp-htop
 #---------------------------------------------------
 # windowrule = float,$scratchpad
 # windowrule = size 80% 80%,$scratchpad
@@ -427,7 +427,7 @@ windowrule = dimaround,$scratchpad
 
 *** Calculator
 #+begin_src conf
-$scratchpad = org.gnome.Calculator
+$scratchpad = class:org.gnome.Calculator
 #---------------------------------------------------
 windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
@@ -439,16 +439,16 @@ windowrule = move 82% 5%,$scratchpad
 * Application rules
 ** MPV
 #+begin_src conf
-$app_filter = mpv
+$app_filter = class:mpv
 
 # floating
-windowrulev2 = dimaround,class:$app_filter,floating:1
-windowrulev2 = keepaspectratio,class:$app_filter,floating:1
-windowrulev2 = stayfocused,class:$app_filter,floating:1
-windowrulev2 = center,class:$app_filter,floating:1
+windowrulev2 = dimaround,$app_filter,floating:1
+windowrulev2 = keepaspectratio,$app_filter,floating:1
+windowrulev2 = stayfocused,$app_filter,floating:1
+windowrulev2 = center,$app_filter,floating:1
 
 # tiled
-windowrulev2 = pseudo,class:$app_filter,floating:0
+windowrulev2 = pseudo,$app_filter,floating:0
 
 # initial state
 windowrule = float,$app_filter
@@ -476,22 +476,22 @@ windowrulev2 = fullscreen      , tag:game
 
 ** Scrcpy
 #+begin_src conf
-$app_filter = [Ss]crcpy
-windowrulev2 = tile,class:$app_filter
-windowrulev2 = pseudo,class:$app_filter
-windowrulev2 = keepaspectratio,class:$app_filter
-windowrulev2 = opacity override 0.7,class:$app_filter
-windowrulev2 = noborder,class:$app_filter
+$app_filter = class:[Ss]crcpy
+windowrulev2 = tile,$app_filter
+windowrulev2 = pseudo,$app_filter
+windowrulev2 = keepaspectratio,$app_filter
+windowrulev2 = opacity override 0.7,$app_filter
+windowrulev2 = noborder,$app_filter
 #+end_src
 
 ** Okular
 #+begin_src conf
-$app_filter = org.kde.okular
+$app_filter = class:org.kde.okular
 
 # floating
-windowrulev2 = keepaspectratio,class:$app_filter,floating:1
-windowrulev2 = stayfocused,class:$app_filter,floating:1
-windowrulev2 = center,class:$app_filter,floating:1
+windowrulev2 = keepaspectratio,$app_filter,floating:1
+windowrulev2 = stayfocused,$app_filter,floating:1
+windowrulev2 = center,$app_filter,floating:1
 
 # initial state
 windowrule = float,$app_filter
@@ -509,11 +509,11 @@ windowrulev2 = move: 30% 15%,$app_filter
 
 ** Emacs
 #+begin_src conf
-$app_filter = \*Org Src .* Doom Emacs # org-edit-special window
-windowrulev2 = float,title:$app_filter
-windowrulev2 = center,title:$app_filter
-windowrulev2 = size 60% 80%,title:$app_filter
-windowrulev2 = dimaround,title:$app_filter
+$app_filter = title:\*Org Src .* Doom Emacs # org-edit-special window
+windowrulev2 = float,$app_filter
+windowrulev2 = center,$app_filter
+windowrulev2 = size 60% 80%,$app_filter
+windowrulev2 = dimaround,$app_filter
 #+end_src
 
 ** Mini visualizer
@@ -528,8 +528,8 @@ windowrulev2 = pin                                 , $app_filter
 
 ** VirtManager
 #+begin_src conf
-# $app_filter = Virt-manager
-# windowrulev2 = float,title:$app_filter
+# $app_filter = title:Virt-manager
+# windowrulev2 = float,$app_filter
 #+end_src
 
 * Idle inhibit rules
