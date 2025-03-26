@@ -15,7 +15,7 @@
 - [[#monitors][Monitors]]
 - [[#startup][Startup]]
 - [[#general][General]]
-- [[#window-stacking][Window stacking]]
+- [[#groups--window-stacking][Groups / window stacking]]
 - [[#window-rules][Window rules]]
   - [[#xwayland-windows][XWayland Windows]]
   - [[#floating-windows][Floating Windows]]
@@ -226,40 +226,52 @@ general {
 }
 #+end_src
 
-* Window stacking
+* Groups / window stacking
 #+begin_src conf
 group {
-    auto_group = true
-    insert_after_current = true
-    focus_removed_window = true
-    drag_into_group = 1 # 0 (disabled), 1 (enabled), 2 (only when dragging into the groupbar)
-    merge_groups_on_drag = false
-    merge_groups_on_groupbar = true
+    auto_group                           = true
+    insert_after_current                 = true
+    focus_removed_window                 = true
+    drag_into_group                      = 1 # 0 (disabled), 1 (enabled), 2 (only when dragging into the groupbar)
+    merge_groups_on_drag                 = false
+    merge_groups_on_groupbar             = true
     merge_floated_into_tiled_on_groupbar = false
-    group_on_movetoworkspace = false
+    group_on_movetoworkspace             = false
 
     # group borders
-    col.border_active = rgba($base0Baa) rgba($base0Daa) rgba($base0Caa) 45deg
-    col.border_inactive = rgba($base0B33) rgba($base0D33) rgba($base0C33) 45deg
-    col.border_locked_active = rgba($base09aa) rgba($base0Aaa) rgba($base0Faa)
+    col.border_active          = rgba($base0Baa) rgba($base0Daa) rgba($base0Caa) 45deg
+    col.border_inactive        = rgba($base0B33) rgba($base0D33) rgba($base0C33) 45deg
+    col.border_locked_active   = rgba($base09aa) rgba($base0Aaa) rgba($base0Faa)
     col.border_locked_inactive = rgba($base0933) rgba($base0A33) rgba($base0F33)
 
     groupbar {
-        enabled = true
-        stacked = false
+        enabled       = true
         render_titles = true
-        scrolling = true
+        stacked       = false # i.e. horizontal or vertical
+        scrolling     = false # i.e. mouse scroll
 
-        # styling
-        height = 26
-        font_size = 14
-        text_color = rgb($base07)
+        # gradient (titled) indicators
+        gradients                 = true
+        height                    = 36
+        font_size                 = 18
+        text_color                = rgb($base01)
+        gradient_rounding         = $corners
+        gradient_round_only_edges = false
 
-        gradients = true
-        col.active = rgba($base0Baa)
-        col.inactive = rgba($base0377)
-        col.locked_active = rgba($base09aa)
-        col.locked_inactive = rgba($base0377)
+        # plain inidicators
+        indicator_height = 0
+        rounding         = $corners
+        round_only_edges = false
+
+        # indicator colors
+        col.active          = rgba($base0Baa)
+        col.inactive        = rgba($base0C22)
+        col.locked_active   = rgba($base09aa)
+        col.locked_inactive = rgba($base0F22)
+
+        # indicator gaps
+        gaps_in  = $gaps_inner
+        gaps_out = $gaps_inner
     }
 }
 #+end_src
