@@ -802,48 +802,67 @@ animations {
     enabled = true
     first_launch_animation = true
 
-    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    # ease in
+    bezier = easeInSine  , 0.12 , 0 , 0.39 , 0
+    bezier = easeInQuad  , 0.11 , 0 , 0.5  , 0
+    bezier = easeInCubic , 0.32 , 0 , 0.67 , 0
+    bezier = easeInQuart , 0.5  , 0 , 0.75 , 0
+    bezier = easeInQuint , 0.64 , 0 , 0.78 , 0
+    bezier = easeInExpo  , 0.7  , 0 , 0.84 , 0
+    bezier = easeInCirc  , 0.55 , 0 , 1    , 0.45
+    bezier = easeInBack  , 0.36 , 0 , 0.66 , -0.56
 
-    bezier = easeInSine, 0.12, 0, 0.39, 0
-    bezier = easeInQuad, 0.11, 0, 0.5, 0
-    bezier = easeInCubic, 0.32, 0, 0.67, 0
-    bezier = easeInQuart, 0.5, 0, 0.75, 0
-    bezier = easeInQuint, 0.64, 0, 0.78, 0
-    bezier = easeInExpo, 0.7, 0, 0.84, 0
-    bezier = easeInCirc, 0.55, 0, 1, 0.45
-    bezier = easeInBack, 0.36, 0, 0.66, -0.56
+    # ease out
+    bezier = easeOutSine  , 0.61 , 1    , 0.88 , 1
+    bezier = easeOutQuad  , 0.5  , 1    , 0.89 , 1
+    bezier = easeOutCubic , 0.33 , 1    , 0.68 , 1
+    bezier = easeOutQuart , 0.25 , 1    , 0.5  , 1
+    bezier = easeOutQuint , 0.22 , 1    , 0.36 , 1
+    bezier = easeOutExpo  , 0.16 , 1    , 0.3  , 1
+    bezier = easeOutCirc  , 0    , 0.55 , 0.45 , 1
+    bezier = easeOutBack  , 0.34 , 1.56 , 0.64 , 1
 
-    bezier = easeOutSine, 0.61, 1, 0.88, 1
-    bezier = easeOutQuad, 0.5, 1, 0.89, 1
-    bezier = easeOutCubic, 0.33, 1, 0.68, 1
-    bezier = easeOutQuart, 0.25, 1, 0.5, 1
-    bezier = easeOutQuint, 0.22, 1, 0.36, 1
-    bezier = easeOutExpo, 0.16, 1, 0.3, 1
-    bezier = easeOutCirc, 0, 0.55, 0.45, 1
-    bezier = easeOutBack, 0.34, 1.56, 0.64, 1
+    # ease in-out
+    bezier = easeInOutSine  , 0.37 , 0    , 0.63 , 1
+    bezier = easeInOutQuad  , 0.45 , 0    , 0.55 , 1
+    bezier = easeInOutCubic , 0.65 , 0    , 0.35 , 1
+    bezier = easeInOutQuart , 0.76 , 0    , 0.24 , 1
+    bezier = easeInOutQuint , 0.83 , 0    , 0.17 , 1
+    bezier = easeInOutExpo  , 0.87 , 0    , 0.13 , 1
+    bezier = easeInOutCirc  , 0.85 , 0    , 0.15 , 1
+    bezier = easeInOutBack  , 0.68 , -0.6 , 0.32 , 1.6
 
-    bezier = easeInOutSine, 0.37, 0, 0.63, 1
-    bezier = easeInOutQuad, 0.45, 0, 0.55, 1
-    bezier = easeInOutCubic, 0.65, 0, 0.35, 1
-    bezier = easeInOutQuart, 0.76, 0, 0.24, 1
-    bezier = easeInOutQuint, 0.83, 0, 0.17, 1
-    bezier = easeInOutExpo, 0.87, 0, 0.13, 1
-    bezier = easeInOutCirc, 0.85, 0, 0.15, 1
-    bezier = easeInOutBack, 0.68, -0.6, 0.32, 1.6
+    #         = name                , ⏻ , ⏲  , curve          , [style]
+    #-------------------------------------------------------------------------
+    animation = windows             , 1 , 7  , easeInOutQuint
+    animation = windowsIn           , 1 , 7  , easeInOutQuint , popin 75%
+    animation = windowsOut          , 1 , 5  , easeInOutQuint
+    animation = windowsMove         , 1 , 10 , easeOutQuint
 
-    #           NAME             , ONOFF , SPEED , CURVE         , [STYLE]
-    animation = windowsIn        , 1     , 3     , easeInSine    , popin 80%
-    animation = windowsOut       , 1     , 3     , easeOutSine   , popin 80%
-    animation = windowsMove      , 1     , 3     , easeInOutSine , popin 80%
+    animation = layers              , 1 , 5  , easeInOutQuint , popin 75%
+    animation = layersIn            , 1 , 5  , easeInOutQuint , popin 75%
+    animation = layersOut           , 1 , 7  , easeInOutQuint , popin 75%
 
-    animation = layers           , 1     , 7     , myBezier      , popin 80%
+    animation = fade                , 1 , 5  , easeOutQuint
+    animation = fadeIn              , 1 , 5  , easeOutQuint
+    animation = fadeOut             , 1 , 7  , easeOutQuint
+    animation = fadeSwitch          , 1 , 5  , easeInOutQuint
+    animation = fadeShadow          , 1 , 5  , easeInOutQuint
+    animation = fadeDim             , 1 , 7  , easeInOutQuint
+    animation = fadeLayers          , 1 , 5  , easeOutQuint
+    animation = fadeLayersIn        , 1 , 5  , easeOutQuint
+    animation = fadeLayersOut       , 1 , 7  , easeOutQuint
 
-    animation = workspaces       , 1     , 7     , myBezier      , fade
-    animation = specialWorkspace , 1     , 7     , myBezier      , slidefadevert -10%
+    animation = border              , 1 , 7  , easeOutQuint
+    animation = borderangle         , 1 , 15 , easeOutBack
 
-    animation = border           , 1     , 10    , myBezier
-
-    animation = fade             , 1     , 7     , myBezier
+    animation = workspaces          , 1 , 7  , easeOutQuint   , slidefade 10%
+    animation = workspacesIn        , 1 , 7  , easeOutQuint   , slidefade 10%
+    animation = workspacesOut       , 1 , 5  , easeOutQuint   , slidefade 10%
+    animation = specialWorkspace    , 1 , 7  , easeOutQuint   , slidefadevert -10%
+    animation = specialWorkspaceIn  , 1 , 7  , easeOutQuint   , slidefadevert -10%
+    animation = specialWorkspaceOut , 1 , 7  , easeOutQuint   , slidefadevert -10%
+    #-------------------------------------------------------------------------
 }
 #+end_src
 
@@ -940,16 +959,6 @@ bindd = SUPER , up    , move window up in stack   , movegroupwindow   , b
 bindd = SUPER , right , focus next window         , changegroupactive , f
 #+end_src
 
-Resizing windows
-#+begin_src conf
-bindd = SUPER , equal , reset fucused window size , splitratio , exact 1
-
-bindde = SUPER CTRL , h , grow focused window left  , resizeactive , -20 0
-bindde = SUPER CTRL , j , grow focused window down  , resizeactive ,  0 20
-bindde = SUPER CTRL , k , grow focused window up    , resizeactive ,  0 -20
-bindde = SUPER CTRL , l , grow focused window right , resizeactive , 20 0
-#+end_src
-
 Swapping tiled windows
 #+begin_src conf
 bindd = SUPER SHIFT , h , swap focused window with left window  , swapwindow , l
@@ -958,14 +967,25 @@ bindd = SUPER SHIFT , k , swap focused window with above window , swapwindow , u
 bindd = SUPER SHIFT , l , swap focused window with right window , swapwindow , r
 #+end_src
 
+Resizing windows
+#+begin_src conf
+$step = 40
+bindd = SUPER , equal , reset fucused window size , splitratio , exact 1
+
+bindde = SUPER CTRL , h , grow focused window left  , resizeactive , -$step 0
+bindde = SUPER CTRL , j , grow focused window down  , resizeactive ,  0 $step
+bindde = SUPER CTRL , k , grow focused window up    , resizeactive ,  0 -$step
+bindde = SUPER CTRL , l , grow focused window right , resizeactive , $step 0
+#+end_src
+
 Move floating windows
 #+begin_src conf
 binde  = SUPER CTRL  , c     , centerwindow
 binded = SUPER       , equal , center floating window     , centerwindow ,
-binded = SUPER SHIFT , h     , move floating window left  , moveactive   , -20 0
-binded = SUPER SHIFT , j     , move floating window down  , moveactive   ,  0 20
-binded = SUPER SHIFT , k     , move floating window up    , moveactive   ,  0 -20
-binded = SUPER SHIFT , l     , move floating window right , moveactive   , 20 0
+binded = SUPER SHIFT , h     , move floating window left  , moveactive   , -$step 0
+binded = SUPER SHIFT , j     , move floating window down  , moveactive   ,  0 $step
+binded = SUPER SHIFT , k     , move floating window up    , moveactive   ,  0 -$step
+binded = SUPER SHIFT , l     , move floating window right , moveactive   , $step 0
 #+end_src
 
 Special Moving windows
