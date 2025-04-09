@@ -572,6 +572,7 @@ Special Workspaces
 workspace = special:anki       , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:audio      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:btop       , bordersize:$borders_special , gapsin:50 , gapsout:125
+workspace = special:bluetooth  , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:calculator , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:chats      , bordersize:$borders_special , gapsin:50 , gapsout:125
 workspace = special:email      , bordersize:$borders_special , gapsin:50 , gapsout:125
@@ -1226,6 +1227,7 @@ bind = SUPER , o , exec   , $myEwwScript/which-key.sh -p "M-o-" open
 bind = SUPER , o , submap , open
 
 submap = open
+bindd  =       , b , bluetooth                         , exec   , $mySysBluetooth
 bindd  =       , c , color picker                      , exec   , $myColorPicker
 bindd  =       , d , toggle chats                      , exec   , $myHyprScript/toggle-special-workspace.sh "chats" $myDiscordClass $myDiscord
 bindd  =       , e , email client                      , exec   , $myEmail
@@ -1238,6 +1240,7 @@ bindd  =       , t , tor browser                       , exec   , $myTorBrowser
 bindd  =       , w , toggle whatsapp                   , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux"
 
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
+bind  =       , b        , exec , $myHyprScript/reset-submap.sh
 bind  =       , c        , exec , $myHyprScript/reset-submap.sh
 bind  =       , d        , exec , $myHyprScript/reset-submap.sh
 bind  =       , e        , exec , $myHyprScript/reset-submap.sh
@@ -1306,6 +1309,7 @@ bind = SUPER , s , submap , scratchpad
 submap = scratchpad
 #        ,   ,              ,      ,                                           workspace     class                              command
 bindd  = , a , anki         , exec , $myHyprScript/toggle-special-workspace.sh "anki"        "anki"                             "anki"
+bindd  = , b , bluetooth    , exec , $myHyprScript/toggle-special-workspace.sh "bluetooth"   $mySysBluetooth                    $mySysBluetooth
 bindd  = , c , calculator   , exec , $myHyprScript/toggle-special-workspace.sh "calculator"  "org.gnome.Calculator"             "gnome-calculator"
 bindd  = , d , discord      , exec , $myHyprScript/toggle-special-workspace.sh "chats"       $myDiscordClass                    $myDiscord
 bindd  = , e , email client , exec , $myHyprScript/toggle-special-workspace.sh "email"       $myEmailClass                      $myEmail
@@ -1317,6 +1321,7 @@ bindd  = , w , whatsapp     , exec , $myHyprScript/toggle-special-workspace.sh "
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
 bind  = , a        , exec , $myHyprScript/reset-submap.sh
+bind  = , b        , exec , $myHyprScript/reset-submap.sh
 bind  = , c        , exec , $myHyprScript/reset-submap.sh
 bind  = , d        , exec , $myHyprScript/reset-submap.sh
 bind  = , e        , exec , $myHyprScript/reset-submap.sh
