@@ -95,7 +95,7 @@ $myHyprScript    = $HOME/.config/hypr/scripts
 $myEwwScript     = $HOME/.config/eww/scripts
 
 # cli tools
-$myTerm          = uwsm app -- alacritty
+$myTerm          = uwsm app -- Alacritty.desktop
 $myCliFiles      = uwsm app -- alacritty -e vifmrun
 $myCliMusic      = alacritty --class ncmpcpp -e ncmpcpp
 $myVisualizer    = alacritty --class mini-visualizer -e cava
@@ -106,51 +106,48 @@ $myCliSysMonitor = btop
 $myCliSysTasks   = htop
 
 # core tools
-$myWebBrowser    = uwsm app -- qutebrowser
+$myWebBrowser    = uwsm app -- org.qutebrowser.qutebrowser.desktop
 $myIncBrowser    = uwsm app -- qutebrowser --target private-window
-$myTorBrowser    = uwsm app -- torbrowser-launcher
-$myIde           = uwsm app -- emacs
-# $myIde           = uwsm app -- emacsclient -ca ''
-$myFiles         = pcmanfm
-$myEmail         = uwsm app -- thunderbird
+$myTorBrowser    = uwsm app -- torbrowser.desktop
+$myIde           = uwsm app -- emacs.desktop
+$myFiles         = uwsm app -- pcmanfm.desktop
+$myEmail         = uwsm app -- org.mozilla.Thunderbird.desktop
 $myEmailClass    = thunderbird
 
 # gaming
-$myGZDoom        = uwsm app -- gzdoom
-$myFHeroes2      = uwsm app -- fheroes2
-$myGameHub       = uwsm app -- gamehub
+$myGZDoom        = uwsm app -- gzdoom.desktop
+$myFHeroes2      = uwsm app -- fheroes2.desktop
+$myGameHub       = uwsm app -- com.github.tkashkin.gamehub.desktop
 
 $myHeroic        = uwsm app -- heroic
-$myLutris        = uwsm app -- lutris
-$mySteam         = uwsm app -- /usr/bin/steam %U
-$myVCMI          = uwsm app -- vcmilauncher
-$myNexus         = uwsm app -- /opt/nexusmods-app/NexusMods.App %u
+$myLutris        = uwsm app -- net.lutris.Lutris.desktop
+$mySteam         = uwsm app -- steam.desktop
+$myVCMI          = uwsm app -- vcmilauncher.desktop
+$myNexus         = uwsm app -- com.nexusmods.app.desktop
 
 # extra tools
-$myLauncher      = wofi --show drun
-$myVirtManager   = uwsm app -- virt-manager
-$myTorrent       = transmission-gtk
-$myCalculator    = gnome-calculator
-$myAnki          = uwsm app -- anki
-$myColorPicker   = hyprpicker -anr
+$myLauncher      = uwsm app -- wofi --show drun
+$myVirtManager   = uwsm app -- virt-manager.desktop
+$myTorrent       = uwsm app -- transmission-gtk
+$myCalculator    = uwsm app -- org.gnome.Calculator.desktop
+$myAnki          = uwsm app -- anki.desktop
+$myColorPicker   = uwsm app -- hyprpicker -anr
 
 # graphics tools
-$myPhotoLibrary  = uwsm app -- digikam
-$myImgEditor     = uwsm app -- gimp
-$myVctEditor     = uwsm app -- inkscape
-$myVidEditor     = uwsm app -- kdenlive
+$myPhotoLibrary  = uwsm app -- org.kde.digikam.desktop
+$myImgEditor     = uwsm app -- gimp.desktop
+$myVctEditor     = uwsm app -- org.inkscape.Inkscape.desktop
+$myVidEditor     = uwsm app -- org.kde.kdenlive.desktop
 
 # chat apps
-$myWhatsApp      = whatsapp-for-linux
-# $myDiscord       = discord
-# $myDiscordClass  = discord
-$myDiscord       = webcord
+$myWhatsApp      = uwsm app -- whatsapp-for-linux
+$myDiscord       = uwsm app -- webcord.desktop
 $myDiscordClass  = WebCord
 
 # system tools
 $mySysPower      = xfce4-power-manager-settings
-$mySysNetwork    = nm-connection-editor
-$mySysBluetooth  = blueman-manager
+$mySysNetwork    = uwsm app -- nm-connection-editor
+$mySysBluetooth  = uwsm app -- blueman-manager
 
 # eww
 $eww-monitor        = monitor
