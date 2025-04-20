@@ -1124,9 +1124,9 @@ bind = CTRL ALT , delete , exec                   , $myHyprScript/toggle-special
 bind = CTRL ALT , end    , exec                   , $myHyprScript/toggle-special-workspace.sh "btop"  "sp-btop"  "alacritty --class sp-btop -e btop"
 bind = CTRL ALT , t      , exec                   , $myTerm
 
-bind = CTRL ALT , a      , togglespecialworkspace , audio
-bind = CTRL ALT , a      , exec                   , [workspace special:audio] pavucontrol
-bind = CTRL ALT , a      , exec                   , [workspace special:audio] qpwgraph
+# bind = CTRL ALT , a      , togglespecialworkspace , audio
+# bind = CTRL ALT , a      , exec                   , [workspace special:audio] pavucontrol
+# bind = CTRL ALT , a      , exec                   , [workspace special:audio] qpwgraph
 # bind = CTRL ALT , v      , exec                   , $myHyprScript/toggle-special-workspace.sh "volume" "pavucontrol" "pavucontrol"
 # bind = CTRL ALT , v      , exec                   , $myHyprScript/toggle-special-workspace.sh "volume" "pavucontrol" "pavucontrol & qpwgraph"
 #+end_src
