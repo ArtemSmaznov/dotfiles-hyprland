@@ -1084,10 +1084,6 @@ bindd = SUPER ALT , 2     , toggle special workspace 2     , togglespecialworksp
 bindd = SUPER ALT , 3     , toggle special workspace 3     , togglespecialworkspace , 3
 bindd = SUPER ALT , 4     , toggle special workspace 4     , togglespecialworkspace , 4
 bindd = SUPER ALT , 5     , toggle special workspace 5     , togglespecialworkspace , 5
-bindd = SUPER ALT , m     , toggle special workspace music , togglespecialworkspace , music
-bindd = SUPER ALT , a     , toggle special workspace audio , togglespecialworkspace , audio
-bindd = SUPER ALT , c     , toggle special workspace chats , togglespecialworkspace , chats
-bindd = SUPER ALT , v     , toggle special workspace vm    , togglespecialworkspace , vm
 #+end_src
 
 Moving Windows
@@ -1098,10 +1094,6 @@ bindd = SUPER ALT SHIFT , 2     , move window to special workspace 2     , movet
 bindd = SUPER ALT SHIFT , 3     , move window to special workspace 3     , movetoworkspacesilent , special:3
 bindd = SUPER ALT SHIFT , 4     , move window to special workspace 4     , movetoworkspacesilent , special:4
 bindd = SUPER ALT SHIFT , 5     , move window to special workspace 5     , movetoworkspacesilent , special:5
-bindd = SUPER ALT SHIFT , m     , move window to special workspace music , movetoworkspacesilent , special:music
-bindd = SUPER ALT SHIFT , a     , move window to special workspace audio , movetoworkspacesilent , special:audio
-bindd = SUPER ALT SHIFT , c     , move window to special workspace chats , movetoworkspacesilent , special:chats
-bindd = SUPER ALT SHIFT , v     , move window to special workspace vm    , movetoworkspacesilent , special:vm
 #+end_src
 
 ** Launching Apps
@@ -1109,13 +1101,18 @@ bindd = SUPER ALT SHIFT , v     , move window to special workspace vm    , movet
 bindd = SUPER , grave , toggle terminal     , exec , $myHyprScript/toggle-special-workspace.sh "term"  "sp-term"  "alacritty --class sp-term"
 bindd = SUPER , e     , toggle file manager , exec , $myHyprScript/toggle-special-workspace.sh "files" "sp-files" "alacritty --class sp-files -e vifm"
 
-bindd = SUPER       , return , launch terminal                      , exec , $myTerm
-bindd = SUPER CTRL  , return , launch launcher                      , exec , $myLauncher
-bindd = SUPER       , r      , launch launcher                      , exec , $myLauncher
-bindd = SUPER       , c      , launch ide                           , exec , $myIde
-bindd = SUPER SHIFT , e      , launch file manager                  , exec , $myCliFiles
-bindd = SUPER       , b      , launch web browser                   , exec , $myWebBrowser
-bindd = SUPER       , i      , launch web browser in incognito mode , exec , $myIncBrowser
+bindd = SUPER           , return , launch terminal                               , exec , $myTerm
+bindd = SUPER ALT       , return , launch terminal (silent)                      , exec , [noinitialfocus] $myTerm
+bindd = SUPER CTRL      , return , launch launcher                               , exec , $myLauncher
+bindd = SUPER           , r      , launch launcher                               , exec , $myLauncher
+bindd = SUPER           , c      , launch ide                                    , exec , $myIde
+bindd = SUPER ALT       , c      , launch ide (silent)                           , exec , [noinitialfocus] $myIde
+bindd = SUPER SHIFT     , e      , launch file manager                           , exec , $myCliFiles
+bindd = SUPER SHIFT ALT , e      , launch file manager (silent)                  , exec , [noinitialfocus] $myCliFiles
+bindd = SUPER           , b      , launch web browser                            , exec , $myWebBrowser
+bindd = SUPER ALT       , b      , launch web browser (silent)                   , exec , [noinitialfocus] $myWebBrowser
+bindd = SUPER           , i      , launch web browser in incognito mode          , exec , $myIncBrowser
+bindd = SUPER ALT       , i      , launch web browser in incognito mode (silent) , exec , [noinitialfocus] $myIncBrowser
 #+end_src
 
 ** CTRL ALT
