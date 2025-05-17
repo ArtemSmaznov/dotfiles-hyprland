@@ -1623,12 +1623,13 @@ There are 3 modes:
   These popups allow you to Deny, Allow until the app exits, or Allow until Hyprland exits.
 - ~deny~ - Don’t ask, always deny the application access.
 
-Screen-sharing
+Screen capture
 #+begin_src conf
 permission = /usr/bin/grim                                        , screencopy , allow
 permission = /usr/bin/wf-recorder                                 , screencopy , allow
 permission = /usr/bin/wl-screenrec                                , screencopy , allow
 # permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland , screencopy , allow
+permission = /usr/bin/hyprlock                                    , screencopy , allow
 #+end_src
 
 Plugins
