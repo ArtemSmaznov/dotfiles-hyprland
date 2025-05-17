@@ -71,6 +71,8 @@
   - [[#w-window][w window]]
   - [[#w-workspace][W workspace]]
 - [[#mouse-bindings][Mouse bindings]]
+- [[#ecosystem][Ecosystem]]
+- [[#permissions][Permissions]]
 - [[#experimental][Experimental]]
 - [[#debug][Debug]]
 
@@ -1604,6 +1606,34 @@ submap = reset
 bindm = SUPER , mouse:272 , movewindow
 bindm = SUPER , mouse:273 , resizewindow
 # bindm = , mouse:133 , movewindow
+#+end_src
+
+* Ecosystem
+#+begin_src conf
+ecosystem {
+    enforce_permissions = true
+}
+#+end_src
+
+* Permissions
+
+There are 3 modes:
+- ~allow~ - Don’t ask, just allow the app to proceed.
+- ~ask~ - Pop up a notification every time the app tries to do something sensitive.
+  These popups allow you to Deny, Allow until the app exits, or Allow until Hyprland exits.
+- ~deny~ - Don’t ask, always deny the application access.
+
+Screen-sharing
+#+begin_src conf
+permission = /usr/bin/grim                                        , screencopy , allow
+permission = /usr/bin/wf-recorder                                 , screencopy , allow
+permission = /usr/bin/wl-screenrec                                , screencopy , allow
+# permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland , screencopy , allow
+#+end_src
+
+Plugins
+#+begin_src conf
+# permission = regex for app binary or plugin path , plugin , allow
 #+end_src
 
 * Experimental
