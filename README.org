@@ -202,6 +202,8 @@ exec-once = uwsm app -S both -- eww open-many main-bar second-bar $eww-indicator
 * General
 See https://wiki.hyprland.org/Configuring/Variables/ for more
 #+begin_src conf
+$volume_step = 1
+
 general {
     gaps_in = $gaps_inner       # gaps between windows
     gaps_out = $gaps_outer      # gaps between windows and monitor edges
@@ -1133,8 +1135,8 @@ bind = CTRL ALT , t      , exec                   , $myTerm
 ** media keys
 System audio
 #+begin_src conf
-bindld = , XF86AudioRaiseVolume , increase system volume , exec , $myScript/set-volume.sh + 5
-bindld = , XF86AudioLowerVolume , decrease system volume , exec , $myScript/set-volume.sh - 5
+bindld = , XF86AudioRaiseVolume , increase system volume , exec , $myScript/set-volume.sh + $volume_step
+bindld = , XF86AudioLowerVolume , decrease system volume , exec , $myScript/set-volume.sh - $volume_step
 bindld = , XF86AudioMute        , toggle mute            , exec , $myScript/toggle-mute.sh
 #+end_src
 
@@ -1597,15 +1599,36 @@ submap = reset
 #+end_src
 
 * Mouse bindings
-#+begin_src conf
-# Scroll through existing workspaces with mainMod + scroll
-# bind = SUPER , mouse_down , workspace , e+1
-# bind = SUPER , mouse_up   , workspace , e-1
 
-# Move/resize windows with mainMod + LMB/RMB and dragging
-bindm = SUPER , mouse:272 , movewindow
-bindm = SUPER , mouse:273 , resizewindow
-# bindm = , mouse:133 , movewindow
+Button mappings
+#+begin_src conf
+# mouse primary
+$mouse_left   = mouse:272
+$mouse_middle = mouse:274
+$mouse_right  = mouse:273
+
+# mouse extra
+$mouse_next = mouse:276
+$mouse_prev = mouse:275
+
+# mouse wheel
+$mouse_wheel_up    = mouse_down
+$mouse_wheel_down  = mouse_up
+$mouse_wheel_left  = mouse_left
+$mouse_wheel_right = mouse_right
+#+end_src
+
+Click binds
+#+begin_src conf
+# volume
+bind = SUPER , $mouse_wheel_up   , exec , $myScript/set-volume.sh + $volume_step
+bind = SUPER , $mouse_wheel_down , exec , $myScript/set-volume.sh - $volume_step
+#+end_src
+
+Drag binds
+#+begin_src conf
+bindm = SUPER , $mouse_left  , movewindow
+bindm = SUPER , $mouse_right , resizewindow
 #+end_src
 
 * Ecosystem
