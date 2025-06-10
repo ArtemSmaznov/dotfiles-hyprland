@@ -169,6 +169,8 @@ $gaps_outer = 40
 $borders = 15
 $borders_special = 10
 $corners = 15
+
+$sound_effects_dir = /usr/share/sounds/oxygen/stereo
 #+end_src
 
 * Monitors
@@ -934,6 +936,9 @@ States
 #+begin_src conf
 bindd = SUPER       , q   , close focused window   , killactive      ,
 bindd = SUPER ALT   , q   , click window to close  , exec            , hyprctl kill
+bind  = SUPER       , q   , exec , paplay $sound_effects_dir/window-close.ogg
+bind  = SUPER ALT   , q   , exec , paplay $sound_effects_dir/window-close.ogg
+
 bindd = SUPER SHIFT , F11 , toggle fake fullscreen , fullscreenState , -1 2
 bindd = SUPER       , F11 , toggle fullscreen      , fullscreen      , 0
 bindd = SUPER SHIFT , f   , toggle fullscreen      , fullscreen      , 0
@@ -941,7 +946,9 @@ bindd = SUPER       , m   , toggle maximize        , fullscreen      , 1
 bindd = SUPER       , f   , toggle floating        , togglefloating  ,
 bind  = SUPER       , f   , centerwindow  ,
 bindd = SUPER CTRL  , f   , toggle pinnned         , pin             ,
+bind  = SUPER CTRL  , f   , exec , paplay $sound_effects_dir/window-pin.ogg
 bindd = SUPER       , up  , toggle pinnned         , pin             ,
+bind  = SUPER       , up  , exec , paplay $sound_effects_dir/window-pin.ogg
 bindd = SUPER SHIFT , p   , toggle pseudo          , pseudo          ,
 bindd = SUPER SHIFT , m   , mirror layout          , togglesplit     ,
 #+end_src
@@ -1622,6 +1629,7 @@ bind = SUPER , $mouse_wheel_down , exec , $myScript/set-volume.sh - $volume_step
 Drag binds
 #+begin_src conf
 bindm = SUPER , $mouse_left  , movewindow
+bind  = SUPER , $mouse_left  , exec , paplay $sound_effects_dir/window-move-start.ogg
 bindm = SUPER , $mouse_right , resizewindow
 #+end_src
 
