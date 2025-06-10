@@ -492,7 +492,7 @@ windowrule = fullscreen      , tag:game
 
 Lutris
 #+begin_src conf
-windowrule = size 20% 90% , class:net.lutris.Lutris,floating:1
+# windowrule = size 20% 90% , class:net.lutris.Lutris,floating:1
 #+end_src
 
 ** Scrcpy
