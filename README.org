@@ -571,9 +571,9 @@ workspace = 3 , persistent:true  , monitor:DP-1
 workspace = 4 , persistent:true  , monitor:DP-1
 workspace = 5 , persistent:true  , monitor:DP-1
 workspace = 6 , persistent:true  , monitor:DP-1
-workspace = 7 , persistent:true  , monitor:DP-1 , gapsin:100 , gapsout:200 , bordersize:3 , on-created-empty: $myCliMusic
+workspace = 7 , persistent:false , monitor:DP-1 , gapsin:100 , gapsout:200 , bordersize:3 , on-created-empty: $myCliMusic
 workspace = 8 , persistent:true  , monitor:DP-1
-workspace = 9 , persistent:false , monitor:DP-3 , default:true , on-created-empty: $mySysLog , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0
+workspace = 9 , persistent:false , monitor:DP-3 , default:true , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0 , on-created-empty: $mySysLog
 #+end_src
 
 Special Workspaces
