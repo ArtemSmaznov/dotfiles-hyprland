@@ -487,7 +487,6 @@ windowrule = center         , tag:misc-game
 
 windowrule = tag +game       , class:steam_app.*,title:negative:^$ # game windows
 windowrule = renderunfocused , tag:game                            # fix workspace switches for games
-windowrule = fullscreen      , tag:game
 #+end_src
 
 Lutris
