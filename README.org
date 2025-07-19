@@ -176,21 +176,31 @@ $sound_effects_dir = /usr/share/sounds/oxygen/stereo
 * Monitors
 See https://wiki.hyprland.org/Configuring/Monitors/
 
-Extras:
-+ mirror     , DP-1
-+ bitdepth   , 10
-+ vrr        , 2
-  | 0 | off        |
-  | 1 | on         |
-  | 2 | fullscreen |
-+ transform  , 3
-
 #+begin_src conf
-#       name , resolution    , position  , scale , extras
-monitor=DP-1 , highrr        , 0x0       , auto  , vrr,2  , bitdepth,10
-monitor=DP-3 , 1920x1080@144 , 760x-1080 , auto
+monitorv2 {
+    output = DP-1
+    mode = highrr
+    position = 0x0
+    scale = auto
+    vrr = 2       # fullscreen only
+    bitdepth = 10 # enable 10 bit support (hdr)
+}
+
+monitorv2 {
+    output = DP-3
+    mode = 1920x1080@144
+    position = 760x-1080
+    scale = auto
+}
 # monitor=DP-3 , disable
-monitor=     , preferred     , auto      , auto
+
+# fallback
+monitorv2 {
+    output =
+    mode = preferred
+    position = auto
+    scale = auto
+}
 #+end_src
 
 * Startup
