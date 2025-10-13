@@ -17,9 +17,9 @@
 - [[#general][General]]
 - [[#groups--window-stacking][Groups / window stacking]]
 - [[#window-rules][Window rules]]
-  - [[#xwayland-windows][XWayland Windows]]
-  - [[#floating-windows][Floating Windows]]
-  - [[#maximized-windows][Maximized Windows]]
+  - [[#xwayland-windows][XWayland windows]]
+  - [[#pinned-windows][Pinned windows]]
+  - [[#maximized-windows][Maximized windows]]
   - [[#workspaces][Workspaces]]
   - [[#scratchpads][Scratchpads]]
 - [[#application-rules][Application rules]]
@@ -31,6 +31,7 @@
   - [[#emacs][Emacs]]
   - [[#mini-visualizer][Mini visualizer]]
   - [[#virtmanager][VirtManager]]
+  - [[#wofi][Wofi]]
 - [[#idle-inhibit-rules][Idle inhibit rules]]
 - [[#workspace-rules][Workspace rules]]
 - [[#layer-rules][Layer rules]]
@@ -168,6 +169,7 @@ $gaps_inner = 20
 $gaps_outer = 40
 $borders = 15
 $borders_special = 10
+$borders_dialog = 5
 $corners = 15
 
 $sound_effects_dir = /usr/share/sounds/oxygen/stereo
@@ -292,19 +294,17 @@ group {
 
 * Window rules
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-** XWayland Windows
+** XWayland windows
 #+begin_src conf
 windowrule = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) -90deg,xwayland:1
 #+end_src
 
-** Floating Windows
+** Pinned windows
 #+begin_src conf
-windowrule = noborder,pinned:1
-windowrule = nodim,pinned:1
-windowrule = opacity override 0.7,pinned:1
+windowrule = bordersize $borders_dialog,pinned:1
 #+end_src
 
-** Maximized Windows
+** Maximized windows
 #+begin_src conf
 windowrule = norounding 1,fullscreenstate:1 * # maximized windows
 windowrule = dimaround 1,fullscreenstate:1 * # maximized windows
@@ -561,6 +561,15 @@ windowrule = pin                                 , $app_filter
 #+begin_src conf
 # $app_filter = title:Virt-manager
 # windowrule = float,$app_filter
+#+end_src
+
+windowrule = dimaround, wofi
+** Wofi
+#+begin_src conf
+$app_filter = class:wofi
+windowrule = dimaround,$app_filter
+windowrule = stayfocused,$app_filter
+windowrule = pin,$app_filter
 #+end_src
 
 * Idle inhibit rules
