@@ -530,12 +530,12 @@ windowrule = float,$app_filter
 
 ** Thunderbird
 #+begin_src conf
-$app_filter = thunderbird,title:.*Filters.*
+$app_filter = class:thunderbird,title:.*Filters.*
 
 # float dialogs and stuff
 windowrule = float,$app_filter
-windowrule = size: 100 70%,$app_filter
-windowrule = move: 30% 15%,$app_filter
+windowrule = size 100 70%,$app_filter
+windowrule = move 30% 15%,$app_filter
 #+end_src
 
 ** Emacs
