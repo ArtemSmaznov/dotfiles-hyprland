@@ -326,7 +326,7 @@ windowrule = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
 
 *** Workspace 2 - Mail
 #+begin_src conf
-windowrule = workspace 2 silent,class:thunderbird
+windowrule = workspace 2 silent,class:org.mozilla.Thunderbird
 #+end_src
 
 *** Workspace 3 - Coding
