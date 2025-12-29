@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       5164eb69-db1d-4eb1-81d0-d1d75a490ea6
 :END:
-#+title:       Hyprland
+#+match:title        Hyprland
 #+author:      Artem Smaznov
 #+description: wlroots-based tiling Wayland compositor written in C++
 #+startup:     overview
@@ -297,168 +297,179 @@ group {
 See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 ** XWayland windows
 #+begin_src conf
-windowrule = bordercolor rgba($base09aa) rgba($base08aa) rgba($base0Aaa) -90deg,xwayland:1
+windowrule = border_color rgba($base09aa) rgba($base08aa) rgba($base0Aaa) -90deg, match:xwayland true
 #+end_src
 
 ** Pinned windows
 #+begin_src conf
-windowrule = bordersize $borders_dialog,pinned:1
+windowrule = border_size $borders_dialog, match:pin true
 #+end_src
 
 ** Maximized windows
 #+begin_src conf
-windowrule = norounding 1,fullscreenstate:1 * # maximized windows
-windowrule = dimaround 1,fullscreenstate:1 * # maximized windows
-windowrule = rounding 0,fullscreenstate:* 2 # fake fullscreen windows
+windowrule {
+    name = maximized-windows
+    match:fullscreen_state_internal = 1
+
+    rounding = 0
+    dim_around = 1
+}
+
+windowrule {
+    name = fake-fullscreen-windows
+    match:fullscreen_state_client = 2
+
+    rounding = 0
+}
 #+end_src
 
 ** Workspaces
 *** Workspace 1 - Internet
 #+begin_src conf
-# windowrule = workspace 1 silent,class:firefox
-# windowrule = workspace 1 silent,class:Tor Browser
-# windowrule = workspace 1 silent,class:Chromium
-# windowrule = workspace 1 silent,class:Google-chrome
-# windowrule = workspace 1 silent,class:Brave-browser
-# windowrule = workspace 1 silent,class:vivaldi-stable
-# windowrule = workspace 1 silent,class:org.qutebrowser.qutebrowser
-# windowrule = workspace 1 silent,class:nyxt
+# windowrule = workspace 1 silent,match:class firefox
+# windowrule = workspace 1 silent,match:class Tor Browser
+# windowrule = workspace 1 silent,match:class Chromium
+# windowrule = workspace 1 silent,match:class Google-chrome
+# windowrule = workspace 1 silent,match:class Brave-browser
+# windowrule = workspace 1 silent,match:class vivaldi-stable
+# windowrule = workspace 1 silent,match:class org.qutebrowser.qutebrowser
+# windowrule = workspace 1 silent,match:class nyxt
 #+end_src
 
 *** Workspace 2 - Mail
 #+begin_src conf
-windowrule = workspace 2 silent,class:org.mozilla.Thunderbird
+windowrule = workspace 2 silent, match:class org.mozilla.Thunderbird
 #+end_src
 
 *** Workspace 3 - Coding
 #+begin_src conf
-windowrule = workspace 3 silent,class:[Ee]macs
-windowrule = workspace 3 silent,class:Geany
-windowrule = workspace 3 silent,class:Atom
-windowrule = workspace 3 silent,class:Subl3
-windowrule = workspace 3 silent,class:code-oss
-windowrule = workspace 3 silent,class:Oomox
-windowrule = workspace 3 silent,class:Unity
-windowrule = workspace 3 silent,class:UnityHub
-windowrule = workspace 3 silent,class:jetbrains-studio
+windowrule = workspace 3 silent,match:class [Ee]macs
+windowrule = workspace 3 silent,match:class Geany
+windowrule = workspace 3 silent,match:class Atom
+windowrule = workspace 3 silent,match:class Subl3
+windowrule = workspace 3 silent,match:class code-oss
+windowrule = workspace 3 silent,match:class Oomox
+windowrule = workspace 3 silent,match:class Unity
+windowrule = workspace 3 silent,match:class UnityHub
+windowrule = workspace 3 silent,match:class jetbrains-studio
 #+end_src
 
 *** Workspace 4 - Computer
 #+begin_src conf
-windowrule = workspace 4 silent,class:dolphin
-windowrule = workspace 4 silent,class:ark
-windowrule = workspace 4 silent,class:File-roller
-windowrule = workspace 4 silent,class:googledocs
-windowrule = workspace 4 silent,class:keep
-windowrule = workspace 4 silent,class:calendar
+windowrule = workspace 4 silent,match:class dolphin
+windowrule = workspace 4 silent,match:class ark
+windowrule = workspace 4 silent,match:class File-roller
+windowrule = workspace 4 silent,match:class googledocs
+windowrule = workspace 4 silent,match:class keep
+windowrule = workspace 4 silent,match:class calendar
 #+end_src
 
 *** Workspace 5 - Chat
 #+begin_src conf
-# windowrule   = workspace 5 silent,class:whatsapp-for-linux
-# windowrule   = workspace 5 silent,class:Slack
-# windowrule   = workspace 5 silent,class:discord
-# windowrule   = workspace 5 silent,class:signal
-# windowrule = workspace 5 silent,class:class:[Ss]team,title:Friends List.*
+# windowrule   = workspace 5 silent,match:class whatsapp-for-linux
+# windowrule   = workspace 5 silent,match:class Slack
+# windowrule   = workspace 5 silent,match:class discord
+# windowrule   = workspace 5 silent,match:class signal
+# windowrule = workspace 5 silent,match:class [Ss]team,match:title Friends List.*
 #+end_src
 
 *** Workspace 6 - Graphics
 #+begin_src conf
-windowrule = workspace 6 silent,class:[Gg]imp
-windowrule = workspace 6 silent,class:Inkscape
-windowrule = workspace 6 silent,class:Flowblade
-windowrule = workspace 6 silent,class:org.kde.digikam
-windowrule = workspace 6 silent,class:obs
-windowrule = workspace 6 silent,class:kdenlive
+windowrule = workspace 6 silent,match:class [Gg]imp
+windowrule = workspace 6 silent,match:class Inkscape
+windowrule = workspace 6 silent,match:class Flowblade
+windowrule = workspace 6 silent,match:class org.kde.digikam
+windowrule = workspace 6 silent,match:class obs
+windowrule = workspace 6 silent,match:class kdenlive
 #+end_src
 
 *** Workspace 7 - Music
 #+begin_src conf
-windowrule = workspace 7 silent,class:Spotify
+windowrule = workspace 7 silent,match:class Spotify
 #+end_src
 
 *** Workspace 8 - Gaming
 #+begin_src conf
-windowrule   = workspace 8 silent,class:[Bb]attle.net
-windowrule   = workspace 8 silent,class:[Ww]ine
-windowrule   = workspace 8 silent,class:dolphin-emu
-windowrule   = workspace 8 silent,class:Citra
-windowrule   = workspace 8 silent,class:SuperTuxKart
+windowrule   = workspace 8 silent,match:class [Bb]attle.net
+windowrule   = workspace 8 silent,match:class [Ww]ine
+windowrule   = workspace 8 silent,match:class dolphin-emu
+windowrule   = workspace 8 silent,match:class Citra
+windowrule   = workspace 8 silent,match:class SuperTuxKart
 #+end_src
 
 *** Workspace 9 - Syslog
 ** Scratchpads
 *** Terminal
 #+begin_src conf
-# $app_filter = class:sp-term
-# $workspace = class:sp-term
+# $app_filter = match:class sp-term
+# $workspace = match:class sp-term
 # #---------------------------------------------------
 # windowrule = unset,$app_filter
 # windowrule = workspace special:$workspace silent,$app_filter
-# windowrule = float,$app_filter
+# windowrule = float true,$app_filter
 # windowrule = size 50% 80%,$app_filter
-# windowrule = center,$app_filter
+# windowrule = center true,$app_filter
 #+end_src
 
 *** Files
 #+begin_src conf
-# $scratchpad = class:sp-files
+# $scratchpad = match:class sp-files
 # #---------------------------------------------------
 # windowrule = unset,$scratchpad
 # # windowrule = workspace special silent,$scratchpad
-# windowrule = float,$scratchpad
+# windowrule = float true,$scratchpad
 # windowrule = size 50% 70%,$scratchpad
-# windowrule = center,$scratchpad
+# windowrule = center true,$scratchpad
 #+end_src
 
 *** Torrent
 #+begin_src conf
-$scratchpad = class:com.transmissionbt.transmission*
+$scratchpad = match:class com.transmissionbt.transmission*
 #---------------------------------------------------
-windowrule = unset,$scratchpad
+# windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
 windowrule = size 30% 80%,$scratchpad
-windowrule = float,$scratchpad
-windowrule = center,$scratchpad
+windowrule = float true,$scratchpad
+windowrule = center true,$scratchpad
 #+end_src
 
 *** Anki
 #+begin_src conf
-$scratchpad = class:anki
+$scratchpad = match:class anki
 #---------------------------------------------------
-windowrule = unset,$scratchpad
-windowrule = float,$scratchpad
+# windowrule = unset,$scratchpad
+windowrule = float true,$scratchpad
 windowrule = size 20% 70%,$scratchpad
-windowrule = center,$scratchpad
-windowrule = dimaround,$scratchpad
+windowrule = center true,$scratchpad
+windowrule = dim_around true,$scratchpad
 #+end_src
 
 *** VirtManager
 #+begin_src conf :tangle no
-$scratchpad = class:virt-manager
+$scratchpad = match:class virt-manager
 #---------------------------------------------------
-windowrule = unset,$scratchpad
+# windowrule = unset,$scratchpad
 windowrule = workspace special:vm silent,$scratchpad
 #+end_src
 
 *** Htop
 #+begin_src conf
-$scratchpad = class:sp-htop
+$scratchpad = match:class sp-htop
 #---------------------------------------------------
-# windowrule = float,$scratchpad
+# windowrule = float true,$scratchpad
 # windowrule = size 80% 80%,$scratchpad
-# windowrule = center,$scratchpad
-windowrule = stayfocused,$scratchpad
-windowrule = dimaround,$scratchpad
+# windowrule = center true,$scratchpad
+windowrule = stay_focused true,$scratchpad
+windowrule = dim_around true,$scratchpad
 #+end_src
 
 *** Calculator
 #+begin_src conf
-$scratchpad = class:org.gnome.Calculator
+$scratchpad = match:class org.gnome.Calculator
 #---------------------------------------------------
-windowrule = unset,$scratchpad
+# windowrule = unset,$scratchpad
 # windowrule = workspace special silent,$scratchpad
-windowrule = float,$scratchpad
+windowrule = float true,$scratchpad
 windowrule = size 15% 50%,$scratchpad
 windowrule = move 82% 5%,$scratchpad
 #+end_src
@@ -466,120 +477,206 @@ windowrule = move 82% 5%,$scratchpad
 * Application rules
 ** MPV
 #+begin_src conf
-$app_filter = class:mpv
+$app_filter = mpv
 
-# floating
-windowrule = dimaround,$app_filter,floating:1
-windowrule = keepaspectratio,$app_filter,floating:1
-windowrule = stayfocused,$app_filter,floating:1
-windowrule = center,$app_filter,floating:1
+windowrule {
+    name = mpv-floating
+    match:class = $app_filter
+    match:float = true
 
-# tiled
-windowrule = pseudo,$app_filter,floating:0
+    dim_around = true
+    keep_aspect_ratio = true
+    stay_focused = true
+    center = true
+}
 
-# initial state
-windowrule = float,$app_filter
+windowrule {
+    name = mpv-tiled
+    match:class = $app_filter
+    match:float = false
+
+    pseudo = true
+}
+
+windowrule {
+    name = mpv-initial-state
+    match:class = $app_filter
+
+    float = true
+}
 #+end_src
 
 ** Games
 Steam
 #+begin_src conf
-windowrule = tag +game-launcher , class:net.lutris.Lutris
-windowrule = tag +game-launcher , class:[Ss]team            # game launchers
-windowrule = workspace 8 silent , tag:game-launcher
+windowrule = tag +game-launcher , match:class net.lutris.Lutris
+windowrule = tag +game-launcher , match:class [Ss]team
+windowrule {
+    name = game-launcher
+    match:tag = game-launcher
 
-windowrule = tag +steam-floats  , title:Steam,floating:1    # steam updater floating window
-windowrule = workspace 8 silent , tag:steam-floats
-windowrule = nofocus            , tag:steam-floats
+    workspace = 8 silent
+}
 
-windowrule = float,title:SteamTinkerLaunch                  # float dialogs and stuff
+windowrule = tag +steam-floats , match:title Steam, match:float true    
+windowrule {
+    name = steam-updater-floating-windows
+    match:tag = steam-floats
 
-windowrule = tag +misc-game , class:steam_app.*,title:^$    # non-game windows spawned by launching games
-windowrule = center         , tag:misc-game
+    workspace = 8 silent
+    no_focus = true
+}
 
-windowrule = tag +game       , class:steam_app.*,title:negative:^$ # game windows
-windowrule = renderunfocused , tag:game                            # fix workspace switches for games
+windowrule {
+    name = steam-float-dialogs-and-stuff
+    match:title = SteamTinkerLaunch
+
+    float = true
+}
+
+windowrule = tag +misc-game , match:class steam_app.* , match:title ^$
+windowrule {
+    name = non-game-windows-spawned-by-launching-games
+    match:tag = misc-game
+
+    center = true
+}
+
+windowrule = tag +game , match:class steam_app.* , match:title negative:^$
+windowrule {
+    name = game-windows
+    match:tag = game
+
+    render_unfocused = true # fix workspace switches for games
+}
 #+end_src
 
 Lutris
 #+begin_src conf
-# windowrule = size 20% 90% , class:net.lutris.Lutris,floating:1
+# windowrule {
+#     name = lutris-floating
+#     match:class = net.lutris.Lutris
+#     match:float = true
+
+#     size = 20% 90%
+# }
 #+end_src
 
 ** Scrcpy
 #+begin_src conf
-$app_filter = class:[Ss]crcpy
-windowrule = tile,$app_filter
-windowrule = pseudo,$app_filter
-windowrule = keepaspectratio,$app_filter
-windowrule = opacity override 0.7,$app_filter
-windowrule = noborder,$app_filter
+$app_filter = [Ss]crcpy
+
+windowrule {
+    name = scrcpy
+    match:class = $app_filter
+
+    tile = true
+    pseudo = true
+    keep_aspect_ratio = true
+    opacity = 0.7 override
+    border_size = 0
+}
 #+end_src
 
 ** Okular
 #+begin_src conf
-$app_filter = class:org.kde.okular
+$app_filter = org.kde.okular
 
-# floating
-windowrule = keepaspectratio,$app_filter,floating:1
-windowrule = stayfocused,$app_filter,floating:1
-windowrule = center,$app_filter,floating:1
+windowrule {
+    name = okular-floating
+    match:class = $app_filter
+    match:float = true
 
-# initial state
-windowrule = float,$app_filter
+    keep_aspect_ratio = true
+    stay_focused = true
+    center = true
+}
+
+windowrule {
+    name = okular-initial-state
+    match:class = $app_filter
+
+    float = true
+}
 #+end_src
 
 ** Thunderbird
 #+begin_src conf
-$app_filter = class:org.mozilla.Thunderbird,title:.*Filters.*
-
-# float dialogs and stuff
-windowrule = float,$app_filter
-windowrule = size 100 70%,$app_filter
-windowrule = move 30% 15%,$app_filter
+windowrule {
+    name = thunderbird-float-dialogs-and-stuff
+    match:class = org.mozilla.Thunderbird
+    match:title = .*Filters.*
+    
+    float = true
+    size = 100 70%
+    move = 30% 15%
+}
 #+end_src
 
 ** Emacs
 #+begin_src conf
-$app_filter = title:\*Org Src .* Doom Emacs # org-edit-special window
-windowrule = float,$app_filter
-windowrule = center,$app_filter
-windowrule = size 60% 80%,$app_filter
-windowrule = dimaround,$app_filter
+$app_filter = \*Org Src .* Doom Emacs 
+
+windowrule {
+    name = emacs-org-edit-special 
+    match:title = $app_filter
+
+    float = true
+    center = true
+    size = 60% 80%
+    dim_around = true
+}
 #+end_src
 
 ** Mini visualizer
 #+begin_src conf
-$app_filter = class:mini-visualizer
-windowrule = noinitialfocus                      , $app_filter
-windowrule = float                               , $app_filter
-windowrule = move $gaps_outer 100%-w-$gaps_outer , $app_filter
-windowrule = size 17% 300                        , $app_filter
-windowrule = pin                                 , $app_filter
+$app_filter = mini-visualizer
+
+windowrule {
+    name = mini-visualizer
+    match:class = $app_filter
+
+    no_initial_focus = true                 
+    float = true                          
+    move = $gaps_outer 100%-w-$gaps_outer
+    size = 17% 300                      
+    pin = true                         
+}
 #+end_src
 
 ** VirtManager
 #+begin_src conf
-# $app_filter = title:Virt-manager
-# windowrule = float,$app_filter
+# $app_filter = Virt-manager
+
+# windowrule {
+#     name = virt-manager
+#     match:title = $app_filter
+
+#     float = true
+# }
 #+end_src
 
-windowrule = dimaround, wofi
 ** Wofi
 #+begin_src conf
-$app_filter = class:wofi
-windowrule = dimaround,$app_filter
-windowrule = stayfocused,$app_filter
-windowrule = pin,$app_filter
+$app_filter = wofi
+
+windowrule {
+    name = wofi
+    match:class = $app_filter
+
+    dim_around = true
+    stay_focused = true
+    pin = true
+}
 #+end_src
 
 * Idle inhibit rules
 #+begin_src conf
-windowrule = idleinhibit focus  , tag:game
-windowrule = idleinhibit focus  , fullscreen:1
-windowrule = idleinhibit focus  , class:.*x86_64
-windowrule = idleinhibit focus  , class:vimiv
-windowrule = idleinhibit always , title:cava
+windowrule = idle_inhibit focus  , match:tag game
+windowrule = idle_inhibit focus  , match:fullscreen true
+windowrule = idle_inhibit focus  , match:class .*x86_64
+windowrule = idle_inhibit focus  , match:class vimiv
+windowrule = idle_inhibit always , match:title cava
 #+end_src
 
 * Workspace rules
@@ -592,9 +689,11 @@ workspace = 3 , persistent:true  , monitor:DP-1
 workspace = 4 , persistent:true  , monitor:DP-1
 workspace = 5 , persistent:true  , monitor:DP-1
 workspace = 6 , persistent:true  , monitor:DP-1
-workspace = 7 , persistent:false , monitor:DP-1 , gapsin:100 , gapsout:200 , bordersize:3 , on-created-empty: $myCliMusic
+workspace = 7 , persistent:false , monitor:DP-1 , gapsin:100 , gapsout:200 , on-created-empty: $myCliMusic
+windowrule = border_size 3, match:workspace 7
 workspace = 8 , persistent:true  , monitor:DP-1
-workspace = 9 , persistent:false , monitor:DP-3 , default:true , bordersize:2 , gapsin:0 , gapsout:0 , rounding:0 , on-created-empty: $mySysLog
+workspace = 9 , persistent:false , monitor:DP-3 , default:true , gapsin:0 , gapsout:0 , rounding:0 , on-created-empty: $mySysLog
+windowrule = border_size 2, match:workspace 9
 #+end_src
 
 Special Workspaces
@@ -634,43 +733,43 @@ Native Scratchpad
 
 status bars
 #+begin_src conf
-layerrule = blur, waybar
+layerrule = blur true, match:namespace waybar
 #+end_src
 
 eww
 #+begin_src conf
 # default windows
-$namespace = gtk-layer-shell
-layerrule = blur, $namespace
-layerrule = ignorealpha 0, $namespace
+$namespace = match:namespace gtk-layer-shell
+layerrule = blur true, $namespace
+layerrule = ignore_alpha 0, $namespace
 layerrule = animation slide, $namespace
 
 # monitor
-layerrule = blur, $eww-monitor
-layerrule = ignorealpha 0, $eww-monitor
-layerrule = animation slide, $eww-monitor
+layerrule = blur true, match:namespace $eww-monitor
+layerrule = ignore_alpha 0, match:namespace $eww-monitor
+layerrule = animation slide, match:namespace $eww-monitor
 
 # quick-settings
-layerrule = blur, $eww-quick-settings
-layerrule = ignorealpha 0, $eww-quick-settings
-layerrule = animation slide, $eww-quick-settings
+layerrule = blur true, match:namespace $eww-quick-settings
+layerrule = ignore_alpha 0, match:namespace $eww-quick-settings
+layerrule = animation slide, match:namespace $eww-quick-settings
 
 # which-key
-layerrule = blur, $eww-which-key
-layerrule = ignorealpha 0, $eww-which-key
-layerrule = animation slide, $eww-which-key
+layerrule = blur true, match:namespace $eww-which-key
+layerrule = ignore_alpha 0, match:namespace $eww-which-key
+layerrule = animation slide, match:namespace $eww-which-key
 #+end_src
 
 wofi
 #+begin_src conf
-layerrule = blur, wofi
-layerrule = ignorealpha 0, wofi
+layerrule = blur true, match:namespace wofi
+layerrule = ignore_alpha 0, match:namespace wofi
 #+end_src
 
 notifications
 #+begin_src conf
-layerrule = blur, notifications
-layerrule = ignorealpha 0, notifications
+layerrule = blur true, match:namespace notifications
+layerrule = ignore_alpha 0, match:namespace notifications
 #+end_src
 
 * Decoration
@@ -781,7 +880,7 @@ misc {
     layers_hog_keyboard_focus = true
 
     # fullscreen
-    new_window_takes_over_fullscreen = 0
+    on_focus_under_fullscreen = 0
     exit_window_retains_fullscreen = false
 
     # animations
@@ -1684,9 +1783,9 @@ Plugins
 * Experimental
 https://wiki.hyprland.org/Configuring/Variables/#experimental
 #+begin_src conf
-experimental {
-    xx_color_management_v4 = true
-}
+# experimental {
+#     xx_color_management_v4 = true
+# }
 #+end_src
 
 * Debug
