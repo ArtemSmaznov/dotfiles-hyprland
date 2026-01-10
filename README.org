@@ -548,6 +548,7 @@ windowrule {
     match:tag = game
 
     render_unfocused = true # fix workspace switches for games
+    fullscreen = true
 }
 #+end_src
 
