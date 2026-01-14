@@ -135,6 +135,7 @@ $myTorrent       = uwsm app -- transmission-gtk
 $myCalculator    = uwsm app -- org.gnome.Calculator.desktop
 $myAnki          = uwsm app -- anki.desktop
 $myColorPicker   = uwsm app -- hyprpicker -anr
+$myVolumeControl = uwsm app -- com.saivert.pwvucontrol.desktop
 
 # graphics tools
 $myPhotoLibrary  = uwsm app -- org.kde.digikam.desktop
@@ -1367,6 +1368,7 @@ bindd  =       , i , image viewer                      , exec   , vimiv $XDG_PIC
 bindd  =       , m , music player                      , exec   , $myCliMusic
 bindd  = SHIFT , M , music player on default workspace , exec   , [workspace 9 silent] $myCliMusic
 bindd  =       , t , tor browser                       , exec   , $myTorBrowser
+bindd  =       , v , volume control                    , exec   , $myVolumeControl
 bindd  =       , w , toggle whatsapp                   , exec   , $myHyprScript/toggle-special-workspace.sh "chats" "whatsapp-for-linux" "whatsapp-for-linux"
 
 bindr =       , catchall , exec , $myHyprScript/reset-submap.sh
