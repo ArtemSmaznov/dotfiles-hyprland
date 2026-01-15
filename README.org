@@ -155,12 +155,13 @@ $mySysNetwork    = uwsm app -- nm-connection-editor
 $mySysBluetooth  = uwsm app -- blueman-manager
 
 # eww
+$eww-config         = config
+$eww-indicators     = indicators
 $eww-monitor        = monitor
+$eww-playground     = playground
 $eww-power          = powermenu-panel
 $eww-quick-settings = quick-settings
 $eww-which-key      = which-key
-$eww-playground     = playground
-$eww-indicators     = indicators
 #+end_src
 
 * Theme
@@ -746,6 +747,11 @@ $namespace = match:namespace gtk-layer-shell
 layerrule = blur true, $namespace
 layerrule = ignore_alpha 0, $namespace
 layerrule = animation slide, $namespace
+
+# config
+layerrule = blur true, match:namespace $eww-config
+layerrule = ignore_alpha 0, match:namespace $eww-config
+layerrule = animation slide, match:namespace $eww-config
 
 # monitor
 layerrule = blur true, match:namespace $eww-monitor
