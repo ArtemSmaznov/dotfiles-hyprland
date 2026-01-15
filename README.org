@@ -66,6 +66,7 @@
   - [[#z-dm-power][z dm-power]]
   - [[#ctrl-alt-o][ctrl-alt-o]]
 - [[#leader-keybindings][Leader keybindings]]
+  - [[#c-config][c config]]
   - [[#e-eww][e eww]]
   - [[#l-layout][l layout]]
   - [[#t-toggle-1][t toggle]]
@@ -1530,6 +1531,8 @@ bind = SUPER , space , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
 bind = SUPER , space , submap , leader
 
 submap = leader
+bind   =       , c , exec                    , $myEwwScript/which-key.sh -p "SPC c-" config
+bindd  =       , c , +config                 , submap , config
 bind   =       , e , exec                    , $myEwwScript/which-key.sh -p "SPC e-" eww
 bindd  =       , e , +Elkowars Wacky Widgets , submap , eww
 bind   =       , l , exec                    , $myEwwScript/which-key.sh -p "SPC l-" layout
@@ -1542,6 +1545,19 @@ bind   = SHIFT , W , exec                    , $myEwwScript/which-key.sh -p "SPC
 bindd  = SHIFT , W , +workspace              , submap , workspace
 
 bindr = , catchall , exec , $myHyprScript/reset-submap.sh
+
+submap = reset
+#+end_src
+
+** c config
+#+begin_src conf
+submap = config
+bindd  = , a , open autostart list , exec , eww open autostart
+
+bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
+bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
+bind  = , backspace , submap , leader
+bindr = , a         , exec   , $myHyprScript/reset-submap.sh
 
 submap = reset
 #+end_src
