@@ -44,6 +44,7 @@
 - [[#layouts][Layouts]]
   - [[#dwindle][Dwindle]]
   - [[#master][Master]]
+  - [[#scrolling][Scrolling]]
 - [[#gestures][Gestures]]
 - [[#devices][Devices]]
   - [[#mouse][Mouse]]
@@ -245,7 +246,6 @@ general {
     resize_on_border = true     # enables resizing windows by clicking and dragging on borders and gaps
 
     layout = dwindle
-
 }
 #+end_src
 
@@ -1012,7 +1012,7 @@ animations {
 
 * Layouts
 ** Dwindle
-See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+https://wiki.hyprland.org/Configuring/Dwindle-Layout/
 #+begin_src conf
 dwindle {
     pseudotile = true         # master switch for pseudotiling. Pseudotiled windows retain their floating size when tiled.
@@ -1023,10 +1023,21 @@ dwindle {
 #+end_src
 
 ** Master
-See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+https://wiki.hyprland.org/Configuring/Master-Layout/
 #+begin_src conf
 master {
     new_status = slave
+}
+#+end_src
+
+** Scrolling :plugin:
+https://github.com/hyprwm/hyprland-plugins/tree/main/hyprscrolling
+#+begin_src conf
+plugin {
+    hyprscrolling {
+        fullscreen_on_one_column = true
+        column_width = 0.5
+    }
 }
 #+end_src
 
@@ -1612,11 +1623,12 @@ submap = reset
 ** l layout
 #+begin_src conf
 submap = layout
+bind   = , g , exec          , $myEwwScript/which-key.sh -p "SPC l g-" gaps
 bindd  = , d , dwindle       , exec   , $myHyprScript/layoutctl.sh set dwindle
+bindd  = , g , +gaps         , submap , gaps
 bindd  = , l , switch layout , exec   , $myHyprScript/layoutctl.sh toggle
 bindd  = , m , master        , exec   , $myHyprScript/layoutctl.sh set master
-bind   = , g , exec          , $myEwwScript/which-key.sh -p "SPC l g-" gaps
-bindd  = , g , +gaps         , submap , gaps
+bindd  = , s , scrolling     , exec   , $myHyprScript/layoutctl.sh set scrolling
 
 bindr = , catchall  , exec   , $myHyprScript/reset-submap.sh
 bind  = , backspace , exec   , $myEwwScript/which-key.sh -p "SPC-" leader
