@@ -218,6 +218,7 @@ exec-once = docker ps # HACK
 exec-once = paplay "$HOME/public/audio/windows95-startup.wav"
 exec-once = uwsm app -- $HOME/.local/bin/set-wallpaper.sh
 exec-once = uwsm app -S both -- eww open-many main-bar second-bar $eww-indicators $eww-playground
+exec-once = hyprpm reload
 #+end_src
 
 * General
@@ -1829,7 +1830,7 @@ permission = /usr/bin/hyprlock                                    , screencopy ,
 
 Plugins
 #+begin_src conf
-# permission = regex for app binary or plugin path , plugin , allow
+permission = /usr/(bin|local/bin)/hyprpm, plugin, allow
 #+end_src
 
 * Experimental
