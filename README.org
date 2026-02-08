@@ -102,7 +102,7 @@ $exile           = $HOME/projects/git/arts/exile/target/release/exile
 
 # cli tools
 $myTerm          = uwsm app -- Alacritty.desktop
-$myCliFiles      = uwsm app -- alacritty -e vifmrun
+$myCliFiles      = uwsm app -- alacritty -e vifm
 $myCliMusic      = alacritty --class ncmpcpp -e ncmpcpp
 $myVisualizer    = alacritty --class mini-visualizer -e cava
 $mySysLog        = alacritty --class syslog -e $myScript/syslog.sh
