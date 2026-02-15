@@ -773,8 +773,14 @@ layerrule = animation slide, match:namespace $eww-which-key
 
 wofi
 #+begin_src conf
-layerrule = blur true, match:namespace wofi
-layerrule = ignore_alpha 0, match:namespace wofi
+layerrule {
+  name = wofi
+  match:namespace = wofi
+
+  blur = true
+  dim_around = true
+  ignore_alpha = 0
+}
 #+end_src
 
 notifications
