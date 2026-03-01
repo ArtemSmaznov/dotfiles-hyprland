@@ -1098,7 +1098,7 @@ bind  = SUPER CTRL  , f   , exec , paplay $sound_effects_dir/window-pin.ogg
 bindd = SUPER       , up  , toggle pinnned         , pin             ,
 bind  = SUPER       , up  , exec , paplay $sound_effects_dir/window-pin.ogg
 bindd = SUPER SHIFT , p   , toggle pseudo          , pseudo          ,
-bindd = SUPER SHIFT , m   , mirror layout          , togglesplit     ,
+bindd = SUPER SHIFT , m   , mirror layout          , layoutmsg       , togglesplit
 #+end_src
 
 Focus
