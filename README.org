@@ -244,7 +244,7 @@ general {
 
     resize_on_border = true     # enables resizing windows by clicking and dragging on borders and gaps
 
-    layout = scrolling
+    layout = dwindle
 }
 #+end_src
 
