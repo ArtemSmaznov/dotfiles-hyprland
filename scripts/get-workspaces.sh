@@ -9,7 +9,7 @@ workspace_ids=$(
                 contains("special") |
                 not ) |
             .id ' |
-        sort
+        sort --numeric-sort
 )
 
 # functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
