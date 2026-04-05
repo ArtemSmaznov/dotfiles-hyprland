@@ -199,8 +199,8 @@ monitorv2 {
     mode = 1920x1080@144
     position = 760x-1080
     scale = auto
+    disabled = false
 }
-# monitor=DP-3 , disable
 
 # fallback
 monitorv2 {
