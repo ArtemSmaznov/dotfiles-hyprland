@@ -82,6 +82,13 @@ local eww_quick_settings = "quick-settings"
 local eww_which_key = "which-key"
 
 --------------------------------------------------------------------------------
+
+local reset_submap = function()
+  hl.dispatch(hl.dsp.submap("reset"))
+  hl.dispatch(hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"))
+end
+
+--------------------------------------------------------------------------------
 -- system
 --------------------------------------------------------------------------------
 hl.bind("SUPER + CTRL + d" , hl.dsp.exec_cmd(myVisualizer)                  , { description = "debug" })
@@ -333,21 +340,23 @@ hl.bind("SUPER + print"        , hl.dsp.exec_cmd(myScript .. "/screenshot.sh des
 --------------------------------------------------------------------------------
 -- [\] notifications
 --------------------------------------------------------------------------------
-hl.bind("SUPER + backslash", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-\\-' dm-notify"), { description = "" })
-hl.bind("SUPER + backslash", hl.dsp.submap("dm-notify")                                          , { description = "" })
+hl.bind("SUPER + backslash", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-\\\\-' dm-notify"))
+  hl.dispatch(hl.dsp.submap("dm-notify"))
+end, { release = true })
 
 hl.define_submap("dm-notify"  , function()
-  hl.bind("backspace"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification" })
-  hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification" })
-  hl.bind("backslash"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification" })
+  hl.bind("backspace"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification"   })
+  hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
+  hl.bind("backslash"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
   hl.bind("SHIFT + BACKSLASH" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recents"), { description = "show recent notifications" })
-  hl.bind("a"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify context"), { description = "open last notification" })
-  hl.bind("c"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification" })
-  hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify clear")  , { description = "clear all notifications" })
+  hl.bind("a"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify context"), { description = "open last notification"    })
+  hl.bind("c"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification"   })
+  hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify clear")  , { description = "clear all notifications"   })
   hl.bind("r"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recents"), { description = "show recent notifications" })
 
-  hl.bind("catchall", hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"), { release = true, description = "" })
-  hl.bind("a"       , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"), { description = "" })
+  hl.bind("catchall", reset_submap, { release = true })
+  hl.bind("a"       , reset_submap, { release = true })
 end)
 --------------------------------------------------------------------------------
 
