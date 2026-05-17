@@ -20,15 +20,15 @@ workspace_is_hidden=$(
 # setup ________________________________________________________________________
 # spawn app on the given special workspace
 if [[ ! $workspace_is_spawed ]]; then
-    hyprctl dispatch exec \[workspace special:"$workspace_name"\] "$app_command"
+    hyprctl dispatch "hl.dsp.exec_cmd('$app_command', { workspace = 'special:$workspace_name' })"
     exit 0
 fi
 
 # rip the app back into special workspace if it is empty
 if [[ ! $workspace_is_hidden ]]; then
-    hyprctl dispatch movetoworkspacesilent special:"$workspace_name","$app_class"
+    hyprctl dispatch "hl.dsp.window.move({ workspace = 'special:$workspace_name', window = 'class:$app_class' })"
 fi
 
 # execution ********************************************************************
 # show the special workspace
-hyprctl dispatch togglespecialworkspace "$workspace_name"
+hyprctl dispatch "hl.dsp.workspace.toggle_special('$workspace_name')"
