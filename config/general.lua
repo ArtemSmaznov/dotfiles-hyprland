@@ -63,6 +63,6 @@ hl.config({
 
     no_focus_fallback = true,
     resize_on_border = true,
-    layout = "scrolling",
+    layout = "dwindle",
   },
 })
