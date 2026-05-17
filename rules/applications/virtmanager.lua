@@ -1,0 +1,7 @@
+-- hl.window_rule({
+--   name = "virtmanager",
+--   match = {
+--     class = "virt-manager",
+--   },
+--   float = true,
+-- })

@@ -3,7 +3,7 @@
 [ ! "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
 
 # execution ********************************************************************
-hyprctl dispatch submap reset
+hyprctl dispatch 'hl.dsp.submap("reset")'
 
 if [ "$(eww ping 2>/dev/null)" == "pong" ]; then
     "$XDG_CONFIG_HOME"/eww/scripts/which-key.sh -c

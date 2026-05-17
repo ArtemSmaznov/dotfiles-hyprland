@@ -1,0 +1,4 @@
+-- hl.device({
+--     name = "logitech-mx-master-3-1",
+--     sensitivity = 0
+-- })
