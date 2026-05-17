@@ -5,16 +5,16 @@ local myScript = "$HOME/.local/bin"
 local myCliMusic = "alacritty --class ncmpcpp -e ncmpcpp"
 local mySysLog = "alacritty --class syslog -e " .. myScript .. "/syslog.sh"
 
-hl.workspace_rule({ workspace = "1" , persistent = true, monitor = "DP-1", default = true })
-hl.workspace_rule({ workspace = "2" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "3" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "4" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "5" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "6" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "7" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "8" , persistent = true, monitor = "DP-1" })
-hl.workspace_rule({ workspace = "9" , persistent = true, monitor = "DP-1" , gaps_in = 100 , gaps_out = 200 , on_created_empty = myCliMusic })
-hl.workspace_rule({ workspace = "10", persistent = true, monitor = "DP-3" , default = true , gaps_in = 0 , gaps_out = 0 , no_rounding = true , on_created_empty = mySysLog })
+hl.workspace_rule({ workspace = "1" , persistent = true , monitor = "DP-1" , default = true })
+hl.workspace_rule({ workspace = "2" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "3" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "4" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "5" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "6" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "7" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "8" , persistent = true , monitor = "DP-1" })
+hl.workspace_rule({ workspace = "9" , persistent = false, monitor = "DP-1" , gaps_in = 100 , gaps_out = 200 , on_created_empty = myCliMusic })
+hl.workspace_rule({ workspace = "10", persistent = false, monitor = "DP-3" , gaps_in = 0   , gaps_out = 0   , on_created_empty = mySysLog , no_rounding = true , default = true  })
 
 
 hl.window_rule({ match = { workspace = "9"  }, border_size = 3 })
