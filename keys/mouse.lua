@@ -15,10 +15,10 @@ local mouse_wheel_right = "mouse_right"
 
 
 -- click binds
-hl.bind("SUPER + " .. mouse_wheel_up   , hl.dsp.exec_cmd(myScript .. "/set-volume.sh + " .. volume_step))
-hl.bind("SUPER + " .. mouse_wheel_down , hl.dsp.exec_cmd(myScript .. "/set-volume.sh - " .. volume_step))
+hl.bind("SUPER + " .. mouse_wheel_up   , hl.dsp.exec_cmd(SCRIPTS .. "/set-volume.sh + " .. VOLUME_STEP))
+hl.bind("SUPER + " .. mouse_wheel_down , hl.dsp.exec_cmd(SCRIPTS .. "/set-volume.sh - " .. VOLUME_STEP))
 
 -- drag binds
 hl.bind("SUPER + " .. mouse_left  , hl.dsp.window.drag()   , { mouse = true })
-hl.bind("SUPER + " .. mouse_left  , hl.dsp.exec_cmd("paplay " .. sound_effects_dir .. "/window-move-start.ogg"))
+hl.bind("SUPER + " .. mouse_left  , hl.dsp.exec_cmd("paplay " .. SOUND_EFFECTS_DIR .. "/window-move-start.ogg"))
 hl.bind("SUPER + " .. mouse_right , hl.dsp.window.resize() , { mouse = true })

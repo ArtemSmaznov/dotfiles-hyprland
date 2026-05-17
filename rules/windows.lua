@@ -17,7 +17,7 @@ hl.window_rule({
 hl.window_rule({
     name = "pinned",
     match = { pin = true },
-    border_size = borders_dialog,
+    border_size = BORDERS_DIALOG,
 })
 
 -- maximized windows

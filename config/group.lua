@@ -53,12 +53,12 @@ hl.config({
       height                    = 36,
       font_size                 = 18,
       text_color                = "rgb(" .. base01 .. ")",
-      gradient_rounding         = corners,
+      gradient_rounding         = CORNERS,
       gradient_round_only_edges = false,
 
       -- plain inidicators
       indicator_height          = 0,
-      rounding                  = corners,
+      rounding                  = CORNERS,
       round_only_edges          = false,
 
       -- indicator colors
@@ -70,8 +70,8 @@ hl.config({
       },
 
       -- indicator gaps
-      gaps_in                   = gaps_inner,
-      gaps_out                  = gaps_inner,
+      gaps_in                   = GAPS_INNER,
+      gaps_out                  = GAPS_INNER,
     },
   },
 })

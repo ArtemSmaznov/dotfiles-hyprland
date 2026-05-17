@@ -5,7 +5,7 @@ hl.window_rule({
   },
   no_initial_focus = true,
   float = true,
-  move = { gaps_outer, "monitor_w-" .. gaps_outer },
+  move = { GAPS_OUTER, "monitor_w-" .. GAPS_OUTER },
   size = { "monitor_w*0.17", 300 },
   pin = true,
 })

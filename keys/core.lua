@@ -1,15 +1,15 @@
 local reset_submap = function()
   hl.dispatch(hl.dsp.submap("reset"))
-  hl.dispatch(hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"))
+  hl.dispatch(hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/reset-submap.sh"))
 end
 
 --------------------------------------------------------------------------------
 -- system
 --------------------------------------------------------------------------------
-hl.bind("SUPER + CTRL + d" , hl.dsp.exec_cmd(myVisualizer)                  , { description = "debug" })
+hl.bind("SUPER + CTRL + d" , hl.dsp.exec_cmd(VISUALIZER)                  , { description = "debug" })
 hl.bind("SUPER + CTRL + q" , hl.dsp.exec_cmd("uwsm stop")                   , { description = "quit Hyprland" })
 hl.bind("SUPER + CTRL + r" , hl.dsp.force_renderer_reload                   , { description = "restart Hyprland" })
-hl.bind("SHIFT + ALT_L"    , hl.dsp.exec_cmd(myScript .. "/toggle-lang.sh") , { description = "switch language" })
+hl.bind("SHIFT + ALT_L"    , hl.dsp.exec_cmd(SCRIPTS .. "/toggle-lang.sh") , { description = "switch language" })
 
 -- TODO master escape
 hl.bind("SUPER + escape" , hl.dsp.exec_cmd("echo SUPER ESCAPE") , { description = "SUPER ESCAPE" })
@@ -22,12 +22,12 @@ hl.bind("SUPER + escape" , hl.dsp.exec_cmd("echo SUPER ESCAPE") , { description 
 -- states
 hl.bind("SUPER + q", function()
   hl.dispatch(hl.dsp.window.close())
-  hl.dispatch(hl.dsp.exec_cmd("paplay " .. sound_effects_dir .. "/window-close.ogg"))
+  hl.dispatch(hl.dsp.exec_cmd("paplay " .. SOUND_EFFECTS_DIR .. "/window-close.ogg"))
 end, { description = "close focused window" })
 
 hl.bind("SUPER + ALT + q", function()
   hl.dispatch(hl.dsp.exec_cmd("hyprctl kill"))
-  hl.dispatch(hl.dsp.exec_cmd("paplay " .. sound_effects_dir .. "/window-close.ogg"))
+  hl.dispatch(hl.dsp.exec_cmd("paplay " .. SOUND_EFFECTS_DIR .. "/window-close.ogg"))
 end, { description = "click window to close" })
 
 hl.bind("SUPER + SHIFT + F11" , hl.dsp.window.fullscreen_state({ internal = -1, client = 2 }) , { description = "toggle fake fullscreen" })
@@ -42,12 +42,12 @@ end, { description = "toggle floating" })
 
 hl.bind("SUPER + CTRL + f", function()
   hl.dispatch(hl.dsp.window.pin({ action = "toggle" }))
-  hl.dispatch(hl.dsp.exec_cmd("paplay " .. sound_effects_dir .. "/window-pin.ogg"))
+  hl.dispatch(hl.dsp.exec_cmd("paplay " .. SOUND_EFFECTS_DIR .. "/window-pin.ogg"))
 end, { description = "toggle pinned" })
 
 hl.bind("SUPER + up", function()
   hl.dispatch(hl.dsp.window.pin({ action = "toggle" }))
-  hl.dispatch(hl.dsp.exec_cmd("paplay " .. sound_effects_dir .. "/window-pin.ogg"))
+  hl.dispatch(hl.dsp.exec_cmd("paplay " .. SOUND_EFFECTS_DIR .. "/window-pin.ogg"))
 end, { description = "toggle pinned" })
 
 hl.bind("SUPER + SHIFT + p" , hl.dsp.window.pseudo({ action = "toggle" }), { description = "toggle pseudo" })
@@ -183,21 +183,21 @@ hl.bind("SUPER + ALT + SHIFT + 5"    , hl.dsp.window.move({ workspace = "special
 --------------------------------------------------------------------------------
 -- launching apps
 --------------------------------------------------------------------------------
-hl.bind("SUPER + grave", hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'term' 'sp-term' 'alacritty --class sp-term'")            , { description = "toggle terminal" })
-hl.bind("SUPER + e"    , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'files' 'sp-files' 'alacritty --class sp-files --e vifm'"), { description = "toggle file manager" })
+hl.bind("SUPER + grave", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'term' 'sp-term' 'alacritty --class sp-term'")            , { description = "toggle terminal" })
+hl.bind("SUPER + e"    , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'files' 'sp-files' 'alacritty --class sp-files --e vifm'"), { description = "toggle file manager" })
 
-hl.bind("SUPER + return"          , hl.dsp.exec_cmd(myTerm       , { no_initial_focus = false }) , { description = "launch terminal"                               })
-hl.bind("SUPER + ALT + return"    , hl.dsp.exec_cmd(myTerm       , { no_initial_focus = true  }) , { description = "launch terminal [silent]"                      })
-hl.bind("SUPER + CTRL + return"   , hl.dsp.exec_cmd(myLauncher   , { no_initial_focus = false }) , { description = "launch launcher"                               })
-hl.bind("SUPER + r"               , hl.dsp.exec_cmd(myLauncher   , { no_initial_focus = false }) , { description = "launch launcher"                               })
-hl.bind("SUPER + c"               , hl.dsp.exec_cmd(myIde        , { no_initial_focus = false }) , { description = "launch ide"                                    })
-hl.bind("SUPER + ALT + c"         , hl.dsp.exec_cmd(myIde        , { no_initial_focus = true  }) , { description = "launch ide [silent]"                           })
-hl.bind("SUPER + SHIFT + e"       , hl.dsp.exec_cmd(myCliFiles   , { no_initial_focus = false }) , { description = "launch file manager"                           })
-hl.bind("SUPER + SHIFT + ALT + e" , hl.dsp.exec_cmd(myCliFiles   , { no_initial_focus = true  }) , { description = "launch file manager [silent]"                  })
-hl.bind("SUPER + b"               , hl.dsp.exec_cmd(myWebBrowser , { no_initial_focus = false }) , { description = "launch web browser"                            })
-hl.bind("SUPER + ALT + b"         , hl.dsp.exec_cmd(myWebBrowser , { no_initial_focus = true  }) , { description = "launch web browser [silent]"                   })
-hl.bind("SUPER + i"               , hl.dsp.exec_cmd(myIncBrowser , { no_initial_focus = false }) , { description = "launch web browser in incognito mode"          })
-hl.bind("SUPER + ALT + i"         , hl.dsp.exec_cmd(myIncBrowser , { no_initial_focus = true  }) , { description = "launch web browser in incognito mode [silent]" })
+hl.bind("SUPER + return"          , hl.dsp.exec_cmd(TERM       , { no_initial_focus = false }) , { description = "launch terminal"                               })
+hl.bind("SUPER + ALT + return"    , hl.dsp.exec_cmd(TERM       , { no_initial_focus = true  }) , { description = "launch terminal [silent]"                      })
+hl.bind("SUPER + CTRL + return"   , hl.dsp.exec_cmd(LAUNCHER   , { no_initial_focus = false }) , { description = "launch launcher"                               })
+hl.bind("SUPER + r"               , hl.dsp.exec_cmd(LAUNCHER   , { no_initial_focus = false }) , { description = "launch launcher"                               })
+hl.bind("SUPER + c"               , hl.dsp.exec_cmd(IDE        , { no_initial_focus = false }) , { description = "launch ide"                                    })
+hl.bind("SUPER + ALT + c"         , hl.dsp.exec_cmd(IDE        , { no_initial_focus = true  }) , { description = "launch ide [silent]"                           })
+hl.bind("SUPER + SHIFT + e"       , hl.dsp.exec_cmd(FILES_CLI   , { no_initial_focus = false }) , { description = "launch file manager"                           })
+hl.bind("SUPER + SHIFT + ALT + e" , hl.dsp.exec_cmd(FILES_CLI   , { no_initial_focus = true  }) , { description = "launch file manager [silent]"                  })
+hl.bind("SUPER + b"               , hl.dsp.exec_cmd(BROWSER , { no_initial_focus = false }) , { description = "launch web browser"                            })
+hl.bind("SUPER + ALT + b"         , hl.dsp.exec_cmd(BROWSER , { no_initial_focus = true  }) , { description = "launch web browser [silent]"                   })
+hl.bind("SUPER + i"               , hl.dsp.exec_cmd(BROWSER_INCOGNITO , { no_initial_focus = false }) , { description = "launch web browser in incognito mode"          })
+hl.bind("SUPER + ALT + i"         , hl.dsp.exec_cmd(BROWSER_INCOGNITO , { no_initial_focus = true  }) , { description = "launch web browser in incognito mode [silent]" })
 --------------------------------------------------------------------------------
 
 
@@ -205,9 +205,9 @@ hl.bind("SUPER + ALT + i"         , hl.dsp.exec_cmd(myIncBrowser , { no_initial_
 --------------------------------------------------------------------------------
 -- CTRL + ALT
 --------------------------------------------------------------------------------
-hl.bind("CTRL + ALT + delete", hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'htop' 'sp-htop' 'alacritty --class sp-htop -e htop'"), { description = "" })
-hl.bind("CTRL + ALT + end"   , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'btop' 'sp-btop' 'alacritty --class sp-btop -e btop'"), { description = "" })
-hl.bind("CTRL + ALT + t"     , hl.dsp.exec_cmd(myTerm)                                                                                             , { description = "" })
+hl.bind("CTRL + ALT + delete", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'htop' 'sp-htop' 'alacritty --class sp-htop -e htop'"), { description = "" })
+hl.bind("CTRL + ALT + end"   , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'btop' 'sp-btop' 'alacritty --class sp-btop -e btop'"), { description = "" })
+hl.bind("CTRL + ALT + t"     , hl.dsp.exec_cmd(TERM)                                                                                             , { description = "" })
 
 -- hl.bind("CTRL ALT + a", togglespecialworkspace , audio                                                                                 , { description = "" })
 -- hl.bind("CTRL ALT + a", hl.dsp.exec_cmd("")                   , [workspace special:audio] pavucontrol                                                 , { description = "" })
@@ -222,21 +222,21 @@ hl.bind("CTRL + ALT + t"     , hl.dsp.exec_cmd(myTerm)                          
 -- media keys
 --------------------------------------------------------------------------------
 -- system
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(myScript .. "/set-volume.sh + " .. volume_step), { locked = true, description = "increase system volume" })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(myScript .. "/set-volume.sh - " .. volume_step), { locked = true, description = "decrease system volume" })
-hl.bind("XF86AudioMute"       , hl.dsp.exec_cmd(myScript .. "/toggle-mute.sh")                 , { locked = true, description = "toggle mute" })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(SCRIPTS .. "/set-volume.sh + " .. VOLUME_STEP), { locked = true, description = "increase system volume" })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(SCRIPTS .. "/set-volume.sh - " .. VOLUME_STEP), { locked = true, description = "decrease system volume" })
+hl.bind("XF86AudioMute"       , hl.dsp.exec_cmd(SCRIPTS .. "/toggle-mute.sh")                 , { locked = true, description = "toggle mute" })
 
 -- player audio
-hl.bind("XF86AudioPlay"              , hl.dsp.exec_cmd(myScript .. "/playerctl.sh toggle")  , { locked = true, description = "player play/pause" })
-hl.bind("XF86AudioStop"              , hl.dsp.exec_cmd(myScript .. "/playerctl.sh stop")    , { locked = true, description = "player stop" })
-hl.bind("XF86AudioPrev"              , hl.dsp.exec_cmd(myScript .. "/playerctl.sh prev")    , { locked = true, description = "player prev" })
-hl.bind("XF86AudioNext"              , hl.dsp.exec_cmd(myScript .. "/playerctl.sh next")    , { locked = true, description = "player next" })
-hl.bind("CTRL + XF86AudioPlay"       , hl.dsp.exec_cmd(myScript .. "/musictl.sh single")    , { locked = true, description = "music [s] single mode" })
-hl.bind("CTRL + XF86AudioStop"       , hl.dsp.exec_cmd(myScript .. "/musictl.sh random")    , { locked = true, description = "music [z] shuffle mode" })
-hl.bind("CTRL + XF86AudioPrev"       , hl.dsp.exec_cmd(myScript .. "/musictl.sh replay")    , { locked = true, description = "replay track from the beginning" })
-hl.bind("CTRL + XF86AudioNext"       , hl.dsp.exec_cmd(myScript .. "/musictl.sh skip")      , { locked = true, description = "skip track and remove from queue" })
-hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd(myScript .. "/playerctl.sh vol-up")  , { locked = true, description = "player increase volume" })
-hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd(myScript .. "/playerctl.sh vol-down"), { locked = true, description = "player decrease volume" })
+hl.bind("XF86AudioPlay"              , hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh toggle")  , { locked = true, description = "player play/pause" })
+hl.bind("XF86AudioStop"              , hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh stop")    , { locked = true, description = "player stop" })
+hl.bind("XF86AudioPrev"              , hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh prev")    , { locked = true, description = "player prev" })
+hl.bind("XF86AudioNext"              , hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh next")    , { locked = true, description = "player next" })
+hl.bind("CTRL + XF86AudioPlay"       , hl.dsp.exec_cmd(SCRIPTS .. "/musictl.sh single")    , { locked = true, description = "music [s] single mode" })
+hl.bind("CTRL + XF86AudioStop"       , hl.dsp.exec_cmd(SCRIPTS .. "/musictl.sh random")    , { locked = true, description = "music [z] shuffle mode" })
+hl.bind("CTRL + XF86AudioPrev"       , hl.dsp.exec_cmd(SCRIPTS .. "/musictl.sh replay")    , { locked = true, description = "replay track from the beginning" })
+hl.bind("CTRL + XF86AudioNext"       , hl.dsp.exec_cmd(SCRIPTS .. "/musictl.sh skip")      , { locked = true, description = "skip track and remove from queue" })
+hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh vol-up")  , { locked = true, description = "player increase volume" })
+hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd(SCRIPTS .. "/playerctl.sh vol-down"), { locked = true, description = "player decrease volume" })
 --------------------------------------------------------------------------------
 
 
@@ -244,10 +244,10 @@ hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd(myScript .. "/playerctl.s
 --------------------------------------------------------------------------------
 -- [PrtSc] screenshots
 --------------------------------------------------------------------------------
-hl.bind("print"                , hl.dsp.exec_cmd(myScript .. "/screenshot.sh monitor"), { description = "fullscreen screenshot" })
-hl.bind("SUPER + SHIFT + print", hl.dsp.exec_cmd(myScript .. "/screenshot.sh area")   , { description = "selection area screenshot" })
-hl.bind("ALT + print"          , hl.dsp.exec_cmd(myScript .. "/screenshot.sh window") , { description = "active window screenshot" })
-hl.bind("SUPER + print"        , hl.dsp.exec_cmd(myScript .. "/screenshot.sh desktop"), { description = "full desktop screenshot" })
+hl.bind("print"                , hl.dsp.exec_cmd(SCRIPTS .. "/screenshot.sh monitor"), { description = "fullscreen screenshot" })
+hl.bind("SUPER + SHIFT + print", hl.dsp.exec_cmd(SCRIPTS .. "/screenshot.sh area")   , { description = "selection area screenshot" })
+hl.bind("ALT + print"          , hl.dsp.exec_cmd(SCRIPTS .. "/screenshot.sh window") , { description = "active window screenshot" })
+hl.bind("SUPER + print"        , hl.dsp.exec_cmd(SCRIPTS .. "/screenshot.sh desktop"), { description = "full desktop screenshot" })
 --------------------------------------------------------------------------------
 
 
@@ -256,19 +256,19 @@ hl.bind("SUPER + print"        , hl.dsp.exec_cmd(myScript .. "/screenshot.sh des
 -- [\] notifications
 --------------------------------------------------------------------------------
 hl.bind("SUPER + backslash", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-\\\\-' dm-notify"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-\\\\-' dm-notify"))
   hl.dispatch(hl.dsp.submap("dm-notify"))
 end)
 
 hl.define_submap("dm-notify"  , function()
-  hl.bind("backspace"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification"   })
+  hl.bind("backspace"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify close")  , { description = "clear last notification"   })
   -- hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
-  hl.bind("backslash"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
-  hl.bind("SHIFT + BACKSLASH" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recents"), { description = "show recent notifications" })
-  hl.bind("a"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify context"), { description = "open last notification"    })
-  hl.bind("c"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification"   })
-  hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify clear")  , { description = "clear all notifications"   })
-  hl.bind("r"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recents"), { description = "show recent notifications" })
+  hl.bind("backslash"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recent") , { description = "show last notification"    })
+  hl.bind("SHIFT + BACKSLASH" , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
+  hl.bind("a"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify context"), { description = "open last notification"    })
+  hl.bind("c"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify close")  , { description = "clear last notification"   })
+  hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify clear")  , { description = "clear all notifications"   })
+  hl.bind("r"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
 
   hl.bind("catchall", reset_submap, { release = true })
   hl.bind("a"       , reset_submap, { release = true })
@@ -281,23 +281,23 @@ end)
 -- [d] dm-scripts
 --------------------------------------------------------------------------------
 hl.bind("SUPER + d", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-d-' dm-global"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-d-' dm-global"))
   hl.dispatch(hl.dsp.submap("dm-global"))
 end)
 
 hl.define_submap("dm-global", function()
-  hl.bind("backslash"       , hl.dsp.exec_cmd(myDMScript .. "/dm-notify")    , { description = "dm-notify" })
-  hl.bind("a"               , hl.dsp.exec_cmd(myDMScript .. "/dm-audio")     , { description = "dm-audio" })
-  hl.bind("b"               , hl.dsp.exec_cmd(myDMScript .. "/dm-bookman")   , { description = "dm-bookman" })
+  hl.bind("backslash"       , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify")    , { description = "dm-notify" })
+  hl.bind("a"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-audio")     , { description = "dm-audio" })
+  hl.bind("b"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-bookman")   , { description = "dm-bookman" })
   -- hl.bind("SUPER + d"       , hl.dsp.exec_cmd(myDMScript .. "/dm-master")    , { description = "dm-master" })
-  hl.bind("k"               , hl.dsp.exec_cmd(myDMScript .. "/dm-keys")      , { description = "dm-keys" })
-  hl.bind("n"               , hl.dsp.exec_cmd(myDMScript .. "/dm-notify")    , { description = "dm-notify" })
-  hl.bind("p"               , hl.dsp.exec_cmd(myDMScript .. "/dm-player")    , { description = "dm-player" })
-  hl.bind("r"               , hl.dsp.exec_cmd(myDMScript .. "/dm-record")    , { description = "dm-record" })
-  hl.bind("s"               , hl.dsp.exec_cmd(myDMScript .. "/dm-screenshot"), { description = "dm-screenshot" })
-  hl.bind("t"               , hl.dsp.exec_cmd(myDMScript .. "/dm-theme")     , { description = "dm-theme" })
-  hl.bind("w"               , hl.dsp.exec_cmd(myDMScript .. "/dm-wallpaper") , { description = "dm-wallpaper" })
-  hl.bind("z"               , hl.dsp.exec_cmd(myDMScript .. "/dm-power")     , { description = "dm-power" })
+  hl.bind("k"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-keys")      , { description = "dm-keys" })
+  hl.bind("n"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify")    , { description = "dm-notify" })
+  hl.bind("p"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-player")    , { description = "dm-player" })
+  hl.bind("r"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-record")    , { description = "dm-record" })
+  hl.bind("s"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-screenshot"), { description = "dm-screenshot" })
+  hl.bind("t"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-theme")     , { description = "dm-theme" })
+  hl.bind("w"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-wallpaper") , { description = "dm-wallpaper" })
+  hl.bind("z"               , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power")     , { description = "dm-power" })
 
   hl.bind("catchall"  , reset_submap, { release = true })
   hl.bind("backslash" , reset_submap, { release = true })
@@ -321,23 +321,23 @@ end)
 -- [o] open
 --------------------------------------------------------------------------------
 hl.bind("SUPER + o", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-o-' open"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-o-' open"))
   hl.dispatch(hl.dsp.submap("open"))
 end)
 
 hl.define_submap("open", function()
-  hl.bind("b"          , hl.dsp.exec_cmd(mySysBluetooth)                                                                                  , { description = "bluetooth" })
-  hl.bind("c"          , hl.dsp.exec_cmd(myColorPicker)                                                                                   , { description = "color picker" })
-  hl.bind("d"          , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord")               , { description = "toggle chats" })
+  hl.bind("b"          , hl.dsp.exec_cmd(SYS_BLUETOOTH)                                                                                  , { description = "bluetooth" })
+  hl.bind("c"          , hl.dsp.exec_cmd(COLOR_PICKER)                                                                                   , { description = "color picker" })
+  hl.bind("d"          , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord")               , { description = "toggle chats" })
   hl.bind("e"          , hl.dsp.exec_cmd("myEmail")                                                                                       , { description = "email client" })
-  hl.bind("g"          , hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-o g-' games")                                                , { description = "" })
+  hl.bind("g"          , hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-o g-' games")                                                , { description = "" })
   hl.bind("g"          , hl.dsp.submap("games")                                                                                           , { description = "+games" })
   hl.bind("i"          , hl.dsp.exec_cmd("vimiv $XDG_PICTURES_DIR")                                                                       , { description = "image viewer" })
-  hl.bind("m"          , hl.dsp.exec_cmd(myCliMusic)                                                                                      , { description = "music player" })
-  hl.bind("SHIFT + M"  , hl.dsp.exec_cmd(myCliMusic                                                                                       , { workspace = 9, no_initial_focus = true }) , { description = "music player on default workspace" })
-  hl.bind("t"          , hl.dsp.exec_cmd(myTorBrowser)                                                                                    , { description = "tor browser" })
-  hl.bind("v"          , hl.dsp.exec_cmd(myVolumeControl)                                                                                 , { description = "volume control" })
-  hl.bind("w"          , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' 'whatsapp-for-linux' 'whatsapp-for-linux'"), { description = "toggle whatsapp" })
+  hl.bind("m"          , hl.dsp.exec_cmd(MUSIC_CLI)                                                                                      , { description = "music player" })
+  hl.bind("SHIFT + M"  , hl.dsp.exec_cmd(MUSIC_CLI                                                                                       , { workspace = 9, no_initial_focus = true }) , { description = "music player on default workspace" })
+  hl.bind("t"          , hl.dsp.exec_cmd(BROWSER_TOR)                                                                                    , { description = "tor browser" })
+  hl.bind("v"          , hl.dsp.exec_cmd(SYS_AUDIO)                                                                                 , { description = "volume control" })
+  hl.bind("w"          , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' 'whatsapp-for-linux' 'whatsapp-for-linux'"), { description = "toggle whatsapp" })
 
   hl.bind("catchall"  , reset_submap, { release = true })
   hl.bind("b"         , reset_submap, { release = true })
@@ -354,18 +354,18 @@ end)
 
 -- [o] [g] open games
 hl.define_submap("games", function()
-  hl.bind("d"           , hl.dsp.exec_cmd(myGZDoom)  , { description = "gzdoom" })
-  hl.bind("f"           , hl.dsp.exec_cmd(myFHeroes2), { description = "fheroes2 (homm2)" })
+  hl.bind("d"           , hl.dsp.exec_cmd(GZDOOM)  , { description = "gzdoom" })
+  hl.bind("f"           , hl.dsp.exec_cmd(FHEROES2), { description = "fheroes2 (homm2)" })
   -- hl.bind("g"           , hl.dsp.exec_cmd(myGameHub) , { description = "gamehub" })
-  hl.bind("h"           , hl.dsp.exec_cmd(myHeroic)  , { description = "heroic" })
-  hl.bind("l"           , hl.dsp.exec_cmd(myLutris)  , { description = "lutris" })
-  hl.bind("n"           , hl.dsp.exec_cmd(myNexus)   , { description = "Nexus Mods App" })
-  hl.bind("s"           , hl.dsp.exec_cmd(mySteam)   , { description = "steam" })
-  hl.bind("v"           , hl.dsp.exec_cmd(myVCMI)    , { description = "vcmi (homm3)" })
-  hl.bind("x"           , hl.dsp.exec_cmd(myNexus)   , { description = "Nexus Mods App" })
+  hl.bind("h"           , hl.dsp.exec_cmd(HEROIC)  , { description = "heroic" })
+  hl.bind("l"           , hl.dsp.exec_cmd(LUTRIS)  , { description = "lutris" })
+  hl.bind("n"           , hl.dsp.exec_cmd(NEXUS)   , { description = "Nexus Mods App" })
+  hl.bind("s"           , hl.dsp.exec_cmd(STEAM)   , { description = "steam" })
+  hl.bind("v"           , hl.dsp.exec_cmd(VCMI)    , { description = "vcmi (homm3)" })
+  hl.bind("x"           , hl.dsp.exec_cmd(NEXUS)   , { description = "Nexus Mods App" })
 
   hl.bind("catchall" , reset_submap                                                   , { release = true })
-  hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript  .. "/which-key.sh -p 'M-o-' open"), { description = "" })
+  hl.bind("backspace", hl.dsp.exec_cmd(EWW_SCRIPTS  .. "/which-key.sh -p 'M-o-' open"), { description = "" })
   hl.bind("backspace", hl.dsp.submap("open")                                          , { description = "" })
   hl.bind("d"        , reset_submap                                                   , { release = true })
   hl.bind("f"        , reset_submap                                                   , { release = true })
@@ -385,7 +385,7 @@ end)
 -- [p] pass
 --------------------------------------------------------------------------------
 hl.bind("SUPER + p", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-p-' pass"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-p-' pass"))
   hl.dispatch(hl.dsp.submap("pass"))
 end)
 
@@ -407,21 +407,21 @@ end)
 -- [s] scratchpad
 --------------------------------------------------------------------------------
 hl.bind("SUPER + s", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-s-' scratchpad"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-s-' scratchpad"))
   hl.dispatch(hl.dsp.submap("scratchpad"))
 end)
 
 hl.define_submap("scratchpad", function()
-  hl.bind("a"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'anki' 'anki' 'anki'")                                          , { description = "anki" })
-  hl.bind("b"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'bluetooth' " .. mySysBluetooth .. mySysBluetooth)              , { description = "bluetooth" })
-  hl.bind("c"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'calculator' 'org.gnome.Calculator' 'gnome-calculator'")        , { description = "calculator" })
-  hl.bind("d"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' " .. myDiscordClass .. myDiscord)                       , { description = "discord" })
-  hl.bind("e"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'email' " .. myEmailClass .. myEmail)                           , { description = "email client" })
-  hl.bind("m"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'music' 'sp-music' 'alacritty --class sp-music -e ncmpcpp'")    , { description = "music player" })
-  hl.bind("p"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'phone' 'scrcpy' 'scrcpy'")                                     , { description = "phone" })
-  hl.bind("t"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'torrent' 'com.transmissionbt.transmission' 'transmission-gtk'"), { description = "torrent" })
-  hl.bind("v"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'vm' 'virt-manager' 'virt-manager'")                            , { description = "vm" })
-  hl.bind("w"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' 'whatsapp-for-linux' 'whatsapp-for-linux'")             , { description = "whatsapp" })
+  hl.bind("a"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'anki' 'anki' 'anki'")                                          , { description = "anki" })
+  hl.bind("b"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'bluetooth' " .. SYS_BLUETOOTH .. SYS_BLUETOOTH)              , { description = "bluetooth" })
+  hl.bind("c"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'calculator' 'org.gnome.Calculator' 'gnome-calculator'")        , { description = "calculator" })
+  hl.bind("d"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' " .. DISCORD_CLASS .. DISCORD)                       , { description = "discord" })
+  hl.bind("e"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'email' " .. EMAIL_CLASS .. EMAIL)                           , { description = "email client" })
+  hl.bind("m"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'music' 'sp-music' 'alacritty --class sp-music -e ncmpcpp'")    , { description = "music player" })
+  hl.bind("p"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'phone' 'scrcpy' 'scrcpy'")                                     , { description = "phone" })
+  hl.bind("t"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'torrent' 'com.transmissionbt.transmission' 'transmission-gtk'"), { description = "torrent" })
+  hl.bind("v"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'vm' 'virt-manager' 'virt-manager'")                            , { description = "vm" })
+  hl.bind("w"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' 'whatsapp-for-linux' 'whatsapp-for-linux'")             , { description = "whatsapp" })
 
   hl.bind("catchall", reset_submap, { release = true })
   hl.bind("a"       , reset_submap, { release = true })
@@ -443,7 +443,7 @@ end)
 -- [t] toggle
 --------------------------------------------------------------------------------
 hl.bind("SUPER + t", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-t-' toggle"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-t-' toggle"))
   hl.dispatch(hl.dsp.submap("toggle"))
 end)
 
@@ -458,18 +458,18 @@ end)
 -- [z] power management
 --------------------------------------------------------------------------------
 hl.bind("SUPER + z", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-z-' dm-power"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-z-' dm-power"))
   hl.dispatch(hl.dsp.submap("dm-power"))
 end)
 
 hl.define_submap("dm-power", function()
-  hl.bind("c"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power controller")         , { description = "disconnect all controllers" })
-  hl.bind("l"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power lock")               , { description = "lock screen" })
+  hl.bind("c"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power controller")         , { description = "disconnect all controllers" })
+  hl.bind("l"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power lock")               , { description = "lock screen" })
   hl.bind("SHIFT + L"      , hl.dsp.exec_cmd("loginctl terminate-session'$XDG_SESSION_ID'"), { description = "logout" })
-  hl.bind("p"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power poweroff")           , { description = "shutdown system" })
-  hl.bind("r"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power reboot")             , { description = "reboot system" })
-  hl.bind("s"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
-  hl.bind("z"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
+  hl.bind("p"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power poweroff")           , { description = "shutdown system" })
+  hl.bind("r"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power reboot")             , { description = "reboot system" })
+  hl.bind("s"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power suspend")            , { description = "suspend system" })
+  hl.bind("z"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power suspend")            , { description = "suspend system" })
   -- hl.bind("SUPER + z"      , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
 
   hl.bind("catchall"  , reset_submap, { release = true })
@@ -490,16 +490,16 @@ end)
 -- CTRL + ALT + O
 --------------------------------------------------------------------------------
 hl.bind("CTRL + ALT + o", function()
-  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-z-' dm-power"))
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-z-' dm-power"))
   hl.dispatch(hl.dsp.submap("open-secondary"))
 end)
 
 hl.define_submap("open-secondary", function()
-  hl.bind("e"                    , hl.dsp.exec_cmd(myFiles)       , { description = "gui file manager" })
-  hl.bind("g"                    , hl.dsp.exec_cmd(myImgEditor)   , { description = "image editor" })
-  hl.bind("p"                    , hl.dsp.exec_cmd(myPhotoLibrary), { description = "photo library" })
-  hl.bind("r"                    , hl.dsp.exec_cmd(myVctEditor)   , { description = "vector image editor" })
-  hl.bind("v"                    , hl.dsp.exec_cmd(myVidEditor)   , { description = "video editor" })
+  hl.bind("e"                    , hl.dsp.exec_cmd(FILES)       , { description = "gui file manager" })
+  hl.bind("g"                    , hl.dsp.exec_cmd(IMAGE_EDITOR)   , { description = "image editor" })
+  hl.bind("p"                    , hl.dsp.exec_cmd(PHOTO_LIBRARY), { description = "photo library" })
+  hl.bind("r"                    , hl.dsp.exec_cmd(VECTOR_EDITOR)   , { description = "vector image editor" })
+  hl.bind("v"                    , hl.dsp.exec_cmd(VIDEO_EDITOR)   , { description = "video editor" })
 
   hl.bind("catchall" , reset_submap, { release = true })
   hl.bind("e"        , reset_submap, { release = true })

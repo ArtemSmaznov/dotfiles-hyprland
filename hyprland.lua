@@ -2,93 +2,92 @@ require("themes/base16")
 require("monitors")
 
 -- style
-gaps_inner = 20
-gaps_outer = 40
-borders = 15
-borders_special = 10
-borders_dialog = 5
-corners = 15
-sound_effects_dir = "/usr/share/sounds/oxygen/stereo"
-volume_step = 1
+GAPS_INNER         = 20
+GAPS_OUTER         = 40
+BORDERS            = 15
+BORDERS_SPECIAL    = 10
+BORDERS_DIALOG     = 5
+CORNERS            = 15
+SOUND_EFFECTS_DIR  = "/usr/share/sounds/oxygen/stereo"
+VOLUME_STEP        = 1
 
 -- scripts
-myScript = "$HOME/.local/bin"
-myDMScript = "$HOME/.local/bin/dm-scripts"
-myHyprScript = "$HOME/.config/hypr/scripts"
-myEwwScript = "$HOME/.config/eww/scripts"
-exile = "$HOME/projects/git/arts/exile/target/release/exile"
+SCRIPTS            = "$HOME/.local/bin"
+DM_SCRIPTS         = "$HOME/.local/bin/dm-scripts"
+HYPR_SCRIPTS       = "$HOME/.config/hypr/scripts"
+EWW_SCRIPTS        = "$HOME/.config/eww/scripts"
+EXILE              = "$HOME/projects/git/arts/exile/target/release/exile"
 
 -- cli tools
-myTerm = "uwsm app -- Alacritty.desktop"
-myCliFiles = "uwsm app -- alacritty -e vifm"
-myCliMusic = "alacritty --class ncmpcpp -e ncmpcpp"
-myVisualizer = "alacritty --class mini-visualizer -e cava"
-mySysLog = "alacritty --class syslog -e " .. myScript .."/syslog.sh"
-myCliText = "vim"
-myCliSysAudio = "alsamixer"
-myCliSysMonitor = "btop"
-myCliSysTasks = "htop"
+TERM               = "uwsm app -- Alacritty.desktop"
+FILES_CLI          = "uwsm app -- alacritty -e vifm"
+MUSIC_CLI          = "alacritty --class ncmpcpp -e ncmpcpp"
+VISUALIZER         = "alacritty --class mini-visualizer -e cava"
+SYSLOG             = "alacritty --class syslog -e " .. SCRIPTS .. "/syslog.sh"
+TEXT_CLI           = "vim"
+SYS_AUDIO_CLI      = "alsamixer"
+SYS_MONITOR_CLI    = "btop"
+SYS_TASKS_CLI      = "htop"
 
 -- core tools
-myWebBrowser = "uwsm app -- org.qutebrowser.qutebrowser.desktop"
-myIncBrowser = "uwsm app -- qutebrowser --target private-window"
-myTorBrowser = "uwsm app -- torbrowser.desktop"
-myIde = "uwsm app -- emacs.desktop"
-myFiles = "uwsm app -- pcmanfm.desktop"
-myEmail = "uwsm app -- org.mozilla.Thunderbird.desktop"
-myEmailClass = "thunderbird"
+BROWSER            = "uwsm app -- org.qutebrowser.qutebrowser.desktop"
+BROWSER_INCOGNITO  = "uwsm app -- qutebrowser --target private-window"
+BROWSER_TOR        = "uwsm app -- torbrowser.desktop"
+IDE                = "uwsm app -- emacs.desktop"
+FILES              = "uwsm app -- pcmanfm.desktop"
+EMAIL              = "uwsm app -- org.mozilla.Thunderbird.desktop"
+EMAIL_CLASS        = "thunderbird"
 
 -- gaming
-myGZDoom = "uwsm app -- gzdoom.desktop"
-myFHeroes2 = "uwsm app -- fheroes2.desktop"
-myGameHub = "uwsm app -- com.github.tkashkin.gamehub.desktop"
-
-myHeroic = "uwsm app -- heroic"
-myLutris = "uwsm app -- net.lutris.Lutris.desktop"
-mySteam = "uwsm app -- steam.desktop"
-myVCMI = "uwsm app -- vcmilauncher.desktop"
-myNexus = "uwsm app -- com.nexusmods.app.desktop"
+GZDOOM             = "uwsm app -- gzdoom.desktop"
+FHEROES2           = "uwsm app -- fheroes2.desktop"
+GAMEHUB            = "uwsm app -- com.github.tkashkin.gamehub.desktop"
+HEROIC             = "uwsm app -- heroic"
+LUTRIS             = "uwsm app -- net.lutris.Lutris.desktop"
+STEAM              = "uwsm app -- steam.desktop"
+VCMI               = "uwsm app -- vcmilauncher.desktop"
+NEXUS              = "uwsm app -- com.nexusmods.app.desktop"
 
 -- extra tools
-myLauncher = "uwsm app -- wofi --show drun"
-myVirtManager = "uwsm app -- virt-manager.desktop"
-myTorrent = "uwsm app -- transmission-gtk"
-myCalculator = "uwsm app -- org.gnome.Calculator.desktop"
-myAnki = "uwsm app -- anki.desktop"
-myColorPicker = "uwsm app -- hyprpicker -anr"
-myVolumeControl = "uwsm app -- com.saivert.pwvucontrol.desktop"
+LAUNCHER           = "uwsm app -- wofi --show drun"
+VM                 = "uwsm app -- virt-manager.desktop"
+TORRENT            = "uwsm app -- transmission-gtk"
+CALCULATOR         = "uwsm app -- org.gnome.Calculator.desktop"
+ANKI               = "uwsm app -- anki.desktop"
+COLOR_PICKER       = "uwsm app -- hyprpicker -anr"
 
 -- graphics tools
-myPhotoLibrary = "uwsm app -- org.kde.digikam.desktop"
-myImgEditor = "uwsm app -- gimp.desktop"
-myVctEditor = "uwsm app -- org.inkscape.Inkscape.desktop"
-myVidEditor = "uwsm app -- org.kde.kdenlive.desktop"
+PHOTO_LIBRARY      = "uwsm app -- org.kde.digikam.desktop"
+IMAGE_EDITOR       = "uwsm app -- gimp.desktop"
+VECTOR_EDITOR      = "uwsm app -- org.inkscape.Inkscape.desktop"
+VIDEO_EDITOR       = "uwsm app -- org.kde.kdenlive.desktop"
 
 -- chat apps
-myWhatsApp = "uwsm app -- whatsapp-for-linux"
-myDiscord = "uwsm app -- webcord.desktop"
-myDiscordClass = "WebCord"
+WHATSAPP           = "uwsm app -- whatsapp-for-linux"
+DISCORD            = "uwsm app -- webcord.desktop"
+DISCORD_CLASS      = "WebCord"
 
 -- system tools
-mySysPower = "xfce4-power-manager-settings"
-mySysNetwork = "uwsm app -- nm-connection-editor"
-mySysBluetooth = "uwsm app -- blueman-manager"
+SYS_POWER          = "xfce4-power-manager-settings"
+SYS_NETWORK        = "uwsm app -- nm-connection-editor"
+SYS_BLUETOOTH      = "uwsm app -- blueman-manager"
+SYS_AUDIO          = "uwsm app -- com.saivert.pwvucontrol.desktop"
 
 -- eww
-eww_config = "config"
-eww_autostart = "autostart"
-eww_indicators = "indicators"
-eww_monitor = "monitor"
-eww_playground = "playground"
-eww_power = "powermenu-panel"
-eww_quick_settings = "quick-settings"
-eww_which_key = "which-key"
+EWW_CONFIG         = "config"
+EWW_AUTOSTART      = "autostart"
+EWW_INDICATORS     = "indicators"
+EWW_MONITOR        = "monitor"
+EWW_PLAYGROUND     = "playground"
+EWW_POWER          = "powermenu-panel"
+EWW_QUICK_SETTINGS = "quick-settings"
+EWW_WHICH_KEY      = "which-key"
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("exec uwsm finalize")
   hl.exec_cmd("docker ps") -- HACK
   hl.exec_cmd("paplay \"$HOME/public/audio/windows95-startup.wav\"")
-  hl.exec_cmd("uwsm app -S both -- eww open-many main-bar second-bar " .. eww_indicators .. eww_quick_settings)
+  hl.exec_cmd("uwsm app -S both -- eww open-many main-bar second-bar " .. EWW_INDICATORS .. EWW_QUICK_SETTINGS)
   hl.exec_cmd("hyprpm reload")
 end)
 
