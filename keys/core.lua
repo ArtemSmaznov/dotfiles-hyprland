@@ -159,10 +159,10 @@ hl.bind("SUPER + SHIFT + l", hl.dsp.window.swap({ direction = "right" }) , { des
 local step = 40
 -- hl.bind("SUPER + equal" , splitratio   , exact 1  , { description = "reset fucused window size" })
 
-hl.bind("SUPER + CTRL + h", hl.dsp.window.resize({ x = -step , y = 0     }) , { repeating = true , description = "grow focused window left"  })
-hl.bind("SUPER + CTRL + j", hl.dsp.window.resize({ x = 0     , y = step  }) , { repeating = true , description = "grow focused window down"  })
-hl.bind("SUPER + CTRL + k", hl.dsp.window.resize({ x = 0     , y = -step }) , { repeating = true , description = "grow focused window up"    })
-hl.bind("SUPER + CTRL + l", hl.dsp.window.resize({ x = step  , y = 0     }) , { repeating = true , description = "grow focused window right" })
+hl.bind("SUPER + CTRL + h", hl.dsp.window.resize({ x = -step , y = 0     , relative = true }) , { repeating = true , description = "grow focused window left"  })
+hl.bind("SUPER + CTRL + j", hl.dsp.window.resize({ x = 0     , y = step  , relative = true }) , { repeating = true , description = "grow focused window down"  })
+hl.bind("SUPER + CTRL + k", hl.dsp.window.resize({ x = 0     , y = -step , relative = true }) , { repeating = true , description = "grow focused window up"    })
+hl.bind("SUPER + CTRL + l", hl.dsp.window.resize({ x = step  , y = 0     , relative = true }) , { repeating = true , description = "grow focused window right" })
 
 -- move floating windows
 hl.bind("SUPER + CTRL  + c" , hl.dsp.window.center() , { repeating = true, description = "center window" })
