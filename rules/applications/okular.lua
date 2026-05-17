@@ -12,6 +12,7 @@ hl.window_rule({
 })
 
 
+
 hl.window_rule({
   name = "okular-initial-state",
   match = { tag = "okular" },

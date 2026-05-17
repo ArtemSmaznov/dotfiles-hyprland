@@ -12,6 +12,8 @@ hl.window_rule({
   center = true,
 })
 
+
+
 hl.window_rule({
   name = "mpv-tiled",
   match = {
@@ -20,6 +22,8 @@ hl.window_rule({
   },
   pseudo = true,
 })
+
+
 
 hl.window_rule({
   name = "mpv-initial-state",

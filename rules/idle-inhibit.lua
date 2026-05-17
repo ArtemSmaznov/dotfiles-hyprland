@@ -1,5 +1,5 @@
 hl.window_rule({
-  match = { tag = "game" },
+  match = { content = "game" },
   idle_inhibit = "focus",
 })
 
