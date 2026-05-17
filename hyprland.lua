@@ -107,9 +107,7 @@ require("config/misc")
 require("config/permissions")
 require("config/xwayland")
 
-require("layouts/dwindle")
-require("layouts/master")
-require("layouts/scrolling")
+require("layouts")
 
 require("keys/core")
 require("keys/leader")
