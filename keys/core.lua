@@ -567,3 +567,17 @@ hl.define_submap("open-secondary", function()
   hl.bind("v"       , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"), { description = "" })
 end)
 --------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+-- temporarily disable all keybinds
+--------------------------------------------------------------------------------
+hl.bind("SUPER + slash", function()
+  hl.dispatch(hl.dsp.submap("disable-binds"))
+  -- TODO spawn a warning icon somewhere ⌨❎
+end)
+
+hl.define_submap("disable-binds", function()
+  hl.bind("SUPER + escape", hl.dsp.submap("reset"))
+end)
