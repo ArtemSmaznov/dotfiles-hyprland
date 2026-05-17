@@ -1,14 +1,3 @@
--- eww
-local eww_config = "config"
-local eww_autostart = "autostart"
-local eww_indicators = "indicators"
-local eww_monitor = "monitor"
-local eww_playground = "playground"
-local eww_power = "powermenu-panel"
-local eww_quick_settings = "quick-settings"
-local eww_which_key = "which-key"
-
-
 hl.layer_rule({
     name = "status-bars",
     match = { namespace = "waybar" },

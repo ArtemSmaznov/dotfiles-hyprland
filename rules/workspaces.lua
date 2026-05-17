@@ -1,10 +1,3 @@
-local borders_special = 10
-
-local myScript = "$HOME/.local/bin"
-
-local myCliMusic = "alacritty --class ncmpcpp -e ncmpcpp"
-local mySysLog = "alacritty --class syslog -e " .. myScript .. "/syslog.sh"
-
 hl.workspace_rule({ workspace = "1" , persistent = true , monitor = "DP-1" , default = true })
 hl.workspace_rule({ workspace = "2" , persistent = true , monitor = "DP-1" })
 hl.workspace_rule({ workspace = "3" , persistent = true , monitor = "DP-1" })

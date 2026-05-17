@@ -1,5 +1,3 @@
-local gaps_outer = 40
-
 hl.window_rule({
   name = "mini-visualizer",
   match = {

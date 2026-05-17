@@ -1,7 +1,3 @@
-local myScript = "$HOME/.local/bin"
-local sound_effects_dir = "/usr/share/sounds/oxygen/stereo"
-local volume_step = 1
-
 -- mouse primary
 local mouse_left   = "mouse:272"
 local mouse_middle = "mouse:274"
