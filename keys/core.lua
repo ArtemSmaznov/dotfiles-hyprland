@@ -343,11 +343,11 @@ hl.bind("SUPER + print"        , hl.dsp.exec_cmd(myScript .. "/screenshot.sh des
 hl.bind("SUPER + backslash", function()
   hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-\\\\-' dm-notify"))
   hl.dispatch(hl.dsp.submap("dm-notify"))
-end, { release = true })
+end)
 
 hl.define_submap("dm-notify"  , function()
   hl.bind("backspace"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify close")  , { description = "clear last notification"   })
-  hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
+  -- hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
   hl.bind("backslash"         , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
   hl.bind("SHIFT + BACKSLASH" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recents"), { description = "show recent notifications" })
   hl.bind("a"                 , hl.dsp.exec_cmd(myDMScript .. "/dm-notify context"), { description = "open last notification"    })
@@ -365,14 +365,16 @@ end)
 --------------------------------------------------------------------------------
 -- [d] dm-scripts
 --------------------------------------------------------------------------------
-hl.bind("SUPER + d", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-d-' dm-global"), { description = "" })
-hl.bind("SUPER + d", hl.dsp.submap("dm-global")                                         , { description = "" })
+hl.bind("SUPER + d", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-d-' dm-global"))
+  hl.dispatch(hl.dsp.submap("dm-global"))
+end)
 
 hl.define_submap("dm-global", function()
   hl.bind("backslash"       , hl.dsp.exec_cmd(myDMScript .. "/dm-notify")    , { description = "dm-notify" })
   hl.bind("a"               , hl.dsp.exec_cmd(myDMScript .. "/dm-audio")     , { description = "dm-audio" })
   hl.bind("b"               , hl.dsp.exec_cmd(myDMScript .. "/dm-bookman")   , { description = "dm-bookman" })
-  hl.bind("SUPER + d"       , hl.dsp.exec_cmd(myDMScript .. "/dm-master")    , { description = "dm-master" })
+  -- hl.bind("SUPER + d"       , hl.dsp.exec_cmd(myDMScript .. "/dm-master")    , { description = "dm-master" })
   hl.bind("k"               , hl.dsp.exec_cmd(myDMScript .. "/dm-keys")      , { description = "dm-keys" })
   hl.bind("n"               , hl.dsp.exec_cmd(myDMScript .. "/dm-notify")    , { description = "dm-notify" })
   hl.bind("p"               , hl.dsp.exec_cmd(myDMScript .. "/dm-player")    , { description = "dm-player" })
@@ -386,7 +388,7 @@ hl.define_submap("dm-global", function()
   hl.bind("backslash" , reset_submap, { release = true })
   hl.bind("a"         , reset_submap, { release = true })
   hl.bind("b"         , reset_submap, { release = true })
-  hl.bind("SUPER + d" , reset_submap, { release = true })
+  -- hl.bind("SUPER + d" , reset_submap, { release = true })
   hl.bind("k"         , reset_submap, { release = true })
   hl.bind("n"         , reset_submap, { release = true })
   hl.bind("p"         , reset_submap, { release = true })
@@ -403,11 +405,13 @@ end)
 --------------------------------------------------------------------------------
 -- [o] open
 --------------------------------------------------------------------------------
-hl.bind("SUPER + o", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-o-' open"), { description = "" })
-hl.bind("SUPER + o", hl.dsp.submap("open")                                         , { description = "" })
+hl.bind("SUPER + o", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-o-' open"))
+  hl.dispatch(hl.dsp.submap("open"))
+end)
 
 hl.define_submap("open", function()
-  hl.bind(""           , hl.dsp.exec_cmd(mySysBluetooth)                                                                                  , { description = "bluetooth" })
+  hl.bind("b"          , hl.dsp.exec_cmd(mySysBluetooth)                                                                                  , { description = "bluetooth" })
   hl.bind("c"          , hl.dsp.exec_cmd(myColorPicker)                                                                                   , { description = "color picker" })
   hl.bind("d"          , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord")               , { description = "toggle chats" })
   hl.bind("e"          , hl.dsp.exec_cmd("myEmail")                                                                                       , { description = "email client" })
@@ -415,7 +419,7 @@ hl.define_submap("open", function()
   hl.bind("g"          , hl.dsp.submap("games")                                                                                           , { description = "+games" })
   hl.bind("i"          , hl.dsp.exec_cmd("vimiv $XDG_PICTURES_DIR")                                                                       , { description = "image viewer" })
   hl.bind("m"          , hl.dsp.exec_cmd(myCliMusic)                                                                                      , { description = "music player" })
-  hl.bind("SHIFT + M"  , hl.dsp.exec_cmd(myCliMusic, { workspace = 9, no_initial_focus = true })                                          , { description = "music player on default workspace" })
+  hl.bind("SHIFT + M"  , hl.dsp.exec_cmd(myCliMusic                                                                                       , { workspace = 9, no_initial_focus = true }) , { description = "music player on default workspace" })
   hl.bind("t"          , hl.dsp.exec_cmd(myTorBrowser)                                                                                    , { description = "tor browser" })
   hl.bind("v"          , hl.dsp.exec_cmd(myVolumeControl)                                                                                 , { description = "volume control" })
   hl.bind("w"          , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'chats' 'whatsapp-for-linux' 'whatsapp-for-linux'"), { description = "toggle whatsapp" })
@@ -437,7 +441,7 @@ end)
 hl.define_submap("games", function()
   hl.bind("d"           , hl.dsp.exec_cmd(myGZDoom)  , { description = "gzdoom" })
   hl.bind("f"           , hl.dsp.exec_cmd(myFHeroes2), { description = "fheroes2 (homm2)" })
-  hl.bind("g"           , hl.dsp.exec_cmd(myGameHub) , { description = "gamehub" })
+  -- hl.bind("g"           , hl.dsp.exec_cmd(myGameHub) , { description = "gamehub" })
   hl.bind("h"           , hl.dsp.exec_cmd(myHeroic)  , { description = "heroic" })
   hl.bind("l"           , hl.dsp.exec_cmd(myLutris)  , { description = "lutris" })
   hl.bind("n"           , hl.dsp.exec_cmd(myNexus)   , { description = "Nexus Mods App" })
@@ -450,7 +454,7 @@ hl.define_submap("games", function()
   hl.bind("backspace", hl.dsp.submap("open")                                          , { description = "" })
   hl.bind("d"        , reset_submap                                                   , { release = true })
   hl.bind("f"        , reset_submap                                                   , { release = true })
-  hl.bind("g"        , reset_submap                                                   , { release = true })
+  -- hl.bind("g"        , reset_submap                                                   , { release = true })
   hl.bind("h"        , reset_submap                                                   , { release = true })
   hl.bind("l"        , reset_submap                                                   , { release = true })
   hl.bind("n"        , reset_submap                                                   , { release = true })
@@ -465,8 +469,10 @@ end)
 --------------------------------------------------------------------------------
 -- [p] pass
 --------------------------------------------------------------------------------
-hl.bind("SUPER + p", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-p-' pass"), { description = "" })
-hl.bind("SUPER + p", hl.dsp.submap("pass")                                         , { description = "" })
+hl.bind("SUPER + p", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-p-' pass"))
+  hl.dispatch(hl.dsp.submap("pass"))
+end)
 
 hl.define_submap("pass", function()
   hl.bind("c"          , hl.dsp.exec_cmd("wofi-pass --squash")                  , { description = "copy field" })
@@ -485,8 +491,10 @@ end)
 --------------------------------------------------------------------------------
 -- [s] scratchpad
 --------------------------------------------------------------------------------
-hl.bind("SUPER + s", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-s-' scratchpad"), { description = "" })
-hl.bind("SUPER + s", hl.dsp.submap("scratchpad")                                         , { description = "" })
+hl.bind("SUPER + s", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-s-' scratchpad"))
+  hl.dispatch(hl.dsp.submap("scratchpad"))
+end)
 
 hl.define_submap("scratchpad", function()
   hl.bind("a"                , hl.dsp.exec_cmd(myHyprScript .. "/toggle-special-workspace.sh 'anki' 'anki' 'anki'")                                          , { description = "anki" })
@@ -519,8 +527,14 @@ end)
 --------------------------------------------------------------------------------
 -- [t] toggle
 --------------------------------------------------------------------------------
-hl.bind("SUPER + t", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-t-' toggle"), { description = "" })
-hl.bind("SUPER + t", hl.dsp.submap("toggle")                                         , { description = "" })
+hl.bind("SUPER + t", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-t-' toggle"))
+  hl.dispatch(hl.dsp.submap("toggle"))
+end)
+
+hl.define_submap("toggle", function()
+  -- TODO
+end)
 --------------------------------------------------------------------------------
 
 
@@ -528,8 +542,10 @@ hl.bind("SUPER + t", hl.dsp.submap("toggle")                                    
 --------------------------------------------------------------------------------
 -- [z] power management
 --------------------------------------------------------------------------------
-hl.bind("SUPER + z", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-z-' dm-power"), { description = "" })
-hl.bind("SUPER + z", hl.dsp.submap("dm-power")                                         , { description = "" })
+hl.bind("SUPER + z", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-z-' dm-power"))
+  hl.dispatch(hl.dsp.submap("dm-power"))
+end)
 
 hl.define_submap("dm-power", function()
   hl.bind("c"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power controller")         , { description = "disconnect all controllers" })
@@ -539,7 +555,7 @@ hl.define_submap("dm-power", function()
   hl.bind("r"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power reboot")             , { description = "reboot system" })
   hl.bind("s"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
   hl.bind("z"              , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
-  hl.bind("SUPER + z"      , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
+  -- hl.bind("SUPER + z"      , hl.dsp.exec_cmd(myDMScript .. "/dm-power suspend")            , { description = "suspend system" })
 
   hl.bind("catchall"  , reset_submap, { release = true })
   hl.bind("c"         , reset_submap, { release = true })
@@ -549,7 +565,7 @@ hl.define_submap("dm-power", function()
   hl.bind("r"         , reset_submap, { release = true })
   hl.bind("s"         , reset_submap, { release = true })
   hl.bind("z"         , reset_submap, { release = true })
-  hl.bind("SUPER + z" , reset_submap, { release = true })
+  -- hl.bind("SUPER + z" , reset_submap, { release = true })
 end)
 --------------------------------------------------------------------------------
 
@@ -558,8 +574,10 @@ end)
 --------------------------------------------------------------------------------
 -- CTRL + ALT + O
 --------------------------------------------------------------------------------
-hl.bind("CTRL + ALT + o", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'C-A-o-' open-secondary"), { description = "" })
-hl.bind("CTRL + ALT + o", hl.dsp.submap("open-secondary")                                           , { description = "" })
+hl.bind("CTRL + ALT + o", function()
+  hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'M-z-' dm-power"))
+  hl.dispatch(hl.dsp.submap("open-secondary"))
+end)
 
 hl.define_submap("open-secondary", function()
   hl.bind("e"                    , hl.dsp.exec_cmd(myFiles)       , { description = "gui file manager" })
