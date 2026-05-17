@@ -1,0 +1,18 @@
+hl.bind("SUPER + backslash", function()
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-\\\\-' dm-notify"))
+  hl.dispatch(hl.dsp.submap("dm-notify"))
+end)
+
+hl.define_submap("dm-notify"  , function()
+  hl.bind("backspace"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify close")  , { description = "clear last notification"   })
+  -- hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(myDMScript .. "/dm-notify recent") , { description = "show last notification"    })
+  hl.bind("backslash"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recent") , { description = "show last notification"    })
+  hl.bind("SHIFT + BACKSLASH" , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
+  hl.bind("a"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify context"), { description = "open last notification"    })
+  hl.bind("c"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify close")  , { description = "clear last notification"   })
+  hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify clear")  , { description = "clear all notifications"   })
+  hl.bind("r"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
+
+  hl.bind("catchall", RESET_SUBMAP, { release = true })
+  hl.bind("a"       , RESET_SUBMAP, { release = true })
+end)

@@ -1,0 +1,15 @@
+hl.bind("SUPER + p", function()
+  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-p-' pass"))
+  hl.dispatch(hl.dsp.submap("pass"))
+end)
+
+hl.define_submap("pass", function()
+  hl.bind("c"          , hl.dsp.exec_cmd("wofi-pass --squash")                  , { description = "copy field" })
+  hl.bind("p"          , hl.dsp.exec_cmd("wofi-pass --squash --type")           , { description = "fill field" })
+  hl.bind("a"          , hl.dsp.exec_cmd("wofi-pass --squash --type --autotype"), { description = "autofill password" })
+
+  hl.bind("catchall", RESET_SUBMAP, { release = true })
+  hl.bind("c"       , RESET_SUBMAP, { release = true })
+  hl.bind("p"       , RESET_SUBMAP, { release = true })
+  hl.bind("a"       , RESET_SUBMAP, { release = true })
+end)
