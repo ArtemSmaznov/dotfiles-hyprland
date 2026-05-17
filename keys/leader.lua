@@ -81,62 +81,68 @@ local eww_power = "powermenu-panel"
 local eww_quick_settings = "quick-settings"
 local eww_which_key = "which-key"
 
+--------------------------------------------------------------------------------
 
+local reset_submap = function()
+  hl.dispatch(hl.dsp.submap("reset"))
+  hl.dispatch(hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"))
+end
+
+--------------------------------------------------------------------------------
 
 hl.bind("SUPER + space", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC-' leader"), { description = "" })
 hl.bind("SUPER + space", hl.dsp.submap("leader")                                         , { description = "" })
 
 hl.define_submap("leader", function()
-                   hl.bind("c", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC c-' config"))
-                             hl.dispatch(hl.dsp.submap("config"))
-                   end, { description = "+config" })
+  hl.bind("c", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC c-' config"))
+    hl.dispatch(hl.dsp.submap("config"))
+  end, { description = "+config" })
 
 
-                   hl.bind("e", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC e-' eww"))
-                             hl.dispatch(hl.dsp.submap("eww"))
-                   end, { description = "+Elkowars Wacky Widgets" })
+  hl.bind("e", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC e-' eww"))
+    hl.dispatch(hl.dsp.submap("eww"))
+  end, { description = "+Elkowars Wacky Widgets" })
 
 
-                   hl.bind("l", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC l-' layout"))
-                             hl.dispatch(hl.dsp.submap("layout"))
-                   end, { description = "+layout" })
+  hl.bind("l", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC l-' layout"))
+    hl.dispatch(hl.dsp.submap("layout"))
+  end, { description = "+layout" })
 
 
-                   hl.bind("t", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC t-' toggle"))
-                             hl.dispatch(hl.dsp.submap("toggle"))   
-                   end, { description = "+toggle" })
+  hl.bind("t", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC t-' toggle"))
+    hl.dispatch(hl.dsp.submap("toggle"))
+  end, { description = "+toggle" })
 
 
-                   hl.bind("w", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w-' window"))
-                             hl.dispatch(hl.dsp.submap("window"))   
-                   end, { description = "+window" })
+  hl.bind("w", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w-' window"))
+    hl.dispatch(hl.dsp.submap("window"))
+  end, { description = "+window" })
 
 
-                   hl.bind("SHIFT + W", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC W-' workspace"))
-                             hl.dispatch(hl.dsp.submap("workspace"))
-                   end, { description = "+workspace" })
+  hl.bind("SHIFT + W", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC W-' workspace"))
+    hl.dispatch(hl.dsp.submap("workspace"))
+  end, { description = "+workspace" })
 
 
-                   hl.bind("catchall", hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"), { release = true, description = "" })
+  hl.bind("catchall", reset_submap, { release = true })
 end)
-
 --------------------------------------------------------------------------------
 -- [c] config
 --------------------------------------------------------------------------------
 hl.define_submap("config", function()
-                   hl.bind("a", function()
-                             hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC c a-' autostart"))
-                             hl.dispatch(hl.dsp.exec_cmd("eww open " .. eww_autostart))
-                             hl.dispatch(hl.dsp.submap("autostart"))
-                   end, { description = "open autostart list" })
+  hl.bind("a", function()
+    hl.dispatch(hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC c a-' autostart"))
+    hl.dispatch(hl.dsp.exec_cmd("eww open " .. eww_autostart))
+    hl.dispatch(hl.dsp.submap("autostart"))
+  end, { description = "open autostart list" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")             , { release = true, description = "" })
+  hl.bind("catchall", reset_submap, { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC-' leader"), { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                         , { description = "" })
   hl.bind("a"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")             , { release = true, description = "" })
@@ -155,7 +161,7 @@ hl.define_submap("autostart", function()
   hl.bind("s", hl.dsp.exec_cmd(exile .. "autostart toggle steam                && eww update autostart-enabled-apps=$(" .. exile .. " autostart list)"), { description = "toggle steam" })
   hl.bind("t", hl.dsp.exec_cmd(exile .. "autostart toggle thunderbird          && eww update autostart-enabled-apps=$(" .. exile .. " autostart list)"), { description = "toggle thunderbird" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh"), { release = true                            , description = "" })
+  hl.bind("catchall", reset_submap, { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript  .. "/which-key.sh -p 'SPC c-' config"), { description = "" })
   hl.bind("backspace", hl.dsp.exec_cmd("eww close " .. eww_autostart))
   hl.bind("backspace", hl.dsp.submap("config"))
@@ -168,11 +174,11 @@ hl.define_submap("eww", function()
   hl.bind("d"         , hl.dsp.exec_cmd("eww set debug=true")          , { description = "toggle debug panel" })
   hl.bind("p"         , hl.dsp.exec_cmd("eww open --toggle playground"), { description = "open playground" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
+  hl.bind("catchall" , reset_submap                                                     , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript  .. "/which-key.sh -p 'SPC-' leader"), { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                          , { description = "" })
-  hl.bind("d"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
-  hl.bind("p"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
+  hl.bind("d"        , reset_submap                                                     , { release = true })
+  hl.bind("p"        , reset_submap                                                     , { release = true })
 end)
 --------------------------------------------------------------------------------
 
@@ -187,7 +193,7 @@ hl.define_submap("layout", function()
   hl.bind("m"            , hl.dsp.exec_cmd(myHyprScript .. "/layoutctl.sh set master")        , { description = "master" })
   hl.bind("s"            , hl.dsp.exec_cmd(myHyprScript .. "/layoutctl.sh set scrolling")     , { description = "scrolling" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")             , { release = true, description = "" })
+  hl.bind("catchall" , reset_submap                                                     , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC-' leader"), { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                         , { description = "" })
 end)
@@ -219,15 +225,15 @@ hl.define_submap("toggle", function()
   hl.bind("s"            , hl.dsp.exec_cmd(myHyprScript .. "/toggle-status-bar.sh")                              , { description = "status bar" })
   hl.bind("z"            , hl.dsp.exec_cmd(myHyprScript .. "/toggle-zen.sh " .. borders .. corners .. gaps_inner), { description = "zen mode" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
+  hl.bind("catchall" , reset_submap                                                     , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript  .. "/which-key.sh -p 'SPC-' leader"), { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                          , { description = "" })
-  hl.bind("b"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
-  hl.bind("c"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
-  hl.bind("d"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
-  hl.bind("g"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
-  hl.bind("s"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
-  hl.bind("z"        , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { description = "" })
+  hl.bind("b"        , reset_submap                                                     , { release = true })
+  hl.bind("c"        , reset_submap                                                     , { release = true })
+  hl.bind("d"        , reset_submap                                                     , { release = true })
+  hl.bind("g"        , reset_submap                                                     , { release = true })
+  hl.bind("s"        , reset_submap                                                     , { release = true })
+  hl.bind("z"        , reset_submap                                                     , { release = true })
 end)
 
 -- [t] toggle → [p] panels
@@ -268,7 +274,7 @@ hl.define_submap("window", function()
   hl.bind("s"            , hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w s-' stack  ") , { description = "" })
   hl.bind("s"            , hl.dsp.submap("stack")                                                , { description = "+stack" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
+  hl.bind("catchall" , reset_submap                                                     , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC-' leader") , { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                          , { description = "" })
 end)
@@ -283,7 +289,7 @@ hl.define_submap("borders", function()
   hl.bind("SHIFT + minus" , hl.dsp.exec_cmd(myHyprScript .. "/borderctl.sh $borders shrink 5") ,  { description = "shrink more" })
   hl.bind("SHIFT + equal" , hl.dsp.exec_cmd(myHyprScript .. "/borderctl.sh $borders grow 5")   ,  { description = "grow more" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { release = true, description = "" })
+  hl.bind("catchall" , reset_submap                                                     , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w-' window") , { description = "" })
   hl.bind("backspace", hl.dsp.submap("window")                                            , { description = "" })
 end)
@@ -296,13 +302,13 @@ hl.define_submap("stack", function()
   hl.bind("s"           , hl.dsp.group.toggle()                               , { description = "toggle window stacking" })
   hl.bind("x"           , hl.dsp.window.deny_from_group({ action = "toggle" }), { description = "restict window from stacking" })
 
-  hl.bind("catchall"  , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { release = true , description = "" })
+  hl.bind("catchall"  , reset_submap                                                       , { release = true })
   hl.bind("backspace" , hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w-' window") , { description = "" })
   hl.bind("backspace" , hl.dsp.submap("window")                                            , { description = "" })
-  hl.bind("l"         , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { description = "" })
-  hl.bind("SHIFT + L" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { description = "" })
-  hl.bind("s"         , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { description = "" })
-  hl.bind("x"         , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")                , { description = "" })
+  hl.bind("l"         , reset_submap                                                       , { release = true })
+  hl.bind("SHIFT + L" , reset_submap                                                       , { release = true })
+  hl.bind("s"         , reset_submap                                                       , { release = true })
+  hl.bind("x"         , reset_submap                                                       , { release = true })
 end)
 --------------------------------------------------------------------------------
 
@@ -313,7 +319,7 @@ hl.define_submap("workspace", function()
   hl.bind("b"               , hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC w b-' borders") , { description = "" })
   hl.bind("b"               , hl.dsp.submap("borders")                                              , { description = "+borders" })
 
-  hl.bind("catchall" , hl.dsp.exec_cmd(myHyprScript .. "/reset-submap.sh")              , { release = true, description = "" })
+  hl.bind("catchall"  , reset_submap                                                       , { release = true })
   hl.bind("backspace", hl.dsp.exec_cmd(myEwwScript .. "/which-key.sh -p 'SPC-' leader") , { description = "" })
   hl.bind("backspace", hl.dsp.submap("leader")                                          , { description = "" })
 end)
