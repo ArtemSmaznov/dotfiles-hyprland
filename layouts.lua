@@ -4,6 +4,6 @@ hl.config({
   },
 })
 
-require("layouts/dwindle")
-require("layouts/master")
-require("layouts/scrolling")
+require("layouts.dwindle")
+require("layouts.master")
+require("layouts.scrolling")

@@ -1,4 +1,4 @@
-require("themes/colors/base16")
+require("themes.colors.base16")
 
 GAPS_INNER        = 20
 GAPS_OUTER        = 40

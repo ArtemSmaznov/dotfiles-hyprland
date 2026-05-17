@@ -1,0 +1,5 @@
+require("rules.applications")
+require("rules.idle-inhibit")
+require("rules.layers")
+require("rules.windows")
+require("rules.workspaces")
