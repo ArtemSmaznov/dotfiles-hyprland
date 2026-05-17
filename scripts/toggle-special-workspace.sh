@@ -27,6 +27,7 @@ fi
 # rip the app back into special workspace if it is empty
 if [[ ! $workspace_is_hidden ]]; then
     hyprctl dispatch "hl.dsp.window.move({ workspace = 'special:$workspace_name', window = 'class:$app_class' })"
+    exit 0
 fi
 
 # execution ********************************************************************
