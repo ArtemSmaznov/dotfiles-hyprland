@@ -5,9 +5,9 @@ hl.window_rule({
     border_color = {
       angle = -90,
       colors = {
-        "rgba(" .. base09 .. "aa)",
-        "rgba(" .. base08 .. "aa)",
-        "rgba(" .. base0A .. "aa)",
+        "rgba(" .. BASE09 .. "aa)",
+        "rgba(" .. BASE08 .. "aa)",
+        "rgba(" .. BASE0A .. "aa)",
       },
     },
 })

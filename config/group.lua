@@ -12,32 +12,32 @@ hl.config({
     col = {
       border_active = {
         colors = {
-          "rgba(" .. base0B .. "aa)",
-          "rgba(" .. base0D .. "aa)",
-          "rgba(" .. base0C .. "aa)",
+          "rgba(" .. BASE0B .. "aa)",
+          "rgba(" .. BASE0D .. "aa)",
+          "rgba(" .. BASE0C .. "aa)",
         },
         angle = 45,
       },
       border_inactive = {
         colors = {
-          "rgba(" .. base0B .. "33)",
-          "rgba(" .. base0D .. "33)",
-          "rgba(" .. base0C .. "33)",
+          "rgba(" .. BASE0B .. "33)",
+          "rgba(" .. BASE0D .. "33)",
+          "rgba(" .. BASE0C .. "33)",
         },
         angle = 45,
       },
       border_locked_active = {
         colors = {
-          "rgba(" .. base09 .. "aa)",
-          "rgba(" .. base0A .. "aa)",
-          "rgba(" .. base0F .. "aa)",
+          "rgba(" .. BASE09 .. "aa)",
+          "rgba(" .. BASE0A .. "aa)",
+          "rgba(" .. BASE0F .. "aa)",
         },
       },
       border_locked_inactive = {
         colors = {
-          "rgba(" .. base09 .. "33)",
-          "rgba(" .. base0A .. "33)",
-          "rgba(" .. base0F .. "33)",
+          "rgba(" .. BASE09 .. "33)",
+          "rgba(" .. BASE0A .. "33)",
+          "rgba(" .. BASE0F .. "33)",
         },
       },
     },
@@ -52,7 +52,7 @@ hl.config({
       gradients                 = true,
       height                    = 36,
       font_size                 = 18,
-      text_color                = "rgb(" .. base01 .. ")",
+      text_color                = "rgb(" .. BASE01 .. ")",
       gradient_rounding         = CORNERS,
       gradient_round_only_edges = false,
 
@@ -63,10 +63,10 @@ hl.config({
 
       -- indicator colors
       col                       = {
-        active = "rgba(" .. base0B .. "aa)",
-        inactive = "rgba(" .. base0C .. "22)",
-        locked_active = "rgba(" .. base09 .. "aa)",
-        locked_inactive = "rgba(" .. base0F .. "22)",
+        active = "rgba(" .. BASE0B .. "aa)",
+        inactive = "rgba(" .. BASE0C .. "22)",
+        locked_active = "rgba(" .. BASE09 .. "aa)",
+        locked_inactive = "rgba(" .. BASE0F .. "22)",
       },
 
       -- indicator gaps

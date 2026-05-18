@@ -9,7 +9,7 @@ hl.config({
     font_family = "Hack Nerd Font",
 
     col = {
-      splash = "rgb(" .. base07 ..")",
+      splash = "rgb(" .. BASE07 ..")",
     },
 
     -- focus

@@ -34,8 +34,8 @@ hl.config({
       sharp = false,
       -- ignore_window = true,
 
-      color = "rgba(" .. base00 .. "ee)",
-      color_inactive = "rgba(" .. base00 .. "cc)",
+      color = "rgba(" .. BASE00 .. "ee)",
+      color_inactive = "rgba(" .. BASE00 .. "cc)",
 
       scale = 1.0,
     },
@@ -44,8 +44,8 @@ hl.config({
       enabled = false,
       range = 10,
       render_power = 3,
-      color = "rgba(" .. base07 .. "ee)",
-      color_inactive = "rgba(" .. base07 .. "ee)",
+      color = "rgba(" .. BASE07 .. "ee)",
+      color_inactive = "rgba(" .. BASE07 .. "ee)",
     },
   },
 })
