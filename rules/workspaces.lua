@@ -6,8 +6,8 @@ hl.workspace_rule({ workspace = "5" , persistent = true , monitor = "DP-1" })
 hl.workspace_rule({ workspace = "6" , persistent = true , monitor = "DP-1" })
 hl.workspace_rule({ workspace = "7" , persistent = true , monitor = "DP-1" })
 hl.workspace_rule({ workspace = "8" , persistent = true , monitor = "DP-1" })
-hl.workspace_rule({ workspace = "9" , persistent = false, monitor = "DP-1" , gaps_in = 100 , gaps_out = 200 , on_created_empty = MUSIC_CLI })
-hl.workspace_rule({ workspace = "10", persistent = false, monitor = "DP-3" , gaps_in = 0   , gaps_out = 0   , on_created_empty = SYSLOG , no_rounding = true , default = true  })
+hl.workspace_rule({ workspace = "9" , persistent = true , monitor = "DP-1" , gaps_in = 100 , gaps_out = 200 , on_created_empty = MUSIC_CLI })
+hl.workspace_rule({ workspace = "10", persistent = false, monitor = "DP-3" , gaps_in = 0   , gaps_out = 0   , on_created_empty = SYSLOG , no_rounding = true , default = true })
 
 
 hl.window_rule({ match = { workspace = "9"  }, border_size = 3 })
