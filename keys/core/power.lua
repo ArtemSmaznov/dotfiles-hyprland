@@ -1,7 +1,4 @@
-hl.bind("SUPER + z", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-z-' dm-power"))
-  hl.dispatch(hl.dsp.submap("dm-power"))
-end)
+hl.bind("SUPER + z", switch_submap("M-z-", "dm-power"))
 
 hl.define_submap("dm-power", function()
   hl.bind("c"              , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-power controller")         , { description = "disconnect all controllers" })

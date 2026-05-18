@@ -1,14 +1,7 @@
 hl.define_submap("workspace", function()
 
-  hl.bind("b", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'SPC w b-' borders"))
-    hl.dispatch(hl.dsp.submap("borders"))
-  end, { description = "+borders" })
+  hl.bind("b", switch_submap("SPC w b-", "borders"))
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'SPC-' leader"))
-    hl.dispatch(hl.dsp.submap("leader"))
-  end)
-
+  hl.bind("backspace", switch_submap("SPC-", "leader"))
   hl.bind("catchall" , RESET_SUBMAP , { release = true })
 end)

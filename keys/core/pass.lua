@@ -1,7 +1,4 @@
-hl.bind("SUPER + p", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-p-' pass"))
-  hl.dispatch(hl.dsp.submap("pass"))
-end)
+hl.bind("SUPER + p", switch_submap("M-p-", "pass"))
 
 hl.define_submap("pass", function()
   hl.bind("c"          , hl.dsp.exec_cmd("wofi-pass --squash")                  , { description = "copy field" })

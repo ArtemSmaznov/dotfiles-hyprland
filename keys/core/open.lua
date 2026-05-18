@@ -1,7 +1,4 @@
-hl.bind("SUPER + o", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-o-' open"))
-  hl.dispatch(hl.dsp.submap("open"))
-end)
+hl.bind("SUPER + o", switch_submap("M-o-", "open"))
 
 hl.define_submap("open", function()
 
@@ -10,11 +7,8 @@ hl.define_submap("open", function()
   hl.bind("d"         , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord")               , { description = "toggle chats" })
   hl.bind("e"         , hl.dsp.exec_cmd("myEmail")                                                                                       , { description = "email client" })
 
-  hl.bind("g", function()
-    require("keys.core.open.games")
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-o g-' games"))
-    hl.dispatch(hl.dsp.submap("games"))
-  end, { description = "+games" })
+  require("keys.core.open.games")
+  hl.bind("g"         , switch_submap("M-o g-", "games"))
 
   hl.bind("i"         , hl.dsp.exec_cmd("vimiv $XDG_PICTURES_DIR")                                                                       , { description = "image viewer" })
   hl.bind("m"         , hl.dsp.exec_cmd(MUSIC_CLI)                                                                                       , { description = "music player" })

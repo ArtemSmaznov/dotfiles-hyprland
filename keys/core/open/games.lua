@@ -10,10 +10,7 @@ hl.define_submap("games", function()
   hl.bind("v" , hl.dsp.exec_cmd(VCMI)     , { description = "vcmi (homm3)" })
   hl.bind("x" , hl.dsp.exec_cmd(NEXUS)    , { description = "Nexus Mods App" })
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS  .. "/which-key.sh -p 'M-o-' open"))
-    hl.dispatch(hl.dsp.submap("open"))
-  end)
+  hl.bind("backspace", switch_submap("M-o-", "open"))
 
   hl.bind("escape" , RESET_SUBMAP , { release = true })
   hl.bind("d"      , RESET_SUBMAP , { release = true })

@@ -1,7 +1,4 @@
-hl.bind("SUPER + s", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-s-' scratchpad"))
-  hl.dispatch(hl.dsp.submap("scratchpad"))
-end)
+hl.bind("SUPER + s", switch_submap("M-s-", "scratchpad"))
 
 hl.define_submap("scratchpad", function()
   hl.bind("a"                , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'anki' 'anki' 'anki'")                                          , { description = "anki" })

@@ -8,10 +8,7 @@ hl.define_submap("gaps", function()
   hl.bind("SHIFT + minus", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " shrink 5"), { repeating = true, description = "shrink more" })
   hl.bind("SHIFT + equal", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. BORDERS .. " grow 5")     , { repeating = true, description = "grow more" })
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'SPC l-' layout"))
-    hl.dispatch(hl.dsp.submap("layout"))
-  end)
+  hl.bind("backspace", switch_submap("SPC l-", "layout"))
 
   hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)

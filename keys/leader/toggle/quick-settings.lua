@@ -7,10 +7,7 @@ hl.define_submap("quick-settings", function()
   hl.bind("v" , hl.dsp.exec_cmd(SCRIPTS .. "/vpnctl.sh toggle")                                                            , { description = "vpn" })
   hl.bind("w" , hl.dsp.exec_cmd(SCRIPTS .. "/netctl.sh toggle wifi")                                                       , { description = "wi-fi" })
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS  .. "/which-key.sh -p 'SPC t-' toggle"))
-    hl.dispatch(hl.dsp.submap("toggle"))
-  end)
+  hl.bind("backspace", switch_submap("SPC t-", "toggle"))
 
   hl.bind("escape" , RESET_SUBMAP , { release = true })
 end)

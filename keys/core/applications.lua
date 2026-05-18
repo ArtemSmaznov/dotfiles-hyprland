@@ -37,10 +37,7 @@ hl.bind("CTRL + ALT + t"     , hl.dsp.exec_cmd(TERM)                            
 --------------------------------------------------------------------------------
 -- CTRL + ALT + O
 --------------------------------------------------------------------------------
-hl.bind("CTRL + ALT + o", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-z-' dm-power"))
-  hl.dispatch(hl.dsp.submap("open-secondary"))
-end)
+hl.bind("CTRL + ALT + o", switch_submap("C-A-o-", "open-secondary"))
 
 hl.define_submap("open-secondary", function()
   hl.bind("e"                    , hl.dsp.exec_cmd(FILES)       , { description = "gui file manager" })

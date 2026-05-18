@@ -6,10 +6,7 @@ hl.define_submap("stack", function()
   hl.bind("s"         , hl.dsp.group.toggle()                               , { description = "toggle window stacking" })
   hl.bind("x"         , hl.dsp.window.deny_from_group({ action = "toggle" }), { description = "restict window from stacking" })
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'SPC w-' window"))
-    hl.dispatch(hl.dsp.submap("window"))
-  end)
+  hl.bind("backspace", switch_submap("SPC w-", "window"))
 
   hl.bind("l"         , RESET_SUBMAP , { release = true })
   hl.bind("SHIFT + L" , RESET_SUBMAP , { release = true })

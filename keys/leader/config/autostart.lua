@@ -10,11 +10,8 @@ hl.define_submap("autostart", function()
   hl.bind("s", hl.dsp.exec_cmd(EXILE .. "autostart toggle steam                && eww update autostart-enabled-apps=$(" .. EXILE .. " autostart list)"), { description = "toggle steam" })
   hl.bind("t", hl.dsp.exec_cmd(EXILE .. "autostart toggle thunderbird          && eww update autostart-enabled-apps=$(" .. EXILE .. " autostart list)"), { description = "toggle thunderbird" })
 
-  hl.bind("backspace", function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS  .. "/which-key.sh -p 'SPC c-' config"))
-    hl.dispatch(hl.dsp.exec_cmd("eww close " .. EWW_AUTOSTART))
-    hl.dispatch(hl.dsp.submap("config"))
-  end)
+  hl.bind("backspace", switch_submap("SPC c-", "config"))
+  hl.bind("backspace", hl.dsp.exec_cmd("eww close " .. EWW_AUTOSTART))
 
   hl.bind("catchall", RESET_SUBMAP, { release = true })
 end)

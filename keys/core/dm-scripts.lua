@@ -1,7 +1,4 @@
-hl.bind("SUPER + d", function()
-  hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p 'M-d-' dm-global"))
-  hl.dispatch(hl.dsp.submap("dm-global"))
-end)
+hl.bind("SUPER + d", switch_submap("M-d-", "dm-global"))
 
 hl.define_submap("dm-global", function()
   hl.bind("backslash"       , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify")    , { description = "dm-notify" })
