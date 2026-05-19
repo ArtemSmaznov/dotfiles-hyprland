@@ -74,3 +74,9 @@ hl.bind("SUPER + SHIFT + j" , hl.dsp.window.move({ x = 0     , y = step  })  , {
 hl.bind("SUPER + SHIFT + k" , hl.dsp.window.move({ x = 0     , y = -step }) , { repeating = true, description = "move floating window up"        })
 hl.bind("SUPER + SHIFT + l" , hl.dsp.window.move({ x = step  , y = 0     })     , { repeating = true, description = "move floating window right" })
 hl.bind("SUPER + SHIFT + h" , hl.dsp.window.move({ x = -step , y = 0     })     , { repeating = true, description = "move floating window left"  })
+
+-- moving windows between layout stacks
+hl.bind("SUPER + ALT + h", hl.dsp.window.move({ direction = "left" })  , { description = "move focused window left" })
+hl.bind("SUPER + ALT + j", hl.dsp.window.move({ direction = "down" })  , { description = "move focused window below" })
+hl.bind("SUPER + ALT + k", hl.dsp.window.move({ direction = "up" })    , { description = "move focused window above" })
+hl.bind("SUPER + ALT + l", hl.dsp.window.move({ direction = "right" }) , { description = "move focused window right" })
