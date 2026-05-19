@@ -1,6 +1,6 @@
 hl.define_submap("gaps", function()
 
-  hl.bind("g"            , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " toggle")  , { description = "toggle" })
+  hl.bind("g"            , TOGGLE_GAPS, { description = "toggle" })
   hl.bind("0"            , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " reset")   , { description = "reset" })
   hl.bind("minus"        , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " shrink 1"), { repeating = true, description = "shrink" })
   hl.bind("equal"        , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " grow 1")  , { repeating = true, description = "grow" })

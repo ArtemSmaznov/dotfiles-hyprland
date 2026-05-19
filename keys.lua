@@ -9,7 +9,6 @@ function switch_submap(prompt, submap)
     hl.dispatch(hl.dsp.submap(submap))
   end, {
     description = "+" .. submap,
-    release = true,
   }
 end
 

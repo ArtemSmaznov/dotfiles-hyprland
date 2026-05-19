@@ -1,6 +1,6 @@
 hl.define_submap("borders", function()
 
-  hl.bind("b"             , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/borderctl.sh $borders toggle")   ,  { description = "toggle" })
+  hl.bind("b"             , TOGGLE_BORDERS,  { description = "toggle" })
   hl.bind("0"             , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/borderctl.sh $borders reset")    ,  { description = "reset" })
   hl.bind("minus"         , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/borderctl.sh $borders shrink 1") ,  { description = "shrink" })
   hl.bind("equal"         , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/borderctl.sh $borders grow 1")   ,  { description = "grow" })
