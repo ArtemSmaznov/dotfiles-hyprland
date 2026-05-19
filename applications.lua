@@ -61,6 +61,8 @@ SYS_BLUETOOTH      = "uwsm app -- blueman-manager"
 SYS_AUDIO          = "uwsm app -- com.saivert.pwvucontrol.desktop"
 
 -- eww
+EWW_BAR_MAIN       = "main-bar"
+EWW_BAR_SECOND     = "second-bar"
 EWW_CONFIG         = "config"
 EWW_AUTOSTART      = "autostart"
 EWW_INDICATORS     = "indicators"
