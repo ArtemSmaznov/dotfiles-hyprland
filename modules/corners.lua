@@ -16,7 +16,7 @@ function Corners:enable()
   hl.config({ decoration = { rounding = self.size } })
 
   self.enabled = true
-  hl.notification.create({ text = self.description .. " enabled", duration = 2000 })
+  Notification:shorter(self.description .. " enabled"):send()
 end
 
 function Corners:disable()
@@ -25,7 +25,7 @@ function Corners:disable()
   hl.config({ decoration = { rounding = self.disabled_size } })
 
   self.enabled = false
-  hl.notification.create({ text = self.description .. " disabled", duration = 2000 })
+  Notification:shorter(self.description .. " disabled"):send()
 end
 
 function Corners:toggle()

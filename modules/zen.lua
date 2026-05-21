@@ -16,7 +16,7 @@ function Zen:enable()
   Gaps:disable()
 
   self.enabled = true
-  hl.notification.create({ text = self.description .. " enabled", duration = 3000 })
+  Notification:default(self.description .. " enabled"):send()
 end
 
 function Zen:disable()
@@ -27,7 +27,7 @@ function Zen:disable()
   Gaps:enable()
 
   self.enabled = false
-  hl.notification.create({ text = self.description .. " disabled", duration = 3000 })
+  Notification:default(self.description .. " disabled"):send()
 end
 
 function Zen:toggle()

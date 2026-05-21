@@ -16,7 +16,7 @@ function Borders:enable()
   hl.config({ general = { border_size = self.size } })
 
   self.enabled = true
-  hl.notification.create({ text = self.description .. " enabled", duration = 2000 })
+  Notification:shorter(self.description .. " enabled"):send()
 end
 
 function Borders:disable()
@@ -25,7 +25,7 @@ function Borders:disable()
   hl.config({ general = { border_size = self.disabled_size } })
 
   self.enabled = false
-  hl.notification.create({ text = self.description .. " disabled", duration = 2000 })
+  Notification:shorter(self.description .. " disabled"):send()
 end
 
 function Borders:toggle()
@@ -35,6 +35,7 @@ function Borders:toggle()
   then self:enable()
   else self:disable()
   end
+
 end
 
 --------------------------------------------------------------------------------

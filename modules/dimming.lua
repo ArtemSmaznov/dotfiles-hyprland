@@ -14,7 +14,7 @@ function Dimming:enable()
   hl.config({ decoration = { dim_inactive = true } })
 
   self.enabled = true
-  hl.notification.create({ text = self.description .. " enabled", duration = 2000 })
+  Notification:shorter(self.description .. " enabled"):send()
 end
 
 function Dimming:disable()
@@ -23,7 +23,7 @@ function Dimming:disable()
   hl.config({ decoration = { dim_inactive = false } })
 
   self.enabled = false
-  hl.notification.create({ text = self.description .. " disabled", duration = 2000 })
+  Notification:shorter(self.description .. " disabled"):send()
 end
 
 function Dimming:toggle()
