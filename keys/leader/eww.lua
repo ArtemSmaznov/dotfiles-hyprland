@@ -5,7 +5,7 @@ hl.define_submap("eww", function()
 
   hl.bind("backspace", switch_submap("SPC-", "leader"))
 
-  hl.bind("d"        , RESET_SUBMAP , { release = true })
-  hl.bind("p"        , RESET_SUBMAP , { release = true })
-  hl.bind("catchall" , RESET_SUBMAP , { release = true })
+  hl.bind("d"        , RESET_SUBMAP)
+  hl.bind("p"        , RESET_SUBMAP)
+  hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)

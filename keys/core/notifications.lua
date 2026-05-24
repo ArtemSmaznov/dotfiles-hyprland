@@ -10,6 +10,6 @@ hl.define_submap("dm-notify"  , function()
   hl.bind("SHIFT + C"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify clear")  , { description = "clear all notifications"   })
   hl.bind("r"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
 
-  hl.bind("catchall", RESET_SUBMAP, { release = false })
-  hl.bind("a"       , RESET_SUBMAP, { release = false })
+  hl.bind("a"       , RESET_SUBMAP)
+  hl.bind("catchall", RESET_SUBMAP, { release = true })
 end)

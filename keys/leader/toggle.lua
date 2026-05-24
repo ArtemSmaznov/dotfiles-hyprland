@@ -14,5 +14,5 @@ hl.define_submap("toggle", function()
   hl.bind("z", ZEN_MODE, { description = "zen mode" })
 
   hl.bind("backspace", switch_submap("SPC-", "leader"))
-  hl.bind("catchall" , RESET_SUBMAP , { release = true })
+  hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)

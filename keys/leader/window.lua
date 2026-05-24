@@ -7,5 +7,5 @@ hl.define_submap("window", function()
   hl.bind("s", switch_submap("SPC w s-", "stack"))
 
   hl.bind("backspace", switch_submap("SPC-", "leader"))
-  hl.bind("catchall" , RESET_SUBMAP , { release = true })
+  hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)

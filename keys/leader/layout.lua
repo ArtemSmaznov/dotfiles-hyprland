@@ -11,5 +11,5 @@ hl.define_submap("layout", function()
 
   hl.bind("backspace", switch_submap("SPC-", "leader"))
 
-  hl.bind("catchall" , RESET_SUBMAP , { release = true })
+  hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)
