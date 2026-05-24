@@ -1,14 +1,14 @@
 hl.define_submap("gaps", function()
 
-  hl.bind("g"            , TOGGLE_GAPS, { description = "toggle" })
-  hl.bind("0"            , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " reset")   , { description = "reset" })
-  hl.bind("minus"        , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " shrink 1"), { repeating = true, description = "shrink" })
-  hl.bind("equal"        , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " grow 1")  , { repeating = true, description = "grow" })
-  hl.bind("SHIFT + 0"    , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " disable") , { description = "disable" })
-  hl.bind("SHIFT + minus", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. GAPS_INNER .. " shrink 5"), { repeating = true, description = "shrink more" })
-  hl.bind("SHIFT + equal", hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/gapctl.sh " .. BORDERS .. " grow 5")     , { repeating = true, description = "grow more" })
+  hl.bind("g"             , TOGGLE_GAPS      , { description = "toggle" })
+  hl.bind("t"             , TOGGLE_GAPS      , { description = "toggle" })
+  hl.bind("0"             , RESET_GAPS       , { description = "reset" })
+  hl.bind("minus"         , SHRINK_GAPS      , { repeating = true, description = "shrink" })
+  hl.bind("equal"         , GROW_GAPS        , { repeating = true, description = "grow" })
+  hl.bind("SHIFT + 0"     , DISABLE_GAPS     , { description = "disable" })
+  hl.bind("SHIFT + minus" , SHRINK_MORE_GAPS , { repeating = true, description = "shrink more" })
+  hl.bind("SHIFT + equal" , GROW_MORE_GAPS   , { repeating = true, description = "grow more" })
 
   hl.bind("backspace", switch_submap("SPC l-", "layout"))
-
   hl.bind("catchall" , RESET_SUBMAP, { release = true })
 end)
