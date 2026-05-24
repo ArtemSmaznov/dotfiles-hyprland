@@ -2,7 +2,7 @@ hl.bind("SUPER + backslash", switch_submap("M-\\\\-", "dm-notify"))
 
 hl.define_submap("dm-notify"  , function()
   hl.bind("backspace"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify close")  , { description = "clear last notification"   })
-  hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recent") , { description = "show last notification"    })
+  -- hl.bind("SUPER + backslash" , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recent") , { description = "show last notification"    })
   hl.bind("backslash"         , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recent") , { description = "show last notification"    })
   hl.bind("SHIFT + backslash" , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify recents"), { description = "show recent notifications" })
   hl.bind("a"                 , hl.dsp.exec_cmd(DM_SCRIPTS .. "/dm-notify context"), { description = "open last notification"    })
