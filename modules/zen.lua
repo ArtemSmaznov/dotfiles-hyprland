@@ -12,7 +12,7 @@ function Zen:enable()
   if (self.enabled) then return end
 
   Borders:disable()
-  Corners:disable()
+  Rounding:disable()
   Gaps:disable()
 
   self.enabled = true
@@ -23,7 +23,7 @@ function Zen:disable()
   if (not self.enabled) then return end
 
   Borders:enable()
-  Corners:enable()
+  Rounding:enable()
   Gaps:enable()
 
   self.enabled = false

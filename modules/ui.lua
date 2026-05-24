@@ -1,5 +1,5 @@
 require("modules.borders")
-require("modules.corners")
+require("modules.rounding")
 require("modules.dimming")
 require("modules.eww")
 require("modules.gaps")

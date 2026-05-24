@@ -1,9 +1,9 @@
 hl.define_submap("toggle", function()
 
-  hl.bind("b" , TOGGLE_BORDERS, { description = "window borders" })
-  hl.bind("c" , TOGGLE_CORNERS, { description = "rounded corners" })
-  hl.bind("d" , TOGGLE_DIMMING, { description = "window dimming" })
-  hl.bind("g" , TOGGLE_GAPS, { description = "window gaps" })
+  hl.bind("b", TOGGLE_BORDERS  , { description = "window borders" })
+  hl.bind("r", TOGGLE_ROUNDING , { description = "rounded corners" })
+  hl.bind("d", TOGGLE_DIMMING  , { description = "window dimming" })
+  hl.bind("g", TOGGLE_GAPS     , { description = "window gaps" })
 
   require("keys.leader.toggle.panel")
   hl.bind("p", switch_submap("SPC t p-", "panels"))
