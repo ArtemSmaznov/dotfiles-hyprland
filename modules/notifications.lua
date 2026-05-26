@@ -32,13 +32,13 @@ end
 
 function Notification:warning(message)
   self.message = message
-  self.duration = self.warning
+  self.duration = self.duration_warning
   return self
 end
 
 function Notification:alert(message)
   self.message = message
-  self.duration = self.alert
+  self.duration = self.duration_alert
   return self
 end
 
