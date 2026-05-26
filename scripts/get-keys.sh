@@ -16,15 +16,17 @@ hyprctl binds -j |
           end
         ) |
         .key = (
-          if   .key == \"minus\"     then \"-\"
-          elif .key == \"equal\"     then \"=\"
-          elif .key == \"slash\"     then \"/\"
-          elif .key == \"backslash\" then \"\\\\\"
-          elif .key == \"semicolon\" then \";\"
-          elif .key == \"colon\"     then \":\"
-          elif .key == \"period\"    then \".\"
-          elif .key == \"comma\"     then \",\"
-          elif .key == \"backspace\" then \"←\"
+          if   .key == \"minus\"        then \"-\"
+          elif .key == \"equal\"        then \"=\"
+          elif .key == \"slash\"        then \"/\"
+          elif .key == \"backslash\"    then \"\\\\\"
+          elif .key == \"semicolon\"    then \";\"
+          elif .key == \"colon\"        then \":\"
+          elif .key == \"period\"       then \".\"
+          elif .key == \"comma\"        then \",\"
+          elif .key == \"bracketleft\"  then \"[\"
+          elif .key == \"bracketright\" then \"]\"
+          elif .key == \"backspace\"    then \"←\"
           else .key
           end
         ) " |
