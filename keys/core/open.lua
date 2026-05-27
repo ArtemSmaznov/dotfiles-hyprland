@@ -2,10 +2,10 @@ hl.bind("SUPER + o", switch_submap("M-o-", "open"))
 
 hl.define_submap("open", function()
 
-  hl.bind("b"         , hl.dsp.exec_cmd(SYS_BLUETOOTH)                                                                                   , { description = "bluetooth" })
-  hl.bind("c"         , hl.dsp.exec_cmd(COLOR_PICKER)                                                                                    , { description = "color picker" })
-  hl.bind("d"         , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord")               , { description = "toggle chats" })
-  hl.bind("e"         , hl.dsp.exec_cmd("myEmail")                                                                                       , { description = "email client" })
+  hl.bind("b" , hl.dsp.exec_cmd(SYS_BLUETOOTH)                                                                     , { description = "bluetooth" })
+  hl.bind("c" , hl.dsp.exec_cmd(COLOR_PICKER)                                                                      , { description = "color picker" })
+  hl.bind("d" , hl.dsp.exec_cmd(HYPR_SCRIPTS .. "/toggle-special-workspace.sh 'chats' $myDiscordClass $myDiscord") , { description = "toggle chats" })
+  hl.bind("e" , hl.dsp.exec_cmd(EMAIL)                                                                             , { description = "email client" })
 
   require("keys.core.open.games")
   hl.bind("g"         , switch_submap("M-o g-", "games"))
