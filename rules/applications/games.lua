@@ -15,7 +15,7 @@ hl.window_rule({
 hl.window_rule({
   name = "steam-updater-floating-windows",
   match = {
-    class = "[Ss]team",
+    title = "Steam",
     float = true,
   },
   workspace = default_workspace .. " silent",
