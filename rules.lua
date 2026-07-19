@@ -1,4 +1,5 @@
 require("rules.applications")
+require("rules.debug")
 require("rules.idle-inhibit")
 require("rules.layers")
 require("rules.windows")
