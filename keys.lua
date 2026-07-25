@@ -5,7 +5,9 @@ end
 
 function switch_submap(prompt, submap)
   return function()
-    hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p '" .. prompt .. "' " .. submap))
+    if (WHICH_KEY_ENABLED) then
+      hl.dispatch(hl.dsp.exec_cmd(EWW_SCRIPTS .. "/which-key.sh -p '" .. prompt .. "' " .. submap))
+    end
     hl.dispatch(hl.dsp.submap(submap))
   end, {
     description = "+" .. submap,
