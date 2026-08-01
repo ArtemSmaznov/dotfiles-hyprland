@@ -1,4 +1,4 @@
-WHICH_KEY_ENABLED = false
+WHICH_KEY_ENABLED = true
 
 require("config.animations")
 require("config.binds")
