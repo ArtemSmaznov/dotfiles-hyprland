@@ -50,7 +50,7 @@ VECTOR_EDITOR      = "uwsm app -- org.inkscape.Inkscape.desktop"
 VIDEO_EDITOR       = "uwsm app -- org.kde.kdenlive.desktop"
 
 -- chat apps
-WHATSAPP           = "uwsm app -- whatsapp-for-linux"
+WHATSAPP           = "zapzap"
 DISCORD            = "uwsm app -- webcord.desktop"
 DISCORD_CLASS      = "WebCord"
 
