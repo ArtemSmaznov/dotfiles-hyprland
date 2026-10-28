@@ -24,7 +24,7 @@ hl.window_rule({
 hl.window_rule {
     name = "maximized-windows",
     match = { fullscreen_state_internal = 1 },
-    rounding = 0,
+    border_size = 0,
     dim_around = 1,
 }
 
@@ -47,7 +47,7 @@ hl.window_rule {
 
 -- workspace 2 - mail
 hl.window_rule {
-  match = { class = "org.mozilla.Thunderbird"},
+  match = { class = "org.mozilla.Thunderbird" },
   workspace = "2 silent",
 }
 
