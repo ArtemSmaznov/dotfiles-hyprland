@@ -1,5 +1,5 @@
-hl.bind("SUPER + CTRL + q" , hl.dsp.exec_cmd("uwsm stop")                   , { description = "quit Hyprland" })
-hl.bind("SUPER + CTRL + r" , hl.dsp.force_renderer_reload                   , { description = "restart Hyprland" })
+hl.bind("SUPER + CTRL + q" , hl.dsp.exec_cmd("uwsm stop")                  , { description = "quit Hyprland" })
+hl.bind("SUPER + CTRL + r" , hl.dsp.force_renderer_reload()                , { description = "restart Hyprland" })
 hl.bind("SHIFT + ALT_L"    , hl.dsp.exec_cmd(SCRIPTS .. "/toggle-lang.sh") , { description = "switch language" })
 
 hl.bind("SUPER + CTRL + d", function()
