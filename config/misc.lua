@@ -15,7 +15,6 @@ hl.config({
     -- focus
     mouse_move_focuses_monitor = false,
     focus_on_activate = false,
-    layers_hog_keyboard_focus = true,
 
     -- fullscreen
     on_focus_under_fullscreen = 0,
